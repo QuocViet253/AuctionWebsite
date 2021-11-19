@@ -1,5 +1,5 @@
 <div class="left col-sm-2">
-    <div class="card mt-1" style="width: 160px">
+    <div class="card mt-1" style="width: 200px">
         <h4 class="card-header">
             Brand
         </h4>
