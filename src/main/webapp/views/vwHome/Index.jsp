@@ -4,24 +4,53 @@
 
 <t:main>
     <jsp:body>
-        <div class="slider">
-            <div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="right col-sm-5 mt-1" >
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://h2bcompany.files.wordpress.com/2021/04/header-bidding-auction-ss-1920_uusz3n.gif" class="d-block w-100">
+                        <div class="card w-100" style="height: 600px" >
+                            <img class="card-img-top h-75" src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-2-600x600.jpg" alt="First slide">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Nike </h5>
+                                <p class="card-text text-center">EPL</p>
+                                <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://cdn.vietnambiz.vn/2019/10/19/penny-auction-bidding-15714956459261607479526.png" class="d-block w-100">
+                        <div class="card w-100" style="height: 600px" >
+                            <img class="card-img-top h-75"  src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg" alt="Card image cap">
+                            <div class="card-body ">
+                                <h5 class="card-title text-center">Adidas</h5>
+                                <p class="card-text text-center">Seri A</p>
+                                <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://d3jlwjv6gmyigl.cloudfront.net/images/2020/10/auct.jpg" class="d-block w-100">
+                        <div class="card w-100" style="height: 600px">
+                            <img class="card-img-top h-75" src="https://cdn.tgdd.vn/Products/Images/42/114110/iphone-8-plus-hh-600x600-600x600.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Puma</h5>
+                                <p class="card-text text-center">La Liga</p>
+                                <a href="#" class="btn btn-primary d-flex justify-content-center">View</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <ol class="carousel-indicators">
-                    <li data-target="#slider" data-slide-to="0" class="active"></li>
-                    <li data-target="#slider" data-slide-to="1"></li>
-                    <li data-target="#slider" data-slide-to="2"></li>
-                </ol>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+                    <span class="sr-only text-primary">Next</span>
+                </a>
             </div>
         </div>
     </jsp:body>
