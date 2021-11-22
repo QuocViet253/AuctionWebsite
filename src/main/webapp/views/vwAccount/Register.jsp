@@ -8,6 +8,18 @@
     <jsp:attribute name="js">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
+            $('#formRegister').on('submit', function (e) {
+                e.preventDefault();
+                const email = $('#registerEmail').val();
+                $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
+                    if (data === true) {
+                        $('#formRegister').off('submit').submit();
+                    } else {
+                        alert('Username is not available.');
+                    }
+                });
+            });
+
             //Register form
             Validator({
                 form: '#formRegister',
@@ -25,14 +37,17 @@
                     }, 'Please fill your password correctly')
                 ],
             });
+
             $('#registerDob').datetimepicker({
                 format: 'd/m/Y',
                 timepicker: false,
             })
+
+            $('registerName').select();
         </script>
     </jsp:attribute>
     <jsp:body>
-        <form class=" mx-auto shadow rounded-lg bg-white " id="formRegister">
+        <form class="mx-auto shadow rounded-lg bg-white " action="" method="post" id="formRegister">
             <!-- Logo -->
             <div class="text-center mb-3">
                 <h3 class="text-info">Register</h3>
