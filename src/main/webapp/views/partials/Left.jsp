@@ -1,5 +1,5 @@
 <div class="left col-sm-2">
-    <div class="card mt-1" style="width: 200px">
+    <div class="card mt-1" style="width: 200px; position: sticky; top:0; z-index: 1;">
         <h4 class="card-header bg-info">
             Category
         </h4>

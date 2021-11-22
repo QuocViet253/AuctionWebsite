@@ -7,7 +7,7 @@
             <section class="on-sale">
                 <div class="container-fluid">
                     <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">
-                        <h2>On Sale</h2>
+                        <h2 style="cursor: pointer;">On Sale</h2>
                     </div>
                     <div class="row">
                         <div class="col-md-3" >
