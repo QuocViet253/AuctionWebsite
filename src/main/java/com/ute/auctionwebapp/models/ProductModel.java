@@ -1,4 +1,4 @@
-package com.ute.auctionwebapp.model;
+package com.ute.auctionwebapp.models;
 
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.utills.DbUtills;
