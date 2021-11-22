@@ -7,13 +7,6 @@
                 <form class="form-inline">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown-toggle-split">
-                            <!-- <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Category
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Product</a>
-                                <a class="dropdown-item" href="#">Laptop</a>
-                            </div> -->
                             <select class="nav-link text-dark bg-light mr-2" style="border: 0; border-radius: 5px;">
                                 <option value="Product">Product</option>
                                 <option value="Category">Category</option>
@@ -42,8 +35,8 @@
                         Account
                     </a>
                     <ul class="dropdown-menu mt-0 float-left" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#Log">Log In</a></li>
-                        <li><a class="dropdown-item" href="#Sign">Sign Up</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Login">Log In</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Register">Register</a></li>
                     </ul>
                 </li>
             </ul>

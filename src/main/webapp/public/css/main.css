@@ -29,3 +29,36 @@ padding: 0;
     margin-top: -30px;
     left: 100%;
 }
+
+/*--------------form-message---------------*/
+.form-message {
+    text-align: left;
+}
+.form-group.invalid .form-control {
+    border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+.form-message {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    padding: 4px 0 0;
+}
+
+.form-control {
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    outline: none;
+}
+
+.form-control:hover {
+    border-color: #1dbfaf;
+}
+.form-group {
+    margin-bottom: 16px;
+    align-items: center;
+    flex-direction: column;
+}

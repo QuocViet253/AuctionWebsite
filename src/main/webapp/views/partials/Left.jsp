@@ -1,5 +1,5 @@
 <div class="left col-sm-2">
-    <div class="card mt-1" style="width: 200px">
+    <div class="card mt-1" style="width: 225px; position: sticky; top:0; z-index: 1;">
         <h4 class="card-header bg-info">
             Category
         </h4>
@@ -9,14 +9,14 @@
                     <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                     Appple
                 </a>
-                <ul class="dropdown-menu mt-0">
+                <ul class="dropdown-menu ml-0">
                     <li><a class="dropdown-item" href="#phone">Smartphone</a></li>
                     <li><a class="dropdown-item" href="#lap">Laptop</a></li>
                     <li class="dropdown-submenu"><a class="dropdown-item" href="#PC">
                         PC
                         <i class="fa fa-caret-right float-right" aria-hidden="true"></i>
                     </a>
-                        <ul class="dropdown-menu mt-1">
+                        <ul class="dropdown-menu ml-1">
                             <li><a class="dropdown-item" href="#Monitor">Monitor</a></li>
                             <li><a class="dropdown-item" href="#CPU">CPU</a></li>
                         </ul>
@@ -28,14 +28,14 @@
                     <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                     Appple
                 </a>
-                <ul class="dropdown-menu mt-0">
+                <ul class="dropdown-menu ml-0">
                     <li><a class="dropdown-item" href="#phone">Smartphone</a></li>
                     <li><a class="dropdown-item" href="#lap">Laptop</a></li>
                     <li class="dropdown-submenu"><a class="dropdown-item" href="#PC">
                         PC
                         <i class="fa fa-caret-right float-right" aria-hidden="true"></i>
                     </a>
-                        <ul class="dropdown-menu mt-1">
+                        <ul class="dropdown-menu ml-1">
                             <li><a class="dropdown-item" href="#Monitor">Monitor</a></li>
                             <li><a class="dropdown-item" href="#CPU">CPU</a></li>
                         </ul>
@@ -47,14 +47,14 @@
                     <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                     Appple
                 </a>
-                <ul class="dropdown-menu mt-0">
+                <ul class="dropdown-menu ml-0">
                     <li><a class="dropdown-item" href="#phone">Smartphone</a></li>
                     <li><a class="dropdown-item" href="#lap">Laptop</a></li>
                     <li class="dropdown-submenu"><a class="dropdown-item" href="#PC">
                         PC
                         <i class="fa fa-caret-right float-right" aria-hidden="true"></i>
                     </a>
-                        <ul class="dropdown-menu mt-1">
+                        <ul class="dropdown-menu ml-1">
                             <li><a class="dropdown-item" href="#Monitor">Monitor</a></li>
                             <li><a class="dropdown-item" href="#CPU">CPU</a></li>
                         </ul>
