@@ -45,7 +45,7 @@ function Validator(options) {
   let formElement = document.querySelector(options.form);
   if (formElement) {
     formElement.onsubmit = function (e) {
-      // e.preventDefault();
+      //e.preventDefault();
       let isFormValid = true;
       //Lặp qua từng rule và validate
       options.rules.forEach(function (rule) {
@@ -55,6 +55,11 @@ function Validator(options) {
           isFormValid = false;
         }
       });
+        if (!isFormValid) {
+            e.preventDefault();
+            return false;
+        }
+        else return true;
       // if (isFormValid) {
       //   //Trường hợp submit với JS
       //   if (typeof options.onSubmit === 'function') {

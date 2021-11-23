@@ -8,8 +8,42 @@
     <jsp:attribute name="js">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
+            //Register form
+            // Validator({
+            //     form: '#formRegister',
+            //     formGroupSelector: '.form-group',
+            //     errorSelector: '.form-message',
+            //     rules: [
+            //         Validator.isRequired('#registerName', 'Please fill your full name'),
+            //         Validator.isRequired('#registerEmail', 'Please fill your mail correctly'),
+            //         Validator.isRequired('#registerPassword','Please fill your password'),
+            //         Validator.isRequired('#registerDob','Please fill your date of birth'),
+            //         Validator.isEmail('#registerEmail','Please fill your mail correctly'),
+            //         Validator.minLength('#registerPassword',6),
+            //         Validator.isConfirmed('#registerConfirmPassword',function () {
+            //             return document.querySelector('#formRegister #registerPassword').value;
+            //         }, 'Please fill your password correctly')
+            //     ],
+            // });
+
             $('#formRegister').on('submit', function (e) {
                 e.preventDefault();
+                Validator({
+                    form: '#formRegister',
+                    formGroupSelector: '.form-group',
+                    errorSelector: '.form-message',
+                    rules: [
+                        Validator.isRequired('#registerName', 'Please fill your full name'),
+                        Validator.isRequired('#registerEmail', 'Please fill your mail correctly'),
+                        Validator.isRequired('#registerPassword','Please fill your password'),
+                        Validator.isRequired('#registerDob','Please fill your date of birth'),
+                        Validator.isEmail('#registerEmail','Please fill your mail correctly'),
+                        Validator.minLength('#registerPassword',6),
+                        Validator.isConfirmed('#registerConfirmPassword',function () {
+                            return document.querySelector('#formRegister #registerPassword').value;
+                        }, 'Please fill your password correctly')
+                    ],
+                });
                 const email = $('#registerEmail').val();
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === true) {
@@ -18,24 +52,6 @@
                         alert('Username is not available.');
                     }
                 });
-            });
-
-            //Register form
-            Validator({
-                form: '#formRegister',
-                formGroupSelector: '.form-group',
-                errorSelector: '.form-message',
-                rules: [
-                    Validator.isRequired('#registerName', 'Please fill your full name'),
-                    Validator.isRequired('#registerEmail', 'Please fill your mail correctly'),
-                    Validator.isRequired('#registerPassword','Please fill your password'),
-                    Validator.isRequired('#registerDob','Please fill your date of birth'),
-                    Validator.isEmail('#registerEmail','Please fill your mail correctly'),
-                    Validator.minLength('#registerPassword',6),
-                    Validator.isConfirmed('#registerConfirmPassword',function () {
-                        return document.querySelector('#formRegister #registerPassword').value;
-                    }, 'Please fill your password correctly')
-                ],
             });
 
             $('#registerDob').datetimepicker({
@@ -76,6 +92,12 @@
                 <input type="password" placeholder="Confirm password" class="form-control w-75" id="registerConfirmPassword">
                 <span class="form-message" style="margin-right: 130px;"></span>
             </div>
+
+            <!-- reCaptcha -->
+            <div class="form-group justify-content-center d-flex">
+                <div class="g-recaptcha" data-sitekey="6LfnC1IdAAAAABU-jCMtW_w5y6dbyCbFHm05XZVZ"></div>
+            </div>
+
             <!-- Button đăng ký -->
             <div class="text-center">
                 <button type="submit" class="btn btn-info w-75" id="btnRegister">Register</button>

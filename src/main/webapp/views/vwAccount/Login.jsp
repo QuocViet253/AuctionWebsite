@@ -32,6 +32,11 @@
                 <input type="password" placeholder="Password" class="form-control w-75" id="loginPassword">
                 <span class="form-message" style="margin-right: 185px;"></span>
             </div>
+
+            <div class="form-group justify-content-center d-flex">
+                <div class="g-recaptcha" data-sitekey="6LfnC1IdAAAAABU-jCMtW_w5y6dbyCbFHm05XZVZ"></div>
+            </div>
+
             <!-- Button đăng nhập -->
             <div class="text-center">
                 <button type="submit" class="btn btn-info w-75" id="btnLogIn">Login</button>
