@@ -16,23 +16,24 @@
                     <h4 style="cursor:pointer;" class="text-center">${product.proname}</h4>
                 </div>
                 <div class="card-body">
-                    <div id="carouselExampleIndicators" class="carousel slide w-50 mx-auto shadow-lg" style="border-radius: 20%" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="d-block w-100" src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="https://cdn.tgdd.vn/Products/Images/42/228744/iphone-12-pro-max-trang-bac-600x600-200x200.jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xam-new-600x600-200x200.jpg" alt="Third slide">
-                            </div>
+                    <div class="all">
+                        <div>
+                            <ul class="list-img mt-2">
+                                <li class="img mb-3">
+                                    <img id="one" onclick="changeImage('one')" style="width:100px ;" src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg" alt="">
+                                </li>
+                                <li class="img mb-3">
+                                    <img id="two"  onclick="changeImage('two')" style="width:100px ;" src="https://cdn.tgdd.vn/Products/Images/42/228736/iphone-12-xanh-la-200x200.jpg" alt="">
+                                </li>
+                                <li class="img ml-0">
+                                    <img id="three"  onclick="changeImage('three')" style="width:100px ;"  src="https://cdn.tgdd.vn/Products/Images/42/228738/iphone-12-pro-xam-new-600x600-200x200.jpg" alt="">
+                                </li>
+                            </ul>
                         </div>
+                        <div id="main_img">
+                            <img id="img_main" src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg" width="400px" alt="">
+                        </div>
+                        </ul>
                     </div>
                     <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá khởi điểm: ${product.price_start}</h4>
                     <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Giá mua ngay: ${product.price_now}</h4>

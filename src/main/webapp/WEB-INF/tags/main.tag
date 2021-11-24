@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/lib.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/img.css">
 </head>
 <body>
+    <script src="${pageContext.request.contextPath}/public/js/img.js"></script>
     <jsp:include page="../../views/partials/Nav.jsp"/>
     <div class="row">
         <jsp:include page="../../views/partials/Left.jsp"/>
