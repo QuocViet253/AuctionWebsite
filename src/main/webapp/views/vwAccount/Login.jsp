@@ -17,7 +17,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <form class=" mx-auto shadow rounded-lg bg-white " id="formLogin">
+        <form class=" mx-auto shadow rounded-lg bg-white " action="" method="post" id="formLogin">
             <!-- Logo -->
             <div class="text-center mb-3">
                 <h3>Login</h3>
@@ -25,11 +25,11 @@
 
             <!-- Email và password -->
             <div class="form-group justify-content-center d-flex">
-            <input type="text" placeholder="Email" class="form-control w-75" id="loginName" aria-describedby="emailHelp">
+            <input type="text" placeholder="Email" name="email" class="form-control w-75" id="loginName" aria-describedby="emailHelp">
             <span class="form-message" style="margin-right: 215px;"></span>
             </div>
             <div class="form-group justify-content-center d-flex">
-                <input type="password" placeholder="Password" class="form-control w-75" id="loginPassword">
+                <input type="password" placeholder="Password" name="password" class="form-control w-75" id="loginPassword">
                 <span class="form-message" style="margin-right: 185px;"></span>
             </div>
 
@@ -42,7 +42,7 @@
                 <button type="submit" class="btn btn-info w-75" id="btnLogIn">Login</button>
             </div>
             <div class="text-center mt-2">
-                <a class="text-info" href="#">
+                <a class="text-info" href="${pageContext.request.contextPath}/Account/ForgotPassword">
                     Forgot password?
                 </a>
             </div>

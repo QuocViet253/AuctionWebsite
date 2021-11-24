@@ -34,6 +34,7 @@
                     errorSelector: '.form-message',
                     rules: [
                         Validator.isRequired('#registerName', 'Please fill your full name'),
+                        Validator.isRequired('#registerAddress', 'Please fill your address'),
                         Validator.isRequired('#registerEmail', 'Please fill your mail correctly'),
                         Validator.isRequired('#registerPassword','Please fill your password'),
                         Validator.isRequired('#registerDob','Please fill your date of birth'),
@@ -44,14 +45,41 @@
                         }, 'Please fill your password correctly')
                     ],
                 });
+                let response = grecaptcha.getResponse();
                 const email = $('#registerEmail').val();
+                const otp = $('#registerOTP').val();
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === true) {
-                        $('#formRegister').off('submit').submit();
+                        if(response.length == 0) {
+                            alert('Please select the Captcha');
+                        } else {
+                            $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
+                                if (otpData === false) {
+                                    alert('Wrong OTP');
+                                } else {
+                                    $('#formRegister').off('submit').submit();
+                                }
+                            });
+                        }
                     } else {
-                        alert('Username is not available.');
+                        alert('Email is not available.');
                     }
                 });
+            });
+
+            $('#btnOTP').on('click', function () {
+                if ($('#registerEmail').val() == 0)
+                {
+                    alert('Please fill your email')
+                } else {
+                    const otp = $('#registerOTP').val();
+                    const email = $('#registerEmail').val();
+                    $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
+                        if (data === false) {
+                            alert('Please send OTP email again.');
+                        } else alert('OTP has been send to your email');
+                    });
+                }
             });
 
             $('#registerDob').datetimepicker({
@@ -71,18 +99,26 @@
 
             <!-- Họ và tên va dob -->
             <div class="form-group justify-content-center d-flex">
-            <input type="text" placeholder="Full name" class="form-control w-75" id="registerName" name="name">
-            <span class="form-message" style="margin-right: 185px;"></span>
+                <input type="text" placeholder="Full name" class="form-control w-75" id="registerName" name="name">
+                <span class="form-message" style="margin-right: 185px;"></span>
             </div>
             <div class="form-group justify-content-center d-flex">
                 <input type="text" name="dob" placeholder="Date of birth (dd/mm/yyyy)" class="form-control w-75" id="registerDob">
                 <span class="form-message" style="margin-right: 160px;"></span>
             </div>
 
-            <!-- Email và password -->
             <div class="form-group justify-content-center d-flex">
-            <input type="text" name="email" placeholder="Email" class="form-control w-75" id="registerEmail" aria-describedby="emailHelp">
-            <span class="form-message" style="margin-right: 155px;"></span>
+                <input type="text" placeholder="Address" class="form-control w-75" id="registerAddress" name="address">
+                <span class="form-message" style="margin-right: 185px;"></span>
+            </div>
+
+            <!-- Email và password, OTP -->
+            <div class="form-group justify-content-center d-flex">
+                <div class="justify-content-center d-flex">
+                    <input type="text" placeholder="Email" name="email" class="form-control mr-1 " style="width: 240px" id="registerEmail">
+                    <button type="button" name="button" class="btn btn-info p-0" style="width: 80px" id="btnOTP">Send OTP</button>
+                </div>
+                <span class="form-message" style="margin-right: 215px;"></span>
             </div>
             <div class="form-group justify-content-center d-flex">
                 <input type="password" name="rawpwd" placeholder="Password" class="form-control w-75" id="registerPassword">
@@ -91,6 +127,10 @@
             <div class="form-group justify-content-center d-flex">
                 <input type="password" placeholder="Confirm password" class="form-control w-75" id="registerConfirmPassword">
                 <span class="form-message" style="margin-right: 130px;"></span>
+            </div>
+            <div class="form-group justify-content-center d-flex">
+                <input type="text" placeholder="OTP" name="otp" class="form-control w-75" id="registerOTP">
+                <span class="form-message" style="margin-right: 215px;"></span>
             </div>
 
             <!-- reCaptcha -->

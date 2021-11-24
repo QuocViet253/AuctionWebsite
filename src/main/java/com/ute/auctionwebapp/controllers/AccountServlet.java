@@ -3,6 +3,7 @@ package com.ute.auctionwebapp.controllers;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.models.UserModel;
+import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 @WebServlet(name = "AccountServlet", value = "/Account/*")
 public class AccountServlet extends HttpServlet {
@@ -27,6 +29,10 @@ public class AccountServlet extends HttpServlet {
 
             case "/Login":
                 ServletUtills.forward("/views/vwAccount/Login.jsp", request, response);
+                break;
+
+            case "/ForgotPassword":
+                ServletUtills.forward("/views/vwAccount/ForgotPassword.jsp", request, response);
                 break;
 
             case "/Profile":
@@ -43,6 +49,18 @@ public class AccountServlet extends HttpServlet {
                 response.setCharacterEncoding("utf-8");
 
                 out.print(isAvailable);
+                out.flush();
+                break;
+
+            case "/SendOTP":
+                username = request.getParameter("email");
+                String otp = request.getParameter("otp");
+                boolean sendOTP =  MailUtills.sendOTP(username,otp);
+                out = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+
+                out.print(sendOTP);
                 out.flush();
                 break;
 
@@ -64,6 +82,10 @@ public class AccountServlet extends HttpServlet {
                 login(request, response);
                 break;
 
+            case "/ForgotPassword":
+                forgot(request, response);
+                break;
+
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
@@ -79,10 +101,11 @@ public class AccountServlet extends HttpServlet {
 
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        int role = 0;
+        String address = request.getParameter("address");
+        int role = 1;
         int reQuest = 0;
 
-        User c = new User(name, email,  bcryptHashString, dob, role, reQuest);
+        User c = new User(name, email, address,  bcryptHashString, dob, role, reQuest);
         UserModel.add(c);
         ServletUtills.forward("/views/vwAccount/Register.jsp", request, response);
     }
@@ -92,6 +115,15 @@ public class AccountServlet extends HttpServlet {
         // Category c = new Category(name);
         // CategoryModel.add(c);
         // ServletUtils.forward("/views/vwCategory/Add.jsp", request, response);
+    }
+
+    private void forgot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, email.toCharArray());
+        UserModel.resetPassword(email,bcryptHashString);
+
+        MailUtills.sendResetPassword(email);
+        ServletUtills.forward("/views/vwAccount/ForgotPassword.jsp", request, response);
     }
 
 }

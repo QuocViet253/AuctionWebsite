@@ -3,20 +3,25 @@ package com.ute.auctionwebapp.beans;
 import java.time.LocalDateTime;
 
 public class User {
-    private String name, email, password;
+    private String name, email, password,address;
     LocalDateTime dob;
     private int role, reQuest, id;
 
     public User() {
     }
 
-    public User(String name, String email, String password, LocalDateTime dob, int role, int reQuest) {
+    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.dob = dob;
         this.role = role;
         this.reQuest = reQuest;
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getName() {

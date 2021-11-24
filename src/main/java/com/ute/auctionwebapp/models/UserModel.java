@@ -23,7 +23,7 @@ public class UserModel {
     }
 
     public static void add(User c) {
-        String insertSql = "INSERT INTO users (name, email, password, dob, role, request) VALUES (:name,:email,:password,:dob,:role,:request)";
+        String insertSql = "INSERT INTO users (name, email, password, request, dob, role, address) VALUES (:name,:email,:password,:request,:dob,:role,:address)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("password", c.getPassword())
@@ -32,6 +32,17 @@ public class UserModel {
                     .addParameter("dob", c.getDob())
                     .addParameter("role",c.getRole())
                     .addParameter("request", c.getReQuest())
+                    .addParameter("address", c.getAddress())
+                    .executeUpdate();
+        }
+    }
+
+    public static void resetPassword(String email, String password) {
+        String insertSql = "UPDATE users SET password = :password WHERE email= :email";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("email", email)
+                    .addParameter("password", password)
                     .executeUpdate();
         }
     }
