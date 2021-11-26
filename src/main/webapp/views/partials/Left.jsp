@@ -14,7 +14,7 @@
             <c:forEach items="${categoriesWithDetails1}" var="c1">
 
                 <div class="dropright">
-                        <a href="#" class="list-group-item list-group-item-action  " aria-haspopup="true" aria-expanded="false">
+                        <a href="${pageContext.request.contextPath}/Product/ListPid?name=${c1.catname}" class="list-group-item list-group-item-action  " aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                             ${c1.catname}
                         </a>

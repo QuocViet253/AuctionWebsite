@@ -21,7 +21,7 @@
                 </form>
             </nav>
             <ul class="navbar-nav">
-                <li class="nav-item active mr-4"><a href="" class="text-light">
+                <li class="nav-item active mr-4"><a href="${pageContext.request.contextPath}/WatchList" class="text-light">
                     <i class="fa fa-heart text-danger" aria-hidden="true"></i>
                     WatchList
                 </a>
@@ -47,13 +47,13 @@
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="#">
+                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Home">
                         <i class="fa fa-home text-success" aria-hidden="true"></i>
                         Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5 ml-5 text-danger" href="#">
+                    <a class="nav-link mr-5 ml-5 text-danger" href="${pageContext.request.contextPath}/Home#hot">
                         <i class="fa fa-newspaper-o text-danger" aria-hidden="true"></i>
                         Hot
                     </a>

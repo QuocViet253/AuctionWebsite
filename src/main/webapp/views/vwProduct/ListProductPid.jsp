@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Tri
-  Date: 11/22/2021
-  Time: 3:38 PM
+  Date: 11/26/2021
+  Time: 1:38 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -30,15 +30,14 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                    <a id="addWatchList" href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=1"  class="btn btn-secondary dis" title="Add to WatchList">
-                                                        <i class="fa fa-heart-o" style="border-radius: 50%"></i>
-                                                    </a>
-
+                                                <a href="" class="btn btn-secondary" title="Add to WatchList">
+                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 name="proname">${p.proname}</h3>
-                                            <p name="price_start" style="margin: 0">Start price: ${p.price_start}</p>
+                                            <h3>${p.proname}</h3>
+                                            <p style="margin: 0">Start price: ${p.price_start}</p>
                                             <a class="btn btn-success btn-sm" href="#" role="button">
                                                 <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>
                                                 Auction now
@@ -71,4 +70,3 @@
         </nav>
     </jsp:body>
 </t:main>
-

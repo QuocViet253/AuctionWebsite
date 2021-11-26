@@ -22,8 +22,6 @@ public class LayoutFilter implements Filter {
         request.setAttribute("categoriesWithDetails1",list1);
         List<Category> list2 = CategoryModel.findChild();
         request.setAttribute("categoriesWithDetails2",list2);
-//        List<Category> list2 = CategoryModel.findByPID(6);
-//        request.setAttribute("categoriesWithDetails3",list2);
         chain.doFilter(request, response);
     }
 }
