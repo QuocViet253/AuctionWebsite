@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "/Product/*")
@@ -25,13 +26,20 @@ public class ProductServlet extends HttpServlet {
                 int price_start=Integer.parseInt(request.getParameter("price_start"));
                 int uid =Integer.parseInt(request.getParameter("uid"),10);
                 boolean check = WatchListModel.findByProduct(proid,uid);
-                     if(check == true)
+                if(check == true)
                  {
-                     WatchListModel.addWatchList(proid,proname,price_start,uid);
+                     boolean add= WatchListModel.addWatchList(proid,proname,price_start,uid);
+                     if( add==true){
+                         PrintWriter out = response.getWriter();
+                         response.setContentType("application/json");
+                         response.setCharacterEncoding("utf-8");
+                         out.print(add);
+                         out.flush();
+                     }
                  }
-                List<WatchList> list4 = WatchListModel.findAll();
-                request.setAttribute("watchlists",list4);
-                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
+//                List<WatchList> list4 = WatchListModel.findAll();
+//                request.setAttribute("watchlists",list4);
+//                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
             case "/List":
                 int catId = Integer.parseInt(request.getParameter("id"));

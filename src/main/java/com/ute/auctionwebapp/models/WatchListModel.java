@@ -10,7 +10,7 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class WatchListModel {
-    public static void addWatchList(int proid, String proname, int price_start, int uid) {
+    public static boolean addWatchList(int proid, String proname, int price_start, int uid) {
         String insertSql = "INSERT INTO watch_list (proid, proname,price_start,uid) VALUES (:proid,:proname,:priceStart,:uid)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
@@ -19,6 +19,10 @@ public class WatchListModel {
                     .addParameter("priceStart", price_start)
                     .addParameter("uid", uid)
                     .executeUpdate();
+            return true;
+        }
+        catch (Exception e){
+            return false;
         }
     }
     public static List<WatchList> findAll(){
@@ -39,7 +43,6 @@ public class WatchListModel {
             if (list.size() == 0) {
                 return true;
             }
-
             return false;
         }
     }

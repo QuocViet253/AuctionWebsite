@@ -4,6 +4,17 @@
 <jsp:useBean id="products1" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="products2" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <t:main>
+    <jsp:attribute name="js">
+        <script>
+            function add (otp){
+                $.getJSON(otp, function (data) {
+                    if (data === 'false') {
+                        alert('Not Added');
+                    } else alert("successfully");
+                });
+            }
+        </script>
+    </jsp:attribute>
     <jsp:body>
         <div class="right col-sm-10 mt-1" >
             <section class="on-sale">
@@ -20,9 +31,9 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}" type="button" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </a>
-                                                    <a href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=1" type="button" class="btn btn-secondary" title="Add to WatchList">
+                                                    <button type="button" href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=1" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=1')" class="btn btn-secondary" title="Add to WatchList">
                                                         <i class="fa fa-heart-o" style="border-radius: 50%"></i>
-                                                    </a>
+                                                    </button>
                                         </div>
                                     </div>
                                         <div class="product-bottom text-center">
@@ -46,9 +57,9 @@
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}" type="button" class="btn btn-secondary" title="Detail">
                                             <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
                                         </a>
-                                        <a  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=1" type="button" class="btn btn-secondary" title="Add to WatchList">
+                                        <button  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=1" type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=1')" class="btn btn-secondary" title="Add to WatchList">
                                             <i class="fa fa-heart-o" style="border-radius: 50%"></i>
-                                        </a>
+                                        </button>
 <%--                                        <a type="button" class="btn btn-secondary" title="Add to Cart">--%>
 <%--                                            <i class="fa fa-shopping-cart" style="border-radius: 50%"></i>--%>
 <%--                                        </a>--%>
@@ -66,22 +77,5 @@
                 </div>
             </section>
         </div>
-        <nav aria-label="Page navigation example" class=" mt-3" style="margin-left: 85%;">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </jsp:body>
 </t:main>

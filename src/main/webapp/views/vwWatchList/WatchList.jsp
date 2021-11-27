@@ -11,11 +11,53 @@
 <jsp:useBean id="watchlists" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.WatchList>" />
 <%--<jsp:useBean id ="watchlist" scope="request" type="com.ute.auctionwebapp.beans.WatchList" >--%>
 <t:watchlist>
+    <jsp:attribute name="js">
+        <script>
+            //Add paging
+            $(document).ready(function() {
+                $('.t1').after('<div id="nav" class="text-center"></div>');
+                let itemsShown = 8;
+                let itemsTotal = $('.t1 .col-md-3').length;
+                let numPages = itemsTotal / itemsShown;
+                for (let i = 0; i < numPages; i++) {
+                    let pageNum = i + 1;
+                    $('#nav').append('<a href="#" class="btn-outline-info btn-sm text-decoration-none rounded-lg border border-info" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
+                }
+                $('.t1 .col-md-3').hide();
+                $('.t1 .col-md-3').slice(0, itemsShown).show();
+                $('#nav a:first').addClass('active');
+                $('#nav a').bind('click', function(e) {
+                    e.preventDefault();
+                    $('#nav a').removeClass('active');
+                    $(this).addClass('active');
+                    let currPage = $(this).attr('rel');
+                    let startItem = currPage * itemsShown;
+                    let endItem = startItem + itemsShown;
+                    $('.t1 .col-md-3').css('opacity', '0').hide().slice(startItem, endItem).
+                    css('display', 'block').animate({
+                        opacity: 1
+                    }, 300);
+                });
+            });
+            //function
+            function remove (otp){
+                $.getJSON(otp, function (data) {
+                    if (data === 'false') {
+                        alert('Cannot Delete');
+                    } else
+                    {
+                        alert("Successfully");
+                        location.reload();
+                    }
+                });
+            }
+        </script>
+    </jsp:attribute>
     <jsp:body>
         <h3 class="text-center mb-3 mt-3 bg-danger text-light">My WatchList</h3>
         <div class="row">
             <section class="on-sale">
-                <div class="container-fluid">
+                <div class="container-fluid t1">
                     <div class="row mt-2">
                         <c:choose>
                             <c:when test="${watchlists.size()==0}">
@@ -32,9 +74,9 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" class="btn btn-secondary" title="Add to WatchList">
+                                                <button type="button" href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Add to WatchList">
                                                     <i class="fa fa-trash" aria-hidden="true" style="border-radius: 50%"></i>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
@@ -49,23 +91,6 @@
                     </div>
                 </div>
             </section>
-            <nav aria-label="Page navigation example" class=" mt-3" style="margin-left: 85%;">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </jsp:body>
 </t:watchlist>

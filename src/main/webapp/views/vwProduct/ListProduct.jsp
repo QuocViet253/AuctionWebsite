@@ -15,7 +15,7 @@
             //Add paging
             $(document).ready(function() {
               $('.t1').after('<div id="nav" class="text-center"></div>');
-              let itemsShown = 4;
+              let itemsShown = 8;
               let itemsTotal = $('.t1 .col-md-3').length;
               let numPages = itemsTotal / itemsShown;
               for (let i = 0; i < numPages; i++) {
@@ -38,6 +38,16 @@
                 }, 300);
               });
             });
+            function add (otp){
+                $.getJSON(otp, function (data) {
+                    if (data === 'false') {
+                        alert('Not Added');
+                    } else alert("successfully");
+                });
+            }
+            // $('.addWatchList').on('click', function (e) {
+            //
+            // });
         </script>
     </jsp:attribute>
 
@@ -61,9 +71,9 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                    <a id="addWatchList" href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=1"  class="btn btn-secondary dis" title="Add to WatchList">
+                                                    <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=1" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=1')" class=" btn btn-secondary " title="Add to WatchList">
                                                         <i class="fa fa-heart-o" style="border-radius: 50%"></i>
-                                                    </a>
+                                                    </button>
 
                                             </div>
                                         </div>
