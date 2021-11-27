@@ -15,10 +15,13 @@
                         Validator.isRequired('#forgotName', 'Please fill your mail'),
                     ],
                 });
+                //Check when click send new password to email
                 const email = $('#forgotName').val();
                 const otp = $('#forgotOTP').val();
+                // check if email is exists
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === false) {
+                        // check otp
                         $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
                             if (otpData === false) {
                                 alert('Wrong OTP');
@@ -32,7 +35,7 @@
                     }
                 });
             });
-
+            // Send OTP to client email
             $('#btnOTP').on('click', function () {
                 if ($('#forgotName').val() == 0)
                 {
@@ -56,7 +59,7 @@
                 <h3>Forgot Password</h3>
             </div>
 
-            <!-- Email-->
+            <!-- Email and button send OTP to email-->
             <div class="form-group justify-content-center d-flex">
                 <div class="justify-content-center d-flex">
                     <input type="text" placeholder="Email" name="email" class="form-control mr-1 " style="width: 240px" id="forgotName">

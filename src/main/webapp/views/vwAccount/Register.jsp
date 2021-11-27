@@ -48,11 +48,14 @@
                 let response = grecaptcha.getResponse();
                 const email = $('#registerEmail').val();
                 const otp = $('#registerOTP').val();
+                // Check if email exists
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === true) {
+                        // Check captcha
                         if(response.length == 0) {
                             alert('Please select the Captcha');
                         } else {
+                            // Check OTP
                             $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
                                 if (otpData === false) {
                                     alert('Wrong OTP');
@@ -66,7 +69,7 @@
                     }
                 });
             });
-
+            // Send OTP to client email
             $('#btnOTP').on('click', function () {
                 if ($('#registerEmail').val() == 0)
                 {
