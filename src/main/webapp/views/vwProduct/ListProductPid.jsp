@@ -30,7 +30,7 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="" class="btn btn-secondary" title="Add to WatchList">
+                                                <a href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=1" class="btn btn-secondary" title="Add to WatchList">
                                                     <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                 </a>
                                             </div>

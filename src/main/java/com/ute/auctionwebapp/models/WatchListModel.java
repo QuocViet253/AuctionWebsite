@@ -43,4 +43,15 @@ public class WatchListModel {
             return false;
         }
     }
+    public static boolean deleteWatchList(int id) {
+        String Sql = "delete from watch_list where id=:id";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

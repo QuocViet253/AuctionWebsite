@@ -20,12 +20,9 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}" type="button" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </a>
-                                                <form action="" method="post">
-                                                    <a type="button" class="btn btn-secondary" title="Add to WatchList">
+                                                    <a href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=1" type="button" class="btn btn-secondary" title="Add to WatchList">
                                                         <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                     </a>
-                                                </form>
-
                                         </div>
                                     </div>
                                         <div class="product-bottom text-center">
@@ -49,12 +46,12 @@
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}" type="button" class="btn btn-secondary" title="Detail">
                                             <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
                                         </a>
-                                        <a type="button" class="btn btn-secondary" title="Add to WatchList">
+                                        <a  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=1" type="button" class="btn btn-secondary" title="Add to WatchList">
                                             <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                         </a>
-                                        <a type="button" class="btn btn-secondary" title="Add to Cart">
-                                            <i class="fa fa-shopping-cart" style="border-radius: 50%"></i>
-                                        </a>
+<%--                                        <a type="button" class="btn btn-secondary" title="Add to Cart">--%>
+<%--                                            <i class="fa fa-shopping-cart" style="border-radius: 50%"></i>--%>
+<%--                                        </a>--%>
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">

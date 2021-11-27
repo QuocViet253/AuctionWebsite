@@ -9,6 +9,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="watchlists" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.WatchList>" />
+<%--<jsp:useBean id ="watchlist" scope="request" type="com.ute.auctionwebapp.beans.WatchList" >--%>
 <t:watchlist>
     <jsp:body>
         <h3 class="text-center mb-3 mt-3 bg-danger text-light">My WatchList</h3>
@@ -31,7 +32,7 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="" class="btn btn-secondary" title="Add to WatchList">
+                                                <a href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" class="btn btn-secondary" title="Add to WatchList">
                                                     <i class="fa fa-trash" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </a>
                                             </div>

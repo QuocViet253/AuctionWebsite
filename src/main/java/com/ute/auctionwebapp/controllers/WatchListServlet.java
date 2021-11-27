@@ -1,8 +1,6 @@
 package com.ute.auctionwebapp.controllers;
 
-import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.WatchList;
-import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.WatchListModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
@@ -27,6 +25,17 @@ public class WatchListServlet extends HttpServlet {
                 List<WatchList> list2 = WatchListModel.findAll();
                 request.setAttribute("watchlists",list2);
                 ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
+                break;
+            case"/deleteWatchList":
+                int id = Integer.parseInt(request.getParameter("id"));
+                if(WatchListModel.deleteWatchList(id)){
+                    List<WatchList> list3 = WatchListModel.findAll();
+                    request.setAttribute("watchlists",list3);
+                    ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
+                }
+//                List<WatchList> list4 = WatchListModel.findAll();
+//                request.setAttribute("watchlists",list4);
+//                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
