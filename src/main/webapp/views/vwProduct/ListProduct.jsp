@@ -66,7 +66,7 @@
                                 <c:forEach items="${products}" var="p">
                                     <div class="col-md-3 mb-4" >
                                         <div class="product-top">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}"><img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-2-600x600.jpg"></a>
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>

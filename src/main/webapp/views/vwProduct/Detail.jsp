@@ -20,18 +20,18 @@
                         <div>
                             <ul class="list-img mt-2">
                                 <li class="img mb-3">
-                                    <img id="one" onclick="changeImage('one')" style="width:100px ;" src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg" alt="">
+                                    <img id="one" onclick="changeImage('one')" style="width:100px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="two"  onclick="changeImage('two')" style="width:100px ;" src="https://cdn.tgdd.vn/Products/Images/42/228736/iphone-12-xanh-la-200x200.jpg" alt="">
+                                    <img id="two"  onclick="changeImage('two')" style="width:100px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
                                 </li>
                                 <li class="img ml-0">
-                                    <img id="three"  onclick="changeImage('three')" style="width:100px ;"  src="https://cdn.tgdd.vn/Products/Images/42/228738/iphone-12-pro-xam-new-600x600-200x200.jpg" alt="">
+                                    <img id="three"  onclick="changeImage('three')" style="width:100px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
                                 </li>
                             </ul>
                         </div>
                         <div id="main_img">
-                            <img id="img_main" src="https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg" width="400px" alt="">
+                            <img id="img_main" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" width="400px" alt="">
                         </div>
                         </ul>
                     </div>

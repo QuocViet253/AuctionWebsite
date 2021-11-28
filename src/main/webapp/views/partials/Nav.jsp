@@ -2,7 +2,7 @@
     <!-- Top Nav -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="collapse navbar-collapse justify-content-lg-between" id="navbarSupportedContent">
-            <img src="https://www.seekpng.com/png/full/334-3345030_ta-logo-time-auction-logo.png" class="img-fluid rounded-top" alt="No Loading" style=" width:140px ;height: 70px">
+            <img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top" alt="No Loading" style=" width:140px ;height: 70px">
             <nav class="navbar navbar-light bg-info d-inline">
                 <form class="form-inline">
                     <ul class="navbar-nav">
