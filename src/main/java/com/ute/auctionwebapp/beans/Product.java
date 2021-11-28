@@ -10,10 +10,11 @@ public class Product {
     private LocalDateTime start_day,end_day;
     private int catid,bid_id;
     private String status;
+    private int price_max;
 
     public Product() {}
 
-    public Product(int proid, String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, int bid_id, String status) {
+    public Product(int proid, String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, int bid_id, String status, int price_max) {
         this.proid = proid;
         this.proname = proname;
         this.tinydes = tinydes;
@@ -29,6 +30,11 @@ public class Product {
         this.catid = catid;
         this.bid_id = bid_id;
         this.status = status;
+        this.price_max= price_max;
+    }
+
+    public int getPrice_max() {
+        return price_max;
     }
 
     public int getProid() {

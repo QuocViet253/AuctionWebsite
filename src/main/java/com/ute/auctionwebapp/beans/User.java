@@ -6,11 +6,22 @@ public class User {
     private String name, email, password,address;
     LocalDateTime dob;
     private int role, reQuest, id;
+    LocalDateTime request_date;
+
+    public User(String name, String email, String address,String password,LocalDateTime dob, int role, int reQuest) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.dob = dob;
+        this.role = role;
+        this.reQuest = reQuest;
+    }
 
     public User() {
     }
 
-    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest) {
+    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest, LocalDateTime request_date) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -18,6 +29,11 @@ public class User {
         this.role = role;
         this.reQuest = reQuest;
         this.address = address;
+        this.request_date=request_date;
+    }
+
+    public LocalDateTime getRequest_date() {
+        return request_date;
     }
 
     public String getAddress() {

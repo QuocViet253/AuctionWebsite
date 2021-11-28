@@ -39,7 +39,6 @@
                     }, 300);
                 });
             });
-            //function
             function remove (otp){
                 $.getJSON(otp, function (data) {
                     if (data === 'false') {
