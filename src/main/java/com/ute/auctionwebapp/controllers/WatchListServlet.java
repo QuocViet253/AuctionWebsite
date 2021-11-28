@@ -42,9 +42,9 @@ public class WatchListServlet extends HttpServlet {
 //                    request.setAttribute("watchlists",list3);
 //                    ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
 //                }
-                List<WatchList> list4 = WatchListModel.findAll();
-                request.setAttribute("watchlists",list4);
-                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
+//                List<WatchList> list4 = WatchListModel.findAll();
+//                request.setAttribute("watchlists",list4);
+//                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
