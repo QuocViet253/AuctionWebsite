@@ -10,7 +10,7 @@
 <jsp:useBean id="product" scope="request" type="com.ute.auctionwebapp.beans.Product"/>
 <t:main>
     <jsp:body>
-        <div class="right col-sm-9 ">
+        <div class="right col-sm-9 ml-3 ">
             <div class="card mt-2">
                 <div class="card-header bg-warning">
                     <h4 style="cursor:pointer;" class="text-center">${product.proname}</h4>
@@ -31,7 +31,7 @@
                             </ul>
                         </div>
                         <div id="main_img">
-                            <img id="img_main" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" width="400px" alt="">
+                            <img id="img_main"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
                         </div>
                         </ul>
                     </div>

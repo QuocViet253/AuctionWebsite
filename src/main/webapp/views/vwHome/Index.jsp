@@ -26,7 +26,7 @@
                             <c:forEach items="${products1}" var="p1">
                                 <div class="col-md-3" >
                                     <div class="product-top">
-                                        <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}"><img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-2-600x600.jpg" width="400px"></a>
+                                        <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p1.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                         <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}" type="button" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
@@ -52,7 +52,7 @@
                         <c:forEach items="${products2}" var="p2">
                             <div class="col-md-3" >
                                 <div class="product-top">
-                                    <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}"><img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-2-600x600.jpg" width="400px"></a>
+                                    <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                     <div class="overlay-right">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}" type="button" class="btn btn-secondary" title="Detail">
                                             <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>

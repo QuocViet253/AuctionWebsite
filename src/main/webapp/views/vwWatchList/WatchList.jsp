@@ -54,7 +54,7 @@
     </jsp:attribute>
     <jsp:body>
         <h3 class="text-center mb-3 mt-3 bg-danger text-light">My WatchList</h3>
-        <div class="row">
+        <%--<div class="row">--%>
             <section class="on-sale">
                 <div class="container-fluid t1">
                     <div class="row mt-2">
@@ -68,12 +68,12 @@
                                 <c:forEach items="${watchlists}" var="w">
                                     <div class="col-md-3 mb-4" >
                                         <div class="product-top">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}"><img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-new-2-600x600.jpg"></a>
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${w.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                <button type="button" href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Add to WatchList">
+                                                <button type="button" href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Remove from WatchList">
                                                     <i class="fa fa-trash" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </button>
                                             </div>
@@ -90,6 +90,6 @@
                     </div>
                 </div>
             </section>
-        </div>
+        <%--</div>--%>
     </jsp:body>
 </t:watchlist>
