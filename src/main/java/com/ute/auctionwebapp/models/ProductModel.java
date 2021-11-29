@@ -37,7 +37,7 @@ public class ProductModel {
         }
     }
     public static List<Product> findByCatPid(String catname){
-        final String query = "select products.proid,products.proname,products.price_start\n" +
+        final String query = "select products.proid,products.proname,products.price_start,products.catid\n" +
                 "from auction.products , auction.categories\n" +
                 "where categories.pid=(select catid from auction.categories where catname=:catname)\n" +
                 "  and categories.catid=products.catid";
@@ -60,5 +60,15 @@ public class ProductModel {
             return list.get(0);
         }
     }
-
+    public static List<Product> findNear(int catid, int proid){
+        final String query = "select * from products where catid in (select catid from categories where pid = (\n" +
+                "    select pid from categories where categories.catid = :catid\n" +
+                ")) and proid not in (select proid from products where proid = :proid) order by field(catid,:catid) desc limit 8";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("catid",catid)
+                    .addParameter("proid",proid)
+                    .executeAndFetch(Product.class);
+        }
+    }
 }
