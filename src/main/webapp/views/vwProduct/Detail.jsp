@@ -7,8 +7,29 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="product" scope="request" type="com.ute.auctionwebapp.beans.Product"/>
+<jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
+<jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:main>
+    <jsp:attribute name="js">
+        <script>
+            window.onload=()=>{
+                if(!${auth})
+                    $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
+            }
+            function add (otp){
+                {
+                    $.getJSON(otp, function (data) {
+                        if (data === 'false') {
+                            alert('Not Added');
+                        } else alert("successfully");
+                    });
+                }
+            }
+        </script>
+    </jsp:attribute>
+
     <jsp:body>
         <div class="right col-sm-9 ml-3 ">
             <div class="card mt-2">
@@ -52,34 +73,53 @@
                         <i class="fa fa-gavel" aria-hidden="true"></i>
                         Auction now
                     </a>
-                    <a class="btn btn-danger mr-5" href="#" role="button">
+                    <button class="heart btn btn-danger mr-5" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${product.proid}&proname=${product.proname}&price_start=${product.price_start}&uid=${authUser.id}')" role="button">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                         Love
-                    </a>
-                    <a class="btn btn-success" href="#" role="button">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        Add to cart
-                    </a>
+                    </button>
                 </div>
             </div>
+            <hr>
+            <h3>Similar products</h3>
+                <div class="container-fluid">
+                    <div class="row mt-2">
+                        <c:choose>
+                            <c:when test="${products.size()==0}">
+                                <div class="card-body">
+                                    <p class="card-text">No data</p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${products}" var="p">
+                                    <div class="col-md-3 mb-4" >
+                                        <div class="product-top">
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
+                                            <div class="overlay-right">
+                                                <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}" class="btn btn-secondary" title="Detail">
+                                                    <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
+                                                </a>
+                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <div class="product-bottom text-center">
+                                            <h3 name="proname">${p.proname}</h3>
+                                            <p name="price_start" style="margin: 0">Start price: ${p.price_start}</p>
+                                            <a class="btn btn-success btn-sm" href="#" role="button">
+                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>
+                                                Auction now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
         </div>
-        <nav aria-label="Page navigation example" class=" mt-3" style="margin-left: 85%;">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+
     </jsp:body>
 </t:main>
 

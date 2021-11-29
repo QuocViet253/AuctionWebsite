@@ -37,9 +37,6 @@ public class ProductServlet extends HttpServlet {
                          out.flush();
                      }
                  }
-//                List<WatchList> list4 = WatchListModel.findAll();
-//                request.setAttribute("watchlists",list4);
-//                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
             case "/List":
                 int catId = Integer.parseInt(request.getParameter("id"));
@@ -55,13 +52,16 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "/Detail":
                 int proId = Integer.parseInt(request.getParameter("id"));
+                int catid = Integer.parseInt(request.getParameter("catid"));
                 Product product = ProductModel.findByID(proId);
+                List<Product> list4 = ProductModel.findNear(catid,proId);
                 if(product==null)
                 {
                     ServletUtills.redirect("/Home",request,response);
                 }
                 else {
                     request.setAttribute("product",product);
+                    request.setAttribute("products",list4);
                     ServletUtills.forward("/views/vwProduct/Detail.jsp", request, response);
                     break;
                 }
