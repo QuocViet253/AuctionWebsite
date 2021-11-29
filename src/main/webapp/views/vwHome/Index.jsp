@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                         <div class="product-bottom text-center">
-                                            <h3>${p1.proname}</h3>
+                                            <h3 style="width: 250px;height: 75px; object-fit: contain;">${p1.proname}</h3>
                                             <h5>Giá khởi điểm: ${p1.price_start}</h5>
                                             <h5>Giá mua ngay: ${p1.price_now}</h5>
                                         </div>

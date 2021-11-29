@@ -16,24 +16,26 @@
                     <h4 style="cursor:pointer;" class="text-center">${product.proname}</h4>
                 </div>
                 <div class="card-body">
-                    <div class="all">
+                    <div class="all" style="margin-left: 150px">
                         <div>
                             <ul class="list-img mt-2">
                                 <li class="img mb-3">
-                                    <img id="one" onclick="changeImage('one')" style="width:100px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
+                                    <img id="one" onclick="changeImage('one')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="two"  onclick="changeImage('two')" style="width:100px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
+                                    <img id="two"  onclick="changeImage('two')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
                                 </li>
-                                <li class="img ml-0">
-                                    <img id="three"  onclick="changeImage('three')" style="width:100px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
+                                <li class="img mb-3">
+                                    <img id="three"  onclick="changeImage('three')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
+                                </li>
+                                <li class="img">
+                                    <img id="four"  onclick="changeImage('four')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
                                 </li>
                             </ul>
                         </div>
-                        <div id="main_img">
+                        <div id="main_img" style="margin-left: 10px">
                             <img id="img_main"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
                         </div>
-                        </ul>
                     </div>
                     <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá khởi điểm: ${product.price_start}</h4>
                     <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Giá mua ngay: ${product.price_now}</h4>

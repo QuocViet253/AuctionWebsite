@@ -26,9 +26,9 @@
                     WatchList
                 </a>
                 </li>
-                <li class="nav-item active mr-4"><a href="" class="text-light"><i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i>
-                    Cart
-                </a></li>
+<%--                <li class="nav-item active mr-4"><a href="" class="text-light"><i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i>--%>
+<%--                    Cart--%>
+<%--                </a></li>--%>
                 <li class="nav-item active mr-4 dropdown">
                     <a href="" class="text-light">
                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>
