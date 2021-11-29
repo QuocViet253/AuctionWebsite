@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
+
 <div class="header">
     <!-- Top Nav -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
@@ -26,18 +29,41 @@
                     WatchList
                 </a>
                 </li>
-<%--                <li class="nav-item active mr-4"><a href="" class="text-light"><i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i>--%>
-<%--                    Cart--%>
-<%--                </a></li>--%>
+                <%--<li class="nav-item active mr-4"><a href="" class="text-light"><i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i>--%>
+                <%--    Cart--%>
+                <%--</a></li>--%>
                 <li class="nav-item active mr-4 dropdown">
-                    <a href="" class="text-light">
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                        Account
-                    </a>
-                    <ul class="dropdown-menu mt-0 float-left" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Login">Log In</a></li>
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Register">Register</a></li>
-                    </ul>
+                    <c:choose>
+                        <c:when test="${auth}">
+                            <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                Hi, <b>${authUser.name}!</b>
+                            </a>
+                            <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
+                                    <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                </a></li>
+                                <li><a class="dropdown-item" href="javascript: $('#frmLogout').submit()">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+                                </a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                Login/Register
+                            </a>
+                            <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Login">
+                                    <i class="fa fa-sign-in mr-1" aria-hidden="true"></i>Login
+                                </a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Register">
+                                    <i class="fa fa-sign-out mr-1" aria-hidden="true"></i> Register
+                                </a></li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </ul>
         </div>

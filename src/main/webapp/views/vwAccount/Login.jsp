@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:account>
     <jsp:attribute name="js">
@@ -10,7 +11,7 @@
                 formGroupSelector: '.form-group',
                 errorSelector: '.form-message',
                 rules: [
-                    Validator.isRequired('#loginName', 'Please fill your mail'),
+                    Validator.isRequired('#loginEmail', 'Please fill your mail'),
                     Validator.isRequired('#loginPassword','Please fill your password'),
                 ],
             });
@@ -22,10 +23,19 @@
             <div class="text-center mb-3">
                 <h3>Login</h3>
             </div>
+            <%--Alert--%>
+            <c:if test="${hasError}">
+                <div class="alert alert-danger alert-dismissible fade show w-75 mx-auto" role="alert">
+                    <strong>Login failed!</strong> ${errorMessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
 
             <!-- Email và password -->
             <div class="form-group justify-content-center d-flex">
-            <input type="text" placeholder="Email" name="email" class="form-control w-75" id="loginName" aria-describedby="emailHelp">
+            <input type="text" placeholder="Email" name="email" class="form-control w-75" id="loginEmail" autofocus >
             <span class="form-message" style="margin-right: 215px;"></span>
             </div>
             <div class="form-group justify-content-center d-flex">
@@ -33,9 +43,6 @@
                 <span class="form-message" style="margin-right: 185px;"></span>
             </div>
 
-            <div class="form-group justify-content-center d-flex">
-                <div class="g-recaptcha" data-sitekey="6LfnC1IdAAAAABU-jCMtW_w5y6dbyCbFHm05XZVZ"></div>
-            </div>
 
             <!-- Button đăng nhập -->
             <div class="text-center">

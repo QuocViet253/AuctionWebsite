@@ -20,10 +20,20 @@
             width: 35%;
             padding: 25px 0;
         }
+        /*--------------preloader---------------*/
+        #preloader {
+            background: #fff url('${pageContext.request.contextPath}/public/imgs/loader.gif') no-repeat center center;
+            background-size: 50%;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+        }
     </style>
     <jsp:invoke fragment="css"/>
 </head>
 <body>
+    <div id="preloader"></div>
     <div class="">
         <a href="${pageContext.request.contextPath}/Home">
         <img src="https://www.seekpng.com/png/full/334-3345030_ta-logo-time-auction-logo.png" class="img-fluid rounded-top" alt="Logo" style=" width:140px ;height: 70px">
@@ -41,6 +51,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/validator.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/main.js"></script>
     <jsp:invoke fragment="js"/>
 </body>
 </html>
