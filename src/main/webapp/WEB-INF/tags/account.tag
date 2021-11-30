@@ -36,7 +36,7 @@
     <div id="preloader"></div>
     <div class="">
         <a href="${pageContext.request.contextPath}/Home">
-        <img src="https://www.seekpng.com/png/full/334-3345030_ta-logo-time-auction-logo.png" class="img-fluid rounded-top" alt="Logo" style=" width:140px ;height: 70px">
+        <img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top" alt="Logo" style=" width:140px ;height: 70px">
         </a>
     </div>
     <div class="container-fluid h-100">

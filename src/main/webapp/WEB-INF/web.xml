@@ -21,4 +21,13 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/Account/Profile</url-pattern>
     </filter-mapping>
+
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthFilter</filter-name>-->
+<!--        <url-pattern>/Product/AddWatchList</url-pattern>-->
+<!--    </filter-mapping>-->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/WatchList</url-pattern>
+    </filter-mapping>
 </web-app>

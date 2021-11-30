@@ -8,7 +8,23 @@ public class User {
     private int role, reQuest, id;
     LocalDateTime request_date;
 
-    public User(String name, String email, String address,String password,LocalDateTime dob, int role, int reQuest) {
+    public int getId() {
+        return id;
+    }
+
+    public User(String name, String email, String password, String address, LocalDateTime dob, int role, int reQuest, int id, LocalDateTime request_date) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.dob = dob;
+        this.role = role;
+        this.reQuest = reQuest;
+        this.id = id;
+        this.request_date = request_date;
+    }
+
+    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest) {
         this.name = name;
         this.email = email;
         this.password = password;
