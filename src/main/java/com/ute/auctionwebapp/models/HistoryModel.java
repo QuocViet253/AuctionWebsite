@@ -1,8 +1,9 @@
 package com.ute.auctionwebapp.models;
 
-import com.ute.auctionwebapp.beans.User;
+import com.ute.auctionwebapp.beans.*;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
+import com.ute.auctionwebapp.beans.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +22,38 @@ public class HistoryModel {
             return true;
         }
         catch (Exception e){
+            return false;
+        }
+    }
+    public static List<History> findAll(){
+        final String query = "select * from histories";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(History.class);
+        }
+    }
+    public static boolean findByProduct(int proid, String proname) {
+        final String query = "select * from histories where proid = :proid and proname= :proname";
+        try (Connection con = DbUtills.getConnection()) {
+            List<History> list = con.createQuery(query)
+                    .addParameter("proid", proid)
+                    .addParameter("proname", proname)
+                    .executeAndFetch(History.class);
+
+            if (list.size() == 0) {
+                return true;
+            }
+            return false;
+        }
+    }
+    public static boolean deleteHistory(int id) {
+        String Sql = "delete from watch_list where id=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid", id)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }
