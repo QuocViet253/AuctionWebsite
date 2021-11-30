@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 
 <div class="header">
@@ -38,7 +39,13 @@
                             <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
                             <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                Hi, <b>${authUser.name}!</b>
+                                <c:set var="nameParts" value="${fn:split(authUser.name, ' ')}"/>
+                                Hi, <b>${nameParts[0]}!</b>
+                                <c:choose>
+                                    <c:when test="${authUser.role == 0}">${"(Admin)"}</c:when>
+                                    <c:when test="${authUser.role == 1}">${"(Bidder)"}</c:when>
+                                    <c:otherwise>${"(Seller)"}</c:otherwise>
+                                </c:choose>
                             </a>
                             <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
