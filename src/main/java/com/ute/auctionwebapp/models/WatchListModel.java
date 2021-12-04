@@ -10,14 +10,15 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class WatchListModel {
-    public static boolean addWatchList(int proid, String proname, int price_start, int uid) {
-        String insertSql = "INSERT INTO watch_list (proid, proname,price_start,uid) VALUES (:proid,:proname,:priceStart,:uid)";
+    public static boolean addWatchList(int proid, String proname, int price_start, int uid,int catid) {
+        String insertSql = "INSERT INTO watch_list (proid, proname,price_start,uid,catid) VALUES (:proid,:proname,:priceStart,:uid,:catid)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("proid", proid)
                     .addParameter("proname", proname)
                     .addParameter("priceStart", price_start)
                     .addParameter("uid", uid)
+                    .addParameter("catid",catid)
                     .executeUpdate();
             return true;
         }
@@ -65,4 +66,5 @@ public class WatchListModel {
                     .executeAndFetch(WatchList.class);
         }
     }
+
 }

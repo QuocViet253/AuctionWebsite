@@ -42,7 +42,7 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}&catid=${p1.catid}" type="button" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </a>
-                                                    <button type="button" href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=1" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary" title="Add to WatchList">
+                                                    <button type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p1.proid}&proname=${p1.proname}&price_start=${p1.price_start}&uid=${authUser.id}&catid=${p1.catid}')" class="heart btn btn-secondary" title="Add to WatchList">
                                                         <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                     </button>
                                         </div>
@@ -67,7 +67,7 @@
                                     </div>
                                 </c:forEach>
                     </div>
-                    <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">
+                    <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;">
                         <a name="hot"></a>
                         <h2 style="cursor: pointer;">Top Price</h2>
                     </div>
@@ -80,7 +80,7 @@
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}" type="button" class="btn btn-secondary" title="Detail">
                                             <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
                                         </a>
-                                        <button  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=1" type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=1')" class=" heart btn btn-secondary" title="Add to WatchList">
+                                        <button  type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=${authUser.id}&catid=${p2.catid}')" class=" heart btn btn-secondary" title="Add to WatchList">
                                             <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                         </button>
 <%--                                        <a type="button" class="btn btn-secondary" title="Add to Cart">--%>

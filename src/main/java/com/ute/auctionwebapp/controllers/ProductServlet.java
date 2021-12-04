@@ -26,10 +26,11 @@ public class ProductServlet extends HttpServlet {
                 String proname = request.getParameter("proname");
                 int price_start=Integer.parseInt(request.getParameter("price_start"));
                 int uid =Integer.parseInt(request.getParameter("uid"),10);
+                int catid =Integer.parseInt(request.getParameter("catid"),10);
                 boolean check = WatchListModel.findByProduct(proid,uid);
                 if(check == true)
                  {
-                     boolean add= WatchListModel.addWatchList(proid,proname,price_start,uid);
+                     boolean add= WatchListModel.addWatchList(proid,proname,price_start,uid,catid);
                      if( add==true){
                          PrintWriter out = response.getWriter();
                          response.setContentType("application/json");
@@ -53,7 +54,7 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "/Detail":
                 int proId = Integer.parseInt(request.getParameter("id"));
-                int catid = Integer.parseInt(request.getParameter("catid"));
+                catid = Integer.parseInt(request.getParameter("catid"));
                 Product product = ProductModel.findByID(proId);
                 List<Product> list4 = ProductModel.findNear(catid,proId);
                 if(product==null)
