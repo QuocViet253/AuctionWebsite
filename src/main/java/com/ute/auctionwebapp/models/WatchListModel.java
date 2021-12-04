@@ -57,4 +57,12 @@ public class WatchListModel {
             return false;
         }
     }
+    public static List<WatchList> findByUID(int uid){
+        final String query = "select * from watch_list where uid=:uid";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(WatchList.class);
+        }
+    }
 }

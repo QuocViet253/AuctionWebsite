@@ -16,8 +16,35 @@
         <script>
             window.onload=()=>{
                 if(!${auth})
+                {
                     $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
+                    $('#btn-auction').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
+                }
             }
+            if(${auth})
+            {
+                $('#btn-auction').on('click',function (){
+                    let step =$('#step').val();
+                    let price =$('#price').val();
+                    let email = $('#email').val();
+                    if(price==='')
+                    {
+                        alert("Please enter your price")
+                    }
+                    else{
+                        $.getJSON('${pageContext.request.contextPath}/Product/Bidding?proid=${product.proid}&proname=${product.proname}&step='+step+'&price='+price+'&uid=${authUser.id}&email='+email, function (data) {
+                            if (data === false) {
+                                alert('No');
+                            } else{
+                                alert('Ok');
+                                location.reload();
+                            }
+
+                        });
+                    }
+                });
+            }
+
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
@@ -58,25 +85,63 @@
                             <img id="img_main"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
                         </div>
                     </div>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá khởi điểm: ${product.price_start}</h4>
+                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá hiện tại: ${product.price_current}</h4>
                     <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Giá mua ngay: ${product.price_now}</h4>
-                    <h4 class="card-title mt-3 ml-4">Thông tin sản phẩm</h4>
-                    <p class="ml-5">
-                        Số lượng: ${product.quantity}
-                    </p>
-                    <p class="ml-5">${product.fulldes}</p>
-                    <p class="ml-5">${product.start_day}</p>
-                    <p class="ml-5">${product.end_day}</p>
-                </div>
+                    <input id="step" name="step" type="hidden" value="${product.price_step}">
+                    <input id="email" name="email" type="hidden" value="${authUser.email}">
+                    <div class="ml-5">
+                        <h4>Thông tin người bán</h4>
+                        <h4>Thông tin người đặt giá cao nhất</h4>
+                        <h4>Thời điểm đăng: ${product.start_day}</h4>
+                        <h4>Thời điểm kết thúc: ${product.end_day}</h4>
+                        <h4>Chi tiết sản phẩm</h4>
+                        <p class="ml-5">${product.fulldes}</p>
+
+                    </div>
+
+                    <h4 class="ml-5">Mời bạn đặt giá:</h4>
+                    <form action="" method="post">
+                        <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                            </span>
+                            </div>
+                            <input id="price" type="text" name="price" class="form-control min-vh-75" placeholder="Your Price" aria-label="price" aria-describedby="addon-wrapping">
+                        </div>
+
+
                 <div class="card-footer text-muted bg-warning d-flex justify-content-center">
-                    <a class="btn btn-primary mr-5" href="#" role="button">
+
+                    <button type="button" id="btn-auction" class="btn btn-primary mr-5" role="button">
                         <i class="fa fa-gavel" aria-hidden="true"></i>
                         Auction now
-                    </a>
-                    <button class="heart btn btn-danger mr-5" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${product.proid}&proname=${product.proname}&price_start=${product.price_start}&uid=${authUser.id}')" role="button">
+                    </button>
+                    <button class="heart btn btn-danger mr-5" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${product.proid}&proname=${product.proname}&price_start=${product.price_start}&uid=${authUser.id}')" type="button">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                         Love
                     </button>
+                </div>
+                    </form>
+                    <h4>Lịch sử ra giá</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Thời gian</th>
+                            <th scope="col">Người mua</th>
+                            <th scope="col">Giá</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <hr>
@@ -93,24 +158,24 @@
                                 <c:forEach items="${products}" var="p">
                                     <div class="col-md-3 mb-4" >
                                         <div class="product-top">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
-                                                <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}" class="btn btn-secondary" title="Detail">
-                                                    <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
-                                                </a>
-                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
-                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>
-                                                </button>
+                                                    <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
+                                                        <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
+                                                    </a>
+                                                    <button type="button"   href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                                        <i class="fa fa-heart-o" style="border-radius: 50%"></i>
+                                                    </button>
 
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 name="proname">${p.proname}</h3>
-                                            <p name="price_start" style="margin: 0">Start price: ${p.price_start}</p>
-                                            <a class="btn btn-success btn-sm" href="#" role="button">
-                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>
-                                                Auction now
-                                            </a>
+                                            <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+<%--                                            <p name="price_start" style="margin: 0">Start price: ${p.price_start}</p>--%>
+<%--                                            <a class="btn btn-success btn-sm" href="#" role="button">--%>
+<%--                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>--%>
+<%--                                                Auction now--%>
+<%--                                            </a>--%>
                                         </div>
                                     </div>
                                 </c:forEach>
