@@ -1,7 +1,9 @@
 package com.ute.auctionwebapp.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
+import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
@@ -16,7 +18,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
+
+import static com.ute.auctionwebapp.models.ProductModel.findSellingProduct;
 
 @WebServlet(name = "AccountServlet", value = "/Account/*")
 public class AccountServlet extends HttpServlet {
@@ -66,6 +71,13 @@ public class AccountServlet extends HttpServlet {
 
                 out.print(sendOTP);
                 out.flush();
+                break;
+
+            case "/YourProduct":
+                int uid =Integer.parseInt(request.getParameter("uid"),10);
+                List<Product> yourProductList = findSellingProduct(uid);
+                request.setAttribute("products",yourProductList);
+                ServletUtills.forward("/views/vwAccount/YourProduct.jsp", request, response);
                 break;
 
             default:

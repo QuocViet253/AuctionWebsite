@@ -71,4 +71,13 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
+
+    public static List<Product> findSellingProduct(int uid){
+        final String query = "select * from products where sell_id =:uid ";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(Product.class);
+        }
+    }
 }
