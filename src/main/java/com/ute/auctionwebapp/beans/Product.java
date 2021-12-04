@@ -11,9 +11,12 @@ public class Product {
     private int catid,bid_id;
     private String status;
     private int price_max;
-
+    private int sell_id;
     public Product() {}
 
+    public int getSell_id() {
+        return sell_id;
+    }
 
     public int getProid() {
         return proid;

@@ -48,7 +48,7 @@ public class MailUtills {
             message.setFrom(new InternetAddress(user));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(sub);
-            message.setContent(msg, "text/html");
+            message.setContent(msg, "text/html;charset=UTF-8");
 
             /* Transport class is used to deliver the message to the recipients */
             Transport.send(message);
@@ -104,6 +104,24 @@ public class MailUtills {
                 + "    <h3 style=\"color: blue;\">Your password has been reset.</h3>\n"
                 + "    <div>Email :" + email + "</div>\n"
                 + "    <div>Your reset password :" + email + "</div>\n"
+                + "\n"
+                + "</body>\n"
+                + "\n"
+                + "</html>";
+        MailUtills.send(email, subject, message);
+    }
+    public static void sendNotify(String email,int price_current, String proname ){
+        String subject = "Update Price| Auction Website";
+        String message = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "\n"
+                + "<head>\n"
+                + "</head>\n"
+                + "\n"
+                + "<body>\n"
+                + "    <h3 style=\"color: blue;\">Price has been updated.</h3>\n"
+                + "    <div>Product name:" + proname + "</div>\n"
+                + "    <div>New Price :" + price_current + "</div>\n"
                 + "\n"
                 + "</body>\n"
                 + "\n"

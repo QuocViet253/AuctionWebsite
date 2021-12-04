@@ -4,12 +4,15 @@
 <jsp:useBean id="products1" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="products2" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
 <t:main>
     <jsp:attribute name="js">
         <script>
             window.onload=()=>{
                 if(!${auth})
                     $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
+
             }
             function add (otp){
                 {
@@ -20,6 +23,7 @@
                     });
                 }
             }
+
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -31,8 +35,8 @@
                     </div>
                     <div class="row">
                             <c:forEach items="${products1}" var="p1">
-                                <div class="col-md-3" >
-                                    <div class="product-top">
+                                <div class="col-md-3 shadow" style="border-radius: 10%" >
+                                    <div class="product-top mt-3">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}&catid=${p1.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p1.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                         <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}&catid=${p1.catid}" type="button" class="btn btn-secondary" title="Detail">
@@ -45,8 +49,20 @@
                                     </div>
                                         <div class="product-bottom text-center">
                                             <h3 style="width: 250px;height: 75px; object-fit: contain;">${p1.proname}</h3>
-                                            <h5>Giá khởi điểm: ${p1.price_start}</h5>
+                                            <h5>Giá hiện tại: ${p1.price_current}</h5>
                                             <h5>Giá mua ngay: ${p1.price_now}</h5>
+                                            <h5>Ngày đăng:
+                                                <fmt:parseDate value="${p1.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            </h5>
+                                            <h5>
+                                                Kết thúc:
+                                                <fmt:parseDate value="${p1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+<%--                                                <div class="countdown"></div>--%>
+                                            </h5>
+
+                                            <h5>Số lượt ra giá:</h5>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -57,8 +73,8 @@
                     </div>
                     <div class="row">
                         <c:forEach items="${products2}" var="p2">
-                            <div class="col-md-3" >
-                                <div class="product-top">
+                            <div class="col-md-3 shadow" style="border-radius: 10%">
+                                <div class="product-top mt-3">
                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                     <div class="overlay-right">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}" type="button" class="btn btn-secondary" title="Detail">
@@ -73,10 +89,18 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">
-                                    <h3>${p2.proname}</h3>
-                                    <h5>Giá khởi điểm: ${p2.price_start}</h5>
-                                    <h5>Giá mua ngay: ${p2.price_now}</h5>
+                                    <h3 style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
                                     <h5>Giá hiện tại: ${p2.price_current}</h5>
+                                    <h5>Giá mua ngay: ${p2.price_now}</h5>
+                                    <h5>Ngày đăng:
+                                        <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                    </h5>
+                                    <h5>Kết thúc:
+                                        <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                    </h5>
+                                    <h5>Số lượt ra giá:</h5>
                                 </div>
                             </div>
                         </c:forEach>

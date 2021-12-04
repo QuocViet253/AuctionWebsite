@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:main>
@@ -68,8 +69,8 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-md-3 mb-4" >
-                                        <div class="product-top">
+                                    <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
+                                        <div class="product-top mt-2">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -82,12 +83,22 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 name="proname">${p.proname}</h3>
-                                            <p name="price_start" style="margin: 0">Start price: ${p.price_start}</p>
-                                            <a class="btn btn-success btn-sm" href="#" role="button">
-                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>
-                                                Auction now
-                                            </a>
+                                            <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h5 style="margin: 0">Giá hiện tại: ${p.price_current}</h5>
+                                            <h5>Giá mua ngay: ${p.price_now}</h5>
+                                            <h5>Ngày đăng:
+                                                <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            </h5>
+                                            <h5>Kết thúc:
+                                                <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            </h5>
+                                            <h5>Số lượt ra giá</h5>
+<%--                                            <a class="btn btn-success btn-sm" href="#" role="button">--%>
+<%--                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>--%>
+<%--                                                Auction now--%>
+<%--                                            </a>--%>
                                         </div>
                                     </div>
                                 </c:forEach>

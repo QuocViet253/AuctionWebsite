@@ -29,7 +29,7 @@ public class ProductModel {
         }
     }
     public static List<Product> findByCatId(int catId){
-        final String query = "select * from products where catid = :catid";
+        final String query = "select * from products where catid = :catid and CURDATE()<end_day and CURTIME()<end_day";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("catid",catId)
@@ -37,10 +37,10 @@ public class ProductModel {
         }
     }
     public static List<Product> findByCatPid(String catname){
-        final String query = "select products.proid,products.proname,products.price_start,products.catid\n" +
-                "from auction.products , auction.categories\n" +
-                "where categories.pid=(select catid from auction.categories where catname=:catname)\n" +
-                "  and categories.catid=products.catid";
+        final String query = "select products.proid,products.proname,products.price_current,products.catid,products.price_now,products.start_day,products.end_day\n" +
+                "                from auction.products , auction.categories\n" +
+                "                where auction.categories.pid=(select catid from auction.categories where catname=:catname)\n" +
+                "             and categories.catid=products.catid and CURDATE() < products.end_day and CURTIME()<products.end_day";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("catname",catname)
@@ -72,12 +72,38 @@ public class ProductModel {
         }
     }
 
-    public static List<Product> findSellingProduct(int uid){
-        final String query = "select * from products where sell_id =:uid ";
+    public static int price_max(int proid){
+        final String query = "select price_max from auction.products where proid=:proid";
         try (Connection con = DbUtills.getConnection()) {
-            return con.createQuery(query)
-                    .addParameter("uid",uid)
+            List<Product> list = con.createQuery(query)
+                    .addParameter("proid",proid)
                     .executeAndFetch(Product.class);
+            return list.get(0).getPrice_max();
         }
+    }
+    public static boolean updatePriceCur(int proid, int price_current){
+        String Sql = "update auction.products set price_current=:price_current where proid=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid",proid )
+                    .addParameter("price_current", price_current)
+                    .executeUpdate();
+            return true;
+        }
+        catch (Exception e){return false;}
+    }
+    public static boolean updatePriceMax(int proid, int price_current,int price_max,int uid){
+        String Sql = "update auction.products set price_current=:price_current, price_max=:price_max," +
+                "bid_id=:bid_id where proid=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid",proid )
+                    .addParameter("price_current", price_current)
+                    .addParameter("price_max", price_max)
+                    .addParameter("bid_id", uid)
+                    .executeUpdate();
+            return true;
+        }
+        catch (Exception e){return false;}
     }
 }

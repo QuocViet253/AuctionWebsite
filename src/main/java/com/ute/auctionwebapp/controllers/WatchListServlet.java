@@ -23,7 +23,8 @@ public class WatchListServlet extends HttpServlet {
 
         switch (path) {
             case "/WatchList":
-                List<WatchList> list2 = WatchListModel.findAll();
+                int uid = Integer.parseInt(request.getParameter("uid"),10);
+                List<WatchList> list2 = WatchListModel.findByUID(uid);
                 request.setAttribute("watchlists",list2);
                 ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
@@ -37,14 +38,6 @@ public class WatchListServlet extends HttpServlet {
 
                 out.print(isAvailable);
                 out.flush();
-//                if(WatchListModel.deleteWatchList(id)){
-//                    List<WatchList> list3 = WatchListModel.findAll();
-//                    request.setAttribute("watchlists",list3);
-//                    ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
-//                }
-//                List<WatchList> list4 = WatchListModel.findAll();
-//                request.setAttribute("watchlists",list4);
-//                ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);

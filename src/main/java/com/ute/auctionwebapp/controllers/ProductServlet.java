@@ -4,6 +4,7 @@ import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.WatchList;
 import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.WatchListModel;
+import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
 
@@ -65,6 +66,42 @@ public class ProductServlet extends HttpServlet {
                     ServletUtills.forward("/views/vwProduct/Detail.jsp", request, response);
                     break;
                 }
+            case"/Bidding":
+                proid  = Integer.parseInt(request.getParameter("proid"),10);
+                int new_price = Integer.parseInt(request.getParameter("price"));
+                 uid =Integer.parseInt(request.getParameter("uid"),10);
+                 int max = ProductModel.price_max(proid);
+                int price_step = Integer.parseInt(request.getParameter("step"));
+                proname = request.getParameter("proname");
+                if(max >= new_price )
+                {
+                    boolean update = ProductModel.updatePriceCur(proid,(new_price)) ;
+                    PrintWriter out = response.getWriter();
+                    out = response.getWriter();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("utf-8");
+
+                    out.print(update);
+                    out.flush();
+                    String email = request.getParameter("email");
+                    MailUtills.sendNotify(email,new_price,proname);
+                    //Add history
+                }
+                if(max < new_price )
+                {
+                    boolean update = ProductModel.updatePriceMax(proid,(max+price_step),new_price,uid) ;
+                    PrintWriter out = response.getWriter();
+                    out = response.getWriter();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("utf-8");
+
+                    out.print(update);
+                    out.flush();
+                    String email = request.getParameter("email");
+                    MailUtills.sendNotify(email,new_price,proname);
+                    //Add history
+                }
+                break;
             case "/WatchList":
                 ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
@@ -75,6 +112,6 @@ public class ProductServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
+
 }
