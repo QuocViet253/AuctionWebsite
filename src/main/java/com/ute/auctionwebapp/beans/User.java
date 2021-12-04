@@ -72,9 +72,7 @@ public class User {
         return dob;
     }
 
-    public int getRole() {
-        return role;
-    }
+    public int getRole() { return role;}
 
     public int getReQuest() {
         return reQuest;
