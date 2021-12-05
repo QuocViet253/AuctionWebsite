@@ -70,13 +70,15 @@ public class ProductServlet extends HttpServlet {
             case"/Bidding":
                 proid  = Integer.parseInt(request.getParameter("proid"),10);
                 int new_price = Integer.parseInt(request.getParameter("price"));
-                 uid =Integer.parseInt(request.getParameter("uid"),10);
-                 int max = ProductModel.price_max(proid);
+                uid =Integer.parseInt(request.getParameter("uid"),10);
+                Product product1 = ProductModel.findByID(proid);
+                int max = product1.getPrice_max();
                 int price_step = Integer.parseInt(request.getParameter("step"));
                 proname = request.getParameter("proname");
-                if(max >= new_price )
+
+                if(max == 0 )
                 {
-                    boolean update = ProductModel.updatePriceCur(proid,(new_price)) ;
+                    boolean update = ProductModel.updatePriceMax(proid,product1.getPrice_start(),new_price,uid) ;
                     PrintWriter out = response.getWriter();
                     out = response.getWriter();
                     response.setContentType("application/json");
@@ -87,21 +89,35 @@ public class ProductServlet extends HttpServlet {
                     String email = request.getParameter("email");
                     MailUtills.sendNotify(email,new_price,proname);
                     //Add history
-                }
-                if(max < new_price )
-                {
-                    boolean update = ProductModel.updatePriceMax(proid,(max+price_step),new_price,uid) ;
-                    PrintWriter out = response.getWriter();
-                    out = response.getWriter();
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("utf-8");
+                } else {
+                    if (max >= new_price) {
+                        boolean update = ProductModel.updatePriceCur(proid, (new_price));
+                        PrintWriter out = response.getWriter();
+                        out = response.getWriter();
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("utf-8");
 
-                    out.print(update);
-                    out.flush();
-                    String email = request.getParameter("email");
-                    MailUtills.sendNotify(email,new_price,proname);
-                    //Add history
+                        out.print(update);
+                        out.flush();
+                        String email = request.getParameter("email");
+                        MailUtills.sendNotify(email, new_price, proname);
+                        //Add history
+                    }
+                    if (max < new_price) {
+                        boolean update = ProductModel.updatePriceMax(proid, (max + price_step), new_price, uid);
+                        PrintWriter out = response.getWriter();
+                        out = response.getWriter();
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("utf-8");
+
+                        out.print(update);
+                        out.flush();
+                        String email = request.getParameter("email");
+                        MailUtills.sendNotify(email, new_price, proname);
+                        //Add history
+                    }
                 }
+
                 break;
             case "/WatchList":
                 ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);

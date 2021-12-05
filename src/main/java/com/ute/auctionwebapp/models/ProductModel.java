@@ -63,7 +63,8 @@ public class ProductModel {
     public static List<Product> findNear(int catid, int proid){
         final String query = "select * from products where catid in (select catid from categories where pid = (\n" +
                 "    select pid from categories where categories.catid = :catid\n" +
-                ")) and proid not in (select proid from products where proid = :proid) order by field(catid,:catid) desc limit 8";
+                ")) and proid not in (select proid from products where proid = :proid)" +
+                " and CURDATE()<end_day and CURTIME()<end_day order by field(catid,:catid) desc limit 8";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("catid",catid)
@@ -105,5 +106,48 @@ public class ProductModel {
             return true;
         }
         catch (Exception e){return false;}
+    }
+
+    public static List<Product> findSellingProduct(int uid){
+        final String query = "select * from products where sell_id =:uid " +
+                "and CURDATE()<end_day and CURTIME()<end_day ";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(Product.class);
+        }
+    }
+
+    public static List<Product> findSoldProduct(int uid){
+        final String query = "select * from products where sell_id = :uid\n" +
+                "                and CURDATE()>=end_day and CURTIME()>=end_day\n" +
+                "                and bid_id is not null and price_payment is not null";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(Product.class);
+        }
+    }
+
+    public static List<Product> findBiddingProduct(int uid){
+        final String query = "select * from products where proid in " +
+                "(select proid from histories where bid_id = :uid) " +
+                "and CURDATE()<end_day and CURTIME()<end_day";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(Product.class);
+        }
+    }
+
+    public static List<Product> findWinningProduct(int uid){
+        final String query = "select * from products where bid_id = :uid\n" +
+                "                and CURDATE()>=end_day and CURTIME()>=end_day\n" +
+                "                and price_payment is not null";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(Product.class);
+        }
     }
 }

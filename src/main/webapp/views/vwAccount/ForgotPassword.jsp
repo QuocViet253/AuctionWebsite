@@ -18,11 +18,13 @@
                 //Check when click send new password to email
                 const email = $('#forgotName').val();
                 const otp = $('#forgotOTP').val();
+                $('#btnForgot').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
                 // check if email is exists
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === false) {
                         // check otp
                         $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
+                            $('#btnOTP').html('Send password reset email')
                             if (otpData === false) {
                                 alert('Wrong OTP');
                             } else {
@@ -41,12 +43,14 @@
                 {
                     alert('Please fill your email')
                 } else {
+                    $('#btnOTP').html('<div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span></div>');
                     const otp = $('#forgotOTP').val();
                     const email = $('#forgotName').val();
                     $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
+                        $('#btnOTP').html('Send OTP')
                         if (data === false) {
                             alert('Please send OTP email again.');
-                        } else alert('OTP has been send to your email');
+                        } else alert('OTP has been sent to your email');
                     });
                 }
             });
@@ -76,7 +80,7 @@
 
             <!-- Button send forgot password request -->
             <div class="text-center">
-                <button type="submit" class="btn btn-info w-75" name="button" value="btnForgot">Send password reset email</button>
+                <button id="btnForgot" type="submit" class="btn btn-info w-75" name="button" value="btnForgot">Send password reset email</button>
             </div>
 
             <hr class="w-75 mx-auto bg-info">

@@ -19,9 +19,6 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Random;
-
-import static com.ute.auctionwebapp.models.ProductModel.findSellingProduct;
 
 @WebServlet(name = "AccountServlet", value = "/Account/*")
 public class AccountServlet extends HttpServlet {
@@ -75,8 +72,14 @@ public class AccountServlet extends HttpServlet {
 
             case "/YourProduct":
                 int uid =Integer.parseInt(request.getParameter("uid"),10);
-                List<Product> yourProductList = findSellingProduct(uid);
-                request.setAttribute("products",yourProductList);
+                List<Product> sellingProductList = ProductModel.findSellingProduct(uid);
+                request.setAttribute("sellingProducts",sellingProductList);
+                List<Product> soldProductList = ProductModel.findSoldProduct(uid);
+                request.setAttribute("soldProducts",soldProductList);
+                List<Product> biddingProductList = ProductModel.findBiddingProduct(uid);
+                request.setAttribute("biddingProducts",biddingProductList);
+                List<Product> winningProductList = ProductModel.findWinningProduct(uid);
+                request.setAttribute("winningProducts",winningProductList);
                 ServletUtills.forward("/views/vwAccount/YourProduct.jsp", request, response);
                 break;
 
@@ -143,8 +146,10 @@ public class AccountServlet extends HttpServlet {
                 session.setAttribute("authUser", user);
 
                 String url = (String) (session.getAttribute("retUrl"));
-                if (url == null)
+                if (url == null )
                     url = "/Home";
+                if (url.equals("/auctionWebApp/Account/Profile") || url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList"))
+                    url = url + "?uid=" + user.getId();
                 ServletUtills.redirect(url, request, response);
             } else {
                 request.setAttribute("hasError", true);

@@ -24,21 +24,42 @@
             }
             if(${auth})
             {
-                $('#btn-auction').on('click',function (){
-                    let step =$('#step').val();
-                    let price =$('#price').val();
-                    let price_start=$('#price_start').val();
-                    let email = $('#email').val();
-                    if(price===''|| price<price_start)
+                $('#btnConfirmBid').on('click',function (){
+                    $('.modal-body').html($('.modal-body').html().replace(/<b style="color: #f33a58">[^<]*/,''))
+                    let step = parseInt($('#step').val());
+                    let price = parseInt($('#price').val()) ;
+                    let price_start= parseInt($('#price_start').val()) ;
+                    let price_cur= parseInt($('#price_cur').val()) ;
+                    if(Number.isNaN(price)|| price<price_start || price < price_cur || price % step !==0)
                     {
-                        alert("Please enter your price again")
+                        alert("Please enter your valid price again")
+                    }
+                    else {
+                        $('#staticBackdrop').modal('toggle')
+                        $('.modal-body').append('<b style="color: #f33a58">'+price+'</b>')
+                    }
+
+                });
+
+                $('#btn-auction').on('click',function (){
+                    let step = parseInt($('#step').val());
+                    let price = parseInt($('#price').val()) ;
+                    let price_start= parseInt($('#price_start').val()) ;
+                    let price_cur= parseInt($('#price_cur').val()) ;
+                    let email = $('#email').val();
+                    if(Number.isNaN(price)|| price<price_start || price < price_cur || price % step !==0)
+                    {
+                        alert("Please enter your valid price again")
                     }
                     else{
+                        $('#btn-auction').empty();
+                        $('#btn-auction').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
                         $.getJSON('${pageContext.request.contextPath}/Product/Bidding?proid=${product.proid}&proname=${product.proname}&step='+step+'&price='+price+'&uid=${authUser.id}&email='+email, function (data) {
                             if (data === false) {
-                                alert('No');
+                                alert('Bidding failed');
                             } else{
-                                alert('OK');
+                                $('#btn-auction').html('Done')
+                                alert('Bidding successfully');
                                 location.reload();
                             }
 
@@ -52,7 +73,7 @@
                     $.getJSON(otp, function (data) {
                         if (data === 'false') {
                             alert('Not Added');
-                        } else alert("successfully");
+                        } else alert("Successfully");
                     });
                 }
             }
@@ -93,6 +114,7 @@
                     <input id="price_start" name="price_start" type="hidden" value="${product.price_start}">
                     <input id="step" name="step" type="hidden" value="${product.price_step}">
                     <input id="email" name="email" type="hidden" value="${authUser.email}">
+                    <input id="price_cur" name="price_cur" type="hidden" value="${product.price_current}">
                     <div class="ml-5">
                         <h4>Thông tin người bán</h4>
                         <h4>Thông tin người đặt giá cao nhất</h4>
@@ -121,17 +143,40 @@
                         </div>
 
 
-                <div class="card-footer text-muted bg-warning d-flex justify-content-center">
+                        <div class="card-footer text-muted bg-warning d-flex justify-content-center">
 
-                    <button type="button" id="btn-auction" class="btn btn-primary mr-5" role="button">
-                        <i class="fa fa-gavel" aria-hidden="true"></i>
-                        Auction now
-                    </button>
-                    <button class="heart btn btn-danger mr-5" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${product.proid}&proname=${product.proname}&price_start=${product.price_start}&uid=${authUser.id}&catid=${product.catid}')" type="button">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                        Love
-                    </button>
-                </div>
+                            <button type="button" id="btnConfirmBid" class="btn btn-primary mr-5" role="button" data-target="#staticBackdrop">
+                                <i class="fa fa-gavel" aria-hidden="true"></i>
+                                Bid now
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Bid Confirmation</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            I bid for <b> ${product.proname}</b> <br>
+                                            Confirm Bidding Price
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                <i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                            <button type="button" id="btn-auction" class="btn btn-primary">
+                                                <i class="fa fa-check" aria-hidden="true"></i> Confirm Bid</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button class="heart btn btn-danger mr-5" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${product.proid}&proname=${product.proname}&price_start=${product.price_start}&uid=${authUser.id}&catid=${product.catid}')" type="button">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                Love
+                            </button>
+                        </div>
                     </form>
                     <h4>Lịch sử ra giá</h4>
                     <table class="table table-hover">
@@ -168,7 +213,7 @@
                                 <c:forEach items="${products}" var="p">
                                     <div class="col-lg-3 mb-4 shadow" style="border-radius: 10%" >
                                         <div class="product-top mt-3">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 205px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
                                                         <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
@@ -180,12 +225,7 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 name="proname" style="width: 232px;height: 75px; object-fit: contain">${p.proname}</h3>
-<%--                                            <p name="price_start" style="margin: 0">Start price: ${p.price_start}</p>--%>
-<%--                                            <a class="btn btn-success btn-sm" href="#" role="button">--%>
-<%--                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>--%>
-<%--                                                Auction now--%>
-<%--                                            </a>--%>
+                                            <h3 name="proname" style="width: 205px;height: 75px; object-fit: contain">${p.proname}</h3>
                                         </div>
                                     </div>
                                 </c:forEach>

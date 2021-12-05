@@ -75,9 +75,11 @@
                 {
                     alert('Please fill your email')
                 } else {
+                    $('#btnOTP').html('<div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span></div>');
                     const otp = $('#registerOTP').val();
                     const email = $('#registerEmail').val();
                     $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
+                        $('#btnOTP').html('Send OTP');
                         if (data === false) {
                             alert('Please send OTP email again.');
                         } else alert('OTP has been send to your email');

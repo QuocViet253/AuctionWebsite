@@ -52,6 +52,9 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                     <i class="fa fa-user" aria-hidden="true"></i> Profile
                                 </a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
+                                    <i class="fa fa-product-hunt" aria-hidden="true"></i> Your Products
+                                </a></li>
                                 <li><a class="dropdown-item" href="javascript: $('#frmLogout').submit()">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
                                 </a></li>
