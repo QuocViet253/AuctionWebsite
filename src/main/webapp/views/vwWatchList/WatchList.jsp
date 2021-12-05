@@ -68,9 +68,9 @@
                                 <c:forEach items="${watchlists}" var="w">
                                     <div class="col-md-3 mb-4" >
                                         <div class="product-top">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${w.proid}/main.jpg"></a>
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}&catid=${w.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${w.proid}/main.jpg"></a>
                                             <div class="overlay-right">
-                                                <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}" class="btn btn-secondary" title="Detail">
+                                                <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}&catid=${w.catid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
                                                 <button type="button" href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Remove from WatchList">
@@ -79,9 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3>Tên sản phẩm: ${w.proname}</h3>
-                                            <p style="margin: 0">Giá: ${w.price_start}</p>
-                                            <a class="btn btn-success btn-sm" href="#" role="button">Auction now</a>
+                                            <h3 style="width: 250px;height: 75px; object-fit: contain">Tên sản phẩm: ${w.proname}</h3>
                                         </div>
                                     </div>
                                 </c:forEach>

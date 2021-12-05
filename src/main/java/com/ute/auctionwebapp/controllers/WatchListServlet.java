@@ -1,6 +1,8 @@
 package com.ute.auctionwebapp.controllers;
 
+import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.WatchList;
+import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.WatchListModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
