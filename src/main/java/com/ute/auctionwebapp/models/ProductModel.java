@@ -150,4 +150,15 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
+
+    public static void EditDes(int proid, String date, String fulldes){
+        final String query = "update products set fulldes= CONCAT_WS(CHAR(10 using utf8),fulldes,:date, :fulldes ) where proid = :proid";
+        try (Connection con = DbUtills.getConnection()) {
+                 con.createQuery(query)
+                    .addParameter("proid",proid)
+                    .addParameter("date",date)
+                    .addParameter("fulldes",fulldes)
+                    .executeUpdate();
+        }
+    }
 }

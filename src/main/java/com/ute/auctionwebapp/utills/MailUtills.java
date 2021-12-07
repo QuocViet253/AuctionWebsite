@@ -87,6 +87,9 @@ public class MailUtills {
             }
         } else {
             if (Integer.parseInt(userOTP,10) == randomOTP) {
+                Random rnd = new Random();
+                int random = rnd.nextInt(999999);
+                randomOTP = random;
                 return true;
             } else return false;
         }

@@ -1,5 +1,6 @@
 <%@ tag pageEncoding="utf-8" %>
 <%@attribute name="js" fragment="true" required="false" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">

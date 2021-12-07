@@ -92,6 +92,7 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
+        request.setCharacterEncoding("UTF-8");
         switch (path) {
             case "/Register":
                 registerUser(request, response);
@@ -107,6 +108,9 @@ public class AccountServlet extends HttpServlet {
 
             case "/Logout":
                 logout(request, response);
+                break;
+            case "/EditDes":
+                editDes(request, response);
                 break;
 
             default:
@@ -181,6 +185,16 @@ public class AccountServlet extends HttpServlet {
 
         MailUtills.sendResetPassword(email);
         ServletUtills.forward("/views/vwAccount/ForgotPassword.jsp", request, response);
+    }
+
+    private void editDes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int proid = Integer.parseInt(request.getParameter("proid"),10);
+        int uid = Integer.parseInt(request.getParameter("uid"),10);
+        String date = "<i class=\"fa fa-pencil\" aria-hidden=\"true\" ></i>Date modified: " + request.getParameter("date");
+        String fullDes = request.getParameter("fulldes");
+
+        ProductModel.EditDes(proid,date,fullDes);
+        ServletUtills.redirect("/Account/YourProduct?uid="+uid,request,response);
     }
 
 }
