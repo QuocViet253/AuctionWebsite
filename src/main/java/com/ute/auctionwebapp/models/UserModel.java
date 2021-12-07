@@ -37,6 +37,30 @@ public class UserModel {
         }
     }
 
+    public static void update(User c) {
+        String insertSql = "UPDATE users SET  name = :name, email = :email, address = :address, dob = :dob WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id",c.getId())
+                    .addParameter("name", c.getName())
+                    .addParameter("email", c.getEmail())
+                    .addParameter("dob", c.getDob())
+                    .addParameter("address", c.getAddress())
+                    .executeUpdate();
+        }
+    }
+
+    public static void changepassword(User c) {
+        String insertSql = "UPDATE users SET password = :password WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id",c.getId())
+                    .addParameter("password", c.getPassword())
+                    .executeUpdate();
+        }
+    }
+
+
     public static void resetPassword(String email, String password) {
         String insertSql = "UPDATE users SET password = :password WHERE email= :email";
         try (Connection con = DbUtills.getConnection()) {
@@ -46,4 +70,18 @@ public class UserModel {
                     .executeUpdate();
         }
     }
+    public static User findById(int id) {
+        final String query = "select * from users where id=:id";
+        try (Connection con = DbUtills.getConnection()) {
+            List<User> list = con.createQuery(query)
+                    .addParameter("id", id)
+                    .executeAndFetch(User.class);
+
+            if (list.size() == 0) {
+                return null;
+            }
+            return list.get(0);
+        }
+    }
+
 }

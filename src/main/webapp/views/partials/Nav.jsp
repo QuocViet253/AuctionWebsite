@@ -9,7 +9,7 @@
             <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top"
                     alt="No Loading" style=" width:140px ;height: 70px"></a>
             <nav class="navbar navbar-light bg-info d-inline">
-                <form class="form-inline">
+                <div class="form-inline">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown-toggle-split">
                             <select class="nav-link text-dark bg-light mr-2" style="border: 0; border-radius: 5px;">
@@ -18,12 +18,12 @@
                             </select>
                         </li>
                     </ul>
-                    <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" style="width: 500px">
-                    <button class="btn btn-outline-success text-light bg-success my-2 my-sm-0 " type="submit">
+                    <input id="search" class="form-control mr-sm-3" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
+                    <button id="btnSearch" class="btn btn-outline-success text-light bg-success my-2 my-sm-0 " type="button" onclick="Found('${pageContext.request.contextPath}')" >
                         <i class="fa fa-search"></i>
                         Search
                     </button>
-                </form>
+                </div>
             </nav>
             <ul class="navbar-nav">
                 <li class="nav-item active mr-4"><a href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}"  id="watchlist" class="text-light">

@@ -150,15 +150,42 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
-
-    public static void EditDes(int proid, String date, String fulldes){
-        final String query = "update products set fulldes= CONCAT_WS(CHAR(10 using utf8),fulldes,:date, :fulldes ) where proid = :proid";
+    public static List<Product> Search(String search){
+        final String query = "SELECT *\n" +
+                "FROM auction.products\n" +
+                "WHERE\n" +
+                "    MATCH(proname,tinydes,fulldes)\n" +
+                "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day";
         try (Connection con = DbUtills.getConnection()) {
-                 con.createQuery(query)
-                    .addParameter("proid",proid)
-                    .addParameter("date",date)
-                    .addParameter("fulldes",fulldes)
-                    .executeUpdate();
+            return con.createQuery(query)
+                    .addParameter("search",search)
+                    .executeAndFetch(Product.class);
+        }
+    }
+    public static List<Product> SortInc(String search){
+        final String query = "SELECT *\n" +
+                "FROM auction.products\n" +
+                "WHERE\n" +
+                "    MATCH(proname,tinydes,fulldes)\n" +
+                "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
+                "order by products.price_current asc";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("search",search)
+                    .executeAndFetch(Product.class);
+        }
+    }
+    public static List<Product> SortDec(String search){
+        final String query = "SELECT *\n" +
+                "FROM auction.products\n" +
+                "WHERE\n" +
+                "    MATCH(proname,tinydes,fulldes)\n" +
+                "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
+                "order by products.end_day desc";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("search",search)
+                    .executeAndFetch(Product.class);
         }
     }
 }

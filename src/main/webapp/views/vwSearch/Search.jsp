@@ -1,20 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
   User: Tri
-  Date: 11/26/2021
-  Time: 1:38 PM
+  Date: 12/6/2021
+  Time: 8:03 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
-<jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
+
 <t:main>
-     <jsp:attribute name="js">
+    <jsp:attribute name="js">
         <script>
-            //Add paging
             $(document).ready(function() {
                 $('.t1').after('<div id="nav" class="text-center"></div>');
                 let itemsShown = 8;
@@ -40,24 +40,26 @@
                     }, 300);
                 });
             });
-            window.onload=()=>{
-                if(!${auth})
-                    $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
-            }
-            function add (otp){
-                {
-                    $.getJSON(otp, function (data) {
-                        if (data === 'false') {
-                            alert('Not Added');
-                        } else alert("successfully");
-                    });
-                }
-            }
         </script>
     </jsp:attribute>
     <jsp:body>
         <div class="right col-sm-10 mt-1" >
-            <section class="on-sale">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                    Sort
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <button class="dropdown-item" onclick="SortInc('${pageContext.request.contextPath}')">
+                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
+                        Price
+                    </button>
+                    <button class="dropdown-item" onclick="SortDec('${pageContext.request.contextPath}')">
+                        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        Time
+                    </button>
+                </div>
+            </div>
                 <div class="container-fluid t1">
                     <div class="row mt-2">
                         <c:choose>
@@ -68,22 +70,23 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-md-3 mb-4 shadow" style="border-radius: 10%" >
+                                    <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
                                         <div class="product-top mt-2">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="height: 232px; width: 232px;object-fit:contain " src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                <button type="button" href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=1" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')"  class="heart btn btn-secondary" title="Add to WatchList">
+                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                     <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                 </button>
+
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Giá hiện tại:$ ${p.price_current}</h5>
-                                            <h5>Giá mua ngay:$ ${p.price_now}</h5>
+                                            <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h5 style="margin: 0">Giá hiện tại: ${p.price_current}</h5>
+                                            <h5>Giá mua ngay: ${p.price_now}</h5>
                                             <h5>Ngày đăng:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -92,7 +95,11 @@
                                                 <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Số lượt ra giá:</h5>
+                                            <h5>Số lượt ra giá</h5>
+                                                <%--                                            <a class="btn btn-success btn-sm" href="#" role="button">--%>
+                                                <%--                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>--%>
+                                                <%--                                                Auction now--%>
+                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -100,8 +107,6 @@
                         </c:choose>
                     </div>
                 </div>
-            </section>
         </div>
-
     </jsp:body>
 </t:main>

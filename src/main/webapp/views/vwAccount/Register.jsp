@@ -96,7 +96,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <form class="mx-auto shadow rounded-lg bg-white " action="" method="post" id="formRegister">
+        <form class="mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formRegister">
             <!-- Logo -->
             <div class="text-center mb-3">
                 <h3 class="text-info">Register</h3>

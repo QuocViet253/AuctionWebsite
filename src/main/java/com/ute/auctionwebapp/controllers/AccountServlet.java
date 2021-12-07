@@ -45,6 +45,14 @@ public class AccountServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwAccount/Profile.jsp", request, response);
                 break;
 
+            case "/EditProfile":
+                ServletUtills.forward("/views/vwAccount/EditProfile.jsp", request, response);
+                break;
+
+            case "/ChangePwd":
+                ServletUtills.forward("/views/vwAccount/ChangePwd.jsp",request,response);
+                break;
+
             case "/IsAvailable":
                 String username = request.getParameter("email");
                 User user = UserModel.findByUsername(username);
@@ -98,12 +106,20 @@ public class AccountServlet extends HttpServlet {
                 registerUser(request, response);
                 break;
 
+            case "/EditProfile":
+                updateUser(request,response);
+                break;
+
             case "/Login":
                 login(request, response);
                 break;
 
             case "/ForgotPassword":
                 forgot(request, response);
+                break;
+
+            case "/ChangePwd":
+                changepassword(request,response);
                 break;
 
             case "/Logout":
@@ -137,6 +153,27 @@ public class AccountServlet extends HttpServlet {
         ServletUtills.forward("/views/vwAccount/Register.jsp", request, response);
     }
 
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("uid"));
+        String strDob = request.getParameter("dob") + " 00:00";
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime dob = LocalDateTime.parse(strDob, df);
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+
+        User c = new User(name, email, address, dob,id);
+        UserModel.update(c);
+        User user = UserModel.findById(id);
+        HttpSession session = request.getSession();
+        session.setAttribute("auth", true);
+        session.setAttribute("authUser", user);
+        String url = (String) (session.getAttribute("retUrl"));
+        if(url == null) url = "/Home";
+       /* ServletUtills.forward("/views/vwAccount/EditProfile.jsp", request, response);*/
+        ServletUtills.redirect(url,request,response);
+    }
+
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -167,6 +204,30 @@ public class AccountServlet extends HttpServlet {
         }
     }
 
+    private void changepassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String password = request.getParameter("password");
+        String newpassword = request.getParameter("newpassword");
+        int id = Integer.parseInt(request.getParameter("uid"));
+        User user = UserModel.findById(id);
+        if (user != null) {
+            BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
+            if (result.verified) {
+                String bcryptHashString = BCrypt.withDefaults().hashToString(12, newpassword.toCharArray());
+                User c = new User(bcryptHashString,id);
+                UserModel.changepassword(c);
+                request.setAttribute("success",true);
+                ServletUtills.forward("/views/vwAccount/ChangePwd.jsp", request, response);
+            } else {
+                request.setAttribute("hasError", true);
+                request.setAttribute("errorMessage", "Wrong password.");
+                ServletUtills.forward("/views/vwAccount/ChangePwd.jsp", request, response);
+            }
+        } else {
+            request.setAttribute("hasError", true);
+            request.setAttribute("errorMessage", "Wrong Password.");
+            ServletUtills.forward("/views/vwAccount/ChangePwd.jsp", request, response);
+        }
+    }
     private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("auth", false);
