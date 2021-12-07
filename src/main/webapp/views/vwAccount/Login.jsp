@@ -18,7 +18,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <form class=" mx-auto shadow rounded-lg bg-white " action="" method="post" id="formLogin">
+        <form class=" mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formLogin">
             <!-- Logo -->
             <div class="text-center mb-3">
                 <h3>Login</h3>

@@ -21,8 +21,10 @@
                     <h5>Join Our Newsletter Now</h5>
                     <p>Get E-mail updates about our latest shop and special offers.</p>
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Enter your email" aria-label="Search">
-                        <button class="btn btn-outline-success bg-success text-light my-2 my-sm-0" type="submit">Subcribe</button>
+                        <div class="d-flex">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Enter your email" aria-label="Search">
+                            <button class="btn btn-outline-success bg-success text-light my-2 my-sm-0" type="submit">Subcribe</button>
+                        </div>
                     </form>
                 </div>
             </div>

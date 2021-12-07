@@ -57,9 +57,9 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <form action="" method="post" class=" mx-auto shadow rounded-lg bg-white " id="formForgot">
+        <form action="" method="post" class=" mx-auto shadow rounded-lg bg-white mt-5 " id="formForgot">
             <!-- Logo -->
-            <div class="text-center mb-3">
+            <div class="text-center mb-5">
                 <h3>Forgot Password</h3>
             </div>
 

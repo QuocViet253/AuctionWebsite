@@ -14,9 +14,6 @@ public class Product {
     private int sell_id;
     public Product() {}
 
-    public int getSell_id() {
-        return sell_id;
-    }
 
     public int getProid() {
         return proid;
