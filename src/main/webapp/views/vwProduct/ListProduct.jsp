@@ -84,8 +84,8 @@
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Giá hiện tại: ${p.price_current}</h5>
-                                            <h5>Giá mua ngay: ${p.price_now}</h5>
+                                            <h5 style="margin: 0">Giá hiện tại:$ ${p.price_current}</h5>
+                                            <h5>Giá mua ngay:$ ${p.price_now}</h5>
                                             <h5>Ngày đăng:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />

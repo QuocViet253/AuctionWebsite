@@ -24,6 +24,12 @@
                 }
             }
 
+
+<%--            <c:forEach items="${products1}" var="pro1">--%>
+<%--                countdownTimer("'<fmt:parseDate value="${pro1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />'"+--%>
+<%--                    '<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${parsedDateTime }" />',${pro1.proid})--%>
+<%--                console.log(${pro1.proid})--%>
+<%--            </c:forEach>--%>
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -57,9 +63,8 @@
                                             </h5>
                                             <h5>
                                                 Kết thúc:
-                                                <fmt:parseDate value="${p1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
-<%--                                                <div class="countdown"></div>--%>
+                                                <fmt:parseDate value="${p1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />
+                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${end }" />
                                             </h5>
 
                                             <h5>Số lượt ra giá:</h5>
@@ -98,7 +103,7 @@
                                     </h5>
                                     <h5>Kết thúc:
                                         <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
                                     </h5>
                                     <h5>Số lượt ra giá:</h5>
                                 </div>

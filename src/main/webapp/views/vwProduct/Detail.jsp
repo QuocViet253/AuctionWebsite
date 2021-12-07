@@ -77,6 +77,41 @@
                     });
                 }
             }
+            function countdownTimer (day) {
+                // Set the date we're counting down to
+                a = new Date(day)
+                // Update the count down every 1 second
+                let x = setInterval(function() {
+
+                    // Get today's date and time
+                    let now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    let distance = a - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    //Output the result in an element with day < 3
+                    if (days < 3)
+                        if (days === 0)
+                            if (hours === 0) document.querySelector("#item").innerHTML = minutes + " min";
+                            else document.querySelector("#item").innerHTML = hours + " hour";
+                        else document.querySelector("#item").innerHTML = days + " day";
+                    else
+                        document.querySelector("#item").innerHTML = days + "day " + hours + "hour "
+                            + minutes + "min " + seconds + "second ";
+                    console.log(document.querySelector("#item"))
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.querySelector("#item").innerHTML = "EXPIRED";
+                    }
+                }, 1000);
+            }
+            countdownTimer("'<fmt:parseDate value="${product.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />"+
+            '<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${end}" />')
         </script>
     </jsp:attribute>
 
@@ -108,9 +143,9 @@
                             <img id="img_main"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
                         </div>
                     </div>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá khởi điểm: ${product.price_start}</h4>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá hiện tại: ${product.price_current}</h4>
-                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Giá mua ngay: ${product.price_now}</h4>
+                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá khởi điểm:$ ${product.price_start}</h4>
+                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá hiện tại:$ ${product.price_current}</h4>
+                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Giá mua ngay:$ ${product.price_now}</h4>
                     <input id="price_start" name="price_start" type="hidden" value="${product.price_start}">
                     <input id="step" name="step" type="hidden" value="${product.price_step}">
                     <input id="email" name="email" type="hidden" value="${authUser.email}">
@@ -123,8 +158,7 @@
                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                         </h4>
                         <h4>Thời điểm kết thúc:
-                            <fmt:parseDate value="${product.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                            <div id="item" style="display: inline-block"></div>
                         </h4>
                         <h4>Chi tiết sản phẩm</h4>
                         <p class="ml-5">${product.fulldes}</p>
@@ -139,7 +173,7 @@
                                 <i class="fa fa-hand-o-right" aria-hidden="true"></i>
                             </span>
                             </div>
-                            <input id="price" type="text" name="price" class="form-control min-vh-75" placeholder="Your Price" aria-label="price" aria-describedby="addon-wrapping">
+                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="Your Price" aria-label="price" aria-describedby="addon-wrapping">
                         </div>
 
 
