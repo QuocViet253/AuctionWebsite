@@ -78,7 +78,7 @@
                     <h3 >Selling Products</h3>
                     <c:choose>
                         <c:when test="${authUser.role != 1}">
-                            <a id="btnAddPro" class="btn btn-info btn-lg mb-3" href="#" role="button">Add product</a>
+                            <a id="btnAddPro" class="btn btn-info btn-lg mb-3" href="${pageContext.request.contextPath}/Product/Add" role="button">Add product</a>
                         </c:when>
                     </c:choose>
                 </div>

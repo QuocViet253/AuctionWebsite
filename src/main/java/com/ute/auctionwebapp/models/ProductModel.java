@@ -4,6 +4,7 @@ import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductModel {
@@ -82,6 +83,7 @@ public class ProductModel {
             return list.get(0).getPrice_max();
         }
     }
+
     public static boolean updatePriceCur(int proid, int price_current){
         String Sql = "update auction.products set price_current=:price_current where proid=:proid";
         try (Connection con = DbUtills.getConnection()) {
@@ -186,6 +188,47 @@ public class ProductModel {
             return con.createQuery(query)
                     .addParameter("search",search)
                     .executeAndFetch(Product.class);
+        }
+    }
+    public static void EditDes(int proid, String date, String fulldes){
+        final String query = "update products set fulldes= CONCAT_WS(CHAR(10 using utf8),fulldes,:date, :fulldes ) where proid = :proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("proid",proid)
+                    .addParameter("date",date)
+                    .addParameter("fulldes",fulldes)
+                    .executeUpdate();
+        }
+    }
+    public static int getLastProID(){
+        final String query = "SELECT proid FROM products ORDER BY proid DESC LIMIT 1;";
+        try (Connection con = DbUtills.getConnection()) {
+            List<Product> list = con.createQuery(query)
+                    .executeAndFetch(Product.class);
+            return list.get(0).getProid();
+        }
+    }
+    public static int add(Product p){
+        final String query = "INSERT INTO products ( proname, tinydes, fulldes, quantity, price_start, price_payment, price_step, price_now, price_current, price_max, start_day, end_day, catid, status, sell_id) VALUES (:proname,:tinydes,:fulldes,:quantity,:priceStart,:pricePayment,:priceStep,:priceNow,:priceCurrent,:priceMax,:startDay,:endDay,:catid,:status,:sellId)\n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("proname",p.getProname())
+                    .addParameter("tinydes",p.getTinydes())
+                    .addParameter("fulldes",p.getFulldes())
+                    .addParameter("quantity",p.getQuantity())
+                    .addParameter("priceStart",p.getPrice_start())
+                    .addParameter("pricePayment",p.getPrice_payment())
+                    .addParameter("sellId",p.getSell_id())
+                    .addParameter("priceStep",p.getPrice_step())
+                    .addParameter("priceNow",p.getPrice_now())
+                    .addParameter("priceCurrent",p.getPrice_current())
+                    .addParameter("startDay",p.getStart_day())
+                    .addParameter("endDay",p.getEnd_day())
+                    .addParameter("catid",p.getCatid())
+                    .addParameter("status",p.getStatus())
+                    .addParameter("priceMax",p.getPrice_max())
+                    .executeUpdate();
+            return getLastProID();
         }
     }
 }

@@ -59,6 +59,10 @@ public class Product {
         return start_day;
     }
 
+    public int getSell_id() {
+        return sell_id;
+    }
+
     public LocalDateTime getEnd_day() {
         return end_day;
     }
@@ -76,6 +80,24 @@ public class Product {
     }
     public int getPrice_max() {
         return price_max;
+    }
+
+    public Product(String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, String status, int price_max, int sell_id) {
+        this.proname = proname;
+        this.tinydes = tinydes;
+        this.fulldes = fulldes;
+        this.quantity = quantity;
+        this.price_start = price_start;
+        this.price_payment = price_payment;
+        this.price_step = price_step;
+        this.price_now = price_now;
+        this.price_current = price_current;
+        this.start_day = start_day;
+        this.end_day = end_day;
+        this.catid = catid;
+        this.status = status;
+        this.price_max = price_max;
+        this.sell_id = sell_id;
     }
 
     public Product(int proid, String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, int bid_id, String status, int price_max) {

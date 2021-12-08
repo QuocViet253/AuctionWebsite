@@ -1,5 +1,6 @@
 package com.ute.auctionwebapp.filters;
 
+import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
 import javax.servlet.*;
@@ -23,14 +24,19 @@ public class AuthFilter implements Filter {
 
         HttpSession session = request.getSession();
         boolean auth = (boolean) session.getAttribute("auth");
+        User authUser = (User) session.getAttribute("authUser");
         if (auth == false) {
             session.setAttribute("retUrl", request.getRequestURI());
             ServletUtills.redirect("/Account/Login", request, (HttpServletResponse) res);
             return;
         }
 
-        // đọc thông tin user, xem field permission để check xem user có được phép vào view hay không?
-        // ...
+        if (request.getPathInfo() == "/Product/Add") {
+            if (authUser.getRole() == 1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
 
         chain.doFilter(req, res); // cho phép request tiếp tục thực hiện
     }

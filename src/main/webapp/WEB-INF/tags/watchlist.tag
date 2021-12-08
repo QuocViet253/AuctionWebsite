@@ -1,5 +1,6 @@
 <%@ tag pageEncoding="utf-8" %>
 <%@attribute name="js" fragment="true" required="false" %>
+<%@attribute name="css" fragment="true" required="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/lib.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/img.css">
+    <jsp:invoke fragment="css"/>
     <style>
         #preloader {
             background: #fff url('${pageContext.request.contextPath}/public/imgs/loader.gif') no-repeat center center;
