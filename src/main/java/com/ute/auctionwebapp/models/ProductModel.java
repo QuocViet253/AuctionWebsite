@@ -90,7 +90,16 @@ public class ProductModel {
         }
     }
 
-    public static boolean updatePriceCur(int proid, int price_current){
+    public static boolean updatePriceCur(int proid, int price_current, String renew){
+        if (renew.equals("on")) {
+            String query = "update auction.products set end_day = date_add(end_day,interval 10 minute) " +
+                    "where proid=:proid and timestampdiff(minute, NOW(),end_day) <=5";
+            try (Connection con = DbUtills.getConnection()) {
+                con.createQuery(query)
+                        .addParameter("proid", proid)
+                        .executeUpdate();
+            }
+        }
         String Sql = "update auction.products set price_current=:price_current where proid=:proid";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(Sql)
@@ -101,7 +110,16 @@ public class ProductModel {
         }
         catch (Exception e){return false;}
     }
-    public static boolean updatePriceMax(int proid, int price_current,int price_max,int uid){
+    public static boolean updatePriceMax(int proid, int price_current,int price_max,int uid, String renew){
+        if (renew.equals("on")) {
+            String query = "update auction.products set end_day = date_add(end_day,interval 10 minute) " +
+                    "where proid=:proid and timestampdiff(minute, NOW(),end_day) <=5";
+            try (Connection con = DbUtills.getConnection()) {
+                con.createQuery(query)
+                        .addParameter("proid", proid)
+                        .executeUpdate();
+            }
+        }
         String Sql = "update auction.products set price_current=:price_current, price_max=:price_max," +
                 "bid_id=:bid_id where proid=:proid";
         try (Connection con = DbUtills.getConnection()) {
@@ -215,7 +233,7 @@ public class ProductModel {
         }
     }
     public static int add(Product p){
-        final String query = "INSERT INTO products ( proname, tinydes, fulldes, quantity, price_start, price_payment, price_step, price_now, price_current, price_max, start_day, end_day, catid, status, sell_id) VALUES (:proname,:tinydes,:fulldes,:quantity,:priceStart,:pricePayment,:priceStep,:priceNow,:priceCurrent,:priceMax,:startDay,:endDay,:catid,:status,:sellId)\n";
+        final String query = "INSERT INTO products ( proname, tinydes, fulldes, quantity, price_start, price_payment, price_step, price_now, price_current, price_max, start_day, end_day, catid, status, sell_id,renew) VALUES (:proname,:tinydes,:fulldes,:quantity,:priceStart,:pricePayment,:priceStep,:priceNow,:priceCurrent,:priceMax,:startDay,:endDay,:catid,:status,:sellId,:renew)\n";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(query)
                     .addParameter("proname",p.getProname())
@@ -233,6 +251,7 @@ public class ProductModel {
                     .addParameter("catid",p.getCatid())
                     .addParameter("status",p.getStatus())
                     .addParameter("priceMax",p.getPrice_max())
+                    .addParameter("renew",p.getRenew())
                     .executeUpdate();
             return getLastProID();
         }
