@@ -26,6 +26,8 @@ public class HomeServlet extends HttpServlet {
                 request.setAttribute("products1",list1);
                 List<Product> list2 = ProductModel.findTop8Price();
                 request.setAttribute("products2",list2);
+                List<Product> list3 = ProductModel.findTop8Bid();
+                request.setAttribute("products3",list3);
                 ServletUtills.forward("/views/vwHome/Index.jsp", request, response);
                 break;
             default:

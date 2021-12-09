@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="products1" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="products2" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
+<jsp:useBean id="products3" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:useBean id="now" class="java.util.Date" />
@@ -23,13 +24,6 @@
                     });
                 }
             }
-
-
-<%--            <c:forEach items="${products1}" var="pro1">--%>
-<%--                countdownTimer("'<fmt:parseDate value="${pro1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />'"+--%>
-<%--                    '<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss" value="${parsedDateTime }" />',${pro1.proid})--%>
-<%--                console.log(${pro1.proid})--%>
-<%--            </c:forEach>--%>
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -103,6 +97,42 @@
                                     </h5>
                                     <h5>End Date:
                                         <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
+                                    </h5>
+                                    <h5>Sum of bids:</h5>
+                                    <h5>Highest bidder</h5>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;">
+                        <a name="hot"></a>
+                        <h2 style="cursor: pointer;">Top Acution</h2>
+                    </div>
+                    <div class="row">
+                        <c:forEach items="${products3}" var="p3">
+                            <div class="col-md-3 shadow" style="border-radius: 10%">
+                                <div class="product-top mt-3">
+                                    <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
+                                    <div class="overlay-right">
+                                        <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}" type="button" class="btn btn-secondary" title="Detail">
+                                            <i class="fa fa-eye" aria-hidden="true" style="border-radius: 50%"></i>
+                                        </a>
+                                        <button  type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p3.proid}&proname=${p3.proname}&price_start=${p3.price_start}&uid=${authUser.id}&catid=${p3.catid}')" class=" heart btn btn-secondary" title="Add to WatchList">
+                                            <i class="fa fa-heart-o" style="border-radius: 50%"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="product-bottom text-center">
+                                    <h3 style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
+                                    <h5>Price Current: ${p3.price_current}</h5>
+                                    <h5>Price Buy Now: ${p3.price_now}</h5>
+                                    <h5>Start Date:
+                                        <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                    </h5>
+                                    <h5>End Date:
+                                        <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
                                     </h5>
                                     <h5>Sum of bids:</h5>

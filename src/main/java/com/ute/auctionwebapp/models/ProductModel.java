@@ -29,6 +29,18 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
+    public static List<Product> findTop8Bid(){
+        final String query = "SELECT distinct count(a.proid) as count, a.proid, c.proname, c.tinydes, c.fulldes, c.quantity, c.price_start, c.price_step, c.price_max, c.price_now, c.price_current, c.price_payment, c.start_day, c.end_day, c.catid, c.bid_id, c.sell_id, c.status, c.renew\n" +
+                "from auction.histories a, (SELECT * from products where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0) as c\n" +
+                "where c.proid = a.proid\n" +
+                "group by a.proid\n" +
+                "order by count desc\n" +
+                "limit 8";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(Product.class);
+        }
+    }
     public static List<Product> findByCatId(int catId){
         final String query = "select * from products where catid = :catid and CURDATE()<end_day and CURTIME()<end_day";
         try (Connection con = DbUtills.getConnection()) {
@@ -48,13 +60,31 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
-    public static Product findByID(int id){
+
+    public static Product findByBidid(int id){
         final String query = "select *\n" +
                 "from products,\n" +
                 "     (select name as sell_name, email as sell_mail\n" +
                 "                from users,products where users.id = products.sell_id) as A,\n" +
                 "     (select name as bid_name,email as bid_mail\n" +
                 "      from users,products where users.id = products.bid_id and proid= :proid) as B\n" +
+                "where proid= :proid";
+        try (Connection con = DbUtills.getConnection()) {
+            List<Product> list = con.createQuery(query)
+                    .addParameter("proid",id)
+                    .executeAndFetch(Product.class);
+            if(list.size()==0)
+            {
+                return null;
+            }
+            return list.get(0);
+        }
+    }
+    public static Product findByNoBIdid(int id){
+        final String query = "select *\n" +
+                "from products,\n" +
+                "     (select name as sell_name, email as sell_mail\n" +
+                "                from users,products where users.id = products.sell_id) as A\n"+
                 "where proid= :proid";
         try (Connection con = DbUtills.getConnection()) {
             List<Product> list = con.createQuery(query)
@@ -80,13 +110,14 @@ public class ProductModel {
         }
     }
 
-    public static int price_max(int proid){
-        final String query = "select price_max from auction.products where proid=:proid";
+    public static List<Product> findBidid(){
+        final String query = "select proid,proname\n" +
+                "from auction.products, (select id from users) as a\n" +
+                "where products.bid_id in(a.id)\n" +
+                "group by proid";
         try (Connection con = DbUtills.getConnection()) {
-            List<Product> list = con.createQuery(query)
-                    .addParameter("proid",proid)
+            return con.createQuery(query)
                     .executeAndFetch(Product.class);
-            return list.get(0).getPrice_max();
         }
     }
 

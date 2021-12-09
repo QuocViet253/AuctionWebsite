@@ -56,7 +56,7 @@
                     else{
                         $('#btn-auction').empty();
                         $('#btn-auction').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
-                        $.getJSON('${pageContext.request.contextPath}/Product/Bidding?proid=${product.proid}&proname=${product.proname}&step='+step+'&price='+price+'&uid=${authUser.id}&email='+email, function (data) {
+                        $.getJSON('${pageContext.request.contextPath}/Product/Bidding?proid=${product.proid}&proname=${product.proname}&step='+step+'&price='+price+'&uid=${authUser.id}&email='+email+'&sell_mail=${product.sell_mail}&bid_mail=${product.bid_mail}', function (data) {
                             if (data === false) {
                                 alert('Bidding failed');
                             } else{
@@ -105,10 +105,11 @@
                     else
                         document.querySelector("#item").innerHTML = days + "day " + hours + "hour "
                             + minutes + "min " + seconds + "second ";
-                    console.log(document.querySelector("#item"))
                     if (distance < 0) {
                         clearInterval(x);
                         document.querySelector("#item").innerHTML = "EXPIRED";
+                        $('#btnConfirmBid').hide();
+                        $('#price').attr('readonly',true);
                     }
                 }, 1000);
             }
@@ -155,13 +156,16 @@
                     <input id="price_cur" name="price_cur" type="hidden" value="${product.price_current}">
                     <div class="border border-info rounded" >
                         <div class="content mt-3" style="margin-left: 200px">
-                            <h4 class="mr-2">Seller</h4>
-                            <h4 class="mr-2">Highest Bidder</h4>
+                            <h4 class="mr-2">Seller: ${product.sell_name}</h4>
+                            <h4 class="mr-2">Highest Bidder:
+                                <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
+                                *****${nameParts[0]}
+                            </h4>
                             <h4 class="mr-2">Date Start: <fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
                             <h4>
                                 Time remaining:
-                                <div id="item" style="display: inline-block"></div>
+                                <span id="item" style="display: inline-block"></span>
                             </h4>
                             <h4>
                                 Product details</h4>

@@ -68,18 +68,22 @@ public class ProductServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwProduct/ListProductPid.jsp", request, response);
                 break;
             case "/Detail":
-                int proId = Integer.parseInt(request.getParameter("id"));
+                proid = Integer.parseInt(request.getParameter("id"));
                 catid = Integer.parseInt(request.getParameter("catid"));
-                Product product = ProductModel.findByID(proId);
-                List<Product> list4 = ProductModel.findNear(catid,proId);
-                List<History> list5 =HistoryModel.findByProduct(proId);
+                Product product = ProductModel.findByNoBIdid(proid);
+                if(product.getBid_id()>0){
+                    product = ProductModel.findByBidid(proid);
+                }
                 if(product==null)
                 {
                     ServletUtills.redirect("/Home",request,response);
                 }
                 else {
                     request.setAttribute("product",product);
+                    List<Product> list4 = ProductModel.findNear(catid,proid);
                     request.setAttribute("products",list4);
+
+                    List<History> list5 =HistoryModel.findByProduct(proid);
                     request.setAttribute("histories",list5);
                     ServletUtills.forward("/views/vwProduct/Detail.jsp", request, response);
                     break;
@@ -88,7 +92,7 @@ public class ProductServlet extends HttpServlet {
                 proid  = Integer.parseInt(request.getParameter("proid"),10);
                 int new_price = Integer.parseInt(request.getParameter("price"));
                 uid =Integer.parseInt(request.getParameter("uid"),10);
-                Product product1 = ProductModel.findByID(proid);
+                Product product1 = ProductModel.findByBidid(proid);
                 int max = product1.getPrice_max();
                 String renew = product1.getRenew();
                 int price_step = Integer.parseInt(request.getParameter("step"));
@@ -106,6 +110,8 @@ public class ProductServlet extends HttpServlet {
                     out.flush();
                     String email = request.getParameter("email");
                     MailUtills.sendNotify(email,new_price,proname);
+                    String sell_mail = request.getParameter("sell_mail");
+                    MailUtills.sendNotify(sell_mail,new_price,proname);
                     //Add history
                     LocalDateTime buy_date = LocalDateTime.now();
                     HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(product1.getPrice_start()));
@@ -119,8 +125,8 @@ public class ProductServlet extends HttpServlet {
 
                         out.print(update);
                         out.flush();
-                        String email = request.getParameter("email");
-                        MailUtills.sendNotify(email, new_price, proname);
+//                        String email = request.getParameter("email");
+//                        MailUtills.sendNotify(email, new_price, proname);
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
                         HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
@@ -136,6 +142,10 @@ public class ProductServlet extends HttpServlet {
                         out.flush();
                         String email = request.getParameter("email");
                         MailUtills.sendNotify(email, new_price, proname);
+                        String sell_mail = request.getParameter("sell_mail");
+                        MailUtills.sendNotify(sell_mail,new_price,proname);
+                        String bid_mail = request.getParameter("bid_mail");
+                        MailUtills.sendNotify(bid_mail,new_price,proname);
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
                         HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(max+price_step));

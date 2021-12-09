@@ -12,9 +12,30 @@ public class Product {
     private String status,renew;
     private int price_max;
     private int sell_id;
+    private String sell_name, bid_name,sell_mail,bid_mail;
+    private int count;
 
     public Product() {}
 
+    public String getSell_name() {
+        return sell_name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getBid_name() {
+        return bid_name;
+    }
+
+    public String getSell_mail() {
+        return sell_mail;
+    }
+
+    public String getBid_mail() {
+        return bid_mail;
+    }
 
     public int getProid() {
         return proid;
