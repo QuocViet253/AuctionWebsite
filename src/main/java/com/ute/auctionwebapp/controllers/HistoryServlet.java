@@ -1,9 +1,7 @@
 package com.ute.auctionwebapp.controllers;
 
 import com.ute.auctionwebapp.beans.History;
-import com.ute.auctionwebapp.beans.WatchList;
 import com.ute.auctionwebapp.models.HistoryModel;
-import com.ute.auctionwebapp.models.WatchListModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
 import javax.servlet.*;
@@ -19,24 +17,25 @@ public class HistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
-            path = "/Index";
+            path = "/History";
         }
         switch (path) {
             case "/History":
-                List<History> list2 = HistoryModel.findAll();
-                request.setAttribute("histories", list2);
+                int uid=Integer.parseInt(request.getParameter("uid"),10);
+                List<History> list = HistoryModel.findByUID(uid);
+                request.setAttribute("histories", list);
                 ServletUtills.forward("/views/vwHistory/History.jsp", request, response);
                 break;
-            case "/deleteHistory":
-                int id = Integer.parseInt(request.getParameter("id"));
-                boolean isAvailable = (HistoryModel.deleteHistory(id));
-
-                PrintWriter out = response.getWriter();
-                response.setContentType("application/json");
-                response.setCharacterEncoding("utf-8");
-
-                out.print(isAvailable);
-                out.flush();
+//            case "/deleteHistory":
+//                int id = Integer.parseInt(request.getParameter("id"));
+//                boolean isAvailable = (HistoryModel.deleteHistory(id));
+//
+//                PrintWriter out = response.getWriter();
+//                response.setContentType("application/json");
+//                response.setCharacterEncoding("utf-8");
+//
+//                out.print(isAvailable);
+//                out.flush();
         }
     }
     @Override

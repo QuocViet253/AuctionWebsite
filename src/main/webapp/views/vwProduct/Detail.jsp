@@ -9,8 +9,10 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="product" scope="request" type="com.ute.auctionwebapp.beans.Product"/>
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
+<jsp:useBean id="histories" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.History>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:main>
     <jsp:attribute name="js">
@@ -126,54 +128,66 @@
                         <div>
                             <ul class="list-img mt-2">
                                 <li class="img mb-3">
-                                    <img id="one" onclick="changeImage('one')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
+                                    <img id="one" class="border border-success rounded" onclick="changeImage('one')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="two"  onclick="changeImage('two')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
+                                    <img id="two" class="border border-success rounded" onclick="changeImage('two')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="three"  onclick="changeImage('three')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
+                                    <img id="three" class="border border-success rounded" onclick="changeImage('three')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
                                 </li>
                                 <li class="img">
-                                    <img id="four"  onclick="changeImage('four')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
+                                    <img id="four" class="border border-success rounded" onclick="changeImage('four')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
                                 </li>
                             </ul>
                         </div>
                         <div id="main_img" style="margin-left: 10px">
-                            <img id="img_main"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
+                            <img id="img_main" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
                         </div>
                     </div>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá khởi điểm:$ ${product.price_start}</h4>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Giá hiện tại:$ ${product.price_current}</h4>
-                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Giá mua ngay:$ ${product.price_now}</h4>
+                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">
+                        Starting price:$ ${product.price_start}</h4>
+                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Current price:$ ${product.price_current}</h4>
+                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Buy Now Price:$ ${product.price_now}</h4>
                     <input id="price_start" name="price_start" type="hidden" value="${product.price_start}">
                     <input id="step" name="step" type="hidden" value="${product.price_step}">
                     <input id="email" name="email" type="hidden" value="${authUser.email}">
                     <input id="price_cur" name="price_cur" type="hidden" value="${product.price_current}">
-                    <div class="ml-5">
-                        <h4>Thông tin người bán</h4>
-                        <h4>Thông tin người đặt giá cao nhất</h4>
-                        <h4>Thời điểm đăng:
-                            <fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
-                        </h4>
-                        <h4>Thời điểm kết thúc:
-                            <div id="item" style="display: inline-block"></div>
-                        </h4>
-                        <h4>Chi tiết sản phẩm</h4>
-                        <p class="ml-5">${product.fulldes}</p>
+                    <div class="border border-info rounded" >
+                        <div class="content mt-3" style="margin-left: 200px">
+                            <h4 class="mr-2">Seller</h4>
+                            <h4 class="mr-2">Highest Bidder</h4>
+                            <h4 class="mr-2">Date Start: <fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
+                            <h4>
+                                Time remaining:
+                                <div id="item" style="display: inline-block"></div>
+                            </h4>
+                            <h4>
+                                Product details</h4>
+                            <div style="margin-left: 75px;!important;">${product.fulldes}</div>
 
+                        </div>
                     </div>
 
-                    <h4 class="ml-5">Mời bạn đặt giá:</h4>
-                    <form action="" method="post">
-                        <div class="input-group flex-nowrap">
+                    <h4 class="ml-5 mt-3 text-danger">
+                        Please bid:</h4>
+                    <c:if test="${product.price_current==0}">
+                        <c:set var="hint" value="${product.price_start+product.price_step}"></c:set>
+                    </c:if>
+                    <c:if test="${product.price_current>0}">
+                        <c:set var="hint" value="${product.price_current+product.price_step}"></c:set>
+                    </c:if>
+                    <div id="hint" class="ml-5 mb-2 text-info" >
+                        Recommended price: ${hint} </div>
+                    <form action="" method="post" class="mb-3">
+                        <div class="input-group flex-nowrap mb-3">
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="addon-wrapping">
                                 <i class="fa fa-hand-o-right" aria-hidden="true"></i>
                             </span>
                             </div>
-                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="Your Price" aria-label="price" aria-describedby="addon-wrapping">
+                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="${hint}" aria-label="price" aria-describedby="addon-wrapping">
                         </div>
 
 
@@ -212,29 +226,45 @@
                             </button>
                         </div>
                     </form>
-                    <h4>Lịch sử ra giá</h4>
+                    <h4 class="mt-2">
+                        Auction History</h4>
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Thời gian</th>
-                            <th scope="col">Người mua</th>
-                            <th scope="col">Giá</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Bidder</th>
+                            <th scope="col">Price</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${histories.size()==0}">
+                                <div class="card-body">
+                                    <p class="card-text">No data</p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${histories}" var="h">
+                                    <tr>
+                                        <td>
+                                            <fmt:parseDate value="${h.buy_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                        </td>
+                                        <td>
+                                            <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
+                                            *****${nameParts[0]}
+                                        </td>
+                                        <td>${h.price}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                         </tbody>
                     </table>
                 </div>
             </div>
             <hr>
-            <h3>Similar products</h3>
+            <h3 class="text-primary" style="cursor: pointer">Similar products</h3>
                 <div class="container-fluid">
                     <div class="row mt-2">
                         <c:choose>

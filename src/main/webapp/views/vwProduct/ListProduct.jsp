@@ -84,21 +84,18 @@
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Giá hiện tại:$ ${p.price_current}</h5>
-                                            <h5>Giá mua ngay:$ ${p.price_now}</h5>
-                                            <h5>Ngày đăng:
+                                            <h5 style="margin: 0">Price Current:$ ${p.price_current}</h5>
+                                            <h5>Price Buy Now:$ ${p.price_now}</h5>
+                                            <h5>Start Date:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Kết thúc:
+                                            <h5>End Date:
                                                 <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Số lượt ra giá</h5>
-<%--                                            <a class="btn btn-success btn-sm" href="#" role="button">--%>
-<%--                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>--%>
-<%--                                                Auction now--%>
-<%--                                            </a>--%>
+                                            <h5>Sum of bids:</h5>
+                                            <h5>Highest bidder:</h5>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -108,23 +105,6 @@
                 </div>
             </section>
         </div>
-        <%--<nav aria-label="Page navigation example" class=" mt-3" style="margin-left: 85%;">--%>
-        <%--    <ul class="pagination">--%>
-        <%--        <li class="page-item">--%>
-        <%--            <a class="page-link" href="#" aria-label="Previous">--%>
-        <%--                <span aria-hidden="true">&laquo;</span>--%>
-        <%--            </a>--%>
-        <%--        </li>--%>
-        <%--        <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
-        <%--        <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-        <%--        <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-        <%--        <li class="page-item">--%>
-        <%--            <a class="page-link" href="#" aria-label="Next">--%>
-        <%--                <span aria-hidden="true">&raquo;</span>--%>
-        <%--            </a>--%>
-        <%--        </li>--%>
-        <%--    </ul>--%>
-        <%--</nav>--%>
     </jsp:body>
 </t:main>
 

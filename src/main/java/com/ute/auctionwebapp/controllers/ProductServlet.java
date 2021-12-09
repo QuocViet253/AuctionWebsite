@@ -1,14 +1,17 @@
 package com.ute.auctionwebapp.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.beans.WatchList;
+import com.ute.auctionwebapp.models.HistoryModel;
 import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.models.WatchListModel;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
+import org.sql2o.data.Table;
 
 
 import javax.servlet.*;
@@ -69,6 +72,7 @@ public class ProductServlet extends HttpServlet {
                 catid = Integer.parseInt(request.getParameter("catid"));
                 Product product = ProductModel.findByID(proId);
                 List<Product> list4 = ProductModel.findNear(catid,proId);
+                List<History> list5 =HistoryModel.findByProduct(proId);
                 if(product==null)
                 {
                     ServletUtills.redirect("/Home",request,response);
@@ -76,6 +80,7 @@ public class ProductServlet extends HttpServlet {
                 else {
                     request.setAttribute("product",product);
                     request.setAttribute("products",list4);
+                    request.setAttribute("histories",list5);
                     ServletUtills.forward("/views/vwProduct/Detail.jsp", request, response);
                     break;
                 }
@@ -87,7 +92,7 @@ public class ProductServlet extends HttpServlet {
                 int max = product1.getPrice_max();
                 int price_step = Integer.parseInt(request.getParameter("step"));
                 proname = request.getParameter("proname");
-
+                int sell_id = product1.getSell_id();
                 if(max == 0 )
                 {
                     boolean update = ProductModel.updatePriceMax(proid,product1.getPrice_start(),new_price,uid) ;
@@ -101,6 +106,8 @@ public class ProductServlet extends HttpServlet {
                     String email = request.getParameter("email");
                     MailUtills.sendNotify(email,new_price,proname);
                     //Add history
+                    LocalDateTime buy_date = LocalDateTime.now();
+                    HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(product1.getPrice_start()));
                 } else {
                     if (max >= new_price) {
                         boolean update = ProductModel.updatePriceCur(proid, (new_price));
@@ -114,6 +121,8 @@ public class ProductServlet extends HttpServlet {
                         String email = request.getParameter("email");
                         MailUtills.sendNotify(email, new_price, proname);
                         //Add history
+                        LocalDateTime buy_date = LocalDateTime.now();
+                        HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
                     }
                     if (max < new_price) {
                         boolean update = ProductModel.updatePriceMax(proid, (max + price_step), new_price, uid);
@@ -127,6 +136,8 @@ public class ProductServlet extends HttpServlet {
                         String email = request.getParameter("email");
                         MailUtills.sendNotify(email, new_price, proname);
                         //Add history
+                        LocalDateTime buy_date = LocalDateTime.now();
+                        HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(max+price_step));
                     }
                 }
 

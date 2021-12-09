@@ -49,7 +49,13 @@ public class ProductModel {
         }
     }
     public static Product findByID(int id){
-        final String query = "select * from products where proid=:proid";
+        final String query = "select *\n" +
+                "from products,\n" +
+                "     (select name as sell_name, email as sell_mail\n" +
+                "                from users,products where users.id = products.sell_id) as A,\n" +
+                "     (select name as bid_name,email as bid_mail\n" +
+                "      from users,products where users.id = products.bid_id and proid= :proid) as B\n" +
+                "where proid= :proid";
         try (Connection con = DbUtills.getConnection()) {
             List<Product> list = con.createQuery(query)
                     .addParameter("proid",id)
@@ -156,7 +162,7 @@ public class ProductModel {
         final String query = "SELECT *\n" +
                 "FROM auction.products\n" +
                 "WHERE\n" +
-                "    MATCH(proname,tinydes,fulldes)\n" +
+                "    MATCH(proname,tinydes)\n" +
                 "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
@@ -168,7 +174,7 @@ public class ProductModel {
         final String query = "SELECT *\n" +
                 "FROM auction.products\n" +
                 "WHERE\n" +
-                "    MATCH(proname,tinydes,fulldes)\n" +
+                "    MATCH(proname,tinydes)\n" +
                 "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
                 "order by products.price_current asc";
         try (Connection con = DbUtills.getConnection()) {
@@ -181,7 +187,7 @@ public class ProductModel {
         final String query = "SELECT *\n" +
                 "FROM auction.products\n" +
                 "WHERE\n" +
-                "    MATCH(proname,tinydes,fulldes)\n" +
+                "    MATCH(proname,tinydes)\n" +
                 "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
                 "order by products.end_day desc";
         try (Connection con = DbUtills.getConnection()) {

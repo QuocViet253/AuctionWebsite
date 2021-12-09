@@ -12,6 +12,7 @@ public class Product {
     private String status;
     private int price_max;
     private int sell_id;
+
     public Product() {}
 
 

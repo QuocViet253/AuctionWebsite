@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="#">
+                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/History?uid=${authUser.id}">
                         <i class="fa fa-history text-warning" aria-hidden="true"></i>
                         History</a>
                 </li>
