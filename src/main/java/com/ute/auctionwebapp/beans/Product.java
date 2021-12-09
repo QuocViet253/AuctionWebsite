@@ -9,9 +9,10 @@ public class Product {
     private int quantity,price_start,price_payment,price_step,price_now,price_current;
     private LocalDateTime start_day,end_day;
     private int catid,bid_id;
-    private String status;
+    private String status,renew;
     private int price_max;
     private int sell_id;
+
     public Product() {}
 
 
@@ -63,6 +64,10 @@ public class Product {
         return sell_id;
     }
 
+    public String getRenew() {
+        return renew;
+    }
+
     public LocalDateTime getEnd_day() {
         return end_day;
     }
@@ -82,7 +87,7 @@ public class Product {
         return price_max;
     }
 
-    public Product(String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, String status, int price_max, int sell_id) {
+    public Product(String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, String status, int price_max, int sell_id, String renew) {
         this.proname = proname;
         this.tinydes = tinydes;
         this.fulldes = fulldes;
@@ -98,6 +103,7 @@ public class Product {
         this.status = status;
         this.price_max = price_max;
         this.sell_id = sell_id;
+        this.renew = renew;
     }
 
     public Product(int proid, String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, int bid_id, String status, int price_max) {

@@ -85,12 +85,13 @@ public class ProductServlet extends HttpServlet {
                 uid =Integer.parseInt(request.getParameter("uid"),10);
                 Product product1 = ProductModel.findByID(proid);
                 int max = product1.getPrice_max();
+                String renew = product1.getRenew();
                 int price_step = Integer.parseInt(request.getParameter("step"));
                 proname = request.getParameter("proname");
 
                 if(max == 0 )
                 {
-                    boolean update = ProductModel.updatePriceMax(proid,product1.getPrice_start(),new_price,uid) ;
+                    boolean update = ProductModel.updatePriceMax(proid,product1.getPrice_start(),new_price,uid,renew) ;
                     PrintWriter out = response.getWriter();
                     out = response.getWriter();
                     response.setContentType("application/json");
@@ -103,7 +104,7 @@ public class ProductServlet extends HttpServlet {
                     //Add history
                 } else {
                     if (max >= new_price) {
-                        boolean update = ProductModel.updatePriceCur(proid, (new_price));
+                        boolean update = ProductModel.updatePriceCur(proid, (new_price),renew);
                         PrintWriter out = response.getWriter();
                         out = response.getWriter();
                         response.setContentType("application/json");
@@ -116,7 +117,7 @@ public class ProductServlet extends HttpServlet {
                         //Add history
                     }
                     if (max < new_price) {
-                        boolean update = ProductModel.updatePriceMax(proid, (max + price_step), new_price, uid);
+                        boolean update = ProductModel.updatePriceMax(proid, (max + price_step), new_price, uid,renew);
                         PrintWriter out = response.getWriter();
                         out = response.getWriter();
                         response.setContentType("application/json");
@@ -164,6 +165,7 @@ public class ProductServlet extends HttpServlet {
         LocalDateTime start_day = LocalDateTime.now();
 
         String proname = request.getParameter("proname");
+        String auto = request.getParameter("auto");
         String tinydes = request.getParameter("tinydes");
         String fulldes = request.getParameter("fulldes");
         String status = "Now";
@@ -180,7 +182,7 @@ public class ProductServlet extends HttpServlet {
              buy_price = Integer.parseInt(request.getParameter("buy_price"));
         }
 
-        Product pro = new Product(proname,tinydes,fulldes,quantity,start_price,price_payment,step_price,buy_price,price_cur,start_day,end_day,catid,status,price_max,sell_id);
+        Product pro = new Product(proname,tinydes,fulldes,quantity,start_price,price_payment,step_price,buy_price,price_cur,start_day,end_day,catid,status,price_max,sell_id,auto);
         int lastid = ProductModel.add(pro);
 
         int i = 0;
