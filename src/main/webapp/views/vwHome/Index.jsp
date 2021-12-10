@@ -49,10 +49,10 @@
                                     </div>
                                         <div class="product-bottom text-center">
                                             <h3 style="width: 250px;height: 75px; object-fit: contain;">${p1.proname}</h3>
-                                            <h5>Price Current:
+                                            <h5>Price Current: $
                                                 <fmt:formatNumber value="${p1.price_current}" type="number" />
                                             </h5>
-                                            <h5>Price Buy Now:
+                                            <h5>Price Buy Now: $
                                                 <fmt:formatNumber value="${p1.price_now}" type="number" />
                                             </h5>
                                             <h5>Start Date :
@@ -92,10 +92,10 @@
                                 </div>
                                 <div class="product-bottom text-center">
                                     <h3 style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
-                                    <h5>Price Current:
+                                    <h5>Price Current: $
                                         <fmt:formatNumber value="${p2.price_current}" type="number" />
                                     </h5>
-                                    <h5>Price Buy Now:
+                                    <h5>Price Buy Now: $
                                         <fmt:formatNumber value="${p2.price_now}" type="number" />
                                     </h5>
                                     <h5>Start Date:
@@ -132,10 +132,10 @@
                                 </div>
                                 <div class="product-bottom text-center">
                                     <h3 style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                    <h5>Price Current:
+                                    <h5>Price Current: $
                                         <fmt:formatNumber value="${p3.price_current}" type="number" />
                                     </h5>
-                                    <h5>Price Buy Now:
+                                    <h5>Price Buy Now: $
                                         <fmt:formatNumber value="${p3.price_current}" type="number" />
                                     </h5>
                                     <h5>Start Date:

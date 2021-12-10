@@ -101,7 +101,7 @@
                         History</a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-info" href="#">
+                    <a class="nav-link text-info" href="#contact">
                         <i class="fa fa-info-circle text-info" aria-hidden="true"></i>
                         About</a>
                 </li>

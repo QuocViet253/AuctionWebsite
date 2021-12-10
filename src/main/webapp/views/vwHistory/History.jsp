@@ -43,7 +43,7 @@
                                     <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                 </td>
                                 <td>${h.proname}</td>
-                                <td>$${h.price}</td>
+                                <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

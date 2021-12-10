@@ -35,7 +35,7 @@
                     let price_cur= parseInt($('#price_cur').val()) ;
                     if(Number.isNaN(price)|| price<price_start || price < price_cur || price % step !==0)
                     {
-                        alert("Please enter your valid price again")
+                        alert("Please enter your valid price again. Bid increment is $"+step)
                     }
                     else {
                         $('#staticBackdrop').modal('toggle')
@@ -191,7 +191,7 @@
                         <c:set var="hint" value="${product.price_current+product.price_step}"></c:set>
                     </c:if>
                     <div id="hint" class="ml-5 mb-2 text-info" >
-                        Recommended price: $${hint} </div>
+                        Recommended price: $ <fmt:formatNumber value="${hint}" type="number" /> </div>
                     <form action="" method="post" class="mb-3">
                         <div class="input-group flex-nowrap mb-3">
                             <div class="input-group-prepend">
@@ -199,7 +199,7 @@
                                 <i class="fa fa-hand-o-right" aria-hidden="true"></i>
                             </span>
                             </div>
-                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="$${hint}" aria-label="price" aria-describedby="addon-wrapping">
+                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="$ <fmt:formatNumber value="${hint}" type="number" />" aria-label="price" aria-describedby="addon-wrapping">
                         </div>
 
 
@@ -266,7 +266,7 @@
                                             <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
                                             *****${nameParts[0]}
                                         </td>
-                                        <td>$${h.price}</td>
+                                        <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>
