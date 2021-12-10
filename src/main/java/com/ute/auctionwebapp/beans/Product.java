@@ -14,8 +14,18 @@ public class Product {
     private int sell_id;
     private String sell_name, bid_name,sell_mail,bid_mail;
     private int count;
+    private int bid_count;
+    private String name;
 
     public Product() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBid_count() {
+        return bid_count;
+    }
 
     public String getSell_name() {
         return sell_name;

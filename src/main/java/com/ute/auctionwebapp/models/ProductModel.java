@@ -16,33 +16,72 @@ public class ProductModel {
         }
     }
     public static List<Product> findTop8End(){
-        final String query = "SELECT * from products where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0 order by products.end_day asc limit 8";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                "from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          (SELECT proid, proname, tinydes, fulldes, quantity, renew, price_start, price_step, price_max, price_now, price_current, price_payment, start_day, end_day, catid, bid_id, sell_id, status\n" +
+                "           from products\n" +
+                "           where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0\n" +
+                "           order by products.end_day asc limit 8) as p\n" +
+                "              left join (select users.id, users.name from users) as u on p.bid_id =u.id) as p\n" +
+                "         left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                "group by p.proid);";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(Product.class);
         }
     }
     public static List<Product> findTop8Price(){
-        final String query = "SELECT * from products where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0 order by products.price_current desc limit 8";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                " from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          (SELECT proid, proname, tinydes, fulldes, quantity, renew, price_start, price_step, price_max, price_now, price_current, price_payment, start_day, end_day, catid, bid_id, sell_id, status\n" +
+                "           from products\n" +
+                "           where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0 order by products.price_current desc limit 8) as a\n" +
+                "              left join (select users.id, users.name from users) as u on a.bid_id =u.id) as p\n" +
+                "         left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                " order by p.price_current desc\n" +
+                ");";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(Product.class);
         }
     }
     public static List<Product> findTop8Bid(){
-        final String query = "SELECT distinct count(a.proid) as count, a.proid, c.proname, c.tinydes, c.fulldes, c.quantity, c.price_start, c.price_step, c.price_max, c.price_now, c.price_current, c.price_payment, c.start_day, c.end_day, c.catid, c.bid_id, c.sell_id, c.status, c.renew\n" +
-                "from auction.histories a, (SELECT * from products where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0) as c\n" +
+        final String query = "SELECT count(a.proid) as count,c.name, a.proid, c.proname, c.tinydes, c.fulldes, c.quantity, c.price_start, c.price_step, c.price_max, c.price_now, c.price_current, c.price_payment, c.start_day, c.end_day, c.catid, c.bid_id, c.sell_id, c.status, c.renew\n" +
+                "from auction.histories a, (select*\n" +
+                "                           from\n" +
+                "                               (SELECT proid, proname, tinydes, fulldes, quantity, renew, price_start, price_step, price_max, price_now, price_current, price_payment, start_day, end_day, catid, bid_id, sell_id, status\n" +
+                "                                from products\n" +
+                "                                where TIMESTAMPDIFF(SECOND,NOW(),products.end_day)>0\n" +
+                "                                order by products.end_day asc limit 8) as p\n" +
+                "                                   left join (select users.id, users.name from users) as u on p.bid_id =u.id) as c\n" +
                 "where c.proid = a.proid\n" +
                 "group by a.proid\n" +
                 "order by count desc\n" +
-                "limit 8";
+                "limit 8;";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .executeAndFetch(Product.class);
         }
     }
     public static List<Product> findByCatId(int catId){
-        final String query = "select * from products where catid = :catid and CURDATE()<end_day and CURTIME()<end_day";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                "            from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          (select proid, proname, tinydes, fulldes, quantity, renew, price_start, price_step, price_max, price_now, price_current, price_payment, start_day, end_day, catid, bid_id, sell_id, status\n" +
+                "           from products\n" +
+                "           where catid = :catid and CURDATE()<end_day and CURTIME()<end_day) as a\n" +
+                "              left join (select users.id, users.name from users) as u on a.bid_id =u.id) as p\n" +
+                "         left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                "     group by p.proid\n" +
+                "    );";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("catid",catId)
@@ -50,10 +89,19 @@ public class ProductModel {
         }
     }
     public static List<Product> findByCatPid(String catname){
-        final String query = "select products.proid,products.proname,products.price_current,products.catid,products.price_now,products.start_day,products.end_day\n" +
-                "                from auction.products , auction.categories\n" +
-                "                where auction.categories.pid=(select catid from auction.categories where catname=:catname)\n" +
-                "             and categories.catid=products.catid and CURDATE() < products.end_day and CURTIME()<products.end_day";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                "            from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          ((select proid, proname, tinydes, fulldes, quantity, renew, price_start, price_step, price_max, price_now, price_current, price_payment, start_day, end_day, products.catid, bid_id, sell_id, status\n" +
+                "           from auction.products , auction.categories\n" +
+                "           where auction.categories.pid=(select catid from auction.categories where catname=:catname)\n" +
+                "             and categories.catid=products.catid and CURDATE() < products.end_day and CURTIME()<products.end_day) as a\n" +
+                "              left join (select users.id, users.name from users) as u on a.bid_id =u.id)) as p\n" +
+                "                left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                "     group by p.proid\n" +
+                "    );";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("catname",catname)

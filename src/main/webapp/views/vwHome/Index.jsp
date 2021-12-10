@@ -49,8 +49,12 @@
                                     </div>
                                         <div class="product-bottom text-center">
                                             <h3 style="width: 250px;height: 75px; object-fit: contain;">${p1.proname}</h3>
-                                            <h5>Price Current: ${p1.price_current}</h5>
-                                            <h5>Price Buy Now: ${p1.price_now}</h5>
+                                            <h5>Price Current:
+                                                <fmt:formatNumber value="${p1.price_current}" type="number" />
+                                            </h5>
+                                            <h5>Price Buy Now:
+                                                <fmt:formatNumber value="${p1.price_now}" type="number" />
+                                            </h5>
                                             <h5>Start Date :
                                                 <fmt:parseDate value="${p1.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -60,14 +64,13 @@
                                                 <fmt:parseDate value="${p1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${end }" />
                                             </h5>
-                                            <h5>Sum of bids:</h5>
-                                            <h5>Highest bidder</h5>
+                                            <h5>Sum of bids: ${p1.bid_count}</h5>
+                                            <h5>Highest bidder:${p1.name}</h5>
                                         </div>
                                     </div>
                                 </c:forEach>
                     </div>
                     <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;">
-                        <a name="hot"></a>
                         <h2 style="cursor: pointer;">Top Price</h2>
                     </div>
                     <div class="row">
@@ -89,8 +92,12 @@
                                 </div>
                                 <div class="product-bottom text-center">
                                     <h3 style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
-                                    <h5>Price Current: ${p2.price_current}</h5>
-                                    <h5>Price Buy Now: ${p2.price_now}</h5>
+                                    <h5>Price Current:
+                                        <fmt:formatNumber value="${p2.price_current}" type="number" />
+                                    </h5>
+                                    <h5>Price Buy Now:
+                                        <fmt:formatNumber value="${p2.price_now}" type="number" />
+                                    </h5>
                                     <h5>Start Date:
                                         <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -99,8 +106,8 @@
                                         <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
                                     </h5>
-                                    <h5>Sum of bids:</h5>
-                                    <h5>Highest bidder</h5>
+                                    <h5>Sum of bids: ${p2.bid_count}</h5>
+                                    <h5>Highest bidder: ${p2.name}</h5>
                                 </div>
                             </div>
                         </c:forEach>
@@ -125,8 +132,12 @@
                                 </div>
                                 <div class="product-bottom text-center">
                                     <h3 style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                    <h5>Price Current: ${p3.price_current}</h5>
-                                    <h5>Price Buy Now: ${p3.price_now}</h5>
+                                    <h5>Price Current:
+                                        <fmt:formatNumber value="${p3.price_current}" type="number" />
+                                    </h5>
+                                    <h5>Price Buy Now:
+                                        <fmt:formatNumber value="${p3.price_current}" type="number" />
+                                    </h5>
                                     <h5>Start Date:
                                         <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -135,8 +146,8 @@
                                         <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
                                     </h5>
-                                    <h5>Sum of bids:</h5>
-                                    <h5>Highest bidder</h5>
+                                    <h5>Sum of bids: ${p3.count}</h5>
+                                    <h5>Highest bidder: ${p3.name}</h5>
                                 </div>
                             </div>
                         </c:forEach>
