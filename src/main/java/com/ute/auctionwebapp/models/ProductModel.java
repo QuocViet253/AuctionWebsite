@@ -287,4 +287,12 @@ public class ProductModel {
             return getLastProID();
         }
     }
+    public static void UpdateExpiredProduct(int proid){
+        final String query = "update products set status = 'Expired' where proid = :proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("proid",proid)
+                    .executeUpdate();
+        }
+    }
 }

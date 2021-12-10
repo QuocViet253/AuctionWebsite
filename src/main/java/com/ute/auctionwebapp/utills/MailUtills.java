@@ -123,12 +123,50 @@ public class MailUtills {
                 + "\n"
                 + "<body>\n"
                 + "    <h3 style=\"color: blue;\">Price has been updated.</h3>\n"
-                + "    <div>Product name:" + proname + "</div>\n"
-                + "    <div>New Price :" + price_current + "</div>\n"
+                + "    <div>Product name: <span style=\"color: red\">" + proname + " </span></div>\n"
+                + "    <div>New Price : <span style=\"color: red\">" + price_current + " </span></div>\n"
                 + "\n"
                 + "</body>\n"
                 + "\n"
                 + "</html>";
         MailUtills.send(email, subject, message);
+    }
+    public static void sendExpiredNoBid(String email, String proname ){
+        String subject = "Your product has expired| Auction Website";
+        String message = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "\n"
+                + "<head>\n"
+                + "</head>\n"
+                + "\n"
+                + "<body>\n"
+                + "    <h3 style=\"color: blue;\">Your product has expired without a bidder.</h3>\n"
+                + "    <div>Product name: <span style=\"color: red\">" + proname + " </span></div>\n"
+                + "\n"
+                + "</body>\n"
+                + "\n"
+                + "</html>";
+        MailUtills.send(email, subject, message);
+    }
+    public static void sendExpiredBid(String sellmail, String bidmail, int price_current, String proname, String bidname, String sellname ){
+        String subject = "Your product has expired| Auction Website";
+        String message = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "\n"
+                + "<head>\n"
+                + "</head>\n"
+                + "\n"
+                + "<body>\n"
+                + "    <h3 style=\"color: blue;\">Your product has expired.</h3>\n"
+                + "    <div>Product name: <span style=\"color: red\">" + proname + "</span></div>\n"
+                + "    <div>Winning bidder name: <span style=\"color: red\">" + bidname + "</span></div>\n"
+                + "    <div>Seller name: <span style=\"color: red\">" + sellname + "</span> </div>\n"
+                + "    <div>Price: <span style=\"color: red\">" + price_current + "</span> </div>\n"
+                + "\n"
+                + "</body>\n"
+                + "\n"
+                + "</html>";
+        MailUtills.send(sellmail, subject, message);
+        MailUtills.send(bidmail, subject, message);
     }
 }

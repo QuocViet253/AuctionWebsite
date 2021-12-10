@@ -22,6 +22,7 @@
                 {
                     $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
                     $('#btn-auction').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
+                    $('#btnConfirmBid').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
                 }
             }
             if(${auth})
@@ -38,7 +39,7 @@
                     }
                     else {
                         $('#staticBackdrop').modal('toggle')
-                        $('.modal-body').append('<b style="color: #f33a58">'+price+'</b>')
+                        $('.modal-body').append('<b style="color: #f33a58"> $'+price+'</b>')
                     }
 
                 });
@@ -59,6 +60,7 @@
                         $.getJSON('${pageContext.request.contextPath}/Product/Bidding?proid=${product.proid}&proname=${product.proname}&step='+step+'&price='+price+'&uid=${authUser.id}&email='+email+'&sell_mail=${product.sell_mail}&bid_mail=${product.bid_mail}', function (data) {
                             if (data === false) {
                                 alert('Bidding failed');
+                                location.reload();
                             } else{
                                 $('#btn-auction').html('Done')
                                 alert('Bidding successfully');
@@ -183,7 +185,7 @@
                         <c:set var="hint" value="${product.price_current+product.price_step}"></c:set>
                     </c:if>
                     <div id="hint" class="ml-5 mb-2 text-info" >
-                        Recommended price: ${hint} </div>
+                        Recommended price: $${hint} </div>
                     <form action="" method="post" class="mb-3">
                         <div class="input-group flex-nowrap mb-3">
                             <div class="input-group-prepend">
@@ -191,7 +193,7 @@
                                 <i class="fa fa-hand-o-right" aria-hidden="true"></i>
                             </span>
                             </div>
-                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="${hint}" aria-label="price" aria-describedby="addon-wrapping">
+                            <input id="price" type="number" name="price" class="form-control min-vh-75" placeholder="$${hint}" aria-label="price" aria-describedby="addon-wrapping">
                         </div>
 
 
@@ -258,7 +260,7 @@
                                             <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
                                             *****${nameParts[0]}
                                         </td>
-                                        <td>${h.price}</td>
+                                        <td>$${h.price}</td>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>
