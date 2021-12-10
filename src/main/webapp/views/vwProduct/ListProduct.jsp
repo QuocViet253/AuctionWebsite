@@ -84,8 +84,12 @@
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Price Current:$ ${p.price_current}</h5>
-                                            <h5>Price Buy Now:$ ${p.price_now}</h5>
+                                            <h5 style="margin: 0">Price Current:$
+                                                <fmt:formatNumber value="${p.price_current}" type="number" />
+                                            </h5>
+                                            <h5>Price Buy Now:$
+                                                <fmt:formatNumber value="${p.price_now}" type="number" />
+                                            </h5>
                                             <h5>Start Date:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -94,8 +98,8 @@
                                                 <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Sum of bids:</h5>
-                                            <h5>Highest bidder:</h5>
+                                            <h5>Sum of bids: ${p.bid_count}</h5>
+                                            <h5>Highest bidder: ${p.name}</h5>
                                         </div>
                                     </div>
                                 </c:forEach>

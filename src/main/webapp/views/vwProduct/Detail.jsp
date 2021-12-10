@@ -149,9 +149,15 @@
                         </div>
                     </div>
                     <h4 style="cursor:pointer;" class="text-success text-center mt-3">
-                        Starting price:$ ${product.price_start}</h4>
-                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Current price:$ ${product.price_current}</h4>
-                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Buy Now Price:$ ${product.price_now}</h4>
+                        Starting price:$
+                        <fmt:formatNumber value="${product.price_start}" type="number" />
+                    </h4>
+                    <h4 style="cursor:pointer;" class="text-success text-center mt-3">Current price:$
+                        <fmt:formatNumber value="${product.price_current}" type="number" />
+                    </h4>
+                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Buy Now Price:$
+                        <fmt:formatNumber value="${product.price_now}" type="number" />
+                    </h4>
                     <input id="price_start" name="price_start" type="hidden" value="${product.price_start}">
                     <input id="step" name="step" type="hidden" value="${product.price_step}">
                     <input id="email" name="email" type="hidden" value="${authUser.email}">
