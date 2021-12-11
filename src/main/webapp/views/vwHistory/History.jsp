@@ -12,7 +12,7 @@
 
 <jsp:useBean id="histories" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.History>"/>
 
-<t:watchlist>
+<t:history>
      <jsp:attribute name="js">
         <script></script>
     </jsp:attribute>
@@ -20,15 +20,16 @@
         <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
             <h2>History</h2>
         </div>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Time</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="tableFixHistory" style="cursor: pointer">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody>
                 <c:choose>
                     <c:when test="${histories.size()==0}">
                         <div class="card-body">
@@ -48,7 +49,8 @@
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </jsp:body>
-</t:watchlist>
+</t:history>

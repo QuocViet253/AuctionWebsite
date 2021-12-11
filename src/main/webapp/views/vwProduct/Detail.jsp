@@ -240,39 +240,41 @@
                     </form>
                     <h4 class="mt-2">
                         Auction History</h4>
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">Time</th>
-                            <th scope="col">Bidder</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:choose>
-                            <c:when test="${histories.size()==0}">
-                                <div class="card-body">
-                                    <p class="card-text">No data</p>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <c:forEach items="${histories}" var="h">
-                                    <tr>
-                                        <td>
-                                            <fmt:parseDate value="${h.buy_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
-                                        </td>
-                                        <td>
-                                            <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
-                                            *****${nameParts[0]}
-                                        </td>
-                                        <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
-                                    </tr>
-                                </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
-                        </tbody>
-                    </table>
+                    <div class="tableFixHead" style="cursor: pointer">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Time</th>
+                                <th scope="col">Bidder</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:choose>
+                                <c:when test="${histories.size()==0}">
+                                    <div class="card-body">
+                                        <p class="card-text">No data</p>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${histories}" var="h">
+                                        <tr>
+                                            <td>
+                                                <fmt:parseDate value="${h.buy_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            </td>
+                                            <td>
+                                                <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
+                                                *****${nameParts[0]}
+                                            </td>
+                                            <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <hr>
