@@ -198,7 +198,7 @@ public class AccountServlet extends HttpServlet {
                 if (url == null )
                     url = "/Home";
 
-                if (url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList"))
+                if (url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList") || url.equals("/auctionWebApp/History"))
                     url = url + "?uid=" + user.getId();
                 ServletUtills.redirect(url, request, response);
            /*     ServletUtills.redirect("/Home",request,response);*/

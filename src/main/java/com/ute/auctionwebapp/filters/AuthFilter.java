@@ -32,6 +32,14 @@ public class AuthFilter implements Filter {
             return;
         }
 
+        if (request.getRequestURI().equals("/auctionWebApp/WatchList")  || request.getRequestURI().equals("/auctionWebApp/Account/YourProduct") || request.getRequestURI().equals("/auctionWebApp/History")) {
+            int uid =Integer.parseInt(request.getParameter("uid"),10);
+            if (authUser.getId() != uid) {
+                ServletUtills.redirect(request.getRequestURI()+"?uid="+authUser.getId(), request, (HttpServletResponse) res);
+                return;
+            }
+        }
+
         if (request.getRequestURI().equals("/auctionWebApp/Product/Add")) {
             if (authUser.getRole() == 1) {
                 ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
