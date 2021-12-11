@@ -3,7 +3,7 @@
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<t:account>
+<t:seller>
 
     <jsp:body>
 
@@ -33,5 +33,5 @@
             </div>
         </div>
     </jsp:body>
-</t:account>
+</t:seller>
 

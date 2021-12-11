@@ -45,6 +45,14 @@ public class AccountServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwAccount/Profile.jsp", request, response);
                 break;
 
+            case "/SellerProfile":
+                ServletUtills.forward("/views/vwAccount/SellerProfile.jsp",request,response);
+                break;
+
+            case "/BidderProfile":
+                ServletUtills.forward("/views/vwAccount/BidderProfile.jsp",request,response);
+                break;
+
             case "/EditProfile":
                 ServletUtills.forward("/views/vwAccount/EditProfile.jsp", request, response);
                 break;
@@ -106,16 +114,16 @@ public class AccountServlet extends HttpServlet {
                 registerUser(request, response);
                 break;
 
-            case "/EditProfile":
-                updateUser(request,response);
-                break;
-
             case "/Login":
                 login(request, response);
                 break;
 
             case "/ForgotPassword":
                 forgot(request, response);
+                break;
+
+            case "/EditProfile":
+                updateUser(request,response);
                 break;
 
             case "/ChangePwd":
@@ -150,7 +158,7 @@ public class AccountServlet extends HttpServlet {
 
         User c = new User(name, email, address,  bcryptHashString, dob, role, reQuest);
         UserModel.add(c);
-        ServletUtills.forward("/views/vwAccount/Register.jsp", request, response);
+        ServletUtills.redirect("/Home", request, response);
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -159,19 +167,19 @@ public class AccountServlet extends HttpServlet {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime dob = LocalDateTime.parse(strDob, df);
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
         String address = request.getParameter("address");
 
-        User c = new User(name, email, address, dob,id);
+        User c = new User(name,address,dob,id);
         UserModel.update(c);
-        User user = UserModel.findById(id);
+
+       User user = UserModel.findById(id);
         HttpSession session = request.getSession();
         session.setAttribute("auth", true);
         session.setAttribute("authUser", user);
         String url = (String) (session.getAttribute("retUrl"));
-        if(url == null) url = "/Home";
-       /* ServletUtills.forward("/views/vwAccount/EditProfile.jsp", request, response);*/
+        if(url == null) url = "/Account/Profile";
         ServletUtills.redirect(url,request,response);
+
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -189,9 +197,11 @@ public class AccountServlet extends HttpServlet {
                 String url = (String) (session.getAttribute("retUrl"));
                 if (url == null )
                     url = "/Home";
-                if (url.equals("/auctionWebApp/Account/Profile") || url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList"))
+
+                if (url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList"))
                     url = url + "?uid=" + user.getId();
                 ServletUtills.redirect(url, request, response);
+           /*     ServletUtills.redirect("/Home",request,response);*/
             } else {
                 request.setAttribute("hasError", true);
                 request.setAttribute("errorMessage", "Invalid login.");

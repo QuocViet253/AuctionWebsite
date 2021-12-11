@@ -92,7 +92,10 @@ public class ProductServlet extends HttpServlet {
                 proid  = Integer.parseInt(request.getParameter("proid"),10);
                 int new_price = Integer.parseInt(request.getParameter("price"));
                 uid =Integer.parseInt(request.getParameter("uid"),10);
-                Product product1 = ProductModel.findByBidid(proid);
+                Product product1 = ProductModel.findByNoBIdid(proid);
+                if(product1.getBid_id()>0){
+                    product1 = ProductModel.findByBidid(proid);
+                }
                 int max = product1.getPrice_max();
                 String renew = product1.getRenew();
                 int price_step = Integer.parseInt(request.getParameter("step"));

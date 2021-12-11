@@ -38,12 +38,11 @@ public class UserModel {
     }
 
     public static void update(User c) {
-        String insertSql = "UPDATE users SET  name = :name, email = :email, address = :address, dob = :dob WHERE id = :id \n";
+        String insertSql = "UPDATE users SET  name = :name, address = :address, dob = :dob WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
-                    .addParameter("id",c.getId())
+                   .addParameter("id",c.getId())
                     .addParameter("name", c.getName())
-                    .addParameter("email", c.getEmail())
                     .addParameter("dob", c.getDob())
                     .addParameter("address", c.getAddress())
                     .executeUpdate();

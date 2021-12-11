@@ -32,6 +32,21 @@
         <url-pattern>/Account/EditProfile</url-pattern>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Account/BidderProfile</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Account/SellerProfile</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Account/ChangePwd</url-pattern>
+    </filter-mapping>
+
 <!--    <filter-mapping>-->
 <!--        <filter-name>AuthFilter</filter-name>-->
 <!--        <url-pattern>/Product/AddWatchList</url-pattern>-->

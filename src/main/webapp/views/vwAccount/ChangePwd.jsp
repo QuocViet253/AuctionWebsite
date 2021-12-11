@@ -8,7 +8,7 @@
         height: 100vh;
     }
 </style>
-<t:account>
+<t:EditUser>
     <jsp:attribute name="js">
         <script>
 
@@ -52,7 +52,7 @@
                 <!-- Email và password -->
                 <div class="form-group justify-content-center d-flex">
                     <input type="hidden" name="uid" value="${authUser.id}">
-                    <input type="text" placeholder="Password" name="password" class="form-control w-75" id="changePassword" autofocus >
+                    <input type="password" placeholder="Password" name="password" class="form-control w-75" id="changePassword" autofocus >
                     <span class="form-message" style="margin-right: 215px;"></span>
                 </div>
                 <div class="form-group justify-content-center d-flex">
@@ -62,7 +62,7 @@
 
                 <!-- Button change -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info w-75" id="btnChange">Change</button>
+                    <button type="submit" class="btn btn-info w-75" id="btnChange">Save</button>
                 </div>
                 <hr class="w-75 mx-auto bg-info">
                     <div class="text-center mt-3">
@@ -71,24 +71,24 @@
                         </a>
                     </div>
 
-                    <%--
-                    <!-- Đăng nhập với Google -->
-                    <div class="text-center">
-                        <a class="btn btn-outline-info" href="#" role="button">
-                            <i class="fa fa-google-plus mr-3" aria-hidden="true"></i>
-                            Login with Google
-                        </a>
-                    </div>
-                    --%>
                     <div class="text-center mt-3">
-                        <a class="btn btn-outline-info" id="switchRegister" href="${pageContext.request.contextPath}/Account/Profile" role="button">
-                            Return Profile
-                        </a>
+                        <c:choose>
+                            <c:when test="${authUser.role == 1}"><a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/BidderProfile" role="button">
+                                Return Profile
+                            </a></c:when>
+                            <c:when test="${authUser.role == 0}"><a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/Profile" role="button">
+                                Return Profile
+                            </a></c:when>
+                            <c:otherwise>
+                                <a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/SellerProfile" role="button">
+                                    Return Profile
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
             </form>
         </div>
         </div>
 
-
     </jsp:body>
-</t:account>
+</t:EditUser>

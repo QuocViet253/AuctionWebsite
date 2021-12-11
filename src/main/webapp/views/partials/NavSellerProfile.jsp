@@ -6,34 +6,11 @@
     <!-- Top Nav -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="collapse navbar-collapse justify-content-lg-between" id="navbarSupportedContent">
-            <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top"
-                    alt="No Loading" style=" width:140px ;height: 70px"></a>
-            <nav class="navbar navbar-light bg-info d-inline">
-                <div class="form-inline">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown-toggle-split">
-                            <select class="nav-link text-dark bg-light mr-2" style="border: 0; border-radius: 5px;">
-                                <option value="Product">Product</option>
-                                <option value="Category">Category</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <input id="search" class="form-control mr-sm-3" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
-                    <button id="btnSearch" class="btn btn-outline-success text-light bg-success my-2 my-sm-0 " type="button" onclick="Found('${pageContext.request.contextPath}')" >
-                        <i class="fa fa-search"></i>
-                        Search
-                    </button>
-                </div>
-            </nav>
+            <a href="${pageContext.request.contextPath}/Home">
+                <img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top" alt="No Loading" style=" width:140px ;height: 70px">
+            </a>
+
             <ul class="navbar-nav">
-                <li class="nav-item active mr-4"><a href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}"  id="watchlist" class="text-light">
-                    <i class="fa fa-heart text-danger" aria-hidden="true"></i>
-                    WatchList
-                </a>
-                </li>
-                <%--<li class="nav-item active mr-4"><a href="" class="text-light"><i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i>--%>
-                <%--    Cart--%>
-                <%--</a></li>--%>
                 <li class="nav-item active mr-4 dropdown">
                     <c:choose>
                         <c:when test="${auth}">
@@ -51,8 +28,8 @@
                             <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${authUser.role == 1}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/BidderProfile">
-                                            <i class="fa fa-user" aria-hidden="true"></i> Profile
-                                        </a></li></c:when>
+                                        <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                    </a></li></c:when>
                                     <c:when test="${authUser.role == 0}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
                                     </a></li></c:when>
@@ -62,7 +39,6 @@
                                         </a></li>
                                     </c:otherwise>
                                 </c:choose>
-
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
                                     <i class="fa fa-product-hunt" aria-hidden="true"></i> Your Products
                                 </a></li>
@@ -90,37 +66,46 @@
             </ul>
         </div>
     </nav>
-    <!-- Nav Bar -->
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Home">
-                        <i class="fa fa-home text-success" aria-hidden="true"></i>
-                        Home <span class="sr-only">(current)</span>
+                    <a class="nav-link mr-5 ml-5 text-success" href="#">
+                        <i class="fa fa-star text-success" aria-hidden="true"></i>
+                        Comment <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5 ml-5 text-danger" href="${pageContext.request.contextPath}/Home#hot">
-                        <i class="fa fa-newspaper-o text-danger" aria-hidden="true"></i>
-                        Hot
+                    <a class="nav-link mr-5 ml-5 text-danger" href="#">
+                        <i class="fa fa-heart-o text-danger" aria-hidden="true"></i>
+                        Favorite Product
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/History?uid=${authUser.id}">
-                        <i class="fa fa-history text-warning" aria-hidden="true"></i>
-                        History</a>
+                    <a class="nav-link text-warning" href="#">
+                        <i class="fa fa-newspaper-o text-warning" aria-hidden="true"></i>
+                        On Auction</a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-info" href="#contact">
-                        <i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                        About</a>
+                    <a class="nav-link text-info" href="#">
+                        <i class="fa fa-check-square text-info" aria-hidden="true"></i>
+                        Successful Auction</a>
                 </li>
-                <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link" href="#contact">
-                        <i class="fa fa-address-card" aria-hidden="true"></i>
-                        Contact us</a>
-                </li>
+
+                    <li class="nav-item active mr-4 dropdown">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-shopping-basket text-secondary" aria-hidden="true"></i>
+                            My Product</a>
+                <ul class="dropdown-menu mt-0 dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">
+                        <i class="fa fa-shopping-bag text-secondary " aria-hidden="true"></i> On Sale
+                    </a></li>
+                    <li><a class="dropdown-item" href="#">
+                        <i class="fa fa-shopping-cart text-secondary" aria-hidden="true"></i> Sold
+                    </a></li>
+                </ul>
+                    </li>
             </ul>
         </div>
     </nav>

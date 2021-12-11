@@ -49,7 +49,7 @@
                     <i class="fa fa-filter" aria-hidden="true"></i>
                     Sort
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-menu mt-0" aria-labelledby="dropdownMenuLink">
                     <button class="dropdown-item" onclick="SortInc('${pageContext.request.contextPath}')">
                         <i class="fa fa-sort-asc" aria-hidden="true"></i>
                         Price

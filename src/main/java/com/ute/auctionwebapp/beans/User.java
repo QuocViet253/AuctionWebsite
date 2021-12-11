@@ -34,9 +34,8 @@ public class User {
         this.reQuest = reQuest;
     }
 
-    public User(String name, String email, String address, LocalDateTime dob, int id) {
+    public User(String name, String address, LocalDateTime dob, int id) {
         this.name = name;
-        this.email = email;
         this.address = address;
         this.dob = dob;
         this.id= id;
