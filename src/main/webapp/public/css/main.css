@@ -62,3 +62,14 @@ padding: 0;
     align-items: center;
     flex-direction: column;
 }
+.tableFixHead          { overflow: auto; height: 200px; }
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
+
+.tableFixHistory          { overflow: auto; height: 400px; }
+.tableFixHistory thead th { position: sticky; top: 0; z-index: 1; }
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }

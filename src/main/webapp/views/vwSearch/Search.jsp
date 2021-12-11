@@ -44,7 +44,7 @@
     </jsp:attribute>
     <jsp:body>
         <div class="right col-sm-10 mt-1" >
-            <div class="dropdown">
+            <div class="dropdown mt-1 mb-2">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-filter" aria-hidden="true"></i>
                     Sort
