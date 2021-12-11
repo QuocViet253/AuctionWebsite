@@ -35,7 +35,12 @@
                     let price_cur= parseInt($('#price_cur').val()) ;
                     if(Number.isNaN(price)|| price<price_start || price < price_cur || price % step !==0)
                     {
-                        alert("Please enter your valid price again. Bid increment is $"+step)
+                        swal({
+                            title: "Warning!",
+                            text: "Please enter your valid price again! Bid increment is $"+step,
+                            icon: "warning",
+                            button: "OK!",
+                        });
                     }
                     else {
                         $('#staticBackdrop').modal('toggle')
@@ -59,12 +64,31 @@
                         $('#btn-auction').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
                         $.getJSON('${pageContext.request.contextPath}/Product/Bidding?proid=${product.proid}&proname=${product.proname}&step='+step+'&price='+price+'&uid=${authUser.id}&email='+email+'&sell_mail=${product.sell_mail}&bid_mail=${product.bid_mail}', function (data) {
                             if (data === false) {
-                                alert('Bidding failed');
-                                location.reload();
+                                swal({
+                                    title: "Failed!",
+                                    text: "Bidding failed. Please try again!",
+                                    icon: "error",
+                                    button: "OK!",
+                                    dangerMode: true,
+                                    closeOnClickOutside: false,
+                                })
+                                .then(function(){
+                                        location.reload();
+                                    }
+                                );
                             } else{
                                 $('#btn-auction').html('Done')
-                                alert('Bidding successfully');
-                                location.reload();
+                                swal({
+                                    title: "Successfully!",
+                                    text: "Bidding successful!",
+                                    icon: "success",
+                                    button: "Done!",
+                                    closeOnClickOutside: false,
+                                })
+                                .then(function(){
+                                        location.reload();
+                                    }
+                                );
                             }
 
                         });
@@ -76,8 +100,21 @@
                 {
                     $.getJSON(otp, function (data) {
                         if (data === 'false') {
-                            alert('Not Added');
-                        } else alert("Successfully");
+                            swal({
+                                title: "Failed!",
+                                text: "Failed added to your watchlist!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                        } else swal({
+                            title: "Successfully!",
+                            text: "Successfully added to your watchlist!",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
+                        });
                     });
                 }
             }

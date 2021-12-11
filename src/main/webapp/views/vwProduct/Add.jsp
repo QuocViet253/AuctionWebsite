@@ -138,6 +138,7 @@
                     <span class="form-message" ></span>
                 </div>
                 <div class="form-group form-check">
+                    <input type="hidden" name="auto" value="off" >
                     <input type="checkbox" name="auto" class="form-check-input" id="chkAutoRenew">
                     <label class="form-check-label" for="chkAutoRenew">Auto-renew? </label>
                     <span class="d-inline-block " tabindex="0" data-toggle="tooltip" title="When there is a new auction before the end of 5 minutes, the product will automatically renew for another 10 minutes. ">

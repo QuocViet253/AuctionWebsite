@@ -26,14 +26,28 @@
                         $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
                             $('#btnOTP').html('Send password reset email')
                             if (otpData === false) {
-                                alert('Wrong OTP');
+                                swal({
+                                    title: "Wrong OTP!",
+                                    text: "Your OTP is invalid. Please try again!",
+                                    icon: "error",
+                                    button: "OK!",
+                                    dangerMode: true,
+                                    closeOnClickOutside: false,
+                                });
                             } else {
                                 $('#formForgot').off('submit').submit();
                                 alert('Password Reset Successfully');
                             }
                         });
                     } else {
-                        alert('Email is not available.');
+                        swal({
+                            title: "Invalid email!",
+                            text: "Your email is not available. Please try again!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
                     }
                 });
             });
@@ -41,16 +55,45 @@
             $('#btnOTP').on('click', function () {
                 if ($('#forgotName').val() == 0)
                 {
-                    alert('Please fill your email')
+                    swal({
+                        title: "Invalid email!",
+                        text: "Please fill your valid email!",
+                        icon: "warning",
+                        button: "OK!",
+                    });
                 } else {
                     $('#btnOTP').html('<div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span></div>');
                     const otp = $('#forgotOTP').val();
                     const email = $('#forgotName').val();
-                    $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
-                        $('#btnOTP').html('Send OTP')
+                    $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                         if (data === false) {
-                            alert('Please send OTP email again.');
-                        } else alert('OTP has been sent to your email');
+                            $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
+                                $('#btnOTP').html('Send OTP')
+                                if (data === false) {
+                                    swal({
+                                        title: "Failed!",
+                                        text: "Please click send OTP to your email again!",
+                                        icon: "error",
+                                        button: "OK!",
+                                    });
+                                } else swal({
+                                    title: "Successfully!",
+                                    text: "Your OTP has been sent to your email!",
+                                    icon: "success",
+                                    button: "OK!",
+                                });
+                            });
+                        } else {
+                            $('#btnOTP').html('Send OTP')
+                            swal({
+                                title: "Invalid email!",
+                                text: "Your email is not available. Please try again!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                        }
                     });
                 }
             });

@@ -19,8 +19,21 @@
                 {
                     $.getJSON(otp, function (data) {
                         if (data === 'false') {
-                            alert('Not Added');
-                        } else alert("successfully");
+                            swal({
+                                title: "Failed!",
+                                text: "Failed added to your watchlist!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                        } else swal({
+                            title: "Successfully!",
+                            text: "Successfully added to your watchlist!",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
+                        });
                     });
                 }
             }

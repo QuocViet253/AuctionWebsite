@@ -64,6 +64,27 @@
                 modal.find('#txtProname').text('Product name: '+name)
             })
 
+            function add (otp){
+                $.getJSON(otp, function (data) {
+                    if (data === 'false') {
+                        swal({
+                            title: "Failed!",
+                            text: "Failed added to your watchlist!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
+                    } else swal({
+                        title: "Successfully!",
+                        text: "Successfully added to your watchlist!",
+                        icon: "success",
+                        button: "OK!",
+                        closeOnClickOutside: false,
+                    });
+                });
+            }
+
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -98,7 +119,7 @@
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
                                                 <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                             </a>
-                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
                                             <button type="button" class="btn btn-secondary" title="Add Description" data-toggle="modal" data-target="#addDes" data-id="${p.proid}" data-name = "${p.proname}">
@@ -108,8 +129,12 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: ${p.price_current}</h5>
-                                        <h5>Giá mua ngay: ${p.price_now}</h5>
+                                        <h5 style="margin: 0">Giá hiện tại: $
+                                            <fmt:formatNumber value="${p.price_current}" type="number" />
+                                        </h5>
+                                        <h5>Giá mua ngay: $
+                                            <fmt:formatNumber value="${p.price_now}" type="number" />
+                                        </h5>
                                         <h5>Ngày đăng:
                                             <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -174,30 +199,34 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach items="${soldProducts}" var="p3">
+                            <c:forEach items="${soldProducts}" var="p2">
                                 <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
                                     <div class="product-top mt-2">
-                                        <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg"></a>
+                                        <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg"></a>
                                         <div class="overlay-right">
-                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}" class="btn btn-secondary" title="Detail">
+                                            <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}" class="btn btn-secondary" title="Detail">
                                                 <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                             </a>
-                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p3.proid}&proname=${p3.proname}&price_start=${p3.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=${authUser.id}&catid=${p2.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
 
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: ${p3.price_current}</h5>
-                                        <h5>Giá mua ngay: ${p3.price_now}</h5>
+                                        <h3 style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
+                                        <h5 style="margin: 0">Giá hiện tại: $
+                                            <fmt:formatNumber value="${p2.price_current}" type="number" />
+                                        </h5>
+                                        <h5>Giá mua ngay: $
+                                            <fmt:formatNumber value="${p2.price_now}" type="number" />
+                                        </h5>
                                         <h5>Ngày đăng:
-                                            <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                            <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
                                         <h5>Kết thúc:
-                                            <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                            <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
                                         <h5>Số lượt ra giá</h5>
@@ -230,7 +259,7 @@
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}" class="btn btn-secondary" title="Detail">
                                                 <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                             </a>
-                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p3.proid}&proname=${p3.proname}&price_start=${p3.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p3.proid}&proname=${p3.proname}&price_start=${p3.price_start}&uid=${authUser.id}&catid=${p3.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
 
@@ -238,8 +267,12 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: ${p3.price_current}</h5>
-                                        <h5>Giá mua ngay: ${p3.price_now}</h5>
+                                        <h5 style="margin: 0">Giá hiện tại: $
+                                            <fmt:formatNumber value="${p3.price_current}" type="number" />
+                                        </h5>
+                                        <h5>Giá mua ngay: $
+                                            <fmt:formatNumber value="${p3.price_now}" type="number" />
+                                        </h5>
                                         <h5>Ngày đăng:
                                             <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -278,7 +311,7 @@
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p4.proid}&catid=${p4.catid}" class="btn btn-secondary" title="Detail">
                                                 <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                             </a>
-                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p4.proid}&proname=${p4.proname}&price_start=${p4.price_start}&uid=${authUser.id}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                            <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p4.proid}&proname=${p4.proname}&price_start=${p4.price_start}&uid=${authUser.id}&catid=${p4.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
 
@@ -286,8 +319,12 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: ${p4.price_current}</h5>
-                                        <h5>Giá mua ngay: ${p4.price_now}</h5>
+                                        <h5 style="margin: 0">Giá hiện tại: $
+                                            <fmt:formatNumber value="${p4.price_current}" type="number" />
+                                        </h5>
+                                        <h5>Giá mua ngay: $
+                                            <fmt:formatNumber value="${p4.price_now}" type="number" />
+                                        </h5>
                                         <h5>Ngày đăng:
                                             <fmt:parseDate value="${p4.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />

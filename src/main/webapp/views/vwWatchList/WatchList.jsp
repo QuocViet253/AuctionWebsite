@@ -42,11 +42,27 @@
             function remove (otp){
                 $.getJSON(otp, function (data) {
                     if (data === 'false') {
-                        alert('Cannot Delete');
+                        swal({
+                            title: "Failed!",
+                            text: "Failed deleted to your watchlist!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
                     } else
                     {
-                        alert("Successfully");
-                        location.reload();
+                        swal({
+                        title: "Successfully!",
+                        text: "Successfully deleted to your watchlist!",
+                        icon: "success",
+                        button: "OK!",
+                        closeOnClickOutside: false,
+                        })
+                        .then(function(){
+                                location.reload();
+                            }
+                        );
                     }
                 });
             }
