@@ -53,36 +53,85 @@
                     if (data === true) {
                         // Check captcha
                         if(response.length == 0) {
-                            alert('Please select the Captcha');
+                            swal({
+                                title: "Warning!",
+                                text: "Please verify your captcha!",
+                                icon: "warning",
+                                button: "OK!",
+                                closeOnClickOutside: false,
+                            });
                         } else {
                             // Check OTP
                             $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
                                 if (otpData === false) {
-                                    alert('Wrong OTP');
+                                    swal({
+                                        title: "Wrong OTP!",
+                                        text: "Your OTP is invalid. Please try again!",
+                                        icon: "error",
+                                        button: "OK!",
+                                        dangerMode: true,
+                                        closeOnClickOutside: false,
+                                    });
                                 } else {
                                     $('#formRegister').off('submit').submit();
                                 }
                             });
                         }
                     } else {
-                        alert('Email is not available.');
+                        swal({
+                            title: "Invalid email!",
+                            text: "Your email is not available. Please try again!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
                     }
                 });
             });
             // Send OTP to client email
             $('#btnOTP').on('click', function () {
+                $('#btnOTP').html('<div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span></div>');
                 if ($('#registerEmail').val() == 0)
                 {
-                    alert('Please fill your email')
+                    swal({
+                        title: "Invalid email!",
+                        text: "Please fill your valid email!",
+                        icon: "warning",
+                        button: "OK!",
+                    });
                 } else {
-                    $('#btnOTP').html('<div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span></div>');
                     const otp = $('#registerOTP').val();
                     const email = $('#registerEmail').val();
-                    $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
-                        $('#btnOTP').html('Send OTP');
+                    $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                         if (data === false) {
-                            alert('Please send OTP email again.');
-                        } else alert('OTP has been send to your email');
+                            $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
+                                $('#btnOTP').html('Send OTP')
+                                if (data === false) {
+                                    swal({
+                                        title: "Failed!",
+                                        text: "Please click send OTP to your email again!",
+                                        icon: "error",
+                                        button: "OK!",
+                                    });
+                                } else swal({
+                                    title: "Successfully!",
+                                    text: "Your OTP has been sent to your email!",
+                                    icon: "success",
+                                    button: "OK!",
+                                });
+                            });
+                        } else {
+                            $('#btnOTP').html('Send OTP')
+                            swal({
+                                title: "Invalid email!",
+                                text: "Your email is not available. Please try again!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                        }
                     });
                 }
             });
