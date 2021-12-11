@@ -66,6 +66,39 @@
             </li>
         </ul>
     </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link mr-5 ml-5 text-success" href="#">
+                        <i class="fa fa-star text-success" aria-hidden="true"></i>
+                        Comment <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mr-5 ml-5 text-danger" href="#">
+                        <i class="fa fa-heart-o text-danger" aria-hidden="true"></i>
+                        Favorite Product
+                    </a>
+                </li>
+                <li class="nav-item mr-5 ml-5">
+                    <a class="nav-link text-warning" href="#">
+                        <i class="fa fa-newspaper-o text-warning" aria-hidden="true"></i>
+                        On Auction</a>
+                </li>
+                <li class="nav-item mr-5 ml-5">
+                    <a class="nav-link text-info" href="#">
+                        <i class="fa fa-check-square text-info" aria-hidden="true"></i>
+                        Successful Auction</a>
+                </li>
 
+                <li class="nav-item mr-5 ml-5">
+                    <a class="nav-link" href="#contact">
+                        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                        Manage User</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 </div>
