@@ -59,7 +59,7 @@ public class MailUtills {
     }
 
     public static boolean sendOTP(String email, String userOTP) {
-        if (userOTP == "") {
+        if (userOTP.equals("")) {
             try {
                 Random rnd = new Random();
                 int random = rnd.nextInt(999999);

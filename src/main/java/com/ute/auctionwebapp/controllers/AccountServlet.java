@@ -7,6 +7,7 @@ import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
+import com.ute.auctionwebapp.utills.VerifyUtills;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,6 +72,18 @@ public class AccountServlet extends HttpServlet {
                 response.setCharacterEncoding("utf-8");
 
                 out.print(isAvailable);
+                out.flush();
+                break;
+
+            case "/IsVerifyCaptcha":
+                String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+                boolean verify = VerifyUtills.verifyCaptcha(gRecaptchaResponse);
+
+                out = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+
+                out.print(verify);
                 out.flush();
                 break;
 

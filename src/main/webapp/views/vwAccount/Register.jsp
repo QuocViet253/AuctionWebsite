@@ -38,6 +38,7 @@
                         Validator.isRequired('#registerEmail', 'Please fill your mail correctly'),
                         Validator.isRequired('#registerPassword','Please fill your password'),
                         Validator.isRequired('#registerDob','Please fill your date of birth'),
+                        Validator.isRequired('#registerOTP','Please fill your OTP'),
                         Validator.isEmail('#registerEmail','Please fill your mail correctly'),
                         Validator.minLength('#registerPassword',6),
                         Validator.isConfirmed('#registerConfirmPassword',function () {
@@ -52,18 +53,36 @@
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === true) {
                         // Check captcha
-                        if(response.length == 0) {
-                            swal({
-                                title: "Warning!",
-                                text: "Please verify your captcha!",
-                                icon: "warning",
-                                button: "OK!",
-                                closeOnClickOutside: false,
-                            });
-                        } else {
-                            // Check OTP
-                            $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
-                                if (otpData === false) {
+                        $.getJSON('${pageContext.request.contextPath}/Account/IsVerifyCaptcha?g-recaptcha-response=' + response, function (data) {
+
+                            if(data === false) {
+                                swal({
+                                    title: "Warning!",
+                                    text: "Please verify your captcha!",
+                                    icon: "warning",
+                                    button: "OK!",
+                                    closeOnClickOutside: false,
+                                });
+                                grecaptcha. reset();
+                            } else {
+                                // Check OTP
+                                if (otp !== '') {
+                                    $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (otpData) {
+                                        if (otpData === false) {
+                                            swal({
+                                                title: "Wrong OTP!",
+                                                text: "Your OTP is invalid. Please try again!",
+                                                icon: "error",
+                                                button: "OK!",
+                                                dangerMode: true,
+                                                closeOnClickOutside: false,
+                                            });
+                                            grecaptcha. reset();
+                                        } else {
+                                            $('#formRegister').off('submit').submit();
+                                        }
+                                    });
+                                } else {
                                     swal({
                                         title: "Wrong OTP!",
                                         text: "Your OTP is invalid. Please try again!",
@@ -72,11 +91,10 @@
                                         dangerMode: true,
                                         closeOnClickOutside: false,
                                     });
-                                } else {
-                                    $('#formRegister').off('submit').submit();
+                                    grecaptcha. reset();
                                 }
-                            });
-                        }
+                            }
+                        });
                     } else {
                         swal({
                             title: "Invalid email!",
@@ -86,6 +104,7 @@
                             dangerMode: true,
                             closeOnClickOutside: false,
                         });
+                        grecaptcha. reset();
                     }
                 });
             });
