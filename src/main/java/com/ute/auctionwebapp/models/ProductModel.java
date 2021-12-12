@@ -256,11 +256,20 @@ public class ProductModel {
         }
     }
     public static List<Product> Search(String search){
-        final String query = "SELECT *\n" +
-                "FROM auction.products\n" +
-                "WHERE\n" +
-                "    MATCH(proname,tinydes)\n" +
-                "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                "            from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          (SELECT proid, proname, tinydes, fulldes, quantity, renew, price_start, price_step, price_max, price_now, price_current, price_payment, start_day, end_day,catid, bid_id, sell_id, status\n" +
+                "           FROM auction.products\n" +
+                "           WHERE\n" +
+                "               MATCH(proname,tinydes)\n" +
+                "                     AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day) as a\n" +
+                "              left join (select users.id, users.name from users) as u on a.bid_id =u.id) as p\n" +
+                "         left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                "     group by p.proid\n" +
+                "    );";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("search",search)
@@ -268,12 +277,21 @@ public class ProductModel {
         }
     }
     public static List<Product> SortInc(String search){
-        final String query = "SELECT *\n" +
-                "FROM auction.products\n" +
-                "WHERE\n" +
-                "    MATCH(proname,tinydes)\n" +
-                "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
-                "order by products.price_current asc";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                "            from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          (SELECT *\n" +
+                "           FROM auction.products\n" +
+                "           WHERE\n" +
+                "               MATCH(proname,tinydes)\n" +
+                "                     AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
+                "           order by products.price_current asc) as a\n" +
+                "              left join (select users.id, users.name from users) as u on a.bid_id =u.id) as p\n" +
+                "         left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                " order by p.price_current asc\n" +
+                "    );";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("search",search)
@@ -281,12 +299,21 @@ public class ProductModel {
         }
     }
     public static List<Product> SortDec(String search){
-        final String query = "SELECT *\n" +
-                "FROM auction.products\n" +
-                "WHERE\n" +
-                "    MATCH(proname,tinydes)\n" +
-                "          AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
-                "order by products.end_day desc";
+        final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
+                "            from\n" +
+                "     (select*\n" +
+                "      from\n" +
+                "          (SELECT *\n" +
+                "           FROM auction.products\n" +
+                "           WHERE\n" +
+                "               MATCH(proname,tinydes)\n" +
+                "                     AGAINST(:search) and CURDATE() < products.end_day and CURTIME()<products.end_day\n" +
+                "           order by products.end_day desc) as a\n" +
+                "              left join (select users.id, users.name from users) as u on a.bid_id =u.id) as p\n" +
+                "         left join (select proid, count(proid) as bid_count from histories group by proid) h\n" +
+                "                   on p.proid = h.proid\n" +
+                " order by p.end_day desc\n" +
+                "    );";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("search",search)

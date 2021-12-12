@@ -9,9 +9,9 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<jsp:useBean id="now" class="java.util.Date" />
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
-
+<jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:main>
     <jsp:attribute name="js">
         <script>
@@ -40,6 +40,31 @@
                     }, 300);
                 });
             });
+            function add (otp){
+                {
+                    $.getJSON(otp, function (data) {
+                        if (data === 'false') {
+                            swal({
+                                title: "Failed!",
+                                text: "Failed added to your watchlist!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                        } else swal({
+                            title: "Successfully!",
+                            text: "Successfully added to your watchlist!",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
+                        });
+                    });
+                }
+            }
+            <%--console.log(${now});--%>
+            <%--console.log(${now});--%>
+            <%--console.log(${products.get(0).start_day.toLocalTime()});--%>
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -77,7 +102,7 @@
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
                                                     <i class="fa fa-eye" style="border-radius: 50%" aria-hidden="true"></i>
                                                 </a>
-                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
+                                                <button type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                     <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                 </button>
 
@@ -85,21 +110,28 @@
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Giá hiện tại: ${p.price_current}</h5>
-                                            <h5>Giá mua ngay: ${p.price_now}</h5>
-                                            <h5>Ngày đăng:
+                                            <h5 style="margin: 0">Price Current: ${p.price_current}</h5>
+                                            <h5>Price Buy Now: ${p.price_now}</h5>
+                                            <h5>Start Date:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Kết thúc:
+                                            <h5>End Date:
                                                 <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Số lượt ra giá</h5>
-                                                <%--                                            <a class="btn btn-success btn-sm" href="#" role="button">--%>
-                                                <%--                                                <i class="fa fa-gavel text-light fa-2x" aria-hidden="true"></i>--%>
-                                                <%--                                                Auction now--%>
-                                                <%--                                            </a>--%>
+                                            <h5>Sum of bids: ${p.bid_count}</h5>
+                                            <h5>Highest Bidder: ${p.name}</h5>
+                                            <div class="d-none">
+                                                <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="start" type="both" />
+                                                <fmt:formatDate type="time" value="${start}"/>
+                                            </div>
+                                            <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
+                                            <c:if test="${date <1}">
+                                                <c:if test="${(((now.time-start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
+                                                    <h4 class="text-danger w-25 mx-auto text-center">New</h4>
+                                                </c:if>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </c:forEach>
