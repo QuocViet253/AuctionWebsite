@@ -28,7 +28,7 @@
             if(${auth})
             {
                 $('#btnConfirmBid').on('click',function (){
-                    $('.modal-body').html($('.modal-body').html().replace(/<b style="color: #f33a58">[^<]*/,''))
+                    $('.modalConfirm').html($('.modalConfirm').html().replace(/<b style="color: #f33a58">[^<]*/,''))
                     let step = parseInt($('#step').val());
                     let price = parseInt($('#price').val()) ;
                     let price_start= parseInt($('#price_start').val()) ;
@@ -53,7 +53,7 @@
                             if (${product.allow_bid.equals("off")}){
                                 //Case all bidder can bid this product
                                 $('#staticBackdrop').modal('toggle')
-                                $('.modal-body').append('<b style="color: #f33a58"> $'+price+'</b>')
+                                $('.modalConfirm').append('<b style="color: #f33a58"> $'+price+'</b>')
                             } else {
                                 //Case check if bidder have rating above 80%
                                 // swal({
@@ -63,7 +63,7 @@
                                 //     button: "OK!",
                                 // });
                                 $('#staticBackdrop').modal('toggle')
-                                $('.modal-body').append('<b style="color: #f33a58"> $' + price + '</b>')
+                                $('.modalConfirm').append('<b style="color: #f33a58"> $' + price + '</b>')
                             }
                         } else  swal({
                                 title: "Rejected!",
@@ -121,6 +121,18 @@
                     }
                 });
             }
+
+            $('#modalReject').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget);
+                let proid = button.data('proid');
+                let bidid = button.data('bidid');
+                $('#btnReject').attr('href','${pageContext.request.contextPath}/Product/Reject?proid='+proid+'&bidid='+bidid);
+            });
+
+            $('#btnReject').on('click', function () {
+                $('#btnReject').empty();
+                $('#btnReject').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
+            });
 
             function add (otp){
                 {
@@ -273,14 +285,14 @@
                                 Bid now
                             </button>
 
-                            <!-- Modal -->
+                            <!-- Modal Confirm -->
                             <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="staticBackdropLabel">Bid Confirmation</h5>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body modalConfirm">
                                             I bid for <b> ${product.proname}</b> <br>
                                             Confirm Bidding Price
                                         </div>
@@ -332,15 +344,34 @@
                                                 *****${nameParts[0]}
                                             </td>
                                             <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
-                                            <c:if test="${authUser.role ==0 || (auth && authUser.id==product.sell_id)}">
+                                            <c:if test="${auth && authUser.id==product.sell_id}">
                                                 <td>
-                                                    <a type="button" href="${pageContext.request.contextPath}/Product/Reject?proid=${h.proid}&bidid=${h.bid_id}" class="btn btn-outline-danger btn-sm btn-block w-50" title="Reject Bidder">
+                                                    <button type="button" data-toggle="modal" data-target="#modalReject" data-proid="${h.proid}" data-bidid="${h.bid_id}" class="btn btn-outline-danger btn-sm btn-block w-50" title="Reject Bidder">
                                                         <i class="fa fa-times" aria-hidden="true"></i>
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </c:if>
                                         </tr>
                                     </c:forEach>
+                                    <%--Modal Reject--%>
+                                    <div class="modal fade" id="modalReject" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="rejectLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="rejectLabel">Reject Confirmation</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                     Are you sure to reject bidder to bid on this product?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                        <i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                                    <a type="button" id="btnReject" class="btn btn-outline-danger">
+                                                        <i class="fa fa-check" aria-hidden="true"></i> Confirm Reject</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </c:otherwise>
                             </c:choose>
                             </tbody>
