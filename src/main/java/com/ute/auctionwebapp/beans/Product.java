@@ -20,6 +20,8 @@ public class Product {
     private int bid_count;
     private String name;
 
+    private String reject_bid_id;
+
     public Product() {}
 
     public String getName() {
@@ -122,6 +124,9 @@ public class Product {
     }
     public String getAllow_bid() {
         return allow_bid;
+    }
+    public String getReject_bid_id() {
+        return reject_bid_id;
     }
 
     public Product(String proname, String tinydes, String fulldes, int quantity, int price_start, int price_payment, int price_step, int price_now, int price_current, LocalDateTime start_day, LocalDateTime end_day, int catid, String status, int price_max, int sell_id, String renew, String allow_bid) {

@@ -371,4 +371,13 @@ public class ProductModel {
                     .executeUpdate();
         }
     }
+    public static void UpdateRejectBidId(int proid, int bidid){
+        final String query = "update products set reject_bid_id= CONCAT_WS(',',reject_bid_id,:bidid ) where proid = :proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(query)
+                    .addParameter("proid",proid)
+                    .addParameter("bidid",bidid)
+                    .executeUpdate();
+        }
+    }
 }

@@ -169,4 +169,22 @@ public class MailUtills {
         MailUtills.send(sellmail, subject, message);
         MailUtills.send(bidmail, subject, message);
     }
+    public static void sendRejectBidid(String bidmail, String proname){
+        String subject = "You have been rejected by seller| Auction Website";
+        String message = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "\n"
+                + "<head>\n"
+                + "</head>\n"
+                + "\n"
+                + "<body>\n"
+                + "    <h3 style=\"color: blue;\">You have been rejected by seller in product: </h3>\n"
+                + "    <div>Product name: <span style=\"color: red\">" + proname + "</span></div>\n"
+                + "    <h3 style=\"color: red\">You can no longer bid on this product</h3>\n"
+                + "\n"
+                + "</body>\n"
+                + "\n"
+                + "</html>";
+        MailUtills.send(bidmail, subject, message);
+    }
 }

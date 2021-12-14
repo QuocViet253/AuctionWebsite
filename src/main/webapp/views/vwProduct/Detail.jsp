@@ -43,23 +43,36 @@
                         });
                     }
                     else {
-                        if (${product.allow_bid.equals("off")}){
-                            //Case all bidder can bid this product
-                            $('#staticBackdrop').modal('toggle')
-                            $('.modal-body').append('<b style="color: #f33a58"> $'+price+'</b>')
-                        } else {
-                            //Case check if bidder have rating above 80%
-                            // swal({
-                            //     title: "Warning!",
-                            //     text: "Your rating must have more than 80% to bid on this product!",
-                            //     icon: "warning",
-                            //     button: "OK!",
-                            // });
-                            $('#staticBackdrop').modal('toggle')
-                            $('.modal-body').append('<b style="color: #f33a58"> $' + price + '</b>')
-                        }
+                        let rejectFlag = 0;
+                        <c:forEach var="rejectBidID" items="${fn:split(product.reject_bid_id, ',')}">
+                            <c:if  test="${authUser.id == rejectBidID}" >
+                                rejectFlag = 1;
+                            </c:if>
+                        </c:forEach>
+                        if (rejectFlag === 0) {
+                            if (${product.allow_bid.equals("off")}){
+                                //Case all bidder can bid this product
+                                $('#staticBackdrop').modal('toggle')
+                                $('.modal-body').append('<b style="color: #f33a58"> $'+price+'</b>')
+                            } else {
+                                //Case check if bidder have rating above 80%
+                                // swal({
+                                //     title: "Warning!",
+                                //     text: "Your rating must have more than 80% to bid on this product!",
+                                //     icon: "warning",
+                                //     button: "OK!",
+                                // });
+                                $('#staticBackdrop').modal('toggle')
+                                $('.modal-body').append('<b style="color: #f33a58"> $' + price + '</b>')
+                            }
+                        } else  swal({
+                                title: "Rejected!",
+                                text: "You have been rejected by seller in this product!",
+                                icon: "error",
+                                dangerMode: true,
+                                button: "OK!",
+                            });
                     }
-
                 });
 
                 $('#btn-auction').on('click',function (){

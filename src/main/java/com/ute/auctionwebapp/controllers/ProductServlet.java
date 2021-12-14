@@ -159,6 +159,8 @@ public class ProductServlet extends HttpServlet {
                 int bidid = Integer.parseInt(request.getParameter("bidid"),10);
                 Product p = ProductModel.findByBidid(proid);
                 HistoryModel.deleteHistory(proid,bidid);
+                ProductModel.UpdateRejectBidId(proid,bidid);
+                MailUtills.sendRejectBidid(p.getBid_mail(),p.getProname());
                 if(p.getBid_id()==bidid)
                 {
                     History h = HistoryModel.findHighestBidder(proid);
