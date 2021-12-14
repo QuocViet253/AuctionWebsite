@@ -297,6 +297,7 @@
                                 <th scope="col">Time</th>
                                 <th scope="col">Bidder</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Reject</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -318,6 +319,13 @@
                                                 *****${nameParts[0]}
                                             </td>
                                             <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
+                                            <c:if test="${authUser.role ==0 || (auth && authUser.id==product.sell_id)}">
+                                                <td>
+                                                    <a type="button" href="${pageContext.request.contextPath}/Product/Reject?proid=${h.proid}&bidid=${h.bid_id}" class="btn btn-outline-danger btn-sm btn-block w-50" title="Reject Bidder">
+                                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                            </c:if>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>

@@ -1,26 +1,23 @@
 package com.ute.auctionwebapp.controllers;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
-import com.ute.auctionwebapp.beans.User;
-import com.ute.auctionwebapp.beans.WatchList;
 import com.ute.auctionwebapp.models.HistoryModel;
 import com.ute.auctionwebapp.models.ProductModel;
-import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.models.WatchListModel;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
-import org.sql2o.data.Table;
 
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -101,6 +98,9 @@ public class ProductServlet extends HttpServlet {
                 int price_step = Integer.parseInt(request.getParameter("step"));
                 proname = request.getParameter("proname");
                 int sell_id = product1.getSell_id();
+                String email = request.getParameter("email");
+                String sell_mail = request.getParameter("sell_mail");
+                String bid_mail = request.getParameter("bid_mail");
                 if(max == 0 )
                 {
                     boolean update = ProductModel.updatePriceMax(proid,product1.getPrice_start(),new_price,uid,renew) ;
@@ -111,9 +111,7 @@ public class ProductServlet extends HttpServlet {
 
                     out.print(update);
                     out.flush();
-                    String email = request.getParameter("email");
                     MailUtills.sendNotify(email,new_price,proname);
-                    String sell_mail = request.getParameter("sell_mail");
                     MailUtills.sendNotify(sell_mail,new_price,proname);
                     //Add history
                     LocalDateTime buy_date = LocalDateTime.now();
@@ -128,8 +126,10 @@ public class ProductServlet extends HttpServlet {
 
                         out.print(update);
                         out.flush();
-//                        String email = request.getParameter("email");
-//                        MailUtills.sendNotify(email, new_price, proname);
+
+                        MailUtills.sendNotify(email, new_price, proname);
+                        MailUtills.sendNotify(sell_mail,new_price,proname);
+                        MailUtills.sendNotify(bid_mail,new_price,proname);
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
                         HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
@@ -144,11 +144,8 @@ public class ProductServlet extends HttpServlet {
 
                         out.print(update);
                         out.flush();
-                        String email = request.getParameter("email");
                         MailUtills.sendNotify(email, new_price, proname);
-                        String sell_mail = request.getParameter("sell_mail");
                         MailUtills.sendNotify(sell_mail,new_price,proname);
-                        String bid_mail = request.getParameter("bid_mail");
                         MailUtills.sendNotify(bid_mail,new_price,proname);
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
@@ -156,6 +153,24 @@ public class ProductServlet extends HttpServlet {
                     }
                 }
 
+                break;
+            case"/Reject":
+                proid  = Integer.parseInt(request.getParameter("proid"),10);
+                int bidid = Integer.parseInt(request.getParameter("bidid"),10);
+                Product p = ProductModel.findByBidid(proid);
+                HistoryModel.deleteHistory(proid,bidid);
+                if(p.getBid_id()==bidid)
+                {
+                    History h = HistoryModel.findHighestBidder(proid);
+                    if(h==null)
+                    {
+                        ProductModel.updatePriceMax(proid,0,0,0,p.getRenew());
+                    }
+                    else{
+                        ProductModel.updatePriceMax(proid,h.getPrice(),h.getPrice(),h.getBid_id(),p.getRenew());
+                    }
+                }
+                ServletUtills.redirect("/Product/Detail?id="+proid+"&catid="+p.getCatid(),request,response);
                 break;
             case "/WatchList":
                 ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);

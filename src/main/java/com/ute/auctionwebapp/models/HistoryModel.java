@@ -39,7 +39,7 @@ public class HistoryModel {
         }
     }
     public static List<History> findByProduct(int proid) {
-        final String query = "select users.name, histories.buy_day, histories.price\n" +
+        final String query = "select users.name, histories.buy_day, histories.price,histories.bid_id,histories.proid\n" +
                 "from auction.histories,auction.users\n" +
                 "where histories.proid = :proid and histories.bid_id = users.id";
         try (Connection con = DbUtills.getConnection()) {
@@ -48,15 +48,32 @@ public class HistoryModel {
                     .executeAndFetch(History.class);
         }
     }
-    public static boolean deleteHistory(int id) {
-        String Sql = "delete from watch_list where id=:proid";
+    public static boolean deleteHistory(int proid, int bid_id) {
+        String Sql = "delete from histories where proid=:proid and bid_id=:bid_id";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(Sql)
-                    .addParameter("proid", id)
+                    .addParameter("proid", proid)
+                    .addParameter("bid_id", bid_id)
                     .executeUpdate();
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+    public static History findHighestBidder(int proid){
+        final String query = "select *\n" +
+                "from histories\n" +
+                "where proid=:proid\n" +
+                "order by price desc";
+        try (Connection con = DbUtills.getConnection()) {
+            List<History> list =  con.createQuery(query)
+                    .addParameter("proid",proid)
+                    .executeAndFetch(History.class);
+            if(list.size()==0)
+            {
+                return null;
+            }
+            return list.get(0);
         }
     }
 }

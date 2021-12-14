@@ -3,9 +3,11 @@
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 
 <div class="header">
-    <!-- Top Nav -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <div class="collapse navbar-collapse justify-content-lg-between" id="navbarSupportedContent">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-lg-between"  id="navbarSupportedContent">
             <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top"
                     alt="No Loading" style=" width:140px ;height: 70px"></a>
             <nav class="navbar navbar-light bg-info d-inline">
@@ -92,6 +94,9 @@
     </nav>
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
@@ -111,14 +116,14 @@
                         <i class="fa fa-history text-warning" aria-hidden="true"></i>
                         History</a>
                 </li>
+<%--                <li class="nav-item mr-5 ml-5">--%>
+<%--                    <a class="nav-link text-info" href="#contact">--%>
+<%--                        <i class="fa fa-info-circle text-info" aria-hidden="true"></i>--%>
+<%--                        About</a>--%>
+<%--                </li>--%>
                 <li class="nav-item mr-5 ml-5">
                     <a class="nav-link text-info" href="#contact">
-                        <i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                        About</a>
-                </li>
-                <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link" href="#contact">
-                        <i class="fa fa-address-card" aria-hidden="true"></i>
+                        <i class="fa fa-address-card text-info" aria-hidden="true"></i>
                         Contact us</a>
                 </li>
             </ul>
