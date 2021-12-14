@@ -138,10 +138,18 @@
                     <span class="form-message" ></span>
                 </div>
                 <div class="form-group form-check">
-                    <input type="hidden" name="auto" value="off" >
                     <input type="checkbox" name="auto" class="form-check-input" id="chkAutoRenew">
+                    <input type="hidden" name="auto" value="off" >
                     <label class="form-check-label" for="chkAutoRenew">Auto-renew? </label>
-                    <span class="d-inline-block " tabindex="0" data-toggle="tooltip" title="When there is a new auction before the end of 5 minutes, the product will automatically renew for another 10 minutes. ">
+                    <span class="d-inline-block " tabindex="0" data-toggle="tooltip" title="When there is a new auction before the end of 5 minutes, the product will automatically renew for another 10 minutes. Default is off!">
+                <i class="fa fa-question-circle text-secondary" aria-hidden="true"></i>
+                </span>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" name="allow_bid" class="form-check-input" id="chkAllowBid">
+                    <input type="hidden" name="allow_bid" value="off" >
+                    <label class="form-check-label" for="chkAllowBid">Only bidders with ratings above 80% are allowed to bid ? </label>
+                    <span class="d-inline-block " tabindex="0" data-toggle="tooltip" title="Default is off!">
                 <i class="fa fa-question-circle text-secondary" aria-hidden="true"></i>
                 </span>
                 </div>

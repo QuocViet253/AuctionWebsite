@@ -133,6 +133,7 @@ public class ProductServlet extends HttpServlet {
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
                         HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
+                        HistoryModel.addHistory(proid,proname,sell_id,product1.getBid_id(),buy_date,new_price);
                     }
                     if (max < new_price) {
                         boolean update = ProductModel.updatePriceMax(proid, (max + price_step), new_price, uid,renew);
@@ -190,6 +191,7 @@ public class ProductServlet extends HttpServlet {
 
         String proname = request.getParameter("proname");
         String auto = request.getParameter("auto");
+        String allow_bid = request.getParameter("allow_bid");
         String tinydes = request.getParameter("tinydes");
         String fulldes = request.getParameter("fulldes");
         String status = "Now";
@@ -206,7 +208,7 @@ public class ProductServlet extends HttpServlet {
              buy_price = Integer.parseInt(request.getParameter("buy_price"));
         }
 
-        Product pro = new Product(proname,tinydes,fulldes,quantity,start_price,price_payment,step_price,buy_price,price_cur,start_day,end_day,catid,status,price_max,sell_id,auto);
+        Product pro = new Product(proname,tinydes,fulldes,quantity,start_price,price_payment,step_price,buy_price,price_cur,start_day,end_day,catid,status,price_max,sell_id,auto,allow_bid);
         int lastid = ProductModel.add(pro);
 
         int i = 0;

@@ -339,7 +339,7 @@ public class ProductModel {
         }
     }
     public static int add(Product p){
-        final String query = "INSERT INTO products ( proname, tinydes, fulldes, quantity, price_start, price_payment, price_step, price_now, price_current, price_max, start_day, end_day, catid, status, sell_id,renew) VALUES (:proname,:tinydes,:fulldes,:quantity,:priceStart,:pricePayment,:priceStep,:priceNow,:priceCurrent,:priceMax,:startDay,:endDay,:catid,:status,:sellId,:renew)\n";
+        final String query = "INSERT INTO products ( proname, tinydes, fulldes, quantity, price_start, price_payment, price_step, price_now, price_current, price_max, start_day, end_day, catid, status, sell_id,renew,allow_bid) VALUES (:proname,:tinydes,:fulldes,:quantity,:priceStart,:pricePayment,:priceStep,:priceNow,:priceCurrent,:priceMax,:startDay,:endDay,:catid,:status,:sellId,:renew,:allow_bid)\n";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(query)
                     .addParameter("proname",p.getProname())
@@ -358,6 +358,7 @@ public class ProductModel {
                     .addParameter("status",p.getStatus())
                     .addParameter("priceMax",p.getPrice_max())
                     .addParameter("renew",p.getRenew())
+                    .addParameter("allow_bid",p.getAllow_bid())
                     .executeUpdate();
             return getLastProID();
         }

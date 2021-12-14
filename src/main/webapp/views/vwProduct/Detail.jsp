@@ -43,8 +43,21 @@
                         });
                     }
                     else {
-                        $('#staticBackdrop').modal('toggle')
-                        $('.modal-body').append('<b style="color: #f33a58"> $'+price+'</b>')
+                        if (${product.allow_bid.equals("off")}){
+                            //Case all bidder can bid this product
+                            $('#staticBackdrop').modal('toggle')
+                            $('.modal-body').append('<b style="color: #f33a58"> $'+price+'</b>')
+                        } else {
+                            //Case check if bidder have rating above 80%
+                            // swal({
+                            //     title: "Warning!",
+                            //     text: "Your rating must have more than 80% to bid on this product!",
+                            //     icon: "warning",
+                            //     button: "OK!",
+                            // });
+                            $('#staticBackdrop').modal('toggle')
+                            $('.modal-body').append('<b style="color: #f33a58"> $' + price + '</b>')
+                        }
                     }
 
                 });
