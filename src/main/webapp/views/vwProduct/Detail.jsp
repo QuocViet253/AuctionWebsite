@@ -176,9 +176,9 @@
                     //Output the result in an element with day < 3
                     if (days < 3)
                         if (days === 0)
-                            if (hours === 0) document.querySelector("#item").innerHTML = minutes + " min";
-                            else document.querySelector("#item").innerHTML = hours + " hour";
-                        else document.querySelector("#item").innerHTML = days + " day";
+                            if (hours === 0) document.querySelector("#item").innerHTML = minutes + " more minutes";
+                            else document.querySelector("#item").innerHTML = hours + " more hours";
+                        else document.querySelector("#item").innerHTML = days + " more days";
                     else
                         document.querySelector("#item").innerHTML = days + "day " + hours + "hour "
                             + minutes + "min " + seconds + "second ";
@@ -238,20 +238,20 @@
                     <input id="email" name="email" type="hidden" value="${authUser.email}">
                     <input id="price_cur" name="price_cur" type="hidden" value="${product.price_current}">
                     <div class="border border-info rounded" >
-                        <div class="content mt-3" style="margin-left: 200px">
-                            <h4 class="mr-2">Seller: ${product.sell_name}</h4>
-                            <h4 class="mr-2">Highest Bidder:
+                        <div class="content mt-3 " style="margin-left: 50px">
+                            <h4 class="mr-2"><span class="text-info">Seller:</span> ${product.sell_name}</h4>
+                            <h4 class="mr-2"><span class="text-info">Highest Bidder:</span>
                                 <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
                                 *****${nameParts[0]}
                             </h4>
-                            <h4 class="mr-2">Date Start: <fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                            <h4 class="mr-2"><span class="text-info">Date Start: </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
                             <h4>
-                                Time remaining:
+                                <span class="text-info">Time remaining:</span>
                                 <span id="item" style="display: inline-block"></span>
                             </h4>
                             <h4>
-                                Product details</h4>
+                                <span class="text-info">Product details:</span></h4>
                             <div style="margin-left: 75px;!important;">${product.fulldes}</div>
 
                         </div>
@@ -391,8 +391,8 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-lg-3 mb-4 shadow" style="border-radius: 10%" >
-                                        <div class="product-top mt-3">
+                                    <div class="col-lg-3 mb-4 shadow text-center" style="border-radius: 10%" >
+                                        <div class="product-top mt-3 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 205px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -405,7 +405,7 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 name="proname" style="width: 205px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h3 name="proname" class="mx-auto" style="width: 205px;height: 75px; object-fit: contain">${p.proname}</h3>
                                         </div>
                                     </div>
                                 </c:forEach>

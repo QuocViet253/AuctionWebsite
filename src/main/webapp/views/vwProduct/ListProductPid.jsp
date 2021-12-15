@@ -82,7 +82,7 @@
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
                                     <div class="col-md-3 mb-4 shadow" style="border-radius: 10%" >
-                                        <div class="product-top mt-2">
+                                        <div class="product-top mt-2 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="height: 232px; width: 232px;object-fit:contain " src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -94,7 +94,7 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
                                             <h5 style="margin: 0">Price Current:$
                                                 <fmt:formatNumber value="${p.price_current}" type="number" />
                                             </h5>

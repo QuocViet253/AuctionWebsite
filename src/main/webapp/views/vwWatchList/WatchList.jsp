@@ -82,7 +82,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${watchlists}" var="w">
-                                    <div class="col-md-3 mb-4" >
+                                    <div class="col-md-3 mb-4 text-center" >
                                         <div class="product-top">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}&catid=${w.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${w.proid}/main.jpg"></a>
                                             <div class="overlay-right">
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 style="width: 250px;height: 75px; object-fit: contain">Tên sản phẩm: ${w.proname}</h3>
+                                            <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">Tên sản phẩm: ${w.proname}</h3>
                                         </div>
                                     </div>
                                 </c:forEach>

@@ -113,7 +113,7 @@
                         <c:otherwise>
                             <c:forEach items="${sellingProducts}" var="p">
                                 <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
-                                    <div class="product-top mt-2">
+                                    <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -128,7 +128,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                        <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
                                         <h5 style="margin: 0">Giá hiện tại: $
                                             <fmt:formatNumber value="${p.price_current}" type="number" />
                                         </h5>
@@ -201,7 +201,7 @@
                         <c:otherwise>
                             <c:forEach items="${soldProducts}" var="p2">
                                 <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
-                                    <div class="product-top mt-2">
+                                    <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}" class="btn btn-secondary" title="Detail">
@@ -214,7 +214,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
+                                        <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
                                         <h5 style="margin: 0">Giá hiện tại: $
                                             <fmt:formatNumber value="${p2.price_current}" type="number" />
                                         </h5>
@@ -253,7 +253,7 @@
                         <c:otherwise>
                             <c:forEach items="${biddingProducts}" var="p3">
                                 <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
-                                    <div class="product-top mt-2">
+                                    <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}" class="btn btn-secondary" title="Detail">
@@ -266,7 +266,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
+                                        <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
                                         <h5 style="margin: 0">Giá hiện tại: $
                                             <fmt:formatNumber value="${p3.price_current}" type="number" />
                                         </h5>
@@ -305,7 +305,7 @@
                         <c:otherwise>
                             <c:forEach items="${winningProducts}" var="p4">
                                 <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
-                                    <div class="product-top mt-2">
+                                    <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p4.proid}&catid=${p4.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p4.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p4.proid}&catid=${p4.catid}" class="btn btn-secondary" title="Detail">
@@ -318,7 +318,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
+                                        <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
                                         <h5 style="margin: 0">Giá hiện tại: $
                                             <fmt:formatNumber value="${p4.price_current}" type="number" />
                                         </h5>

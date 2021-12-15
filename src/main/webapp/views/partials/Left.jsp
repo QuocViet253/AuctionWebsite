@@ -5,8 +5,8 @@
 <jsp:useBean id="categoriesWithDetails2" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Category>"/>
 <%--<jsp:useBean id="categoriesWithDetails3" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Category>"/>--%>
 
-<div class="left col-sm-2 mt-1">
-    <div class="card mt-1" style="width: 210px; position: sticky; top:0; z-index: 1;">
+<div class="left col-xl-2 mt-1" style="padding-right: 0px">
+    <div class="card mt-1" style="position: sticky; top:0; z-index: 1;">
         <h4 class="card-header bg-info">
             Category
         </h4>
