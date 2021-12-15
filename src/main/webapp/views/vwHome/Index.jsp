@@ -44,7 +44,7 @@
             <section class="on-sale">
                 <div class="container-fluid">
                     <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">
-                        <h2 style="cursor: pointer;">Top expire</h2>
+                        <h2 style="cursor: pointer;">Top Expired</h2>
                     </div>
                     <div class="row">
                             <c:forEach items="${products1}" var="p1">
@@ -127,7 +127,7 @@
                     </div>
                     <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;">
                         <a name="hot"></a>
-                        <h2 style="cursor: pointer;">Top Acution</h2>
+                        <h2 style="cursor: pointer;">Top Bidding</h2>
                     </div>
                     <div class="row">
                         <c:forEach items="${products3}" var="p3">
