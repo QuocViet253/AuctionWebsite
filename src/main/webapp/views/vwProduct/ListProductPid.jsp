@@ -98,9 +98,11 @@
                                             <h5 style="margin: 0">Price Current:$
                                                 <fmt:formatNumber value="${p.price_current}" type="number" />
                                             </h5>
-                                            <h5>Price Buy Now:$
-                                                <fmt:formatNumber value="${p.price_now}" type="number" />
-                                            </h5>
+                                            <c:if test="${p.price_now!=0}">
+                                                <h5>Price Buy Now: $
+                                                    <fmt:formatNumber value="${p.price_now}" type="number" />
+                                                </h5>
+                                            </c:if>
                                             <h5>Start Date:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />

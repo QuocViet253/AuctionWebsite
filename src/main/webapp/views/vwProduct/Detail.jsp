@@ -230,9 +230,12 @@
                     <h4 style="cursor:pointer;" class="text-success text-center mt-3">Current price:$
                         <fmt:formatNumber value="${product.price_current}" type="number" />
                     </h4>
-                    <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Buy Now Price:$
-                        <fmt:formatNumber value="${product.price_now}" type="number" />
-                    </h4>
+                    <c:if test="${product.price_now!=0}">
+                        <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Buy Now Price:$
+                            <fmt:formatNumber value="${product.price_now}" type="number" />
+                        </h4>
+                    </c:if>
+
                     <input id="price_start" name="price_start" type="hidden" value="${product.price_start}">
                     <input id="step" name="step" type="hidden" value="${product.price_step}">
                     <input id="email" name="email" type="hidden" value="${authUser.email}">

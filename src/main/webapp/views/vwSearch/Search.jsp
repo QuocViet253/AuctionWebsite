@@ -69,7 +69,7 @@
     </jsp:attribute>
     <jsp:body>
         <div class="right col-sm-10 mt-1" >
-            <div class="dropdown mt-1 mb-2">
+            <div class="dropdown mt-1 mb-2" style="width: 91px">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-filter" aria-hidden="true"></i>
                     Sort
@@ -111,7 +111,9 @@
                                         <div class="product-bottom text-center">
                                             <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
                                             <h5 style="margin: 0">Price Current: ${p.price_current}</h5>
-                                            <h5>Price Buy Now: ${p.price_now}</h5>
+                                            <c:if test="${p.price_now!=0}">
+                                                <h5>Price Buy Now: ${p.price_now}</h5>
+                                            </c:if>
                                             <h5>Start Date:
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />

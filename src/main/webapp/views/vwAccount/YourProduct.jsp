@@ -129,21 +129,22 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: $
+                                        <h5 style="margin: 0">Price Current: $
                                             <fmt:formatNumber value="${p.price_current}" type="number" />
                                         </h5>
-                                        <h5>Giá mua ngay: $
-                                            <fmt:formatNumber value="${p.price_now}" type="number" />
-                                        </h5>
-                                        <h5>Ngày đăng:
+                                        <c:if test="${p.price_now!=0}">
+                                            <h5>Price Buy Now: $
+                                                <fmt:formatNumber value="${p.price_now}" type="number" />
+                                            </h5>
+                                        </c:if>
+                                        <h5>Start Date:
                                             <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Kết thúc:
+                                        <h5>End Date:
                                             <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Số lượt ra giá</h5>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -215,21 +216,22 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: $
+                                        <h5 style="margin: 0">Price Current: $
                                             <fmt:formatNumber value="${p2.price_current}" type="number" />
                                         </h5>
-                                        <h5>Giá mua ngay: $
-                                            <fmt:formatNumber value="${p2.price_now}" type="number" />
-                                        </h5>
-                                        <h5>Ngày đăng:
+                                        <c:if test="${p2.price_now!=0}">
+                                            <h5>Price Buy Now: $
+                                                <fmt:formatNumber value="${p2.price_now}" type="number" />
+                                            </h5>
+                                        </c:if>
+                                        <h5>Start Date:
                                             <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Kết thúc:
+                                        <h5>End Date:
                                             <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Số lượt ra giá</h5>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -267,21 +269,22 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: $
+                                        <h5 style="margin: 0">Price Current: $
                                             <fmt:formatNumber value="${p3.price_current}" type="number" />
                                         </h5>
-                                        <h5>Giá mua ngay: $
-                                            <fmt:formatNumber value="${p3.price_now}" type="number" />
-                                        </h5>
-                                        <h5>Ngày đăng:
+                                        <c:if test="${p3.price_now!=0}">
+                                            <h5>Price Buy Now: $
+                                                <fmt:formatNumber value="${p3.price_now}" type="number" />
+                                            </h5>
+                                        </c:if>
+                                        <h5>Start Date:
                                             <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Kết thúc:
+                                        <h5>End Date:
                                             <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Số lượt ra giá</h5>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -319,21 +322,23 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
-                                        <h5 style="margin: 0">Giá hiện tại: $
+                                        <h5 style="margin: 0">Price Current: $
+                                        <h5 style="margin: 0">Price Current: $
                                             <fmt:formatNumber value="${p4.price_current}" type="number" />
                                         </h5>
-                                        <h5>Giá mua ngay: $
-                                            <fmt:formatNumber value="${p4.price_now}" type="number" />
-                                        </h5>
-                                        <h5>Ngày đăng:
+                                        <c:if test="${p4.price_now!=0}">
+                                            <h5>Price Buy Now: $
+                                                <fmt:formatNumber value="${p4.price_now}" type="number" />
+                                            </h5>
+                                        </c:if>
+                                        <h5>Start Date:
                                             <fmt:parseDate value="${p4.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Kết thúc:
+                                        <h5>End Date:
                                             <fmt:parseDate value="${p4.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                             <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                         </h5>
-                                        <h5>Số lượt ra giá</h5>
                                     </div>
                                 </div>
                             </c:forEach>

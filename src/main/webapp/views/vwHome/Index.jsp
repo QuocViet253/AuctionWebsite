@@ -65,9 +65,11 @@
                                             <h5>Price Current: $
                                                 <fmt:formatNumber value="${p1.price_current}" type="number" />
                                             </h5>
-                                            <h5>Price Buy Now: $
-                                                <fmt:formatNumber value="${p1.price_now}" type="number" />
-                                            </h5>
+                                            <c:if test="${p1.price_now!=0}">
+                                                <h5>Price Buy Now: $
+                                                    <fmt:formatNumber value="${p1.price_now}" type="number" />
+                                                </h5>
+                                            </c:if>
                                             <h5>Start Date :
                                                 <fmt:parseDate value="${p1.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -108,9 +110,11 @@
                                     <h5>Price Current: $
                                         <fmt:formatNumber value="${p2.price_current}" type="number" />
                                     </h5>
-                                    <h5>Price Buy Now: $
-                                        <fmt:formatNumber value="${p2.price_now}" type="number" />
-                                    </h5>
+                                    <c:if test="${p2.price_now!=0}">
+                                        <h5>Price Buy Now: $
+                                            <fmt:formatNumber value="${p2.price_now}" type="number" />
+                                        </h5>
+                                    </c:if>
                                     <h5>Start Date:
                                         <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
@@ -148,9 +152,11 @@
                                     <h5>Price Current: $
                                         <fmt:formatNumber value="${p3.price_current}" type="number" />
                                     </h5>
-                                    <h5>Price Buy Now: $
-                                        <fmt:formatNumber value="${p3.price_current}" type="number" />
-                                    </h5>
+                                    <c:if test="${p3.price_now!=0}">
+                                        <h5>Price Buy Now: $
+                                            <fmt:formatNumber value="${p3.price_now}" type="number" />
+                                        </h5>
+                                    </c:if>
                                     <h5>Start Date:
                                         <fmt:parseDate value="${p3.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
