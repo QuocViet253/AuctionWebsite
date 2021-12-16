@@ -55,4 +55,52 @@ public class CategoryModel {
                     .executeAndFetch(Category.class);
         }
     }
+
+    public static Category findById(int id) {
+        final String query = "select * from categories where CatID = :CatID";
+        try (Connection con = DbUtills.getConnection()) {
+            List<Category> list = con.createQuery(query)
+                    .addParameter("CatID", id)
+                    .executeAndFetch(Category.class);
+
+            if (list.size() == 0) {
+                return null;
+            }
+            return list.get(0);
+        }
+
+    }
+
+    public static void add(Category c) {
+        String insertSql = "insert into categories(CatName) values (:CatName)";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("CatName", c.getCatname())
+                    .executeUpdate();
+        }
+
+    }
+
+    public static void update(Category c) {
+        String sql = "update categories set CatName = :CatName where CatID = :CatID";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(sql)
+                    .addParameter("CatID", c.getCatid())
+                    .addParameter("CatName", c.getCatname())
+                    .executeUpdate();
+        }
+
+    }
+
+    public static void delete(int id) {
+        String sql = "delete from categories where CatID = :CatID";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(sql)
+                    .addParameter("CatID", id)
+                    .executeUpdate();
+        }
+
+    }
 }
+
+

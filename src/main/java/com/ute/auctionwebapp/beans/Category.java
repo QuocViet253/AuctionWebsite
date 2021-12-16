@@ -5,7 +5,10 @@ public class Category {
     private String catname;
     private int pid;
     private int level;
-    public Category() {
+    public Category(int id, String name) {
+    }
+
+    public Category(String name) {
     }
 
     public int getPid() {
@@ -30,5 +33,4 @@ public class Category {
     public String getCatname() {
         return catname;
     }
-
 }
