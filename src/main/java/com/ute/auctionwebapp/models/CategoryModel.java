@@ -1,6 +1,7 @@
 package com.ute.auctionwebapp.models;
 
 import com.ute.auctionwebapp.beans.Category;
+import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
 
@@ -99,7 +100,6 @@ public class CategoryModel {
                     .addParameter("CatID", id)
                     .executeUpdate();
         }
-
     }
 }
 

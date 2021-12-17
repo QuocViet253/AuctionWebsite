@@ -1,7 +1,9 @@
 package com.ute.auctionwebapp.controllers;
 
+import com.ute.auctionwebapp.beans.Category;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
+import com.ute.auctionwebapp.models.CategoryModel;
 import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
@@ -34,6 +36,11 @@ public class AdminServlet extends HttpServlet {
                 List<User> userList = UserModel.findAll();
                 request.setAttribute("users", userList);
                 ServletUtills.forward("/views/vwAdministrator/AdminUser.jsp", request, response);
+                break;
+            case "/Category":
+                List<Category> categoryList = CategoryModel.findAll();
+                request.setAttribute("categories", categoryList);
+                ServletUtills.forward("/views/vwAdministrator/AdminCategory.jsp", request, response);
                 break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);

@@ -17,19 +17,19 @@
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Admin/Product">
-                        <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                        <i class="fa fa-product-hunt" aria-hidden="true"></i>
                         Product <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mr-5 ml-5 text-danger" href="${pageContext.request.contextPath}/Admin/User">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <i class="fa fa-id-card-o" aria-hidden="true"></i>
                         User
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>
+                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Admin/Category">
+                        <i class="fa fa-list-ol" aria-hidden="true"></i>
                         Category</a>
                 </li>
             </ul>
