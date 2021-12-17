@@ -93,9 +93,10 @@
                 </li>
 
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link" href="#contact">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/Admin"  id="watchlist">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        Manage User</a>
+                        Manage
+                    </a>
                 </li>
             </ul>
         </div>

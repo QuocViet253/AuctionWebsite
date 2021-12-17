@@ -1,6 +1,7 @@
 package com.ute.auctionwebapp.models;
 
 import com.ute.auctionwebapp.beans.User;
+import com.ute.auctionwebapp.beans.WatchList;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
 
@@ -82,5 +83,11 @@ public class UserModel {
             return list.get(0);
         }
     }
-
+    public static List<User> findAll(){
+        final String query = "select * from users";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(User.class);
+        }
+    }
 }
