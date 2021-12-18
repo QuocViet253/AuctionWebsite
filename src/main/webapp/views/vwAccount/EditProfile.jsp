@@ -37,7 +37,7 @@
         <form class="mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formUpdate" >
             <!-- Logo -->
             <div class="text-center mb-3">
-                <h3 class="text-info">EDIT PROFILE</h3>
+                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">EDIT PROFILE</h3>
                 <input type="hidden" name="uid" value="${authUser.id}">
             </div>
 
@@ -69,19 +69,19 @@
 
             <!-- Button update -->
             <div class="text-center">
-                <button type="submit" class="btn btn-info w-75" id="btnUpdate">Save </button>
+                <button type="submit" class="btn btn-primary w-75" id="btnUpdate">Save </button>
             </div>
            <%-- formaction="${pageContext.request.contextPath}/Account/EditProfile"--%>
             <div class="text-center mt-3">
                 <c:choose>
-                    <c:when test="${authUser.role == 1}"><a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/BidderProfile" role="button">
+                    <c:when test="${authUser.role == 1}"><a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Account/BidderProfile" role="button">
                         Return Profile
                     </a></c:when>
-                    <c:when test="${authUser.role == 0}"><a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/Profile" role="button">
+                    <c:when test="${authUser.role == 0}"><a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Account/Profile" role="button">
                         Return Profile
                     </a></c:when>
                      <c:otherwise>
-                         <a class="btn btn-outline-info" id="switchLogin" href="${pageContext.request.contextPath}/Account/SellerProfile" role="button">
+                         <a class="btn btn-outline-danger" id="switchLogin" href="${pageContext.request.contextPath}/Account/SellerProfile" role="button">
                              Return Profile
                          </a>
                      </c:otherwise>
