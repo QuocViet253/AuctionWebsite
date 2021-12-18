@@ -3,14 +3,14 @@
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 
 <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-image: linear-gradient(#ea8215, #eca45d)">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-lg-between"  id="navbarSupportedContent">
             <a href="${pageContext.request.contextPath}/Home"><img src="${pageContext.request.contextPath}/public/imgs/logo.png" class="img-fluid rounded-top"
                     alt="No Loading" style=" width:140px ;height: 70px"></a>
-            <nav class="navbar navbar-light bg-info d-inline">
+            <nav class="navbar navbar-light d-inline" style="background-image: linear-gradient(#ea8215, #eca45d)">
                 <div class="form-inline">
 <%--                    <ul class="navbar-nav">--%>
 <%--                        <li class="nav-item dropdown-toggle-split">--%>
@@ -28,7 +28,7 @@
                 </div>
             </nav>
             <ul class="navbar-nav">
-                <li class="nav-item active mr-4"><a href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}"  id="watchlist" class="text-light">
+                <li class="nav-item active mr-4 "><a href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}"  id="watchlist" class="text-light " style="font-weight: bold" >
                     <i class="fa fa-heart text-danger" aria-hidden="true"></i>
                     WatchList
                 </a>
@@ -40,7 +40,7 @@
                     <c:choose>
                         <c:when test="${auth}">
                             <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light " style="font-weight: bold">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 <c:set var="nameParts" value="${fn:split(authUser.name, ' ')}"/>
                                 Hi, <b>${nameParts[0]}!</b>
@@ -74,7 +74,7 @@
                             </ul>
                         </c:when>
                         <c:otherwise>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
+                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light " style="font-weight: bold">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                 Login/Register
                             </a>
@@ -93,7 +93,7 @@
         </div>
     </nav>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #F5F5F5">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
