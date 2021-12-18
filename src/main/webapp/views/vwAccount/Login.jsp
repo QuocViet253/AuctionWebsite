@@ -59,7 +59,9 @@
             <hr class="w-75 mx-auto bg-info">
             <!-- Đăng nhập với Google -->
             <div class="text-center">
-                <a class="btn btn-outline-info" href="#" role="button">
+                <%--Sửa port ở đây--%>
+                <a class="btn btn-outline-info" href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8083/auctionWebApp/Account/GoogleLogin&response_type=code
+    &client_id=968786308056-9k67nqlp92f8m7ak4060b75n1pjsfj0n.apps.googleusercontent.com&approval_prompt=force" role="button">
                     <i class="fa fa-google-plus mr-3" aria-hidden="true"></i>
                     Login with Google
                 </a>

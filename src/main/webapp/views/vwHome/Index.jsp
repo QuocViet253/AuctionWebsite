@@ -18,7 +18,7 @@
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
-                        if (data === 'false') {
+                        if (data === false) {
                             swal({
                                 title: "Failed!",
                                 text: "Failed added to your watchlist!",

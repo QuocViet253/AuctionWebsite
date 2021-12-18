@@ -123,7 +123,7 @@
                     const otp = $('#registerOTP').val();
                     const email = $('#registerEmail').val();
                     $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
-                        if (data === false) {
+                        if (data === true) {
                             $.getJSON('${pageContext.request.contextPath}/Account/SendOTP?email=' + email+'&otp=' +otp, function (data) {
                                 $('#btnOTP').html('Send OTP')
                                 if (data === false) {
@@ -217,11 +217,10 @@
             </div>
 
             <hr class="w-75 mx-auto bg-info">
-            <!-- Đăng ký với Google -->
+            <!-- Quay lai Home -->
             <div class="text-center">
-                <a class="btn btn-outline-info" href="#" role="button">
-                    <i class="fa fa-google-plus mr-3" aria-hidden="true"></i>
-                    Register with Google
+                <a class="btn btn-outline-info" href="${pageContext.request.contextPath}/Home" role="button">
+                    <i class="fa fa-home" aria-hidden="true"></i> Home
                 </a>
             </div>
             <div class="text-center mt-3">

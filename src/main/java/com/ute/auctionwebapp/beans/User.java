@@ -7,6 +7,7 @@ public class User {
     LocalDateTime dob;
     private int role, reQuest, id;
     LocalDateTime request_date;
+    boolean gg_acc;
 
     public int getId() {
         return id;
@@ -24,7 +25,7 @@ public class User {
         this.request_date = request_date;
     }
 
-    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest) {
+    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest, boolean gg_acc) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -32,6 +33,7 @@ public class User {
         this.dob = dob;
         this.role = role;
         this.reQuest = reQuest;
+        this.gg_acc = gg_acc;
     }
 
     public User(String name, String address, LocalDateTime dob, int id) {
@@ -48,15 +50,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String address, String password, LocalDateTime dob, int role, int reQuest, LocalDateTime request_date) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.dob = dob;
-        this.role = role;
-        this.reQuest = reQuest;
-        this.address = address;
-        this.request_date=request_date;
+    public boolean isGg_acc() {
+        return gg_acc;
     }
 
     public LocalDateTime getRequest_date() {

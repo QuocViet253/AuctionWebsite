@@ -137,7 +137,7 @@
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
-                        if (data === 'false') {
+                        if (data === false) {
                             swal({
                                 title: "Failed!",
                                 text: "Failed added to your watchlist!",
@@ -244,8 +244,7 @@
                         <div class="content mt-3 " style="margin-left: 50px">
                             <h4 class="mr-2"><span class="text-info">Seller:</span> ${product.sell_name}</h4>
                             <h4 class="mr-2"><span class="text-info">Highest Bidder:</span>
-                                <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
-                                *****${nameParts[0]}
+                                ${product.bid_name}
                             </h4>
                             <h4 class="mr-2"><span class="text-info">Date Start: </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>

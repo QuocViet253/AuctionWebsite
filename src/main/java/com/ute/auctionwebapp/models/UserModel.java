@@ -24,7 +24,7 @@ public class UserModel {
     }
 
     public static void add(User c) {
-        String insertSql = "INSERT INTO users (name, email, password, request, dob, role, address) VALUES (:name,:email,:password,:request,:dob,:role,:address)";
+        String insertSql = "INSERT INTO users (name, email, password, request, dob, role, address, gg_acc) VALUES (:name,:email,:password,:request,:dob,:role,:address,:gg_acc)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("password", c.getPassword())
@@ -34,6 +34,7 @@ public class UserModel {
                     .addParameter("role",c.getRole())
                     .addParameter("request", c.getReQuest())
                     .addParameter("address", c.getAddress())
+                    .addParameter("gg_acc", c.isGg_acc())
                     .executeUpdate();
         }
     }
