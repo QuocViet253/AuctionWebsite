@@ -18,8 +18,7 @@
                 <tr>
                     <th scope="col">CatID</th>
                     <th scope="col">CatName</th>
-                    <th scope="col">Level</th>
-                    <th scope="col">PID</th>
+                    <th scope="col">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,8 +33,11 @@
                             <tr>
                                 <th scope="col">${c.catid}</th>
                                 <th scope="col">${c.catname}</th>
-                                <th scope="col">${c.level}</th>
-                                <th scope="col">${c.pid}</th>
+                                <th scope="col">
+                                    <a type="button" class="btn btn-outline-info btn-sm btn-block w-50" >
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </th>
                             </tr>
                         </c:forEach>
                     </c:otherwise>

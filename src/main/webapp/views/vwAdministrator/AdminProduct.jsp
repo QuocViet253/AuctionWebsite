@@ -84,9 +84,9 @@
 <%--                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">--%>
 <%--                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>--%>
 <%--                                                </button>--%>
-                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
-                                                    <i class="fa fa-trash-o" style="border-radius: 50%"></i>
-                                                </button>
+                                                <a href="#">
+                                                    <i class="fa fa-trash-o" style="border-radius: 50%" aria-hidden="true"></i>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
