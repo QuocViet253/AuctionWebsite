@@ -63,7 +63,8 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h3 class="text-center mb-3 mt-3 bg-danger text-light">Manage</h3>
+        <h3 class="text-center mb-3 mt-3 bg-danger text-light">Welcome Back My Admin &hearts;</h3>
+        <img src="${pageContext.request.contextPath}/public/imgs/AdminMainImage.png" alt=“ad” style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto">
         <%--<div class="row">--%>
         <section class="on-sale">
             <div class="container-fluid t1">

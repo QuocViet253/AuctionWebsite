@@ -25,7 +25,7 @@
                 <i class="fa fa-user-circle fa-3x mx-auto" aria-hidden="true"></i>
             </div>
 
-            <%--Alert--%>
+                <%--Alert--%>
             <c:if test="${hasError}">
                 <div class="alert alert-danger alert-dismissible fade show w-75 mx-auto" role="alert">
                     <strong>Login failed!</strong> ${errorMessage}
@@ -37,8 +37,8 @@
 
             <!-- Email và password -->
             <div class="form-group justify-content-center d-flex">
-            <input type="text" placeholder="Email" name="email" class="form-control w-75" id="loginEmail" autofocus >
-            <span class="form-message" style="margin-right: 215px;"></span>
+                <input type="text" placeholder="Email" name="email" class="form-control w-75" id="loginEmail" autofocus >
+                <span class="form-message" style="margin-right: 215px;"></span>
             </div>
             <div class="form-group justify-content-center d-flex">
                 <input type="password" placeholder="Password" name="password" class="form-control w-75" id="loginPassword">
@@ -59,7 +59,7 @@
             <hr class="w-75 mx-auto bg-primary">
             <!-- Đăng nhập với Google -->
             <div class="text-center">
-                <%--Sửa port ở đây--%>
+                    <%--Sửa port ở đây--%>
                 <a class="btn btn-outline-danger" href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8081/auctionWebApp/Account/GoogleLogin&response_type=code
     &client_id=968786308056-9k67nqlp92f8m7ak4060b75n1pjsfj0n.apps.googleusercontent.com&approval_prompt=force" role="button">
                     <i class="fa fa-google-plus mr-3" aria-hidden="true"></i>
