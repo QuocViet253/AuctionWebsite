@@ -13,7 +13,7 @@
             <h2>Category Manager</h2>
         </div>
         <div class="tableFixHistory" style="cursor: pointer">
-            <table class="table table-hover">
+            <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
                     <th scope="col">CatID</th>
