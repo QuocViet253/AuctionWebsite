@@ -12,6 +12,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/Admin/*")
@@ -50,6 +52,13 @@ public class AdminServlet extends HttpServlet {
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
+
+            case "/EditUser":
+                int id  = Integer.parseInt(request.getParameter("uid"),10);
+                User user = UserModel.findById(id);
+                request.setAttribute("users",user);
+                ServletUtills.forward("/views/vwAdministrator/AdminEditUser.jsp", request, response);
+                break;
         }
     }
 
@@ -62,9 +71,34 @@ public class AdminServlet extends HttpServlet {
                 Category c = new Category(-1, name);
                 ServletUtills.forward("/views/vwAdministrator/AdminManager.jsp", request, response);
                 break;
+
+            case "/EditUser":
+                updateUser(request,response);
+                break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
         }
+
+    }
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("uid"));
+        String strDob = request.getParameter("dob") + " 00:00";
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime dob = LocalDateTime.parse(strDob, df);
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+
+        User c = new User(name,address,dob,id);
+        UserModel.update(c);
+
+       /* User user = UserModel.findById(id);
+        HttpSession session = request.getSession();
+        session.setAttribute("auth", true);
+        session.setAttribute("authUser", user);
+        String url = (String) (session.getAttribute("retUrl"));
+        if(url == null) url = "/Account/Profile";*/
+        ServletUtills.redirect("/Admin/User",request,response);
+
     }
 }

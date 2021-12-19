@@ -41,7 +41,7 @@
                                     <th scope="col">${u.address}</th>
                                     <th scope="col">${u.dob}</th>
                                     <th scope="col">
-                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51">
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51" href="${pageContext.request.contextPath}/Admin/EditUser?uid=${u.id}">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </th>
@@ -93,7 +93,7 @@
                                     <th scope="col">${u.address}</th>
                                     <th scope="col">${u.dob}</th>
                                     <th scope="col">
-                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51">
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51 "href="${pageContext.request.contextPath}/Admin/EditUser?uid=${u.id}">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </th>

@@ -76,8 +76,6 @@
                     Return Manage User
                 </a>
             </div>
-
-
         </form>
     </jsp:body>
 </t:AdminEditUser>
