@@ -97,8 +97,14 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Admin">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Back <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
                 <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Admin/Product">
+                    <a class="nav-link mr-5 ml-5 text-warning" href="${pageContext.request.contextPath}/Admin/Product">
                         <i class="fa fa-product-hunt" aria-hidden="true"></i>
                         Product <span class="sr-only">(current)</span>
                     </a>
@@ -110,7 +116,7 @@
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Admin/Category">
+                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Admin/Category">
                         <i class="fa fa-list-ol" aria-hidden="true"></i>
                         Category</a>
                 </li>
