@@ -5,7 +5,14 @@
 <jsp:useBean id="users" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.User>"/>
 <t:manager>
      <jsp:attribute name="js">
-        <script></script>
+        <script>
+
+
+            $('#updateDob').datetimepicker({
+                format: 'd/m/Y',
+                timepicker: false,
+            });
+        </script>
     </jsp:attribute>
     <jsp:body>
         <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
@@ -47,9 +54,9 @@
                                     </th>
                                     <th scope="col">
                                         <c:if test="${u.reQuest == 1}">
-                                            <button type="button" class="btn btn-outline-success btn-sm btn-block w-50">
+                                            <a type="button" class="btn btn-outline-success btn-sm btn-block w-50" href="${pageContext.request.contextPath}/Admin/UpgrageSeller?uid=${u.id}">
                                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                            </button>
+                                            </a>
                                         </c:if>
                                     </th>
                                 </tr>

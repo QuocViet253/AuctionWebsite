@@ -53,6 +53,13 @@ public class User {
         this.reQuest = reQuest;
     }
 
+    public User(int id, int role, int reQuest, LocalDateTime request_date) {
+        this.id= id;
+        this.role = role;
+        this.request_date = request_date;
+        this.reQuest = reQuest;
+    }
+
     public User() {
     }
 

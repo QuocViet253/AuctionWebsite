@@ -61,6 +61,17 @@ public class UserModel {
         }
     }
 
+    public static void upgrageSeller(User c) {
+        String insertSql = "UPDATE users SET  role = :role, request = :request, request_date = :requestDate WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", c.getId())
+                    .addParameter("role", c.getRole())
+                    .addParameter("request", c.getReQuest())
+                    .addParameter("requestDate", c.getRequest_date())
+                    .executeUpdate();
+        }
+    }
     public static void changepassword(User c) {
         String insertSql = "UPDATE users SET password = :password WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
