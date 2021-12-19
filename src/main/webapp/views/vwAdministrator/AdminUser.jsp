@@ -1,10 +1,8 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="users" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.User>"/>
-
 <t:manager>
      <jsp:attribute name="js">
         <script></script>
@@ -43,20 +41,19 @@
                                     <th scope="col">${u.address}</th>
                                     <th scope="col">${u.dob}</th>
                                     <th scope="col">
-                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51" >
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </th>
                                     <th scope="col">
                                         <c:if test="${u.reQuest == 1}">
-                                            <button type="button" class="btn btn-outline-success btn-sm btn-block w-50" >
+                                            <button type="button" class="btn btn-outline-success btn-sm btn-block w-50">
                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                         </c:if>
                                     </th>
                                 </tr>
                             </c:if>
-
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
@@ -66,7 +63,7 @@
         <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
             <h2 style="font-family: 'Bauhaus 93'">Seller Manager</h2>
         </div>
-        <div class="tableFixHistory" style="cursor: pointer">
+        <div class="tableFixHistory" style="cursor: pointer; height: 25%">
             <table class="table table-hover" style="width: 75%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
@@ -96,18 +93,17 @@
                                     <th scope="col">${u.address}</th>
                                     <th scope="col">${u.dob}</th>
                                     <th scope="col">
-                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51" >
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </th>
                                     <th scope="col">
-                                        <button type="button" class="btn btn-outline-danger btn-sm btn-block w-50" >
+                                        <button type="button" class="btn btn-outline-danger btn-sm btn-block w-50">
                                             <i class="fa fa-arrow-down" aria-hidden="true"></i>
                                         </button>
                                     </th>
                                 </tr>
                             </c:if>
-
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>

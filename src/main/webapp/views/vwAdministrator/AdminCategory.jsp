@@ -12,7 +12,7 @@
             <h2 style="font-family: 'Bauhaus 93'">Category Manager</h2>
         </div>
         <div style="text-align: center; margin: auto; display: flex; display: grid; width: 12%">
-        <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/AddCategory" role="button">
+        <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/AddCategory" role="button">
             <i class="fa fa-plus" aria-hidden="true"></i>
             Add Category
         </a>
