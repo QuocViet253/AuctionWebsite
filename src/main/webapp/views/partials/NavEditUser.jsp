@@ -32,32 +32,18 @@
                                     <c:when test="${authUser.role == 0}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
                                     </a></li></c:when>
-                                    <%-- <c:otherwise>${"(Seller)"}</c:otherwise>--%>
+                                   <c:otherwise><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/SellerProfile">
+                                       <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                   </a></li></c:otherwise>
                                 </c:choose>
                                 <li><a class="dropdown-item" href="javascript: $('#frmLogout').submit()">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
                                 </a></li>
                             </ul>
                         </c:when>
-                        <%--<c:otherwise>
-                            <a href="${pageContext.request.contextPath}/Account/Login" class="text-light">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                Login/Register
-                            </a>
-                            <ul class="dropdown-menu mt-0 dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Login">
-                                    <i class="fa fa-sign-in mr-1" aria-hidden="true"></i>Login
-                                </a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Register">
-                                    <i class="fa fa-user-plus mr-1" aria-hidden="true"></i> Register
-                                </a></li>
-                            </ul>
-                        </c:otherwise>--%>
                     </c:choose>
                 </li>
             </ul>
         </div>
     </nav>
-
-
 </div>

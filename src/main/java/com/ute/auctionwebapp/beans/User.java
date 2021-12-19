@@ -47,6 +47,12 @@ public class User {
         this.password = password;
         this.id= id;
     }
+
+    public User(int id, int reQuest) {
+        this.id= id;
+        this.reQuest = reQuest;
+    }
+
     public User() {
     }
 

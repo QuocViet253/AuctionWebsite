@@ -1,8 +1,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
-
 <div class="header">
+
+        <script>
+            function upgrare (otp){
+                {
+                    $.getJSON(otp, function (data) {
+                        if (data === false) {
+                            swal({
+                                title: "Failed!",
+                                text: "Failed request to your upgare!",
+                                icon: "error",
+                                button: "OK!",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            });
+                        } else swal({
+                            title: "Successfully!",
+                            text: "Successfully request to your upgrare!",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
+                        });
+                    });
+                }
+            }
+        </script>
+
     <!-- Top Nav -->
     <nav class="navbar navbar-expand-lg navbar-light " style="background-image: linear-gradient(#ea8215, #eca45d)">
         <div class="collapse navbar-collapse justify-content-lg-between" id="navbarSupportedContent">
@@ -90,9 +115,13 @@
                 </li>
 
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link" href="#">
+                    <button type="button" onclick="upgrare('${pageContext.request.contextPath}/Admin/Upgrare?uid=${authUser.id}'), alert('Successfully request to your upgrare! Waiting respone from Admin')" class="heart btn btn-outline-secondary">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        Upgrage Seller</a>
+                        Upgrage Selle
+                    </button>
+                  <%-- <a class="nav-link text-secondary " href="add('${pageContext.request.contextPath}/Admin/Upgrare?uid=${authUser.id}">
+                        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                        Upgrage Seller</a>--%>
                 </li>
             </ul>
         </div>

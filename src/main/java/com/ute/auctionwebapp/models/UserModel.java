@@ -51,6 +51,16 @@ public class UserModel {
         }
     }
 
+    public static void upgrare(User c) {
+        String insertSql = "UPDATE users SET request = :request WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", c.getId())
+                    .addParameter("request", c.getReQuest())
+                    .executeUpdate();
+        }
+    }
+
     public static void changepassword(User c) {
         String insertSql = "UPDATE users SET password = :password WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
@@ -82,6 +92,19 @@ public class UserModel {
                 return null;
             }
             return list.get(0);
+        }
+    }
+
+    public static boolean findByuid(int id) {
+        final String query = "select * from users where id=:id";
+        try (Connection con = DbUtills.getConnection()) {
+            List<User> list = con.createQuery(query)
+                    .addParameter("id", id)
+                    .executeAndFetch(User.class);
+            if (list.size() == 0) {
+                return true;
+            }
+            return false;
         }
     }
     public static List<User> findAll(){
