@@ -75,18 +75,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5 ml-5 text-danger" href="#">
+                    <a class="nav-link mr-5 ml-5 text-danger" href="${pageContext.request.contextPath}/WatchList?uid=${authUser.id}">
                         <i class="fa fa-heart-o text-danger" aria-hidden="true"></i>
                         Favorite Product
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="#">
+                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
                         <i class="fa fa-newspaper-o text-warning" aria-hidden="true"></i>
                         On Auction</a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-info" href="#">
+                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
                         <i class="fa fa-check-square text-info" aria-hidden="true"></i>
                         Successful Auction</a>
                 </li>

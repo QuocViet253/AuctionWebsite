@@ -51,7 +51,7 @@ public class UserModel {
         }
     }
 
-    public static void upgrare(User c) {
+    public static void upgrage(User c) {
         String insertSql = "UPDATE users SET request = :request WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)

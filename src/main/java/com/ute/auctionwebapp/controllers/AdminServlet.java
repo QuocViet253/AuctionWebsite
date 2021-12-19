@@ -59,6 +59,13 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("users",user);
                 ServletUtills.forward("/views/vwAdministrator/AdminEditUser.jsp", request, response);
                 break;
+
+            case "/Upgrage":
+                int bidderid  = Integer.parseInt(request.getParameter("uid"),10);
+                int reQ = 1;
+                User upgrage = new User(bidderid,reQ);
+                UserModel.upgrage(upgrage);
+                break;
         }
     }
 
