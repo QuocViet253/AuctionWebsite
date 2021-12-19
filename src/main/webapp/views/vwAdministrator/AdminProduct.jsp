@@ -15,7 +15,7 @@
                 let numPages = itemsTotal / itemsShown;
                 for (let i = 0; i < numPages; i++) {
                     let pageNum = i + 1;
-                    $('#nav').append('<a href="#" class="btn-outline-info btn-sm text-decoration-none rounded-lg border border-info" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
+                    $('#nav').append('<a href="#" class="btn-outline-warning btn-sm text-decoration-none rounded-lg border border-warning" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
                 }
                 $('.t1 .col-md-3').hide();
                 $('.t1 .col-md-3').slice(0, itemsShown).show();
@@ -62,6 +62,9 @@
         </script>
     </jsp:attribute>
     <jsp:body>
+        <div class="title-box bg-warning mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+            <h2 style="font-family: 'Bauhaus 93'">Product Manager</h2>
+        </div>
         <div class="right col-sm-10 mt-1 mx-auto" >
             <section class="on-sale">
                 <div class="container-fluid t1">

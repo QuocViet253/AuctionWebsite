@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Tri
-  Date: 12/9/2021
-  Time: 8:21 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,20 +10,20 @@
         <script></script>
     </jsp:attribute>
     <jsp:body>
-        <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
-            <h2>Manager Bidder</h2>
+        <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+            <h2 style="font-family: 'Bauhaus 93'">Bidder Manager</h2>
         </div>
         <div class="tableFixHistory" style="cursor: pointer">
-            <table class="table table-hover">
+            <table class="table table-hover" style="width: 75%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Dob</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Upgrade</th>
+                    <th scope="col" style="background-color: black"><p style="color: white">ID</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Name</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Email</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Address</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Date of Birth</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Edit</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Upgrade</p></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +43,7 @@
                                     <th scope="col">${u.address}</th>
                                     <th scope="col">${u.dob}</th>
                                     <th scope="col">
-                                        <a type="button" class="btn btn-outline-info btn-sm btn-block w-50" >
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51" >
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </th>
@@ -69,20 +63,20 @@
                 </tbody>
             </table>
         </div>
-        <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
-            <h2>Manager Seller</h2>
+        <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+            <h2 style="font-family: 'Bauhaus 93'">Seller Manager</h2>
         </div>
         <div class="tableFixHistory" style="cursor: pointer">
-            <table class="table table-hover">
+            <table class="table table-hover" style="width: 75%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Dob</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Upgrade</th>
+                    <th scope="col" style="background-color: black"><p style="color: white">ID</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Name</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Email</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Address</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Date of Birth</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Edit</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Upgrade</p></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -102,7 +96,7 @@
                                     <th scope="col">${u.address}</th>
                                     <th scope="col">${u.dob}</th>
                                     <th scope="col">
-                                        <a type="button" class="btn btn-outline-info btn-sm btn-block w-50" >
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-51" >
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </th>

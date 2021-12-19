@@ -10,15 +10,15 @@
     </jsp:attribute>
     <jsp:body>
         <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
-            <h2>Category Manager</h2>
+            <h2 style="font-family: 'Bauhaus 93'">Category Manager</h2>
         </div>
         <div class="tableFixHistory" style="cursor: pointer">
             <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
-                    <th scope="col">CatID</th>
-                    <th scope="col">CatName</th>
-                    <th scope="col">Edit</th>
+                    <th scope="col" style="background-color: black"><p style="color: white">CatID</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">CatName</p></th>
+                    <th scope="col" style="background-color: black"><p style="color: white">Edit</p></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,7 @@
                                 <th scope="col">${c.catid}</th>
                                 <th scope="col">${c.catname}</th>
                                 <th scope="col">
-                                    <a type="button" class="btn btn-outline-info btn-sm btn-block w-50" >
+                                    <a type="button" class="btn btn-outline-dark btn-sm btn-block w-50" >
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                 </th>
