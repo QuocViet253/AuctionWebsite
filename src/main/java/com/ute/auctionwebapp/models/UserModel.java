@@ -62,13 +62,23 @@ public class UserModel {
     }
 
     public static void upgrageSeller(User c) {
-        String insertSql = "UPDATE users SET  role = :role, request = :request, request_date = :requestDate WHERE id = :id \n";
+        String insertSql = "UPDATE users SET  role = :role, request = :request, request_date = date_add(NOW(),interval 7 day ) WHERE id = :id \n";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("id", c.getId())
                     .addParameter("role", c.getRole())
                     .addParameter("request", c.getReQuest())
-                    .addParameter("requestDate", c.getRequest_date())
+                    .executeUpdate();
+        }
+    }
+
+    public static void downSeller(User c) {
+        String insertSql = "UPDATE users SET  role = :role, request = :request WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", c.getId())
+                    .addParameter("role", c.getRole())
+                    .addParameter("request",c.getReQuest())
                     .executeUpdate();
         }
     }

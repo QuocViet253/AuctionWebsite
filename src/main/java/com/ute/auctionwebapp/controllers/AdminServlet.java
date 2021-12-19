@@ -69,12 +69,21 @@ public class AdminServlet extends HttpServlet {
 
             case "/UpgrageSeller":
                 int userid = Integer.parseInt(request.getParameter("uid"),10);
-                LocalDateTime start_day = LocalDateTime.now();
                 int role = 2;
                 int reQu = 0;
-                User upseller = new User(userid,role,reQu,start_day);
+                User upseller = new User(userid,role,reQu);
                 UserModel.upgrageSeller(upseller);
                 ServletUtills.redirect("/Admin/User",request,response);
+                break;
+
+            case "/DownSeller":
+                int sellid = Integer.parseInt(request.getParameter("uid"),10);
+                int roledown = 1;
+                int requ = 0;
+                User downseller = new User(sellid,roledown,requ);
+                UserModel.downSeller(downseller);
+                ServletUtills.redirect("/Admin/User",request,response);
+                break;
         }
 
     }
