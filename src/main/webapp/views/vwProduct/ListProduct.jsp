@@ -22,7 +22,7 @@
               let numPages = itemsTotal / itemsShown;
               for (let i = 0; i < numPages; i++) {
                 let pageNum = i + 1;
-                $('#nav').append('<a href="#" class="btn-outline-info btn-sm text-decoration-none rounded-lg border border-info" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
+                $('#nav').append('<a href="#" class="btn-outline-warning btn-sm text-decoration-none rounded-lg border border-warning" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
               }
               $('.t1 .col-md-3').hide();
               $('.t1 .col-md-3').slice(0, itemsShown).show();
@@ -82,7 +82,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
+                                    <div class="col-md-3 mb-4 shadow mt-3">
                                         <div class="product-top mt-2 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
@@ -96,25 +96,25 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 style="margin: 0">Price Current:$
+                                            <h3 class="mx-auto mt-4" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h5 class="text-primary" style="margin: 0"> <b>Price Current:</b> $
                                                 <fmt:formatNumber value="${p.price_current}" type="number" />
                                             </h5>
                                             <c:if test="${p.price_now!=0}">
-                                                <h5>Price Buy Now: $
+                                                <h5 class="text-danger"> <b>Price Buy Now:</b> $
                                                     <fmt:formatNumber value="${p.price_now}" type="number" />
                                                 </h5>
                                             </c:if>
-                                            <h5>Start Date:
+                                            <h5><b>Start Date:</b>
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>End Date:
+                                            <h5><b>End Date:</b>
                                                 <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5>Sum of bids: ${p.bid_count}</h5>
-                                            <h5>Highest bidder: ${p.name}</h5>
+                                            <h5><b>Sum of bids:</b> ${p.bid_count}</h5>
+                                            <h5 class="text-danger"><b>Highest bidder:</b> ${p.name}</h5>
                                         </div>
                                     </div>
                                 </c:forEach>

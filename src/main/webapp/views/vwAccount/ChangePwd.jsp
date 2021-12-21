@@ -19,6 +19,7 @@
                 rules: [
                     Validator.isRequired('#changeNewPassword', 'Please fill your new password '),
                     Validator.isRequired('#changePassword','Please fill your password'),
+                    Validator.minLength('#changeNewPassword',6),
                 ],
             });
         </script>

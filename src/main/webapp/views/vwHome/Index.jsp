@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                             <c:forEach items="${products1}" var="p1">
-                                <div class="col-md-3 shadow" style="border-radius: 10%;">
+                                <div class="col-md-3 shadow mt-3" >
                                     <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}&catid=${p1.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p1.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                         <div class="overlay-right">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="row">
                         <c:forEach items="${products2}" var="p2">
-                            <div class="col-md-3 shadow" style="border-radius: 10%">
+                            <div class="col-md-3 shadow mt-3" >
                                 <div class="product-top mt-3 text-center">
                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                     <div class="overlay-right">
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">
-                                    <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
+                                    <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
                                     <h5 class="text-primary"><b>Price Current:</b> $
                                         <fmt:formatNumber value="${p2.price_current}" type="number" />
                                     </h5>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="row">
                         <c:forEach items="${products3}" var="p3">
-                            <div class="col-md-3 shadow" style="border-radius: 10%">
+                            <div class="col-md-3 shadow mt-3" >
                                 <div class="product-top mt-3 text-center">
                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                     <div class="overlay-right">
@@ -147,7 +147,7 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">
-                                    <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
+                                    <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
                                     <h5 class="text-primary"><b>Price Current:</b> $
                                         <fmt:formatNumber value="${p3.price_current}" type="number" />
                                     </h5>

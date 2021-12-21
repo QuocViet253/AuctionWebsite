@@ -81,12 +81,12 @@
                     </a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
+                    <a class="nav-link text-warning" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}#bidding">
                         <i class="fa fa-newspaper-o text-warning" aria-hidden="true"></i>
                         On Auction</a>
                 </li>
                 <li class="nav-item mr-5 ml-5">
-                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}">
+                    <a class="nav-link text-info" href="${pageContext.request.contextPath}/Account/YourProduct?uid=${authUser.id}#winning">
                         <i class="fa fa-check-square text-info" aria-hidden="true"></i>
                         Successful Auction</a>
                 </li>

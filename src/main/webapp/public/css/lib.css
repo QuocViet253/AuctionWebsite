@@ -247,7 +247,6 @@ body
     width: 180px;
     padding: 4px 10px;
     height: 40px;
-    margin-bottom: 30px;
     display: flex;
 }
 .title-box h2
@@ -257,12 +256,37 @@ body
 .title-box::after
 {
     content: '';
-    //border-top: 40px solid orange;
+    /*border-top: 40px solid orange;*/
     border-right: 50px solid transparent;
     position: absolute;
     display: flex;
     margin-top: -4px;
     margin-left: 170px;
+}
+
+.title-pro
+{
+    background: #eca45d;
+    color: #fff;
+    width: 250px;
+    padding: 4px 10px;
+    height: 40px;
+    margin-bottom: 30px;
+    display: flex;
+}
+.title-pro h2
+{
+    font-size: 24px;
+}
+.title-pro::after
+{
+    content: '';
+    border-top: 40px solid #eca45d;
+    border-right: 50px solid transparent;
+    position: absolute;
+    display: flex;
+    margin-top: -4px;
+    margin-left: 240px;
 }
 
 /*-------------product-top CSS----------------*/
@@ -279,6 +303,10 @@ body
     margin-left: 0;
     width: 70px;
 }
+ .overlay-right .fa-heart-o
+ {
+     color: #dc3545!important;
+ }
 .overlay-right .fa
 {
     cursor: pointer;
@@ -297,11 +325,20 @@ body
     border: none !important;
     box-shadow: none !important;
 }
-.product-top:hover .overlay-right
+.col-md-3:hover .overlay-right
 {
     opacity: 1;
     margin-left: 5%;
     transition: 0.5s;
+}
+.col-md-3:hover
+{
+    border: 1px solid #ea8215;
+}
+.col-md-3:hover img
+{
+    transition: 0.5s;
+    transform: scale(1.05);
 }
 
 /*--------------Product-bottom-CSS---------------*/

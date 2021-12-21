@@ -20,7 +20,7 @@
                     let numPages = itemsTotal / itemsShown;
                     for (let i = 0; i < numPages; i++) {
                         let pageNum = i + 1;
-                        $('#'+navName+'').append('<a href="#" class="btn-outline-primary btn-sm text-decoration-none rounded-lg border border-info" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
+                        $('#'+navName+'').append('<a href="#" class="btn-outline-warning btn-sm text-decoration-none rounded-lg border border-warning" rel="' + i + '">&emsp;' + pageNum + '&emsp;</a> ');
                     }
                     $(rowSelection).hide();
                     $(rowSelection).slice(0, itemsShown).show();
@@ -94,9 +94,12 @@
             </div>
 
             <%--Selling Product--%>
+            <a name="selling"></a>
             <div class="container-fluid t1">
                 <div class="w-100 mb-1 justify-content-between d-flex border-bottom">
-                    <h3 >Selling Products</h3>
+                    <div class="title-pro">
+                        <h2>Selling Products</h2>
+                    </div>
                     <c:choose>
                         <c:when test="${authUser.role != 1}">
                             <a id="btnAddPro" class="btn btn-success btn-lg mb-3" href="${pageContext.request.contextPath}/Product/Add" role="button">Add Product</a>
@@ -107,12 +110,12 @@
                     <c:choose>
                         <c:when test="${sellingProducts.size()==0}">
                             <div class="card-body">
-                                <p class="card-text">No data</p>
+                                <p class="card-text">You are not selling any products</p>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${sellingProducts}" var="p">
-                                <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
+                                <div class="col-md-3 mb-4 shadow mt-3">
                                     <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                         <div class="overlay-right">
@@ -128,7 +131,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                        <h3 class="mx-auto mt-4" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
                                         <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p.price_current}" type="number" />
                                         </h5>
@@ -188,20 +191,23 @@
                 </div>
             </div>
             <%--Sold Product--%>
+            <a name="sold"></a>
             <div class="container-fluid t2">
                 <div class="w-100 mb-1 border-bottom">
-                    <h3>Sold Products</h3>
+                    <div class="title-pro">
+                        <h2>Sold Products</h2>
+                    </div>
                 </div>
                 <div class="row mt-2">
                     <c:choose>
                         <c:when test="${soldProducts.size()==0}">
                             <div class="card-body">
-                                <p class="card-text">No data</p>
+                                <p class="card-text">You have not sold on any products yet </p>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${soldProducts}" var="p2">
-                                <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
+                                <div class="col-md-3 mb-4 shadow mt-3">
                                     <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg"></a>
                                         <div class="overlay-right">
@@ -215,7 +221,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
                                         <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p2.price_current}" type="number" />
                                         </h5>
@@ -241,20 +247,23 @@
             </div>
 
             <%--Bidding Product--%>
+            <a name="bidding"></a>
             <div class="container-fluid t3">
                 <div class="w-100 mb-1 border-bottom">
-                    <h3>Bidding Products</h3>
+                    <div class="title-pro">
+                        <h2>Bidding Products</h2>
+                    </div>
                 </div>
                 <div class="row mt-2">
                     <c:choose>
                         <c:when test="${biddingProducts.size()==0}">
                             <div class="card-body">
-                                <p class="card-text">No data</p>
+                                <p class="card-text">You are not bidding any products </p>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${biddingProducts}" var="p3">
-                                <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
+                                <div class="col-md-3 mb-4 shadow mt-3">
                                     <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg"></a>
                                         <div class="overlay-right">
@@ -268,7 +277,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
                                         <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p3.price_current}" type="number" />
                                         </h5>
@@ -294,20 +303,23 @@
             </div>
 
             <%--Winning Product--%>
+            <a name="winning"></a>
             <div class="container-fluid t4">
                 <div class="w-100 mb-1 border-bottom">
-                    <h3>Winning Products</h3>
+                    <div class="title-pro">
+                        <h2>Winning Products</h2>
+                    </div>
                 </div>
                 <div class="row mt-2">
                     <c:choose>
                         <c:when test="${winningProducts.size()==0}">
                             <div class="card-body">
-                                <p class="card-text">No data</p>
+                                <p class="card-text">You have not winning on any products yet </p>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${winningProducts}" var="p4">
-                                <div class="col-md-3 mb-4 shadow" style="border-radius: 10%">
+                                <div class="col-md-3 mb-4 shadow mt-3 mt-3">
                                     <div class="product-top mt-2 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p4.proid}&catid=${p4.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p4.proid}/main.jpg"></a>
                                         <div class="overlay-right">
@@ -321,7 +333,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
                                       <%--  <h5 style="margin: 0">Price Current: $--%>
                                         <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
                                             <fmt:formatNumber value="${p4.price_current}" type="number" />

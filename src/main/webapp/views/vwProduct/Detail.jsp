@@ -393,7 +393,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-lg-3 mb-4 shadow text-center" style="border-radius: 10%" >
+                                    <div class="col-md-3 mb-4 shadow text-center mt-3" >
                                         <div class="product-top mt-3 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 205px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">

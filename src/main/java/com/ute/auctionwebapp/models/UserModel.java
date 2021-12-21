@@ -135,4 +135,12 @@ public class UserModel {
                     .executeAndFetch(User.class);
         }
     }
+    public static void updateExpiredSeller(int uid) {
+        String insertSql = "UPDATE users SET  role = 1,request_date = null WHERE id = :id \n";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(insertSql)
+                    .addParameter("id", uid)
+                    .executeUpdate();
+        }
+    }
 }

@@ -291,7 +291,7 @@ public class AccountServlet extends HttpServlet {
     private void editDes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int proid = Integer.parseInt(request.getParameter("proid"),10);
         int uid = Integer.parseInt(request.getParameter("uid"),10);
-        String date = "<i class=\"fa fa-pencil\" aria-hidden=\"true\" ></i>Date modified: " + request.getParameter("date");
+        String date = "<i class=\"fa fa-pencil\" aria-hidden=\"true\" ></i> Date modified: " + request.getParameter("date");
         String fullDes = request.getParameter("fulldes");
 
         ProductModel.EditDes(proid,date,fullDes);
