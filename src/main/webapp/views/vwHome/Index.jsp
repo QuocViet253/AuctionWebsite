@@ -37,6 +37,16 @@
                     });
                 }
             }
+            //Countdown timer in product
+            $(function(){
+                $('[data-countdown]').each(function() {
+                    let $this = $(this), finalDate = $(this).data('countdown');
+                    $this.countdown(finalDate, function(event) {
+                        $this.html(event.strftime('%D days %H:%M:%S'))}).on('finish.countdown', function() {
+                        $this.text('EXPIRED');
+                    });
+                });
+            });
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -76,7 +86,7 @@
                                             </h5>
                                             <h5><b>  End Date:</b>
                                                 <fmt:parseDate value="${p1.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />
-                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${end }" />
+                                                <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${end }" />"></span>
                                             </h5>
                                             <h5><b>Sum of bids:</b> ${p1.bid_count}</h5>
                                             <h5 class="text-danger"><b>Highest bidder: </b>${p1.name}</h5>
@@ -118,9 +128,9 @@
                                         <fmt:parseDate value="${p2.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                         <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                     </h5>
-                                    <h5><b>End Date:</b>>
+                                    <h5><b>End Date:</b>
                                         <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
+                                        <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime }"/>"></span>
                                     </h5>
                                     <h5><b>Sum of bids:</b> ${p2.bid_count}</h5>
                                     <h5 class="text-danger"><b>Highest bidder:</b> ${p2.name}</h5>
@@ -162,7 +172,7 @@
                                     </h5>
                                     <h5><b>End Date:</b>
                                         <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${parsedDateTime }" />
+                                        <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime }"/>"></span>
                                     </h5>
                                     <h5><b>Sum of bids:</b> ${p3.count}</h5>
                                     <h5 class="text-danger"><b>Highest bidder: </b> ${p3.name}</h5>

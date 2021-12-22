@@ -74,31 +74,6 @@ table  { border-collapse: collapse; width: 100%; }
 th, td { padding: 8px 16px; }
 th     { background:#eee; }
 
-/*New Lable in product*/
-.new-info .new-title {
-    background-color: red;
-    color: white;
-    height: 10%;
-    font-size: small;
-    text-align: center;
-    display: flex;
-    padding: 0.25rem;
-    position: absolute;
-    top: 0;
-    right: 3px;
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    z-index: 1;
-    letter-spacing: 3px;
-}
-.new-title:before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left:-0.1px;
-    border: 13.8px solid transparent;
-    border-bottom-color: red;
-}
 
 
 

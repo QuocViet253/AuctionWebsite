@@ -84,7 +84,16 @@
                     });
                 });
             }
-
+            //Countdown timer in product
+            $(function(){
+                $('[data-countdown]').each(function() {
+                    let $this = $(this), finalDate = $(this).data('countdown');
+                    $this.countdown(finalDate, function(event) {
+                        $this.html(event.strftime('%D days %H:%M:%S'))}).on('finish.countdown', function() {
+                        $this.text('EXPIRED');
+                    });
+                });
+            });
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -146,7 +155,7 @@
                                         </h5>
                                         <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime}" />"></span>
                                         </h5>
                                     </div>
                                 </div>
@@ -236,7 +245,7 @@
                                         </h5>
                                         <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p2.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime}" />"></span>
                                         </h5>
                                     </div>
                                 </div>
@@ -292,7 +301,7 @@
                                         </h5>
                                         <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p3.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime}" />"></span>
                                         </h5>
                                     </div>
                                 </div>
@@ -349,7 +358,7 @@
                                         </h5>
                                         <h5><b>End Date:</b>
                                             <fmt:parseDate value="${p4.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                            <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                            <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime}" />"></span>
                                         </h5>
                                     </div>
                                 </div>

@@ -62,9 +62,16 @@
                     });
                 }
             }
-            <%--console.log(${now});--%>
-            <%--console.log(${now});--%>
-            <%--console.log(${products.get(0).start_day.toLocalTime()});--%>
+            //Countdown timer in product
+            $(function(){
+                $('[data-countdown]').each(function() {
+                    let $this = $(this), finalDate = $(this).data('countdown');
+                    $this.countdown(finalDate, function(event) {
+                        $this.html(event.strftime('%D days %H:%M:%S'))}).on('finish.countdown', function() {
+                        $this.text('EXPIRED');
+                    });
+                });
+            });
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -105,8 +112,17 @@
                                                 <button type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                     <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                 </button>
-
                                             </div>
+                                            <div class="d-none">
+                                                <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="start" type="both" />
+                                                <fmt:formatDate type="time" value="${start}"/>
+                                            </div>
+                                            <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
+                                            <c:if test="${date <1}">
+                                                <c:if test="${(((now.time - start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
+                                                    <span class="new-title"></span>
+                                                </c:if>
+                                            </c:if>
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 class="mx-auto mt-4" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
@@ -122,22 +138,10 @@
                                             </h5>
                                             <h5><b>End Date:</b>
                                                 <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
+                                                <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime }" />"></span>
                                             </h5>
                                             <h5><b>Sum of bids:</b> ${p.bid_count}</h5>
                                             <h5 class="text-danger"><b>Highest Bidder:</b> ${p.name}</h5>
-                                            <div class="d-none">
-                                                <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="start" type="both" />
-                                                <fmt:formatDate type="time" value="${start}"/>
-                                            </div>
-                                            <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
-                                            <c:if test="${date <1}">
-                                                <c:if test="${(((now.time-start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
-                                                    <div class="new-info">
-                                                        <div class="new-title">NEW</div>
-                                                    </div>
-                                                </c:if>
-                                            </c:if>
                                         </div>
                                     </div>
                                 </c:forEach>

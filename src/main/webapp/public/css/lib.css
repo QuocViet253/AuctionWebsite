@@ -340,6 +340,45 @@ body
     transition: 0.5s;
     transform: scale(1.05);
 }
+/*New Lable in product*/
+.product-top span {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+    overflow: hidden;
+}
+.product-top span::before {
+    content: 'NEW';
+    position: absolute;
+    width: 150%;
+    height: 25px;
+    background-color: red;
+    transform: rotate(45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: yellow;
+    letter-spacing: 0.1rem;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.product-top span::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    z-index: -1;
+    box-shadow: -100px -100px red;
+}
 
 /*--------------Product-bottom-CSS---------------*/
 
