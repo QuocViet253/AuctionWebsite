@@ -95,9 +95,22 @@ public class AdminServlet extends HttpServlet {
             case "/Category/AddCategory":
                 String name = request.getParameter("CatName");
                 Category c = new Category(-1, name);
-                ServletUtills.forward("/views/vwAdministrator/AdminManager.jsp", request, response);
+                CategoryModel.add(c);
+                ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
                 break;
-
+            case "/Category/EditCategory":
+                int id = Integer.parseInt(request.getParameter("id"));
+                Category c1 = null;
+                if(id == 1){
+                    c1 = new Category(1, "Smart Phone");
+                }
+                if(c1 != null) {
+                    request.setAttribute("category", c1);
+                    ServletUtills.forward("/views/vwAdministrator/EditCategory.jsp", request, response);
+                } else{
+                    response.sendRedirect(request.getContextPath() + "Admin/Category");
+                }
+                break;
             case "/EditUser":
                 updateUser(request,response);
                 break;

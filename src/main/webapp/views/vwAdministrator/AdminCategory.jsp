@@ -40,7 +40,7 @@
                                 <th scope="col">${c.catid}</th>
                                 <th scope="col">${c.catname}</th>
                                 <th scope="col">
-                                    <a type="button" class="btn btn-outline-dark btn-sm btn-block w-50">
+                                    <a type="button" class="btn btn-outline-dark btn-sm btn-block w-50" href="${pageContext.request.contextPath}/Admin/Category/AddCategory" role="button">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                 </th>

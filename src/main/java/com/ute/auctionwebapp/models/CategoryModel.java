@@ -4,6 +4,7 @@ import com.ute.auctionwebapp.beans.Category;
 import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class CategoryModel {
                     .executeAndFetch(Category.class);
         }
     }
+
     public static List<Category> findParent(){
         final String query = "select * from categories where pid=0";
         try (Connection con = DbUtills.getConnection()) {
@@ -42,6 +44,7 @@ public class CategoryModel {
                     .executeAndFetch(Category.class);
         }
     }
+
     public static List<Category> findParentID(){
         final String query = "select catid from categories where pid=0";
         try (Connection con = DbUtills.getConnection()) {
@@ -49,6 +52,7 @@ public class CategoryModel {
                     .executeAndFetch(Category.class);
         }
     }
+
     public static List<Category> findChild(){
         final String query = "select a.catid, a.catname, a.pid from auction.categories a, auction.categories b where a.pid = b.catid";
         try (Connection con = DbUtills.getConnection()) {
@@ -63,23 +67,22 @@ public class CategoryModel {
             List<Category> list = con.createQuery(query)
                     .addParameter("CatID", id)
                     .executeAndFetch(Category.class);
-
             if (list.size() == 0) {
                 return null;
             }
             return list.get(0);
         }
-
     }
 
+    // Chỉnh sửa local port tại đây
     public static void add(Category c) {
+        Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:8082/qlbh", "root", "root");
         String insertSql = "insert into categories(CatName) values (:CatName)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
                     .addParameter("CatName", c.getCatname())
                     .executeUpdate();
         }
-
     }
 
     public static void update(Category c) {
@@ -90,7 +93,6 @@ public class CategoryModel {
                     .addParameter("CatName", c.getCatname())
                     .executeUpdate();
         }
-
     }
 
     public static void delete(int id) {
