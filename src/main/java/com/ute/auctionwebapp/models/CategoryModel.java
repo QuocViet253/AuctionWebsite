@@ -76,7 +76,7 @@ public class CategoryModel {
 
     // Chỉnh sửa local port tại đây
     public static void add(Category c) {
-        Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:8082/qlbh", "root", "root");
+//        Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:8082/qlbh", "root", "root");
         String insertSql = "insert into categories(CatName) values (:CatName)";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(insertSql)
@@ -86,7 +86,7 @@ public class CategoryModel {
     }
 
     public static void update(Category c) {
-        String sql = "update categories set CatName = :CatName where CatID = :CatID";
+        String sql = "update categories set catname = :CatName where catid = :CatID";
         try (Connection con = DbUtills.getConnection()) {
             con.createQuery(sql)
                     .addParameter("CatID", c.getCatid())

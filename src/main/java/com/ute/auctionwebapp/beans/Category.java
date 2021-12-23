@@ -6,9 +6,6 @@ public class Category {
     private int pid;
     private int level;
 
-    public Category(int i, String name) {
-    }
-
     public int getPid() {
         return pid;
     }
@@ -22,6 +19,10 @@ public class Category {
         this.catname = catname;
         this.pid=pid;
         this.level = level;
+    }
+    public Category(int catid, String catname) {
+        this.catid = catid;
+        this.catname = catname;
     }
     public Category(String catname) {
         this.catid = -1;

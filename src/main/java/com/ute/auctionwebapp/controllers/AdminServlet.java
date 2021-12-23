@@ -168,6 +168,8 @@ public class AdminServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("CatID"));
         String name = request.getParameter("CatName");
         Category c = new Category(id, name);
+        System.out.println(c.getCatid());
+        System.out.println(c.getCatname());
         CategoryModel.update(c);
         ServletUtills.redirect("/Admin/Category", request, response);
     }

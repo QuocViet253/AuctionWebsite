@@ -31,7 +31,7 @@
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         Delete
                     </button>
-                    <button type="submit" class="btn btn-info" formaction="${pageContext.request.contextPath}/Admin/Category/Update">
+                    <button type="submit" class="btn btn-info" formaction="${pageContext.request.contextPath}/Admin/Update">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Save
                     </button>
