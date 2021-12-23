@@ -10,12 +10,12 @@
                 <h4 class="card-header">
                     New Category
                 </h4>
-                    <div class="card-body">
-                            <div class="mb-3">
-                                <label for="txtCatName" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="txtCatName" name="CatName" autofocus>
-                            </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="txtCatName" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="txtCatName" name="CatName" autofocus>
                     </div>
+                </div>
                 <div class="card-footer">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category" role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
@@ -30,3 +30,4 @@
         </form>
     </jsp:body>
 </t:manager>
+

@@ -29,28 +29,43 @@ public class AdminServlet extends HttpServlet {
             case "/Admin":
                 ServletUtills.forward("/views/vwAdministrator/AdminManager.jsp", request, response);
                 break;
+
             case "/Product":
                 List<Product> productList = ProductModel.findAll();
                 request.setAttribute("products", productList);
                 ServletUtills.forward("/views/vwAdministrator/AdminProduct.jsp", request, response);
                 break;
+
             case "/User":
                 List<User> userList = UserModel.findAll();
                 request.setAttribute("users", userList);
                 ServletUtills.forward("/views/vwAdministrator/AdminUser.jsp", request, response);
                 break;
+
             case "/Category":
                 List<Category> categoryList = CategoryModel.findAll();
                 request.setAttribute("categories", categoryList);
                 ServletUtills.forward("/views/vwAdministrator/AdminCategory.jsp", request, response);
                 break;
+
             case "/Category/AddCategory":
-                List<Category> categoryList1 = CategoryModel.findAll();
-                request.setAttribute("categories", categoryList1);
                 ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
                 break;
-            default:
-                ServletUtills.forward("/views/404.jsp", request, response);
+
+            case "/Category/EditCategory":
+                int id1 = 0;
+                try {
+                    id1 = Integer.parseInt(request.getParameter("id"));
+                }catch (NumberFormatException e){
+
+                }
+                Category c1 = CategoryModel.findById(id1);
+                if(c1 != null) {
+                    request.setAttribute("category", c1);
+                    ServletUtills.forward("/views/vwAdministrator/EditCategory.jsp", request, response);
+                } else{
+                    ServletUtills.forward("/views/204.jsp", request, response);
+                }
                 break;
 
             case "/EditUser":
@@ -84,6 +99,10 @@ public class AdminServlet extends HttpServlet {
                 UserModel.downSeller(downseller);
                 ServletUtills.redirect("/Admin/User",request,response);
                 break;
+
+            default:
+                ServletUtills.forward("/views/404.jsp", request, response);
+                break;
         }
 
     }
@@ -98,22 +117,19 @@ public class AdminServlet extends HttpServlet {
                 CategoryModel.add(c);
                 ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
                 break;
-            case "/Category/EditCategory":
-                int id = Integer.parseInt(request.getParameter("id"));
-                Category c1 = null;
-                if(id == 1){
-                    c1 = new Category(1, "Smart Phone");
-                }
-                if(c1 != null) {
-                    request.setAttribute("category", c1);
-                    ServletUtills.forward("/views/vwAdministrator/EditCategory.jsp", request, response);
-                } else{
-                    response.sendRedirect(request.getContextPath() + "Admin/Category");
-                }
+
+            case "/Delete":
+                deleteCategory(request, response);
                 break;
+
+            case "/Update":
+                updateCategory(request, response);
+                break;
+
             case "/EditUser":
                 updateUser(request,response);
                 break;
+
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
@@ -139,5 +155,26 @@ public class AdminServlet extends HttpServlet {
         if(url == null) url = "/Account/Profile";*/
         ServletUtills.redirect("/Admin/User",request,response);
 
+    }
+
+    private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("CatName");
+        Category c = new Category(name);
+        CategoryModel.add(c);
+        ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
+    }
+
+    private void updateCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("CatID"));
+        String name = request.getParameter("CatName");
+        Category c = new Category(id, name);
+        CategoryModel.update(c);
+        ServletUtills.redirect("/Admin/Category", request, response);
+    }
+
+    private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("CatID"));
+        CategoryModel.delete(id);
+        ServletUtills.redirect("/Admin/Category", request, response);
     }
 }
