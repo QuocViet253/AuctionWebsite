@@ -345,12 +345,12 @@ body
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 120px;
-    height: 120px;
+    width: 70px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.9;
+    opacity: 0.8;
     overflow: hidden;
 }
 .product-top span::before {
@@ -377,7 +377,7 @@ body
     height: 10px;
     background-color: red;
     z-index: -1;
-    box-shadow: -100px -100px red;
+    box-shadow: -50px -50px red;
 }
 
 /*--------------Product-bottom-CSS---------------*/

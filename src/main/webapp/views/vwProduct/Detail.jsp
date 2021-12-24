@@ -17,6 +17,7 @@
 <t:main>
     <jsp:attribute name="js">
         <script>
+            //Return to login if guest click add to watchlist and bidding
             window.onload=()=>{
                 if(!${auth})
                 {
@@ -25,6 +26,14 @@
                     $('#btnConfirmBid').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
                 }
             }
+
+            // Scroll to top of page
+            window.addEventListener("scroll", function () {
+                let scroll = document.querySelector('.scrollTop');
+                scroll.classList.toggle('active',window.scrollY > 300);
+            });
+
+            //Bidding
             if(${auth})
             {
                 $('#btnConfirmBid').on('click',function (){
@@ -122,6 +131,7 @@
                 });
             }
 
+            //Show modal reject
             $('#modalReject').on('show.bs.modal', function (event) {
                 let button = $(event.relatedTarget);
                 let proid = button.data('proid');
@@ -134,6 +144,7 @@
                 $('#btnReject').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp; Loading...')
             });
 
+            //Add to watchlist
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
@@ -197,6 +208,8 @@
 
     <jsp:body>
         <div class="right col-sm-9 ml-3 ">
+            <a name ="top" ></a>
+            <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
             <div class="card mt-2">
                 <div class="card-header" style="background-image: linear-gradient(#ea8215, #eca45d)">
                     <h4 style="cursor:pointer; font-family: 'Arial';font-weight: bold" class="text-center">${product.proname}</h4>

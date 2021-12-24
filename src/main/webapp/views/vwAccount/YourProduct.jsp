@@ -115,7 +115,7 @@
                         </c:when>
                     </c:choose>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${sellingProducts.size()==0}">
                             <div class="card-body">
@@ -207,7 +207,7 @@
                         <h2>Sold Products</h2>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${soldProducts.size()==0}">
                             <div class="card-body">
@@ -263,7 +263,7 @@
                         <h2>Bidding Products</h2>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${biddingProducts.size()==0}">
                             <div class="card-body">
@@ -319,7 +319,7 @@
                         <h2>Winning Products</h2>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${winningProducts.size()==0}">
                             <div class="card-body">

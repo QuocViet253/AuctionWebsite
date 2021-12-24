@@ -9,6 +9,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:main>
@@ -102,8 +103,17 @@
                                                     <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                         <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                                     </button>
-
                                             </div>
+                                            <div class="d-none">
+                                                <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="start" type="both" />
+                                                <fmt:formatDate type="time" value="${start}"/>
+                                            </div>
+                                            <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
+                                            <c:if test="${date <1}">
+                                                <c:if test="${(((now.time - start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
+                                                    <span class="new-title"></span>
+                                                </c:if>
+                                            </c:if>
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 class="mx-auto mt-4" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
