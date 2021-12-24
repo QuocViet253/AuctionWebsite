@@ -261,6 +261,8 @@
                             </h4>
                             <h4 class="mr-2"><span class="text-info"><b>Date Start:</b> </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
+                            <h4 class="mr-2"><span class="text-info"><b>Date End:</b> </span><fmt:parseDate value="${product.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
                             <h4>
                                 <span class="text-info"><b>Time remaining:</b></span>
                                 <span id="item" style="display: inline-block"></span>

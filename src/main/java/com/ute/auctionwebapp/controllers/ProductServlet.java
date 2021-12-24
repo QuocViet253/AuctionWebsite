@@ -1,7 +1,9 @@
 package com.ute.auctionwebapp.controllers;
 
+import com.ute.auctionwebapp.beans.Category;
 import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
+import com.ute.auctionwebapp.models.CategoryModel;
 import com.ute.auctionwebapp.models.HistoryModel;
 import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.WatchListModel;
@@ -192,6 +194,8 @@ public class ProductServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwWatchList/WatchList.jsp", request, response);
                 break;
             case "/Add":
+                List<Category> listC = CategoryModel.findChild();
+                request.setAttribute("catChild",listC);
                 ServletUtills.forward("/views/vwProduct/Add.jsp", request, response);
                 break;
             default:
@@ -263,7 +267,6 @@ public class ProductServlet extends HttpServlet {
 
             }
         }
-
-        ServletUtills.forward("/views/vwProduct/Add.jsp", request, response);
+        ServletUtills.redirect("/Product/Add", request, response);
     }
 }

@@ -2,11 +2,11 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="Category" scope="request" type="com.ute.auctionwebapp.beans.Category" />
+
+<jsp:useBean id="category" scope="request" type="com.ute.auctionwebapp.beans.Category"/>
 
 <t:manager>
     <jsp:body>
-        <jsp:useBean id="category" scope="request" type="com.ute.auctionwebapp.beans.Category"/>
         <form action="" method="post">
             <div class="card">
                 <h4 class="card-header">
@@ -14,24 +14,32 @@
                 </h4>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="txtCatID">Category</label>
+                        <label for="txtCatID">CategoryID</label>
                         <input type="text" class="form-control" id="txtCatID" name="CatID" readonly value="${category.catid}">
                     </div>
                     <div class="form-group">
-                        <label for="txtCatName">Category</label>
+                        <label for="txtCatName">CategoryName</label>
                         <input type="text" class="form-control" id="txtCatName" name="CatName" autofocus value="${category.catname}">
                     </div>
+                    <c:if test="${hasError}">
+                        <div class="alert alert-danger alert-dismissible fade show w-75 mx-auto" role="alert">
+                            <strong>Error!</strong> ${errorMessage}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:if>
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category" role="button">
                         <i class="fa fa-backward" aria-hidden="true"></i>
                         List
                     </a>
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger" formaction="${pageContext.request.contextPath}/Admin/Delete">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         Delete
                     </button>
-                    <button type="submit" class="btn btn-info">
+                    <button type="submit" class="btn btn-info" formaction="${pageContext.request.contextPath}/Admin/Update">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Save
                     </button>
