@@ -20,6 +20,13 @@ public class Category {
         this.pid=pid;
         this.level = level;
     }
+
+    public Category(String catname, int level,int pid) {
+        this.catname = catname;
+        this.pid = pid;
+        this.level = level;
+    }
+
     public Category(int catid, String catname) {
         this.catid = catid;
         this.catname = catname;

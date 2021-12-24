@@ -15,6 +15,14 @@ public class ProductModel {
                     .executeAndFetch(Product.class);
         }
     }
+    public static List<Product> findByCatIDAdmin(int catid){
+        final String query = "select * from products where catid = :catid";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .addParameter("catid",catid)
+                    .executeAndFetch(Product.class);
+        }
+    }
     public static List<Product> findTop8End(){
         final String query = "(select  p.proid,p.name, h.bid_count,p.proname,p.tinydes, p.fulldes, p.quantity, p.price_start, p.price_step, p.price_max, p.price_now, p.price_current, p.price_payment, p.start_day, p.end_day, p.catid, p.bid_id, p.sell_id, p.status, p.renew\n" +
                 "from\n" +
