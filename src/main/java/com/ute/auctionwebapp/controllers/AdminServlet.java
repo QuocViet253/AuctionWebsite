@@ -49,6 +49,8 @@ public class AdminServlet extends HttpServlet {
                 break;
 
             case "/Category/AddCategory":
+//                List<Category> listC = CategoryModel.findParent();
+//                request.setAttribute("catParent",listC);
                 ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
                 break;
 
@@ -112,10 +114,7 @@ public class AdminServlet extends HttpServlet {
         String path = request.getPathInfo();
         switch (path) {
             case "/Category/AddCategory":
-                String name = request.getParameter("CatName");
-                Category c = new Category(-1, name);
-                CategoryModel.add(c);
-                ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
+                addCategory(request,response);
                 break;
 
             case "/Delete":
@@ -159,24 +158,45 @@ public class AdminServlet extends HttpServlet {
 
     private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("CatName");
-        Category c = new Category(name);
+        int catPID = Integer.parseInt(request.getParameter("catpid"),10);
+        int level =0;
+        if(catPID==0)
+        {
+            level = 1;
+        }
+        Category c = new Category(name,level,catPID);
         CategoryModel.add(c);
+        request.setAttribute("hasSuccess", true);
+        request.setAttribute("Message", "Add Successfully !");
+        List<Category> listC = CategoryModel.findParent();
+        request.setAttribute("catParent",listC);
         ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
+//        ServletUtills.redirect("/Admin/Category/AddCategory", request, response);
     }
 
     private void updateCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("CatID"));
         String name = request.getParameter("CatName");
         Category c = new Category(id, name);
-        System.out.println(c.getCatid());
-        System.out.println(c.getCatname());
         CategoryModel.update(c);
         ServletUtills.redirect("/Admin/Category", request, response);
     }
 
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("CatID"));
-        CategoryModel.delete(id);
-        ServletUtills.redirect("/Admin/Category", request, response);
+        List<Product> litsP = ProductModel.findByCatIDAdmin(id);
+        List<Category> listPidC = CategoryModel.findChildByPid(id);
+        if(litsP.size()==0 && listPidC.size()==0)
+        {
+            CategoryModel.delete(id);
+        }
+        else{
+            request.setAttribute("hasError", true);
+            request.setAttribute("errorMessage", "This Category have Child Category or Product. Cannot Delete");
+            Category c1 = CategoryModel.findById(id);
+            request.setAttribute("category", c1);
+            ServletUtills.forward("/views/vwAdministrator/EditCategory.jsp", request, response);
+        }
+        ServletUtills.redirect("/Admin/Category",request,response);
     }
 }
