@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                 <c:choose>
-                    <c:when test="${categoriess.size()==0}">
+                    <c:when test="${categories.size()==0}">
                         <div class="card-body">
                             <p class="card-text">No data</p>
                         </div>

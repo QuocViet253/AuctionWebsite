@@ -1,5 +1,6 @@
 package com.ute.auctionwebapp.controllers;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.ute.auctionwebapp.beans.Category;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
@@ -8,10 +9,13 @@ import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -49,6 +53,8 @@ public class AdminServlet extends HttpServlet {
                 break;
 
             case "/Category/AddCategory":
+                List<Category> listC = CategoryModel.findParent();
+                request.setAttribute("catParent",listC);
                 ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
                 break;
 
@@ -100,6 +106,22 @@ public class AdminServlet extends HttpServlet {
                 ServletUtills.redirect("/Admin/User",request,response);
                 break;
 
+            case"/DeleteProduct":
+                int proid = Integer.parseInt(request.getParameter("id"));
+                boolean isAvailable = (ProductModel.deleteProduct(proid));
+
+                PrintWriter out = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+
+                out.print(isAvailable);
+                out.flush();
+                break;
+
+            case "/User/AddUser":
+                ServletUtills.forward("/views/vwAdministrator/AddUser.jsp", request, response);
+                break;
+
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
@@ -112,10 +134,7 @@ public class AdminServlet extends HttpServlet {
         String path = request.getPathInfo();
         switch (path) {
             case "/Category/AddCategory":
-                String name = request.getParameter("CatName");
-                Category c = new Category(-1, name);
-                CategoryModel.add(c);
-                ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
+                addCategory(request,response);
                 break;
 
             case "/Delete":
@@ -130,6 +149,9 @@ public class AdminServlet extends HttpServlet {
                 updateUser(request,response);
                 break;
 
+            case "/User/AddUser":
+                addUser(request,response);
+                break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
@@ -159,8 +181,18 @@ public class AdminServlet extends HttpServlet {
 
     private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("CatName");
-        Category c = new Category(name);
+        int catPID = Integer.parseInt(request.getParameter("catpid"),10);
+        int level =0;
+        if(catPID==0)
+        {
+            level = 1;
+        }
+        Category c = new Category(name,level,catPID);
         CategoryModel.add(c);
+        request.setAttribute("hasSuccess", true);
+        request.setAttribute("Message", "Add Successfully !");
+        List<Category> listC = CategoryModel.findParent();
+        request.setAttribute("catParent",listC);
         ServletUtills.forward("/views/vwAdministrator/AddCategory.jsp", request, response);
     }
 
@@ -176,7 +208,44 @@ public class AdminServlet extends HttpServlet {
 
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("CatID"));
-        CategoryModel.delete(id);
-        ServletUtills.redirect("/Admin/Category", request, response);
+        List<Product> litsP = ProductModel.findByCatIDAdmin(id);
+        List<Category> listPidC = CategoryModel.findChildByPid(id);
+        if(litsP.size()==0 && listPidC.size()==0)
+        {
+            CategoryModel.delete(id);
+        }
+        else{
+            request.setAttribute("hasError", true);
+            request.setAttribute("errorMessage", "This Category have Child Category or Product. Cannot Delete");
+            Category c1 = CategoryModel.findById(id);
+            request.setAttribute("category", c1);
+            ServletUtills.forward("/views/vwAdministrator/EditCategory.jsp", request, response);
+        }
+        ServletUtills.redirect("/Admin/Category",request,response);
+    }
+
+    private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String name = request.getParameter("User");
+        String email = request.getParameter("Email");
+        String password = request.getParameter("Password");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime dob = LocalDateTime.parse("01/01/2001 00:00", df);
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        String address = "None";
+        int role = Integer.parseInt(request.getParameter("Role"),10);
+        boolean gg_acc = false;
+        int reQuest = 0;
+        User c = new User(name, email, address,  bcryptHashString, dob, role, reQuest,gg_acc);
+        User x = UserModel.findByUsername(email);
+        boolean isAvailable = (x == null);
+        if(isAvailable){
+            UserModel.add(c);
+            request.setAttribute("hasSuccess", true);
+            request.setAttribute("Message", "Add Successfully !");
+        } else{
+            request.setAttribute("hasError", true);
+            request.setAttribute("errorMessage", "This Email has already existed. Cannot create User");
+        }
+        ServletUtills.forward("/views/vwAdministrator/AddUser.jsp", request, response);
     }
 }

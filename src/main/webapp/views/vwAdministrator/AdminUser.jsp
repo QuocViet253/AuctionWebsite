@@ -14,6 +14,12 @@
         </script>
     </jsp:attribute>
     <jsp:body>
+        <div style="text-align: center; margin: auto; display: flex; display: grid; width: 12%">
+        <a class="btn btn-outline-success mx-auto" href="${pageContext.request.contextPath}/Admin/User/AddUser" role="button">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Add User
+        </a>
+        </div>
         <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
             <h2 style="font-family: 'Bauhaus 93'">Bidder Manager</h2>
         </div>

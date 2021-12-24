@@ -391,4 +391,15 @@ public class ProductModel {
                     .executeUpdate();
         }
     }
+    public static boolean deleteProduct(int id) {
+        String Sql = "delete from products where proid=:id";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
