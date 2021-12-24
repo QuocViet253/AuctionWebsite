@@ -39,14 +39,26 @@
                         Validator.isRequired('#txtEndDay', 'Please fill your ending date'),
                         Validator.isRequired('#txtTinyDes', 'Please fill your tiny description'),
                         Validator.isRequired('#txtFullDes', 'Please fill your full description'),
-                        Validator.isRequired('#txtCat', 'Please fill your category')
+                        Validator.isRequired('#txtCat', 'Please fill your category'),
+                        Validator.isRequired('#pics', 'Please upload picture products')
                     ],
                 });
-                console.log($('#txtTinyDes').val());
-                console.log($('#txtFullDes').val());
-                console.log($('#txtTinyDes').text());
-                console.log($('#txtFullDes').text());
-                $('#frmAddProduct').off('submit').submit();
+                check = $('#txtEndDay').val();
+                let parts = check.split('/');
+                let d = new Date()
+                x = new Date(parts[2],parts[1]-1,parts[0]);
+
+                if ((d-x)>=0) {
+                    swal({
+                        title: "Warning!",
+                        text: "Please check Ending date!",
+                        icon: "warning",
+                        button: "OK!",
+                        closeOnClickOutside: false,
+                    });
+                } else {
+                    $('#frmAddProduct').off('submit').submit();
+                }
             })
 
             tinymce.init({
