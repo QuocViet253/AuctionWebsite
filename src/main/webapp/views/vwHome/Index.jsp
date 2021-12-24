@@ -10,11 +10,19 @@
 <t:main>
     <jsp:attribute name="js">
         <script>
+            //Return to login if guest click add to watchlist
             window.onload=()=>{
                 if(!${auth})
                     $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
-
             }
+
+            // Scroll to top of page
+            window.addEventListener("scroll", function () {
+                let scroll = document.querySelector('.scrollTop');
+                scroll.classList.toggle('active',window.scrollY > 300);
+            });
+
+            //Add to watchlist
             function add (otp){
                 {
                     $.getJSON(otp, function (data) {
@@ -51,6 +59,8 @@
     </jsp:attribute>
     <jsp:body>
         <div class="right col-sm-10 mt-1">
+            <a name ="top" ></a>
+            <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
             <section class="on-sale">
                 <div class="container-fluid">
                     <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">

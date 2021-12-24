@@ -12,6 +12,13 @@
     <jsp:attribute name="js">
         <script src="https://cdn.tiny.cloud/1/v0ozcj27hfm49t3m4umzfpgom0bhbjjl5xxgin0phrhz3385/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
+            // Scroll to top of page
+            window.addEventListener("scroll", function () {
+                let scroll = document.querySelector('.scrollTop');
+                scroll.classList.toggle('active',window.scrollY > 300);
+            });
+
+
             function pagination (tableSelection, quantityItem, rowSelection,navName ) {
                 $(document).ready(function() {
                     $(tableSelection).after('<div id='+navName+' class="text-center"></div>');
@@ -101,6 +108,9 @@
             <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
                 <h2>YOUR PRODUCTS</h2>
             </div>
+            <%--Scroll to top--%>
+            <a name ="top" ></a>
+            <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
 
             <%--Selling Product--%>
             <a name="selling"></a>
@@ -115,7 +125,7 @@
                         </c:when>
                     </c:choose>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${sellingProducts.size()==0}">
                             <div class="card-body">
@@ -207,7 +217,7 @@
                         <h2>Sold Products</h2>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${soldProducts.size()==0}">
                             <div class="card-body">
@@ -263,7 +273,7 @@
                         <h2>Bidding Products</h2>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${biddingProducts.size()==0}">
                             <div class="card-body">
@@ -319,7 +329,7 @@
                         <h2>Winning Products</h2>
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-2 ml-1">
                     <c:choose>
                         <c:when test="${winningProducts.size()==0}">
                             <div class="card-body">

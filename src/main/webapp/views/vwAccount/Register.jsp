@@ -8,24 +8,6 @@
     <jsp:attribute name="js">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-            //Register form
-            // Validator({
-            //     form: '#formRegister',
-            //     formGroupSelector: '.form-group',
-            //     errorSelector: '.form-message',
-            //     rules: [
-            //         Validator.isRequired('#registerName', 'Please fill your full name'),
-            //         Validator.isRequired('#registerEmail', 'Please fill your mail correctly'),
-            //         Validator.isRequired('#registerPassword','Please fill your password'),
-            //         Validator.isRequired('#registerDob','Please fill your date of birth'),
-            //         Validator.isEmail('#registerEmail','Please fill your mail correctly'),
-            //         Validator.minLength('#registerPassword',6),
-            //         Validator.isConfirmed('#registerConfirmPassword',function () {
-            //             return document.querySelector('#formRegister #registerPassword').value;
-            //         }, 'Please fill your password correctly')
-            //     ],
-            // });
-
             $('#formRegister').on('submit', function (e) {
                 e.preventDefault();
                 Validator({
@@ -52,6 +34,18 @@
                 // Check if email exists
                 $.getJSON('${pageContext.request.contextPath}/Account/IsAvailable?email=' + email, function (data) {
                     if (data === true) {
+                        let dob = $('#registerDob').val().toString();
+                        let parts = dob.split('/');
+                        let d = new Date().getFullYear().toString();
+                        if ((parseInt(d) - parseInt(parts[2])) < 18) {
+                            swal({
+                                title: "Warning!",
+                                text: "You are under 18 years old!",
+                                icon: "warning",
+                                button: "OK!",
+                                closeOnClickOutside: false,
+                            });
+                        } else {
                         // Check captcha
                         $.getJSON('${pageContext.request.contextPath}/Account/IsVerifyCaptcha?g-recaptcha-response=' + response, function (data) {
 
@@ -95,6 +89,7 @@
                                 }
                             }
                         });
+                    }
                     } else {
                         swal({
                             title: "Invalid email!",

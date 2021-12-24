@@ -1,7 +1,9 @@
+// Preloader
 let loader = document.getElementById('preloader');
 window.addEventListener("load", function () {
     loader.classList.add('d-none');
 });
+
 function Found (url){
      find = $('#search').val();
     if(find==='')
