@@ -37,27 +37,32 @@
                 if(!${auth})
                     $('.heart').attr("onclick","location.href='${pageContext.request.contextPath}/Account/Login'")
             }
-            function add (otp){
-                {
-                    $.getJSON(otp, function (data) {
-                        if (data === 'false') {
-                            swal({
-                                title: "Failed!",
-                                text: "Failed added to your watchlist!",
-                                icon: "error",
-                                button: "OK!",
-                                dangerMode: true,
-                                closeOnClickOutside: false,
-                            });
-                        } else swal({
+            function remove (otp){
+                $.getJSON(otp, function (data) {
+                    if (data == false) {
+                        swal({
+                            title: "Failed!",
+                            text: "Failed deleted to your watchlist!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
+                    } else
+                    {
+                        swal({
                             title: "Successfully!",
-                            text: "Successfully added to your watchlist!",
+                            text: "Successfully deleted to your watchlist!",
                             icon: "success",
                             button: "OK!",
                             closeOnClickOutside: false,
-                        });
-                    });
-                }
+                        })
+                            .then(function(){
+                                    location.reload();
+                                }
+                            );
+                    }
+                });
             }
         </script>
     </jsp:attribute>
@@ -87,9 +92,12 @@
 <%--                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">--%>
 <%--                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>--%>
 <%--                                                </button>--%>
-                                                <a href="#">
+                                                <button type="button"  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')"href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Remove from WatchList">
+                                                    <i class="fa fa-trash" aria-hidden="true" style="border-radius: 50%"></i>
+                                                </button>
+                                               <%-- <button  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')">
                                                     <i class="fa fa-trash-o" style="border-radius: 50%" aria-hidden="true"></i>
-                                                </a>
+                                                </button>--%>
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">

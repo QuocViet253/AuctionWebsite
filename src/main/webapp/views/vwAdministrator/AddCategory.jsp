@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,13 +12,13 @@
                 </h4>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="txtCat">Category Parent</label>
-                        <select name="catpid" id="txtCat" class="w-100" style="border-radius: 25px; border-color: orange; height: 40px">
-                            <option value="0">None</option>
-                            <c:forEach items="${catParent}" var="catParent">
-                                <option value="${catParent.catid}">${catParent.catname}</option>
-                            </c:forEach>
-                        </select>
+                    <label for="txtCat">Category Parent</label>
+                    <select name="catpid" id="txtCat" class="w-100" style="border-radius: 25px; border-color: orange; height: 40px">
+                    <option value="0">None</option>
+                    <c:forEach items="${catParent}" var="catParent">
+                        <option value="${catParent.catid}">${catParent.catname}</option>
+                    </c:forEach>
+                    </select>
                         <span class="form-message" ></span>
                     </div>
                     <div class="mb-3">
