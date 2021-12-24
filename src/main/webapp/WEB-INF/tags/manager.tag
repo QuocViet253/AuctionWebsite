@@ -22,6 +22,7 @@
     </style>
 </head>
 <body>
+<div id="preloader"></div>
 <jsp:include page="../../views/partials/NavAccountManager.jsp"/>
 <jsp:doBody/>
 <jsp:include page="../../views/partials/Footer.jsp"/>

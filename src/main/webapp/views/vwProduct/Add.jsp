@@ -27,6 +27,7 @@
         <script>
             $('#frmAddProduct').on('submit', function (e) {
                 e.preventDefault();
+                tinymce.triggerSave();
                 Validator({
                     form: '#frmAddProduct',
                     formGroupSelector: '.form-group',
@@ -38,10 +39,13 @@
                         Validator.isRequired('#txtEndDay', 'Please fill your ending date'),
                         Validator.isRequired('#txtTinyDes', 'Please fill your tiny description'),
                         Validator.isRequired('#txtFullDes', 'Please fill your full description'),
-                        Validator.isRequired('#txtCat', 'Please fill your category'),
-                        Validator.isRequired('#pics', 'Please choose images'),
+                        Validator.isRequired('#txtCat', 'Please fill your category')
                     ],
                 });
+                console.log($('#txtTinyDes').val());
+                console.log($('#txtFullDes').val());
+                console.log($('#txtTinyDes').text());
+                console.log($('#txtFullDes').text());
                 $('#frmAddProduct').off('submit').submit();
             })
 

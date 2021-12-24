@@ -42,7 +42,7 @@
                     if (data == false) {
                         swal({
                             title: "Failed!",
-                            text: "Failed deleted to your watchlist!",
+                            text: "Failed deleted to this product!",
                             icon: "error",
                             button: "OK!",
                             dangerMode: true,
@@ -52,7 +52,7 @@
                     {
                         swal({
                             title: "Successfully!",
-                            text: "Successfully deleted to your watchlist!",
+                            text: "Successfully deleted to this product!",
                             icon: "success",
                             button: "OK!",
                             closeOnClickOutside: false,
@@ -92,7 +92,7 @@
 <%--                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">--%>
 <%--                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>--%>
 <%--                                                </button>--%>
-                                                <button type="button"  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')"href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Remove from WatchList">
+                                                <button type="button"  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')"href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Remove Product">
                                                     <i class="fa fa-trash" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </button>
                                                <%-- <button  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')">
@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 class="mx-auto" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h3 class="mx-auto mt-4" name="proname" style="width: 230px;height: 75px; object-fit: contain">${p.proname}</h3>
                                             <h5 style="margin: 0">Price Current:$
                                                 <fmt:formatNumber value="${p.price_current}" type="number" />
                                             </h5>

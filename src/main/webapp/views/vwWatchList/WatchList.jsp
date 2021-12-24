@@ -73,7 +73,7 @@
         <%--<div class="row">--%>
             <section class="on-sale">
                 <div class="container-fluid t1">
-                    <div class="row mt-2">
+                    <div class="row mt-2 ml-1">
                         <c:choose>
                             <c:when test="${watchlists.size()==0}">
                                 <div class="card-body">
@@ -83,7 +83,7 @@
                             <c:otherwise>
                                 <c:forEach items="${watchlists}" var="w">
                                     <div class="col-md-3 mb-4 text-center mt-3" >
-                                        <div class="product-top">
+                                        <div class="product-top  mt-3 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}&catid=${w.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${w.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${w.proid}&catid=${w.catid}" class="btn btn-secondary" title="Detail">
