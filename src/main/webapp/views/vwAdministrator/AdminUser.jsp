@@ -214,7 +214,7 @@
                                         </a>
                                     </th>
                                     <th scope="col">
-                                    <button type="button" class="btn btn-outline-danger btn-sm btn-block">
+                                    <button type="button" id="deleteUser2" onclick="remove('${pageContext.request.contextPath}/Admin/DeleteUser?uid=${u.id}')" class="btn btn-outline-danger btn-sm btn-block">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                     </th>

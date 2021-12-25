@@ -119,12 +119,12 @@ public class ProductModel {
 
     public static Product findByBidid(int id){
         final String query = "select *\n" +
-                "from products,\n" +
-                "     (select name as sell_name, email as sell_mail\n" +
-                "                from users,products where users.id = products.sell_id) as A,\n" +
-                "     (select name as bid_name,email as bid_mail\n" +
-                "      from users,products where users.id = products.bid_id and proid= :proid) as B\n" +
-                "where proid= :proid";
+                " from products,\n" +
+                "(select name as sell_name, email as sell_mail, id\n" +
+                " from users,products where users.id = products.sell_id group by users.id) as A,\n" +
+                "(select name as bid_name,email as bid_mail, id\n" +
+                "              from users,products where users.id = products.bid_id and proid= :proid group by users.id) as B\n" +
+                "                where proid= :proid and A.id = products.sell_id and B.id = products.bid_id";
         try (Connection con = DbUtills.getConnection()) {
             List<Product> list = con.createQuery(query)
                     .addParameter("proid",id)
@@ -138,10 +138,10 @@ public class ProductModel {
     }
     public static Product findByNoBIdid(int id){
         final String query = "select *\n" +
-                "from products,\n" +
-                "     (select name as sell_name, email as sell_mail\n" +
-                "                from users,products where users.id = products.sell_id) as A\n"+
-                "where proid= :proid";
+                "     from products,\n" +
+                "               (select name as sell_name, email as sell_mail, id\n" +
+                "               from users,products where users.id = products.sell_id group by users.id) as A\n" +
+                "                where proid= :proid and A.id = products.sell_id";
         try (Connection con = DbUtills.getConnection()) {
             List<Product> list = con.createQuery(query)
                     .addParameter("proid",id)
