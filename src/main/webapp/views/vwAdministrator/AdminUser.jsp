@@ -25,19 +25,21 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <div style="text-align: center; margin: auto; display: flex; width: 25%; justify-content: center">
-        <a class="btn btn-outline-success mx-auto" href="${pageContext.request.contextPath}/Admin/User/AddUser" role="button">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            Add User
-        </a>
-            <button class="btn btn-outline-info mx-auto" id="switch" onclick="forward()" role="button">
-                <i class="fa fa-list-ul" aria-hidden="true"></i>
-                List Upgarde
-            </button>
-        </div>
         <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
             <h2 style="font-family: 'Bauhaus 93'">Bidder Manager</h2>
         </div>
+        <div style="text-align: center; margin: auto; display: flex; width: 25%; justify-content: center">
+            <a class="btn btn-outline-success mx-auto" href="${pageContext.request.contextPath}/Admin/User/AddUser" role="button">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add User
+            </a>
+            <button class="btn btn-outline-info mx-auto" id="switch" onclick="forward()" role="button">
+                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                List Upgrade
+            </button>
+        </div>
+        <b>&nbsp;</b>
+        <div id="grad3">
         <div class="tableFixHistory" style="cursor: pointer ; height: 50%" id="tableFixHistory1">
             <table class="table  table-hover " style="width: 75%; height: 5px; margin: auto">
                 <thead>
@@ -199,3 +201,4 @@
         </div>
     </jsp:body>
 </t:manager>
+</div>
