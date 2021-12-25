@@ -60,6 +60,17 @@ public class HistoryModel {
             return false;
         }
     }
+    public static boolean deleteHistoryByProduct(int proid) {
+        String Sql = "delete from histories where proid=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid", proid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     public static History findHighestBidder(int proid){
         final String query = "select *\n" +
                 "from histories\n" +

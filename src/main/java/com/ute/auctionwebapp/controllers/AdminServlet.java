@@ -4,9 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.ute.auctionwebapp.beans.Category;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
-import com.ute.auctionwebapp.models.CategoryModel;
-import com.ute.auctionwebapp.models.ProductModel;
-import com.ute.auctionwebapp.models.UserModel;
+import com.ute.auctionwebapp.models.*;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
 import javax.servlet.ServletException;
@@ -108,13 +106,20 @@ public class AdminServlet extends HttpServlet {
 
             case"/DeleteProduct":
                 int proid = Integer.parseInt(request.getParameter("id"));
-                boolean isAvailable = (ProductModel.deleteProduct(proid));
+                boolean isAvailable1 = (ProductModel.deleteProduct(proid));
+                boolean isAvailable2 = (HistoryModel.deleteHistoryByProduct(proid));
+                boolean isAvailable3 = (WatchListModel.deleteWatchListByProduct(proid));
+                boolean ready = false;
+                if(isAvailable1 && isAvailable2 && isAvailable3)
+                {
+                   ready = true;
+                }
 
                 PrintWriter out = response.getWriter();
                 response.setContentType("application/json");
                 response.setCharacterEncoding("utf-8");
 
-                out.print(isAvailable);
+                out.print(ready);
                 out.flush();
                 break;
 

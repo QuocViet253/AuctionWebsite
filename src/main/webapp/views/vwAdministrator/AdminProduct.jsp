@@ -92,7 +92,7 @@
 <%--                                                <button type="button"  href="${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p.proid}&proname=${p.proname}&price_start=${p.price_start}&uid=${authUser.id}&catid=${p.catid}')" class="heart btn btn-secondary " title="Add to WatchList">--%>
 <%--                                                    <i class="fa fa-heart-o" style="border-radius: 50%"></i>--%>
 <%--                                                </button>--%>
-                                                <button type="button"  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')"href="${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}" onclick="remove('${pageContext.request.contextPath}/WatchList/deleteWatchList?id=${w.id}')" class=" btn btn-secondary" title="Remove Product">
+                                                <button type="button"  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')" class=" btn btn-secondary" title="Remove Product">
                                                     <i class="fa fa-trash" aria-hidden="true" style="border-radius: 50%"></i>
                                                 </button>
                                                <%-- <button  onclick="remove('${pageContext.request.contextPath}/Admin/DeleteProduct?id=${p.proid}')">
