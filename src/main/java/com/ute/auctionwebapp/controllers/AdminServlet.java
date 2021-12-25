@@ -112,9 +112,8 @@ public class AdminServlet extends HttpServlet {
                 boolean ready = false;
                 if(isAvailable1 && isAvailable2 && isAvailable3)
                 {
-                   ready = true;
+                    ready = true;
                 }
-
                 PrintWriter out = response.getWriter();
                 response.setContentType("application/json");
                 response.setCharacterEncoding("utf-8");

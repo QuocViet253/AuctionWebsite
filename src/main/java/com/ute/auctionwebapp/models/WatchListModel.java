@@ -78,4 +78,16 @@ public class WatchListModel {
         }
     }
 
+    public static boolean deleteWatchListByProduct(int proid) {
+        String Sql = "delete from watch_list where proid=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid", proid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
