@@ -80,6 +80,22 @@ public class AdminServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwAdministrator/AdminEditUser.jsp", request, response);
                 break;
 
+            case "/DeleteUser":
+                int useriddel = Integer.parseInt(request.getParameter("id"));
+                boolean isUserAvailable1 = (UserModel.deleteUser(useriddel));
+                boolean useriddle = false;
+                if(isUserAvailable1)
+                {
+                    readyuser = true;
+                }
+                PrintWriter outuser = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+
+                outuser.print(readyuser);
+                outuser.flush();
+                break;
+
             case "/Upgrage":
                 int bidderid  = Integer.parseInt(request.getParameter("uid"),10);
                 int reQ = 1;

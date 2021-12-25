@@ -153,4 +153,16 @@ public class UserModel {
                     .executeUpdate();
         }
     }
+
+    public static boolean deleteUser(int id) {
+        String Sql = "delete from users where userid=:id";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
