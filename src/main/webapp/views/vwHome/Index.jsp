@@ -66,6 +66,7 @@
                     <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">
                         <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Expired</h2>
                     </div>
+                    <div class="hero-image">
                     <div class="row">
                             <c:forEach items="${products1}" var="p1">
                                 <div class="col-md-3 shadow mt-3" >
@@ -190,6 +191,7 @@
                             </div>
                         </c:forEach>
                     </div>
+                </div>
                 </div>
             </section>
         </div>

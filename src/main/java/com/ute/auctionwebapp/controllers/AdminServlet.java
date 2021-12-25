@@ -80,7 +80,7 @@ public class AdminServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwAdministrator/AdminEditUser.jsp", request, response);
                 break;
 
-            case "/DeleteUser":
+            /*case "/DeleteUser":
                 int useriddel = Integer.parseInt(request.getParameter("id"));
                 boolean isUserAvailable1 = (UserModel.deleteUser(useriddel));
                 boolean useriddle = false;
@@ -94,7 +94,7 @@ public class AdminServlet extends HttpServlet {
 
                 outuser.print(readyuser);
                 outuser.flush();
-                break;
+                break;*/
 
             case "/Upgrage":
                 int bidderid  = Integer.parseInt(request.getParameter("uid"),10);

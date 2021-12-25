@@ -124,5 +124,24 @@ th     { background:#eee; }
     background-image: linear-gradient(orangered, greenyellow, darkblue);
 }
 
+.hero-image {
+    background-image: url("../imgs/BackAd.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.history-image {
+    background-image: url("../imgs/HistoryBack.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
 
 

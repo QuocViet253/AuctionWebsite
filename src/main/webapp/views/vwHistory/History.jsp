@@ -17,16 +17,17 @@
         <script></script>
     </jsp:attribute>
     <jsp:body>
-        <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
+        <div class="history-image">
+        <div class="title-box bg-warning mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
             <h2>History</h2>
         </div>
         <div class="tableFixHistory" style="cursor: pointer">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
+                    <th scope="col" style="background-color: black; color: white">Time</th>
+                    <th scope="col" style="background-color: black; color: white">Product</th>
+                    <th scope="col" style="background-color: black; color: white">Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,7 @@
                 </c:choose>
                 </tbody>
             </table>
+        </div>
         </div>
     </jsp:body>
 </t:history>

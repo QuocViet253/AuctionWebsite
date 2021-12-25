@@ -103,11 +103,9 @@
                                         </a>
                                     </th>
                                     <th>
-                                       <%-- <c:if test="${u.reQuest == 1}">--%>
                                            <button type="button" id="deleteUser" onclick="remove('${pageContext.request.contextPath}/Admin/DeleteUser?uid=${u.id}')" class="btn btn-outline-danger btn-sm btn-block">
                                                <i class="fa fa-trash" aria-hidden="true"></i>
                                            </button>
-                                        <%--</c:if>--%>
                                     </th>
                                 </tr>
                             </c:if>
