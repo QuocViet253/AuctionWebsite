@@ -76,4 +76,15 @@ public class HistoryModel {
             return list.get(0);
         }
     }
+    public static boolean deleteHistoryByProduct(int proid) {
+        String Sql = "delete from histories where proid=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid", proid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
