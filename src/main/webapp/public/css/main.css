@@ -103,6 +103,26 @@ th     { background:#eee; }
     visibility: visible;
     opacity: 1;
 }
+#grad1 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(cadetblue, yellow);
+}
+#grad2 {
+    height: 200%;
+    background-color: #cccccc;
+    background-image: linear-gradient(lightyellow, lightblue);
+}
+#grad3 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(lightpink, mediumpurple);
+}
+#grad4 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(orangered, greenyellow, darkblue);
+}
 
 
 
