@@ -166,13 +166,13 @@ public class ProductModel {
         }
     }
 
-    public static List<Product> findBidid(){
-        final String query = "select proid,proname\n" +
-                "from auction.products, (select id from users) as a\n" +
-                "where products.bid_id in(a.id)\n" +
-                "group by proid";
+    public static List<Product> findProductByUid(int uid){
+        final String query = "select *\n" +
+                "from products\n" +
+                "where sell_id=:uid or bid_id=:uid";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
+                    .addParameter("uid",uid)
                     .executeAndFetch(Product.class);
         }
     }

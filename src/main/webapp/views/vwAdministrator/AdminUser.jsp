@@ -22,6 +22,33 @@
                     $('#switch').html("<i class='fa fa-arrow-left' aria-hidden='true'></i> Back")
                 }
             }
+            function remove (otp){
+                $.getJSON(otp, function (data) {
+                    if (data === false) {
+                        swal({
+                            title: "Failed!",
+                            text: "Failed deleted to this user!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
+                    } else
+                    {
+                        swal({
+                            title: "Successfully!",
+                            text: "Successfully deleted to this user!",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
+                        })
+                            .then(function(){
+                                    location.reload();
+                                }
+                            );
+                    }
+                });
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
@@ -77,7 +104,7 @@
                                     </th>
                                     <th>
                                        <%-- <c:if test="${u.reQuest == 1}">--%>
-                                           <button type="button" id="#" class="btn btn-outline-danger btn-sm btn-block">
+                                           <button type="button" id="deleteUser" onclick="remove('${pageContext.request.contextPath}/Admin/DeleteUser?uid=${u.id}')" class="btn btn-outline-danger btn-sm btn-block">
                                                <i class="fa fa-trash" aria-hidden="true"></i>
                                            </button>
                                         <%--</c:if>--%>

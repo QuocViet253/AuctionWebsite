@@ -58,6 +58,17 @@ public class WatchListModel {
             return false;
         }
     }
+    public static boolean deleteWatchListUid(int uid) {
+        String Sql = "delete from watch_list where uid=:uid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("uid", uid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     public static boolean deleteWatchListByProduct(int proid) {
         String Sql = "delete from watch_list where proid=:proid";
         try (Connection con = DbUtills.getConnection()) {
@@ -78,16 +89,5 @@ public class WatchListModel {
         }
     }
 
-    public static boolean deleteWatchListByProduct(int proid) {
-        String Sql = "delete from watch_list where proid=:proid";
-        try (Connection con = DbUtills.getConnection()) {
-            con.createQuery(Sql)
-                    .addParameter("proid", proid)
-                    .executeUpdate();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
 }

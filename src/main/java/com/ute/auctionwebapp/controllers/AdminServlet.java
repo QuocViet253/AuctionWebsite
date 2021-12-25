@@ -2,6 +2,7 @@ package com.ute.auctionwebapp.controllers;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.ute.auctionwebapp.beans.Category;
+import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.models.*;
@@ -103,7 +104,49 @@ public class AdminServlet extends HttpServlet {
                 UserModel.downSeller(downseller);
                 ServletUtills.redirect("/Admin/User",request,response);
                 break;
-
+            case "/DeleteUser":
+                int Userid = Integer.parseInt(request.getParameter("uid"),10);
+                HistoryModel.deleteHistoryUid(Userid);
+                WatchListModel.deleteWatchListUid(Userid);
+                List<Product> listP = ProductModel.findProductByUid(Userid);
+                boolean del = false;
+                if(listP.size()==0)
+                {
+                    del = UserModel.deleteUser(Userid);
+                }
+                else{
+                   for (Product p:listP)
+                   {
+                       if(p.getBid_id()==Userid )
+                       {
+                           History h = HistoryModel.findHighestBidder(p.getProid());
+                           if(h==null)
+                           {
+                               ProductModel.updatePriceMax(p.getProid(),0,0,0,p.getRenew());
+                           }
+                           else{
+                               ProductModel.updatePriceMax(p.getProid(),h.getPrice(),h.getPrice(),h.getBid_id(),p.getRenew());
+                           }
+                           if(p.getSell_id()==Userid)
+                           {
+                               ProductModel.deleteProduct(p.getProid());
+                           }
+                       }
+                       else{
+                           if(p.getSell_id()==Userid)
+                           {
+                               ProductModel.deleteProduct(p.getProid());
+                           }
+                       }
+                   }
+                    del = UserModel.deleteUser(Userid);
+                }
+                PrintWriter u = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                u.print(del);
+                u.flush();
+                break;
             case"/DeleteProduct":
                 int proid = Integer.parseInt(request.getParameter("id"));
                 boolean isAvailable1 = (ProductModel.deleteProduct(proid));
