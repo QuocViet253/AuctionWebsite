@@ -66,7 +66,6 @@
                     <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">
                         <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Expired</h2>
                     </div>
-                    <div class="hero-image">
                     <div class="row">
                             <c:forEach items="${products1}" var="p1">
                                 <div class="col-md-3 shadow mt-3" >
@@ -120,9 +119,6 @@
                                         <button  type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=${authUser.id}&catid=${p2.catid}')" class=" heart btn btn-secondary" title="Add to WatchList">
                                             <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                         </button>
-<%--                                        <a type="button" class="btn btn-secondary" title="Add to Cart">--%>
-<%--                                            <i class="fa fa-shopping-cart" style="border-radius: 50%"></i>--%>
-<%--                                        </a>--%>
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">
@@ -191,7 +187,6 @@
                             </div>
                         </c:forEach>
                     </div>
-                </div>
                 </div>
             </section>
         </div>

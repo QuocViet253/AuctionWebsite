@@ -18,7 +18,6 @@
         </a>
         </div>
         <b>&nbsp;</b>
-        <div id="grad1">
         <div class="tableFixHistory" style="cursor: pointer">
             <p>&nbsp;</p>
             <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
@@ -52,7 +51,6 @@
                 </c:choose>
                 </tbody>
             </table>
-        </div>
     </jsp:body>
 </t:manager>
 </div>

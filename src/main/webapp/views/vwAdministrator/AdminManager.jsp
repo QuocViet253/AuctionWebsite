@@ -4,7 +4,6 @@
 <t:admin>
     <jsp:body>
         <h3 class="text-center mb-3 mt-3 bg-primary text-light" style="font-family: 'Bauhaus 93'">Welcome To Control Manager</h3>
-        <div id="grad4">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" style="width: 50%; height: 50%; margin-left: auto; margin-right: auto">
                 <div class="carousel-item active">

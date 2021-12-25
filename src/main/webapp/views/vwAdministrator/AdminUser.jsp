@@ -66,7 +66,6 @@
             </button>
         </div>
         <b>&nbsp;</b>
-        <div id="grad3">
         <div class="tableFixHistory" style="cursor: pointer ; height: 50%" id="tableFixHistory1">
             <table class="table  table-hover " style="width: 75%; height: 5px; margin: auto">
                 <thead>
@@ -226,4 +225,3 @@
         </div>
     </jsp:body>
 </t:manager>
-</div>

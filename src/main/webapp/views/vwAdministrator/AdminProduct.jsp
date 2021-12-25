@@ -70,7 +70,6 @@
         <div class="title-box bg-warning mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
             <h2 style="font-family: 'Bauhaus 93'">Product Manager</h2>
         </div>
-        <div id="grad2">
         <div class="right col-sm-10 mt-1 mx-auto" >
             <section class="on-sale">
                 <div class="container-fluid t1">
@@ -132,4 +131,3 @@
         </div>
     </jsp:body>
 </t:manager>
-</div>
