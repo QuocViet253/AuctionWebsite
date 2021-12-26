@@ -84,6 +84,12 @@ public class AdminServlet extends HttpServlet {
                 int reQ = 1;
                 User upgrage = new User(bidderid,reQ);
                 UserModel.upgrage(upgrage);
+                PrintWriter up = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+
+                up.print(true);
+                up.flush();
                 break;
 
             case "/UpgrageSeller":
