@@ -1,7 +1,7 @@
 package com.ute.auctionwebapp.beans;
 
 public class Feedback {
-    private int uid,review_id,proid,like1,dislike;
+    private int uid,review_id,proid,like1,dislike,rate;
     private String uname,review_name,des,proname;
 
     public Feedback(int uid, int review_id, int proid, int like1, int dislike, String uname, String review_name, String des, String proname) {
@@ -53,5 +53,9 @@ public class Feedback {
 
     public String getProname() {
         return proname;
+    }
+
+    public int getRate() {
+        return rate;
     }
 }

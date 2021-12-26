@@ -5,6 +5,8 @@ import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
 
+import java.util.List;
+
 public class FeedbackModel {
     public static boolean add(Feedback f){
         final String query = "INSERT INTO feedback (uid, uname, review_id, review_name, des, like1, dislike, proid,proname) VALUES (:uid,:uname,:reviewId,:reviewName,:des,:like1,:dislike,:proid,:proname)\n";
@@ -21,6 +23,17 @@ public class FeedbackModel {
                     .addParameter("proname",f.getProname())
                     .executeUpdate();
             return true;
+        }
+    }
+    public static int getUserRate(int uid){
+        final String query = "select cast((sum(like1)/(sum(like1) + sum(dislike)))*100 as UNSIGNED) as rate\n" +
+                "    from feedback\n" +
+                "    where uid = :uid";
+        try (Connection con = DbUtills.getConnection()) {
+            List<Feedback> f = con.createQuery(query)
+                    .addParameter("uid",uid)
+                    .executeAndFetch(Feedback.class);
+            return f.get(0).getRate();
         }
     }
 }

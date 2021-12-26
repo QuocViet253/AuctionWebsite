@@ -303,7 +303,7 @@
                                                     <textarea class="form-control" name="soldcomment" id="txtsoldcomment"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><input type="radio" name="soldlike" value="1"> Like<br></label>
+                                                    <label><input type="radio" name="soldlike" value="1" checked> Like<br></label>
                                                     <label><input type="radio" name="soldlike" value="0"> Dislike<br></label>
                                                 </div>
                                             </div>
