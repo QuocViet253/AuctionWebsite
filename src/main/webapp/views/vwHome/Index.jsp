@@ -119,7 +119,7 @@
                     </div>
                     <div class="row">
                         <c:forEach items="${products2}" var="p2">
-                            <div class="col-md-3 mt-3" data-aos="flip-left" data-aos-duration="1000" >
+                            <div class="col-md-3 mt-3" data-aos="fade-up" data-aos-duration="1000" >
                                 <div class="product-top mt-3 text-center">
                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                     <div class="overlay-right">
@@ -200,7 +200,7 @@
                                         <fmt:parseDate value="${p3.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />
                                         <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${end }" />"></span>
                                     </h5>
-                                    <h5><b>Sum of bids:</b> ${p3.bid_count}</h5>
+                                    <h5><b>Sum of bids:</b> ${p3.count}</h5>
                                     <h5><b>Highest bidder: </b>
                                         <c:choose>
                                         <c:when test="${empty p3.name}">
