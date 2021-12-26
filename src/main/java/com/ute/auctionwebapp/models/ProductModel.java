@@ -410,4 +410,15 @@ public class ProductModel {
             return false;
         }
     }
+    public static boolean cancelTrans(int proid) {
+        String Sql = "update products  set price_current=0, price_max=0, bid_id = 0 where proid = :proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid", proid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -3,12 +3,14 @@ package com.ute.auctionwebapp.controllers;
 import com.ute.auctionwebapp.beans.Feedback;
 import com.ute.auctionwebapp.models.FeedbackModel;
 
+import com.ute.auctionwebapp.models.ProductModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Struct;
 
 
 @WebServlet(name = "FeedbackServlet", value = "/Feedback/*")
@@ -25,6 +27,26 @@ public class FeedbackServlet extends HttpServlet {
                 response.setCharacterEncoding("utf-8");
                 out.print(rate);
                 out.flush();
+                break;
+            case "/CancelTrans":
+                uid = Integer.parseInt(request.getParameter("uid"),10);
+                String uname = request.getParameter("uname");
+                int review_id = Integer.parseInt(request.getParameter("review_id"),10);
+                String review_name = request.getParameter("review_name");
+                int proid = Integer.parseInt(request.getParameter("proid"),10);
+                String proname = request.getParameter("proname");
+                Feedback fb= new Feedback(uid,review_id,proid,0,1,uname,review_name,"Winner does not pay!",proname);
+                boolean checkAddfb = FeedbackModel.add(fb);
+                boolean checkCancelTrans = ProductModel.cancelTrans(proid);
+                boolean check = false;
+                if (checkAddfb && checkCancelTrans && uid !=0) {
+                    check = true;
+                }
+                PrintWriter outC = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                outC.print(check);
+                outC.flush();
                 break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);

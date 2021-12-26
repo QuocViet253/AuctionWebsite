@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                         <div class="product-bottom text-center" >
-                                            <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain;">${p1.proname}</h3>
+                                            <h3 class="mx-auto mt-4" style="width: 240px;height: 75px; object-fit: contain;">${p1.proname}</h3>
                                             <h5><b>Price Current:</b>
                                                 <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p1.price_current}" type="number" /></span>
                                             </h5>
@@ -132,7 +132,7 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">
-                                    <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
+                                    <h3 class="mx-auto mt-4" style="width: 240px;height: 75px; object-fit: contain">${p2.proname}</h3>
                                     <h5><b>Price Current:</b>
                                         <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p2.price_current}" type="number" /></span>
                                     </h5>
@@ -183,7 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">
-                                    <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
+                                    <h3 class="mx-auto mt-4" style="width: 240px;height: 75px; object-fit: contain">${p3.proname}</h3>
                                     <h5><b>Price Current:</b>
                                         <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p3.price_current}" type="number" /></span>
                                     </h5>
