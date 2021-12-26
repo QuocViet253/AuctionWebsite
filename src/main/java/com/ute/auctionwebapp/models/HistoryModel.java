@@ -60,6 +60,28 @@ public class HistoryModel {
             return false;
         }
     }
+    public static boolean deleteHistoryUid(int uid) {
+        String Sql = "delete from histories where bid_id=:uid or sell_id=:uid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("uid", uid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public static boolean deleteHistoryByProduct(int proid) {
+        String Sql = "delete from histories where proid=:proid";
+        try (Connection con = DbUtills.getConnection()) {
+            con.createQuery(Sql)
+                    .addParameter("proid", proid)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     public static History findHighestBidder(int proid){
         final String query = "select *\n" +
                 "from histories\n" +
@@ -74,17 +96,6 @@ public class HistoryModel {
                 return null;
             }
             return list.get(0);
-        }
-    }
-    public static boolean deleteHistoryByProduct(int proid) {
-        String Sql = "delete from histories where proid=:proid";
-        try (Connection con = DbUtills.getConnection()) {
-            con.createQuery(Sql)
-                    .addParameter("proid", proid)
-                    .executeUpdate();
-            return true;
-        } catch (Exception e) {
-            return false;
         }
     }
 }

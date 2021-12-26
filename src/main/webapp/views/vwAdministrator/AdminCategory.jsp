@@ -11,14 +11,15 @@
         <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
             <h2 style="font-family: 'Bauhaus 93'">Category Manager</h2>
         </div>
-        <div style="text-align: center; margin: auto; display: flex; display: grid; width: 12%">
+        <div style="text-align: center; margin: auto; display: flex; width: 25%; justify-content: center">
         <a class="btn btn-outline-success" href="${pageContext.request.contextPath}/Admin/Category/AddCategory" role="button">
             <i class="fa fa-plus" aria-hidden="true"></i>
             Add Category
         </a>
-            &nbsp;
         </div>
+        <b>&nbsp;</b>
         <div class="tableFixHistory" style="cursor: pointer">
+            <p>&nbsp;</p>
             <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
@@ -50,6 +51,6 @@
                 </c:choose>
                 </tbody>
             </table>
-        </div>
     </jsp:body>
 </t:manager>
+</div>

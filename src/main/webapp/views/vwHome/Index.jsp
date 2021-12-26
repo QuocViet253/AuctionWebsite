@@ -119,9 +119,6 @@
                                         <button  type="button" onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=${authUser.id}&catid=${p2.catid}')" class=" heart btn btn-secondary" title="Add to WatchList">
                                             <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                         </button>
-<%--                                        <a type="button" class="btn btn-secondary" title="Add to Cart">--%>
-<%--                                            <i class="fa fa-shopping-cart" style="border-radius: 50%"></i>--%>
-<%--                                        </a>--%>
                                     </div>
                                 </div>
                                 <div class="product-bottom text-center">

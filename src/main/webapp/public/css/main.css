@@ -103,6 +103,45 @@ th     { background:#eee; }
     visibility: visible;
     opacity: 1;
 }
+/*#grad1 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(cadetblue, yellow);
+}
+#grad2 {
+    height: 200%;
+    background-color: #cccccc;
+    background-image: linear-gradient(lightyellow, lightblue);
+}
+#grad3 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(lightpink, mediumpurple);
+}
+#grad4 {
+    height: 100%;
+    background-color: #cccccc;
+    background-image: linear-gradient(orangered, greenyellow, darkblue);
+}*/
+
+/*.hero-image {
+    background-image: url("../imgs/BackAd.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.history-image {
+    background-image: url("../imgs/HistoryBack.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}*/
 
 
 
