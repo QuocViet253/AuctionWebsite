@@ -233,9 +233,12 @@ public class ProductModel {
 
     public static List<Product> findSoldProduct(int uid){
         final String query = "select *\n" +
-                "from products,(select id, name as bid_name from users as u, products as p where u.id = p.bid_id) as TEST\n" +
+                "from products\n" +
+                "         left outer join (select id, name as bid_name from users as u, products as p where u.id = p.bid_id) as TEST\n" +
+                "                         on products.bid_id = TEST.id\n" +
                 "where sell_id = :uid and CURDATE()>=DATE(end_day) and CURTIME()>= DATE(end_day)\n" +
-                "                              and bid_id is not null and price_current is not null and bid_id = TEST.id";
+                "  and bid_id is not null and price_current is not null\n" +
+                "group by products.proid";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("uid",uid)
@@ -255,9 +258,13 @@ public class ProductModel {
     }
 
     public static List<Product> findWinningProduct(int uid){
-        final String query = "select * from products where bid_id = :uid\n" +
-                "                and CURDATE()>=DATE(end_day) and CURTIME()>= DATE(end_day)\n" +
-                "                and price_current is not null";
+        final String query = "select *\n" +
+                "from products\n" +
+                "         left outer join (select id, name as sell_name from users as u, products as p where u.id = p.sell_id) as TEST\n" +
+                "                         on products.sell_id = TEST.id\n" +
+                "where bid_id = :uid and CURDATE()>=DATE(end_day) and CURTIME()>= DATE(end_day)\n" +
+                "  and sell_id is not null and price_current is not null\n" +
+                "group by products.proid";
         try (Connection con = DbUtills.getConnection()) {
             return con.createQuery(query)
                     .addParameter("uid",uid)

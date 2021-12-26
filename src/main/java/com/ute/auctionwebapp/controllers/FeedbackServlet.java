@@ -51,6 +51,23 @@ public class FeedbackServlet extends HttpServlet {
                 FeedbackModel.add(fb);
                 ServletUtills.redirect("/Account/YourProduct?uid="+review_id,request,response);
                 break;
+
+            case "/AddWinFeedback":
+                int winuid = Integer.parseInt(request.getParameter("winuid"),10);
+                String winuname = request.getParameter("winuname");
+                int winreview_id = Integer.parseInt(request.getParameter("review_id"),10);
+                String winreview_name = request.getParameter("review_name");
+                int winproid = Integer.parseInt(request.getParameter("winproid"),10);
+                String winproname = request.getParameter("winproname");
+                String wincomment = request.getParameter("wincomment");
+                int winlike = Integer.parseInt(request.getParameter("winlike"),10);
+                int windislike = 0;
+                if(winlike == 0) windislike = 1;
+                Feedback wfb= new Feedback(winuid,winreview_id,winproid,winlike,windislike,winuname,winreview_name,wincomment,winproname);
+                FeedbackModel.add(wfb);
+                ServletUtills.redirect("/Account/YourProduct?uid="+winreview_id,request,response);
+                break;
+
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
 

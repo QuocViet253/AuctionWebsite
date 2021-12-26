@@ -85,6 +85,20 @@
                 modal.find('#txtsoldProname').text('Product: '+name)
             })
 
+            $('#commentWin').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget)
+                let id = button.data('id')
+                let name = button.data('name')
+                let uid = button.data('uid')
+                let uname = button.data('uname')
+                let modal = $(this)
+                modal.find('#winproid').val(id)
+                modal.find('#winproname').val(name)
+                modal.find('#winuid').val(uid)
+                modal.find('#winuname').val(uname)
+                modal.find('#txtWinProname').text('Product: '+name)
+            })
+
             function add (otp){
                 $.getJSON(otp, function (data) {
                     if (data === false) {
@@ -115,19 +129,33 @@
                     });
                 });
             });
-
-                function feedback()
-                {
-                    swal({
+            $('#feedback').on('submit', function (e){
+                e.preventDefault();
+                swal({
                     title: "Successfully!",
-                    text: "Successfully added to your watchlist!",
+                    text: "Successfully added to your feedback",
                     icon: "success",
                     button: "OK!",
                     closeOnClickOutside: false,
 
-                });
-                    return false;
-                }
+                }).then(function (){
+                    $('#feedback').off('submit').submit();
+                })
+            })
+
+            $('#feedbackWin').on('submit', function (e){
+                e.preventDefault();
+                swal({
+                    title: "Successfully!",
+                    text: "Successfully added to your feedback",
+                    icon: "success",
+                    button: "OK!",
+                    closeOnClickOutside: false,
+
+                }).then(function (){
+                    $('#feedbackWin').off('submit').submit();
+                })
+            })
 
         </script>
 
@@ -301,7 +329,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="post" action="${pageContext.request.contextPath}/Feedback/AddSoldFeedback" onsubmit="return feedback()">
+                                        <form method="post" id="feedback" action="${pageContext.request.contextPath}/Feedback/AddSoldFeedback" >
                                             <div class="modal-body">
                                                 <input type="hidden" name="review_id" value="${authUser.id}">
                                                 <input type="hidden" name="review_name" value="${authUser.name}">
@@ -420,7 +448,9 @@
                                             <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p4.proid}&proname=${p4.proname}&price_start=${p4.price_start}&uid=${authUser.id}&catid=${p4.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
-
+                                            <button type="button" data-toggle="modal" data-target="#commentWin" data-id="${p4.proid}" data-name = "${p4.proname}" data-uid="${p4.sell_id}" data-uname="${p4.sell_name}"  class="heart btn btn-secondary" title="Comment">
+                                                <i class="fa fa-comment" style="border-radius: 50%"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
@@ -444,6 +474,46 @@
                                     </div>
                                 </div>
                             </c:forEach>
+                            <div class="modal fade" id="commentWin" tabindex="-1" aria-labelledby="addCommentWinLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addCommentWinLabel">Feedback</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="post" id="feedbackWin" action="${pageContext.request.contextPath}/Feedback/AddWinFeedback" >
+                                            <div class="modal-body">
+                                                <input type="hidden" name="review_id" value="${authUser.id}">
+                                                <input type="hidden" name="review_name" value="${authUser.name}">
+                                                <input type="hidden" name="winproname" id="winproname">
+                                                <input type="hidden" id="winproid" name="winproid">
+                                                <input type="hidden" id="winuid" name="winuid">
+                                                <input type="hidden" id="winuname" name="winuname">
+
+                                                <div class="form-group">
+                                                    <b class="text-info"><label id="txtWinProname" class="col-form-label"></label></b>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtwincomment" class="col-form-label">Comment:</label>
+                                                    <textarea class="form-control" name="wincomment" id="txtwincomment"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><input type="radio" name="winlike" value="1" checked> Like<br></label>
+                                                    <label><input type="radio" name="winlike" value="0"> Dislike<br></label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                                <button type="submit" class="btn btn-info" >
+                                                    <i class="fa fa-check" aria-hidden="true"></i> Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </c:otherwise>
                     </c:choose>
                 </div>
