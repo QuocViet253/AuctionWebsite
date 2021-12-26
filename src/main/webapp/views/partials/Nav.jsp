@@ -98,14 +98,14 @@
         </div>
     </nav>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #F5F5F5">
+    <nav class="navbar navbar-expand-lg navbar-light nav-fix " style="background-color: #F5F5F5">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Home">
+                    <a class="nav-link mr-5 ml-5 text-success" href="${pageContext.request.contextPath}/Home#top">
                         <i class="fa fa-home text-success" aria-hidden="true"></i>
                         Home <span class="sr-only">(current)</span>
                     </a>

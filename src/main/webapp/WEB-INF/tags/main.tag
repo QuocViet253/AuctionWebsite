@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/lib.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/img.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <jsp:invoke fragment="css"/>
     <style>
         #preloader {
@@ -38,7 +39,9 @@
     <script src="${pageContext.request.contextPath}/public/js/main.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        AOS.init();
         if(!${auth})
         {
             $('#watchlist').attr('href',"${pageContext.request.contextPath}/Account/Login");

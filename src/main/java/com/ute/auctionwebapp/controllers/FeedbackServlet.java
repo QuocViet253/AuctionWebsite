@@ -17,7 +17,15 @@ public class FeedbackServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         switch (path) {
-
+            case "/GetUserRate":
+                int uid = Integer.parseInt(request.getParameter("uid"),10);
+                int rate = FeedbackModel.getUserRate(uid);
+                PrintWriter out = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                out.print(rate);
+                out.flush();
+                break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
         }

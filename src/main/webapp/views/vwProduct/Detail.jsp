@@ -65,14 +65,19 @@
                                 $('.modalConfirm').append('<b style="color: #f33a58"> $'+price+'</b>')
                             } else {
                                 //Case check if bidder have rating above 80%
-                                // swal({
-                                //     title: "Warning!",
-                                //     text: "Your rating must have more than 80% to bid on this product!",
-                                //     icon: "warning",
-                                //     button: "OK!",
-                                // });
-                                $('#staticBackdrop').modal('toggle')
-                                $('.modalConfirm').append('<b style="color: #f33a58"> $' + price + '</b>')
+                                $.getJSON('${pageContext.request.contextPath}/Feedback/GetUserRate?uid=${authUser.id}', function (data) {
+                                    if (data >=80) {
+                                        $('#staticBackdrop').modal('toggle')
+                                        $('.modalConfirm').append('<b style="color: #f33a58"> $' + price + '</b>')
+                                    } else {
+                                        swal({
+                                            title: "Warning!",
+                                            text: "Your rating must have more than 80% to bid on this product!",
+                                            icon: "warning",
+                                            button: "OK!",
+                                        });
+                                    }
+                                });
                             }
                         } else  swal({
                                 title: "Rejected!",

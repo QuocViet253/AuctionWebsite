@@ -163,8 +163,8 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${sellingProducts}" var="p">
-                                <div class="col-md-3 mb-4 shadow mt-3">
-                                    <div class="product-top mt-2 text-center">
+                                <div class="col-md-3 mb-4 mt-3">
+                                    <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -179,13 +179,13 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto mt-4" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
-                                            <fmt:formatNumber value="${p.price_current}" type="number" />
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                        <h5><b>Price Current:</b>
+                                            <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p.price_current}" type="number" /></span>
                                         </h5>
                                         <c:if test="${p.price_now!=0}">
-                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
-                                                <fmt:formatNumber value="${p.price_now}" type="number" />
+                                            <h5> <b>Price Buy Now:</b>
+                                                <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${p.price_now}" type="number"/></span>
                                             </h5>
                                         </c:if>
                                         <h5><b>Start Date:</b>
@@ -256,8 +256,8 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${soldProducts}" var="p2">
-                                <div class="col-md-3 mb-4 shadow mt-3">
-                                    <div class="product-top mt-2 text-center">
+                                <div class="col-md-3 mb-4 mt-3">
+                                    <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p2.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p2.proid}&catid=${p2.catid}" class="btn btn-secondary" title="Detail">
@@ -273,12 +273,12 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
-                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
-                                            <fmt:formatNumber value="${p2.price_current}" type="number" />
+                                        <h5><b>Price Current:</b>
+                                            <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p2.price_current}" type="number" /></span>
                                         </h5>
                                         <c:if test="${p2.price_now!=0}">
-                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
-                                                <fmt:formatNumber value="${p2.price_now}" type="number" />
+                                            <h5> <b>Price Buy Now:</b>
+                                                <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${p2.price_now}" type="number"/></span>
                                             </h5>
                                         </c:if>
                                         <h5><b>Start Date:</b>
@@ -318,7 +318,7 @@
                                                     <textarea class="form-control" name="soldcomment" id="txtsoldcomment"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><input type="radio" name="soldlike" value="1"> Like<br></label>
+                                                    <label><input type="radio" name="soldlike" value="1" checked> Like<br></label>
                                                     <label><input type="radio" name="soldlike" value="0"> Dislike<br></label>
                                                 </div>
                                             </div>
@@ -354,8 +354,8 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${biddingProducts}" var="p3">
-                                <div class="col-md-3 mb-4 shadow mt-3">
-                                    <div class="product-top mt-2 text-center">
+                                <div class="col-md-3 mb-4 mt-3">
+                                    <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}" class="btn btn-secondary" title="Detail">
@@ -369,12 +369,12 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
-                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
-                                            <fmt:formatNumber value="${p3.price_current}" type="number" />
+                                        <h5><b>Price Current:</b>
+                                            <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p3.price_current}" type="number" /></span>
                                         </h5>
                                         <c:if test="${p3.price_now!=0}">
-                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
-                                                <fmt:formatNumber value="${p3.price_now}" type="number" />
+                                            <h5> <b>Price Buy Now:</b>
+                                                <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${p3.price_now}" type="number"/></span>
                                             </h5>
                                         </c:if>
                                         <h5><b>Start Date:</b>
@@ -410,8 +410,8 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach items="${winningProducts}" var="p4">
-                                <div class="col-md-3 mb-4 shadow mt-3 mt-3">
-                                    <div class="product-top mt-2 text-center">
+                                <div class="col-md-3 mb-4 mt-3 mt-3">
+                                    <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p4.proid}&catid=${p4.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p4.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p4.proid}&catid=${p4.catid}" class="btn btn-secondary" title="Detail">
@@ -425,13 +425,12 @@
                                     </div>
                                     <div class="product-bottom text-center">
                                         <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
-                                      <%--  <h5 style="margin: 0">Price Current: $--%>
-                                        <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
-                                            <fmt:formatNumber value="${p4.price_current}" type="number" />
+                                        <h5><b>Price Current:</b>
+                                            <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p4.price_current}" type="number" /></span>
                                         </h5>
                                         <c:if test="${p4.price_now!=0}">
-                                            <h5 class="text-danger"><b>Price Buy Now:</b> $
-                                                <fmt:formatNumber value="${p4.price_now}" type="number" />
+                                            <h5> <b>Price Buy Now:</b>
+                                                <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${p4.price_now}" type="number"/></span>
                                             </h5>
                                         </c:if>
                                         <h5><b>Start Date:</b>
