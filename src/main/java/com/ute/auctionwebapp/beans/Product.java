@@ -8,7 +8,7 @@ public class Product {
     private String proname,tinydes,fulldes;
     private int quantity,price_start,price_payment,price_step,price_now,price_current;
     private LocalDateTime start_day,end_day;
-    private int catid,bid_id,id;
+    private int catid,bid_id;
     private String status;
     private String renew;
 

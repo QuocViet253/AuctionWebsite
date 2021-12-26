@@ -115,7 +115,22 @@
                     });
                 });
             });
+
+                function feedback()
+                {
+                    swal({
+                    title: "Successfully!",
+                    text: "Successfully added to your watchlist!",
+                    icon: "success",
+                    button: "OK!",
+                    closeOnClickOutside: false,
+
+                });
+                    return false;
+                }
+
         </script>
+
     </jsp:attribute>
     <jsp:body>
         <section class="selling">
@@ -286,7 +301,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="post" action="${pageContext.request.contextPath}/Feedback/AddSoldFeedback">
+                                        <form method="post" action="${pageContext.request.contextPath}/Feedback/AddSoldFeedback" onsubmit="return feedback()">
                                             <div class="modal-body">
                                                 <input type="hidden" name="review_id" value="${authUser.id}">
                                                 <input type="hidden" name="review_name" value="${authUser.name}">
@@ -310,7 +325,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                                     <i class="fa fa-times" aria-hidden="true"></i> Close</button>
-                                                <button type="submit" class="btn btn-info">
+                                                <button type="submit" class="btn btn-info" >
                                                     <i class="fa fa-check" aria-hidden="true"></i> Save</button>
                                             </div>
                                         </form>
