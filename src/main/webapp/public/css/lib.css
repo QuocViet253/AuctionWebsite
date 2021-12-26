@@ -325,6 +325,11 @@ body
     border: none !important;
     box-shadow: none !important;
 }
+.col-md-3
+{
+    border: 1px solid #f1f1f1;
+    border-radius: 10px;
+}
 .col-md-3:hover .overlay-right
 {
     opacity: 1;
@@ -333,12 +338,17 @@ body
 }
 .col-md-3:hover
 {
-    border: 1px solid #ea8215;
+    border: 1px solid #ea8215;!important;
+    box-shadow:  0 .5rem 1rem rgba(0,0,0,.15);
 }
 .col-md-3:hover img
 {
+    transform: translateY(-10px);
     transition: 0.5s;
-    transform: scale(1.05);
+}
+.col-md-3:hover h3
+{
+    color: orange;
 }
 /*New Lable in product*/
 .product-top span {

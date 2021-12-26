@@ -92,8 +92,8 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-md-3 mb-4 shadow mt-3"  >
-                                        <div class="product-top mt-2 text-center">
+                                    <div class="col-md-3 mb-4 mt-3">
+                                        <div class="product-top mt-3 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="height: 232px; width: 232px;object-fit:contain " src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -116,24 +116,33 @@
                                         </div>
                                         <div class="product-bottom text-center">
                                             <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
-                                                <fmt:formatNumber value="${p.price_current}" type="number" />
+                                            <h5><b>Price Current:</b>
+                                                <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p.price_current}" type="number" /></span>
                                             </h5>
                                             <c:if test="${p.price_now!=0}">
-                                                <h5 class="text-danger"><b>Price Buy Now:</b> $
-                                                    <fmt:formatNumber value="${p.price_now}" type="number" />
+                                                <h5> <b>Price Buy Now:</b>
+                                                    <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${p.price_now}" type="number"/></span>
                                                 </h5>
                                             </c:if>
-                                            <h5><b>Start Date:</b>
+                                            <h5><b>Start Date</b> :
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5><b>End Date:</b>
-                                                <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                                <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime}" />"></span>
+                                            <h5><b>  End Date:</b>
+                                                <fmt:parseDate value="${p.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />
+                                                <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${end }" />"></span>
                                             </h5>
                                             <h5><b>Sum of bids:</b> ${p.bid_count}</h5>
-                                            <h5 class="text-danger"><b>Highest bidder:</b> ${p.name}</h5>
+                                            <h5><b>Highest bidder: </b>
+                                                <c:choose>
+                                                <c:when test="${empty p.name}">
+                                                    Nobody bidding.
+                                                </c:when>
+                                                <c:otherwise>
+                                                <span class="text-danger">${p.name}</span></h5>
+                                            </c:otherwise>
+                                            </c:choose>
+                                            </h5>
                                         </div>
                                     </div>
                                 </c:forEach>
