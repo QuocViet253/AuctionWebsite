@@ -68,7 +68,21 @@
                 let des = button.data('des')
                 let modal = $(this)
                 modal.find('#proID').val(id)
-                modal.find('#txtProname').text('Product name: '+name)
+                modal.find('#txtProname').text('Product: '+name)
+            })
+
+            $('#commentSold').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget)
+                let id = button.data('id')
+                let name = button.data('name')
+                let uid = button.data('uid')
+                let uname = button.data('uname')
+                let modal = $(this)
+                modal.find('#soldproid').val(id)
+                modal.find('#soldproname').val(name)
+                modal.find('#uid').val(uid)
+                modal.find('#uname').val(uname)
+                modal.find('#txtsoldProname').text('Product: '+name)
             })
 
             function add (otp){
@@ -205,6 +219,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -236,7 +251,9 @@
                                             <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p2.proid}&proname=${p2.proname}&price_start=${p2.price_start}&uid=${authUser.id}&catid=${p2.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
-
+                                            <button type="button" data-toggle="modal" data-target="#commentSold" data-id="${p2.proid}" data-name = "${p2.proname}" data-uid="${p2.bid_id}" data-uname="${p2.bid_name}"  class="heart btn btn-secondary" title="Comment">
+                                                <i class="fa fa-comment" style="border-radius: 50%"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
@@ -260,6 +277,46 @@
                                     </div>
                                 </div>
                             </c:forEach>
+                            <div class="modal fade" id="commentSold" tabindex="-1" aria-labelledby="addCommentSoldLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addCommentSoldLabel">Feedback</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="post" action="${pageContext.request.contextPath}/Feedback/AddSoldFeedback">
+                                            <div class="modal-body">
+                                                <input type="hidden" name="review_id" value="${authUser.id}">
+                                                <input type="hidden" name="review_name" value="${authUser.name}">
+                                                <input type="hidden" name="soldproname" id="soldproname">
+                                                <input type="hidden" id="soldproid" name="soldproid">
+                                                <input type="hidden" id="uid" name="uid">
+                                                <input type="hidden" id="uname" name="uname">
+
+                                                <div class="form-group">
+                                                    <b class="text-info"><label id="txtsoldProname" class="col-form-label"></label></b>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtsoldcomment" class="col-form-label">Comment:</label>
+                                                    <textarea class="form-control" name="soldcomment" id="txtsoldcomment"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><input type="radio" name="soldlike" value="1"> Like<br></label>
+                                                    <label><input type="radio" name="soldlike" value="0"> Dislike<br></label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                                <button type="submit" class="btn btn-info">
+                                                    <i class="fa fa-check" aria-hidden="true"></i> Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </c:otherwise>
                     </c:choose>
                 </div>

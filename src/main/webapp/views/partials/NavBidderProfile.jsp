@@ -7,7 +7,7 @@
             function upgrare (otp){
                 {
                     $.getJSON(otp, function (data) {
-                        if (data === false) {
+                        if (data == false) {
                             swal({
                                 title: "Failed!",
                                 text: "Failed request to your upgare!",
@@ -115,7 +115,7 @@
                 </li>
 
                 <li class="nav-item mr-5 ml-5">
-                    <button type="button" onclick="upgrare('${pageContext.request.contextPath}/Admin/Upgrage?uid=${authUser.id}'), alert('Successfully request to your upgrage! Waiting response from Admin')" class="heart btn btn-outline-secondary">
+                    <button type="button" onclick="upgrare('${pageContext.request.contextPath}/Admin/Upgrage?uid=${authUser.id}')" class="heart btn btn-light ">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                         Upgrage Selle
                     </button>

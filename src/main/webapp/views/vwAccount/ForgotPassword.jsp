@@ -2,7 +2,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:account>
+<t:login_re>
     <jsp:attribute name="js">
         <script>
             // Forgot password form
@@ -129,7 +129,7 @@
     <jsp:body>
         <form action="" method="post" class=" mx-auto shadow rounded-lg bg-white mt-5 " id="formForgot">
             <!-- Logo -->
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 text-primary" style="font-family: 'Courier New'">
                 <h3>Forgot Password</h3>
             </div>
 
@@ -172,4 +172,4 @@
             </div>
         </form>
     </jsp:body>
-</t:account>
+</t:login_re>

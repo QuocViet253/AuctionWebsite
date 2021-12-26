@@ -1,11 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ tag pageEncoding="utf-8" %>
 <%@attribute name="css" fragment="true" required="false" %>
 <%@attribute name="js" fragment="true" required="false" %>
+<jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bidder</title>
+    <c:choose>
+        <c:when test="${authUser.role==0}">
+            <title>Admin</title>
+        </c:when>
+        <c:when test="${authUser.role==1}">
+            <title>Bidder</title>
+        </c:when>
+        <c:otherwise>
+            <title>Seller</title>
+        </c:otherwise>
+    </c:choose>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/main.css">
