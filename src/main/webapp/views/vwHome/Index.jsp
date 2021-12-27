@@ -6,6 +6,7 @@
 <jsp:useBean id="products3" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="now" class="java.util.Date" />
 <t:main>
     <jsp:attribute name="js">
@@ -107,7 +108,10 @@
                                                         Nobody bidding.
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <span class="text-danger">${p1.name}</span></h5>
+                                                        <span class="text-danger">
+                                                            <c:set var="nameParts" value="${fn:split(p1.name, ' ')}"/>
+                                                            *****${nameParts[0].substring(1)}
+                                                        </span></h5>
                                                     </c:otherwise>
                                                 </c:choose>
                                         </div>
@@ -156,7 +160,10 @@
                                             Nobody bidding.
                                         </c:when>
                                         <c:otherwise>
-                                        <span class="text-danger">${p2.name}</span></h5>
+                                        <span class="text-danger">
+                                            <c:set var="nameParts" value="${fn:split(p2.name, ' ')}"/>
+                                                *****${nameParts[0].substring(1)}
+                                        </span></h5>
                                     </c:otherwise>
                                     </c:choose>
                                     </h5>
@@ -207,7 +214,10 @@
                                             Nobody bidding.
                                         </c:when>
                                         <c:otherwise>
-                                        <span class="text-danger">${p3.name}</span></h5>
+                                        <span class="text-danger">
+                                            <c:set var="nameParts" value="${fn:split(p3.name, ' ')}"/>
+                                                *****${nameParts[0].substring(1)}
+                                        </span></h5>
                                     </c:otherwise>
                                     </c:choose>
                                     </h5>

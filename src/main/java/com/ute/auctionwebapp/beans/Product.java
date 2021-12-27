@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Product {
-    private int proid,id;
+    private int proid;
+    private int id;
     private String proname,tinydes,fulldes;
     private int quantity,price_start,price_payment,price_step,price_now,price_current;
     private LocalDateTime start_day,end_day;

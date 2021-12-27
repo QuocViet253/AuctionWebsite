@@ -17,7 +17,6 @@
         <script></script>
     </jsp:attribute>
     <jsp:body>
-        <div class="history-image">
         <div class="title-box bg-warning mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
             <h2>History</h2>
         </div>
@@ -52,7 +51,6 @@
                 </c:choose>
                 </tbody>
             </table>
-        </div>
         </div>
     </jsp:body>
 </t:history>
