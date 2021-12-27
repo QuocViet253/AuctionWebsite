@@ -414,6 +414,9 @@
                             <c:forEach items="${biddingProducts}" var="p3">
                                 <div class="col-md-3 mb-4 mt-3">
                                     <div class="product-top mt-3 text-center">
+                                        <c:if test="${p3.bid_id == authUser.id}">
+                                            <span class="top-bid"></span>
+                                        </c:if>
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg"></a>
                                         <div class="overlay-right">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}" class="btn btn-secondary" title="Detail">
@@ -422,7 +425,6 @@
                                             <button type="button"  onclick="add('${pageContext.request.contextPath}/Product/AddWatchList?proid=${p3.proid}&proname=${p3.proname}&price_start=${p3.price_start}&uid=${authUser.id}&catid=${p3.catid}')" class="heart btn btn-secondary " title="Add to WatchList">
                                                 <i class="fa fa-heart-o" style="border-radius: 50%"></i>
                                             </button>
-
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
@@ -456,7 +458,7 @@
             <div class="container-fluid t4">
                 <div class="w-100 mb-1 border-bottom">
                     <div class="title-pro">
-                        <h2>Winning Products</h2>
+                        <h2>Won Products</h2>
                     </div>
                 </div>
                 <div class="row mt-2 ml-1">

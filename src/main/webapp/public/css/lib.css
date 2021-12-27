@@ -352,7 +352,7 @@ body
     color: orange;
 }
 /*New Lable in product*/
-.product-top span {
+.product-top .new-title {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -364,7 +364,7 @@ body
     opacity: 0.8;
     overflow: hidden;
 }
-.product-top span::before {
+.product-top .new-title::before {
     content: 'NEW';
     position: absolute;
     width: 150%;
@@ -379,7 +379,7 @@ body
     letter-spacing: 0.1rem;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-.product-top span::after {
+.product-top .new-title::after {
     content: '';
     position: absolute;
     bottom: 10px;
@@ -389,6 +389,35 @@ body
     background-color: red;
     z-index: -1;
     box-shadow: -50px -50px red;
+}
+
+/*highest bidder in product*/
+.product-top .top-bid {
+    position: absolute;
+    z-index: 1000;
+    top: 110px;
+    right: 0px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    overflow: hidden;
+}
+.product-top .top-bid::before {
+    content: 'You are the highest bidder';
+    position: absolute;
+    width: 150%;
+    height: 25px;
+    background-color: red;
+    transform: rotate(0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.1rem;
 }
 
 /*--------------Product-bottom-CSS---------------*/

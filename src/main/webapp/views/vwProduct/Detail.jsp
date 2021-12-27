@@ -262,7 +262,8 @@
                         <div class="content mt-3 " style="margin-left: 50px">
                             <h4 class="mr-2"><span class="text-info"> <b>Seller:</b></span> ${product.sell_name}</h4>
                             <h4 class="mr-2"><span class="text-info"><b>Highest Bidder:</b></span>
-                                ${product.bid_name}
+                                <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
+                                *****${nameParts[0].substring(3)}
                             </h4>
                             <h4 class="mr-2"><span class="text-info"><b>Date Start:</b> </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
@@ -344,7 +345,9 @@
                                 <th scope="col">Time</th>
                                 <th scope="col">Bidder</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Reject</th>
+                                <c:if test="${auth && authUser.id==product.sell_id}">
+                                    <th scope="col">Reject</th>
+                                </c:if>
                             </tr>
                             </thead>
                             <tbody>
@@ -363,7 +366,7 @@
                                             </td>
                                             <td>
                                                 <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
-                                                *****${nameParts[0]}
+                                                *****${nameParts[0].substring(1)}
                                             </td>
                                             <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
                                             <c:if test="${auth && authUser.id==product.sell_id}">

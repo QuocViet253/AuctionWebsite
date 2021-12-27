@@ -9,6 +9,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="now" class="java.util.Date" />
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
@@ -115,7 +116,7 @@
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
                                     <div class="col-md-3 mb-4 mt-3">
-                                        <div class="product-top mt-2 text-center">
+                                        <div class="product-top mt-3 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
                                                 <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}" class="btn btn-secondary" title="Detail">
@@ -161,7 +162,10 @@
                                                     Nobody bidding.
                                                 </c:when>
                                                 <c:otherwise>
-                                                <span class="text-danger">${p.name}</span></h5>
+                                                <span class="text-danger">
+                                                <c:set var="nameParts" value="${fn:split(p.name, ' ')}"/>
+                                                *****${nameParts[0].substring(1)}
+                                                </span></h5>
                                             </c:otherwise>
                                             </c:choose>
                                             </h5>
