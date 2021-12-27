@@ -92,7 +92,7 @@
 
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
-        <url-pattern>/Feedback/ViewFeedback</url-pattern>
+        <url-pattern>/Feedback/ViewComment</url-pattern>
     </filter-mapping>
 
     <filter-mapping>

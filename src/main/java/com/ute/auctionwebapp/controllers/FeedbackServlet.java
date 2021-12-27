@@ -58,6 +58,15 @@ public class FeedbackServlet extends HttpServlet {
                 ServletUtills.forward("/views/vwFeedback/Feedback.jsp", request, response);
                 break;
 
+            case "/ViewComment":
+                int id  = Integer.parseInt(request.getParameter("uid"),10);
+                User user = UserModel.findById(id);
+                request.setAttribute("users",user);
+                List<Feedback> viewfb = FeedbackModel.findAll();
+                request.setAttribute("Feedback", viewfb);
+                ServletUtills.forward("/views/vwFeedback/ViewFeedback.jsp", request, response);
+                break;
+
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
         }
