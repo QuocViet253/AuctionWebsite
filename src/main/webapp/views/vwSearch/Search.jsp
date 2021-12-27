@@ -72,28 +72,40 @@
                     });
                 });
             });
+            window.onload = function () {
+                var url_string = window.location.href; //window.location.href
+                var url = new URL(url_string);
+                var c = url.searchParams.get("search");
+                $('#resSearch').text(c)
+                $('#search').val(c)
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
         <div class="right col-sm-10 mt-1" >
-            <div class="dropdown mt-1 mb-2" style="width: 91px">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-filter" aria-hidden="true"></i>
-                    Sort
-                </a>
-                <div class="dropdown-menu mt-0" aria-labelledby="dropdownMenuLink">
-                    <button class="dropdown-item" onclick="SortInc('${pageContext.request.contextPath}')">
-                        <i class="fa fa-sort-asc" aria-hidden="true"></i>
-                        Price
-                    </button>
-                    <button class="dropdown-item" onclick="SortDec('${pageContext.request.contextPath}')">
-                        <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                        Time
-                    </button>
+            <div class="d-flex justify-content-between align-items-center ">
+                <div>
+                    <h5 class="mt-4 ml-2">Result for search: <span class="text-primary" id="resSearch"></span> </h5>
+                </div>
+                <div class="dropdown mt-1 " style="width: 91px">
+                    <a class="btn btn-outline-secondary font-weight-bold dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                        Sort
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right mt-0 " aria-labelledby="dropdownMenuLink">
+                        <button class="dropdown-item" onclick="SortInc('${pageContext.request.contextPath}')">
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            Price
+                        </button>
+                        <button class="dropdown-item" onclick="SortDec('${pageContext.request.contextPath}')">
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            Time
+                        </button>
+                    </div>
                 </div>
             </div>
                 <div class="container-fluid t1">
-                    <div class="row mt-2">
+                    <div class="row">
                         <c:choose>
                             <c:when test="${products.size()==0}">
                                 <div class="card-body">
@@ -102,7 +114,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${products}" var="p">
-                                    <div class="col-md-3 mb-4 shadow mt-3">
+                                    <div class="col-md-3 mb-4 mt-3">
                                         <div class="product-top mt-2 text-center">
                                             <a href="${pageContext.request.contextPath}/Product/Detail?id=${p.proid}&catid=${p.catid}"><img style="width: 232px;height: 232px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${p.proid}/main.jpg"></a>
                                             <div class="overlay-right">
@@ -125,23 +137,34 @@
                                             </c:if>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 class="mx-auto mt-4" name="proname" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
-                                            <h5 class="text-primary" style="margin: 0"><b>Price Current:</b> $
-                                                <fmt:formatNumber value="${p.price_current}" type="number" /></h5>
+                                            <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h5><b>Price Current:</b>
+                                                <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p.price_current}" type="number" /></span>
+                                            </h5>
                                             <c:if test="${p.price_now!=0}">
-                                                <h5 class="text-danger"><b>Price Buy Now:</b> $
-                                                    <fmt:formatNumber value="${p.price_now}" type="number" /></h5>
+                                                <h5> <b>Price Buy Now:</b>
+                                                    <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${p.price_now}" type="number"/></span>
+                                                </h5>
                                             </c:if>
-                                            <h5><b>Start Date:</b>
+                                            <h5><b>Start Date</b> :
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </h5>
-                                            <h5><b>End Date:</b>
-                                                <fmt:parseDate value="${p.end_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                                <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${parsedDateTime }" />"></span>
+                                            <h5><b>  End Date:</b>
+                                                <fmt:parseDate value="${p.end_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="end" type="both" />
+                                                <span class="text-success" data-countdown="<fmt:formatDate pattern="MM/dd/yyyy HH:mm:ss" value="${end }" />"></span>
                                             </h5>
                                             <h5><b>Sum of bids:</b> ${p.bid_count}</h5>
-                                            <h5 class="text-danger"><b>Highest Bidder:</b> ${p.name}</h5>
+                                            <h5><b>Highest bidder: </b>
+                                                <c:choose>
+                                                <c:when test="${empty p.name}">
+                                                    Nobody bidding.
+                                                </c:when>
+                                                <c:otherwise>
+                                                <span class="text-danger">${p.name}</span></h5>
+                                            </c:otherwise>
+                                            </c:choose>
+                                            </h5>
                                         </div>
                                     </div>
                                 </c:forEach>

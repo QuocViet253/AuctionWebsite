@@ -101,6 +101,7 @@
                 modal.find('#txtWinSeller').text('Seller: '+uname)
             })
 
+            //Add to watchlist
             function add (otp){
                 $.getJSON(otp, function (data) {
                     if (data === false) {
@@ -121,6 +122,32 @@
                     });
                 });
             }
+
+            //Cancel Transaction
+            function cancelTrans (query){
+                $.getJSON(query, function (data) {
+                    if (data === false) {
+                        swal({
+                            title: "Failed!",
+                            text: "Failed cancel this product transaction!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: true,
+                            closeOnClickOutside: false,
+                        });
+                    } else swal({
+                        title: "Successfully!",
+                        text: "Successfully cancel this product transaction!",
+                        icon: "success",
+                        button: "OK!",
+                        closeOnClickOutside: false,
+                    }).then(function(){
+                            location.reload();
+                        }
+                    );
+                });
+            }
+
             //Countdown timer in product
             $(function(){
                 $('[data-countdown]').each(function() {
@@ -298,6 +325,9 @@
                                             </button>
                                             <button type="button" data-toggle="modal" data-target="#commentSold" data-id="${p2.proid}" data-name = "${p2.proname}" data-uid="${p2.bid_id}" data-uname="${p2.bid_name}"  class="heart btn btn-secondary" title="Comment">
                                                 <i class="fa fa-comment" style="border-radius: 50%"></i>
+                                            </button>
+                                            <button type="button" onclick="cancelTrans('${pageContext.request.contextPath}/Feedback/CancelTrans?uid=${p2.bid_id}&uname=${p2.bid_name}&review_id=${authUser.id}&review_name=${authUser.name}&proid=${p2.proid}&proname=${p2.proname}')" class="heart btn btn-secondary" title="Cancel this product transaction">
+                                                <i class="fa fa-times-circle text-danger" aria-hidden="true" style="border-radius: 50%"></i>
                                             </button>
                                         </div>
                                     </div>

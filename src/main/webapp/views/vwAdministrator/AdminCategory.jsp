@@ -18,39 +18,42 @@
         </a>
         </div>
         <b>&nbsp;</b>
-        <div class="tableFixHistory" style="cursor: pointer">
-            <p>&nbsp;</p>
-            <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
-                <thead>
-                <tr>
-                    <th scope="col" style="background-color: black"><p style="color: white">CatID</p></th>
-                    <th scope="col" style="background-color: black"><p style="color: white">CatName</p></th>
-                    <th scope="col" style="background-color: black"><p style="color: white">Edit</p></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:choose>
-                    <c:when test="${categories.size()==0}">
-                        <div class="card-body">
-                            <p class="card-text">No data</p>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach items="${categories}" var="c">
-                            <tr>
-                                <th scope="col">${c.catid}</th>
-                                <th scope="col">${c.catname}</th>
-                                <th scope="col">
-                                    <a type="button" class="btn btn-outline-dark btn-sm btn-block w-50" href="${pageContext.request.contextPath}/Admin/Category/EditCategory?id=${c.catid}" role="button">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </a>
-                                </th>
-                            </tr>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
-                </tbody>
-            </table>
+        <div class="w-50 mx-auto">
+            <div class="tableFixHistory" style="cursor: pointer">
+                <table class="table table-hover mx-auto">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="background-color: black"><p style="color: white">CatID</p></th>
+                        <th scope="col" style="background-color: black"><p style="color: white">CatName</p></th>
+                        <th scope="col" style="background-color: black"><p style="color: white">Edit</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:choose>
+                        <c:when test="${categories.size()==0}">
+                            <div class="card-body">
+                                <p class="card-text">No data</p>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${categories}" var="c">
+                                <tr>
+                                    <th scope="col">${c.catid}</th>
+                                    <th scope="col">${c.catname}</th>
+                                    <th scope="col">
+                                        <a type="button" class="btn btn-outline-dark btn-sm btn-block w-50" href="${pageContext.request.contextPath}/Admin/Category/EditCategory?id=${c.catid}" role="button">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </jsp:body>
 </t:manager>
 </div>
