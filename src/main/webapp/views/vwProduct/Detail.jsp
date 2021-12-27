@@ -224,21 +224,42 @@
                         <div>
                             <ul class="list-img mt-2">
                                 <li class="img mb-3">
-                                    <img id="one" class="border border-success rounded" onclick="changeImage('one')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="0" id="one" class="border border-success rounded" style="width: 80px;height: 80px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="two" class="border border-success rounded" onclick="changeImage('two')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="1" id="two" class="border border-success rounded"  style="width: 80px;height: 80px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="three" class="border border-success rounded" onclick="changeImage('three')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="2" id="three" class="border border-success rounded" style="width: 80px;height: 80px; object-fit: contain;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
                                 </li>
                                 <li class="img">
-                                    <img id="four" class="border border-success rounded" onclick="changeImage('four')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="3" id="four" class="border border-success rounded"  style="width: 80px;height: 80px; object-fit: contain;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
                                 </li>
                             </ul>
                         </div>
-                        <div id="main_img" style="margin-left: 10px">
-                            <img id="img_main" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
+                        <div id="main_img" style="margin-left: 20px" >
+                            <div id="carouselExampleIndicators" class="carousel slide" data-interval="2000" data-ride="carousel" style="width: 400px;height: 400px; object-fit: contain; box-shadow: none">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active bg-secondary"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1" class="bg-secondary"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2" class="bg-secondary"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="3" class="bg-secondary"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <h4 style="cursor:pointer;" class="text-primary text-center mt-3">
@@ -262,8 +283,15 @@
                         <div class="content mt-3 " style="margin-left: 50px">
                             <h4 class="mr-2"><span class="text-info"> <b>Seller:</b></span> ${product.sell_name}</h4>
                             <h4 class="mr-2"><span class="text-info"><b>Highest Bidder:</b></span>
-                                <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
-                                *****${nameParts[0].substring(3)}
+                                <c:choose>
+                                    <c:when test="${empty product.bid_name}">
+                                        None.
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
+                                        *****${nameParts[0].substring(1)}
+                                    </c:otherwise>
+                                </c:choose>
                             </h4>
                             <h4 class="mr-2"><span class="text-info"><b>Date Start:</b> </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
@@ -365,8 +393,15 @@
                                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                             </td>
                                             <td>
-                                                <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
-                                                *****${nameParts[0].substring(1)}
+                                                <c:choose>
+                                                    <c:when test="${empty h.name}">
+                                                        None.
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
+                                                        *****${nameParts[0].substring(1)}
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </td>
                                             <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
                                             <c:if test="${auth && authUser.id==product.sell_id}">

@@ -17,9 +17,8 @@
             Add Category
         </a>
         </div>
-        <div class="tableFixHistory" style="cursor: pointer">
-            <p>&nbsp;</p>
-            <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
+        <div class="tableFixHistory w-50" style="cursor: pointer">
+            <table class="table table-hover mx-auto">
                 <thead>
                 <tr>
                     <th scope="col" style="background-color: black"><p style="color: white">CatID</p></th>
