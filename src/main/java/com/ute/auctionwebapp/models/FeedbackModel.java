@@ -2,6 +2,7 @@ package com.ute.auctionwebapp.models;
 
 import com.ute.auctionwebapp.beans.Feedback;
 import com.ute.auctionwebapp.beans.Product;
+import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.utills.DbUtills;
 import org.sql2o.Connection;
 
@@ -44,4 +45,6 @@ public class FeedbackModel {
                     .executeAndFetch(Feedback.class);
         }
     }
+
+
 }
