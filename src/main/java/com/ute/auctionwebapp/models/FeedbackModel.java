@@ -36,4 +36,12 @@ public class FeedbackModel {
             return f.get(0).getRate();
         }
     }
+
+    public static List<Feedback> findAll(){
+        final String query = "select * from feedback";
+        try (Connection con = DbUtills.getConnection()) {
+            return con.createQuery(query)
+                    .executeAndFetch(Feedback.class);
+        }
+    }
 }

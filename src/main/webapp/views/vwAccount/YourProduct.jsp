@@ -83,6 +83,7 @@
                 modal.find('#uid').val(uid)
                 modal.find('#uname').val(uname)
                 modal.find('#txtsoldProname').text('Product: '+name)
+                modal.find('#txtsoldbidname').text('Bidder: '+ uname)
             })
 
             $('#commentWin').on('show.bs.modal', function (event) {
@@ -97,6 +98,7 @@
                 modal.find('#winuid').val(uid)
                 modal.find('#winuname').val(uname)
                 modal.find('#txtWinProname').text('Product: '+name)
+                modal.find('#txtWinSeller').text('Seller: '+uname)
             })
 
             function add (otp){
@@ -324,7 +326,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addCommentSoldLabel">Feedback</h5>
+                                            <h5 class="modal-title" id="addCommentSoldLabel" style="font-weight: bold">Feedback</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -342,12 +344,15 @@
                                                     <b class="text-info"><label id="txtsoldProname" class="col-form-label"></label></b>
                                                 </div>
                                                 <div class="form-group">
+                                                    <b class="text-secondary"><label id="txtsoldbidname" class="col-form-label"></label></b>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="txtsoldcomment" class="col-form-label">Comment:</label>
                                                     <textarea class="form-control" name="soldcomment" id="txtsoldcomment"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><input type="radio" name="soldlike" value="1" checked> Like<br></label>
-                                                    <label><input type="radio" name="soldlike" value="0"> Dislike<br></label>
+                                                    <label><input type="radio" name="soldlike" value="1"> <i class="fa fa-thumbs-up text-primary fa-2x"></i></label>
+                                                    <label><input type="radio" name="soldlike" value="0"> <i class="fa fa-thumbs-down text-danger fa-2x"></i></label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -478,7 +483,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addCommentWinLabel">Feedback</h5>
+                                            <h5 class="modal-title" id="addCommentWinLabel" style="font-weight: bold">Feedback</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -493,15 +498,19 @@
                                                 <input type="hidden" id="winuname" name="winuname">
 
                                                 <div class="form-group">
-                                                    <b class="text-info"><label id="txtWinProname" class="col-form-label"></label></b>
+                                                    <b class="text-primary"><label id="txtWinProname" class="col-form-label"></label></b>
+                                                </div>
+                                                <div class="form-group">
+                                                    <b class="text-secondary"><label id="txtWinSeller" class="col-form-label"></label></b>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="txtwincomment" class="col-form-label">Comment:</label>
                                                     <textarea class="form-control" name="wincomment" id="txtwincomment"></textarea>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label><input type="radio" name="winlike" value="1" checked> Like<br></label>
-                                                    <label><input type="radio" name="winlike" value="0"> Dislike<br></label>
+                                                <div class="form-group ">
+                                                         <label><input type="radio" name="winlike" value="1" > <i class="fa fa-thumbs-up text-primary fa-2x"></i> </label>
+                                                        <label><input type="radio" name="winlike" value="0" > <i class="fa fa-thumbs-down text-danger fa-2x"></i></label>
+
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
