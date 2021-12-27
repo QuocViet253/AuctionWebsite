@@ -83,7 +83,7 @@
                 modal.find('#uid').val(uid)
                 modal.find('#uname').val(uname)
                 modal.find('#txtsoldProname').text('Product: '+name)
-                modal.find('#txtsoldbidname').text('Bidder: '+ uname)
+                modal.find('#txtsoldbidname').text('Winner: '+ uname)
             })
 
             $('#commentWin').on('show.bs.modal', function (event) {

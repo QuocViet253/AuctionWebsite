@@ -1,9 +1,11 @@
 package com.ute.auctionwebapp.controllers;
 
 import com.ute.auctionwebapp.beans.Feedback;
+import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.models.FeedbackModel;
 
 import com.ute.auctionwebapp.models.ProductModel;
+import com.ute.auctionwebapp.models.UserModel;
 import com.ute.auctionwebapp.utills.ServletUtills;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,6 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Struct;
+import java.util.List;
 
 
 @WebServlet(name = "FeedbackServlet", value = "/Feedback/*")
@@ -48,6 +51,13 @@ public class FeedbackServlet extends HttpServlet {
                 outC.print(check);
                 outC.flush();
                 break;
+
+            case "/ViewFeedback":
+                List<Feedback> adviewfb = FeedbackModel.findAll();
+                request.setAttribute("Feedback", adviewfb);
+                ServletUtills.forward("/views/vwFeedback/Feedback.jsp", request, response);
+                break;
+
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
         }
