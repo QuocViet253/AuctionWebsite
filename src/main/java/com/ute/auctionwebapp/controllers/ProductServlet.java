@@ -1,12 +1,10 @@
 package com.ute.auctionwebapp.controllers;
 
 import com.ute.auctionwebapp.beans.Category;
+import com.ute.auctionwebapp.beans.Feedback;
 import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
-import com.ute.auctionwebapp.models.CategoryModel;
-import com.ute.auctionwebapp.models.HistoryModel;
-import com.ute.auctionwebapp.models.ProductModel;
-import com.ute.auctionwebapp.models.WatchListModel;
+import com.ute.auctionwebapp.models.*;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
@@ -87,6 +85,8 @@ public class ProductServlet extends HttpServlet {
                     request.setAttribute("product",product);
                     List<Product> list4 = ProductModel.findNear(catid,proid);
                     request.setAttribute("products",list4);
+                    List<Feedback> feedbackList = FeedbackModel.getListUserRate();
+                    request.setAttribute("usersRate",feedbackList);
 
                     List<History> list5 =HistoryModel.findByProduct(proid);
                     request.setAttribute("histories",list5);
@@ -196,6 +196,7 @@ public class ProductServlet extends HttpServlet {
             case "/Add":
                 List<Category> listC = CategoryModel.findChild();
                 request.setAttribute("catChild",listC);
+                request.setAttribute("success",false);
                 ServletUtills.forward("/views/vwProduct/Add.jsp", request, response);
                 break;
             default:
@@ -262,11 +263,14 @@ public class ProductServlet extends HttpServlet {
                     destination = targetDir + "/sub"+i+".jpg";
                 }
                 i ++;
-
                 part.write(destination);
-
             }
         }
-        ServletUtills.redirect("/Product/Add", request, response);
+        if (lastid != 0) {
+            request.setAttribute("success",true);
+        }
+        List<Category> listC = CategoryModel.findChild();
+        request.setAttribute("catChild",listC);
+        ServletUtills.forward("/views/vwProduct/Add.jsp", request, response);
     }
 }

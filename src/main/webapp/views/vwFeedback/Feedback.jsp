@@ -47,8 +47,8 @@
                     <b class="text-secondary"><label id="txtrate" class="col-form-label"></label></b>
                 </div>
             </div>
-            <div  class="tableFixHistory" style="cursor: pointer ; height: 50%" id="tableFixHistory2">
-                <table class="table  table-hover " style="width: 75%; height: 5px; margin: auto">
+            <div  class="tableFixHistory h-50 w-75 mx-auto" style="cursor: pointer " id="tableFixHistory2">
+                <table class="table  table-hover ">
                     <thead>
                     <tr>
                         <th scope="col" style="background-color: black; color: white">From</th>
@@ -94,8 +94,8 @@
             <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
                 <h2>Your Feedback</h2>
             </div>
-            <div  class="tableFixHistory" style="cursor: pointer ; height: 50%" id="tableFixHistory1">
-                <table class="table  table-hover " style="width: 75%; height: 5px; margin: auto">
+            <div  class="tableFixHistory h-50 w-75 mx-auto" style="cursor: pointer" id="tableFixHistory1">
+                <table class="table  table-hover " >
                     <thead>
                     <tr>
                         <th scope="col" style="background-color: black; color: white">To</th>

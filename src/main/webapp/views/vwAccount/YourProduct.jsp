@@ -125,29 +125,38 @@
 
             //Cancel Transaction
             function cancelTrans (query){
-                $.getJSON(query, function (data) {
-                    if (data === false) {
-                        swal({
-                            title: "Failed!",
-                            text: "Failed cancel this product transaction!",
-                            icon: "error",
-                            button: "OK!",
-                            dangerMode: true,
-                            closeOnClickOutside: false,
+                swal({
+                    title: "Are you sure?",
+                    text: "Delete this product transaction?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.getJSON(query, function (data) {
+                            if (data === false) {
+                                swal({
+                                    title: "Failed!",
+                                    text: "Failed cancel this product transaction!",
+                                    icon: "error",
+                                    button: "OK!",
+                                    dangerMode: true,
+                                    closeOnClickOutside: false,
+                                });
+                            } else swal({
+                                title: "Successfully!",
+                                text: "Successfully cancel this product transaction!",
+                                icon: "success",
+                                button: "OK!",
+                                closeOnClickOutside: false,
+                            }).then(function(){
+                                    location.reload();
+                                }
+                            );
                         });
-                    } else swal({
-                        title: "Successfully!",
-                        text: "Successfully cancel this product transaction!",
-                        icon: "success",
-                        button: "OK!",
-                        closeOnClickOutside: false,
-                    }).then(function(){
-                            location.reload();
-                        }
-                    );
+                    }
                 });
             }
-
             //Countdown timer in product
             $(function(){
                 $('[data-countdown]').each(function() {
@@ -160,29 +169,56 @@
             });
             $('#feedback').on('submit', function (e){
                 e.preventDefault();
-                swal({
-                    title: "Successfully!",
-                    text: "Successfully added to your feedback",
-                    icon: "success",
-                    button: "OK!",
-                    closeOnClickOutside: false,
-
-                }).then(function (){
-                    $('#feedback').off('submit').submit();
+                let proid= $('#soldproid').val();
+                $.getJSON('${pageContext.request.contextPath}/Feedback/CheckFeedBack?review_id=${authUser.id}&proid='+proid, function (data) {
+                    if (data === false){
+                        swal({
+                            title: "Successfully!",
+                            text: "Successfully added to your feedback",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
+                        }).then(function (){
+                            $('#feedback').off('submit').submit();
+                        })
+                    } else {
+                        swal({
+                            title: "Failed!",
+                            text: "You already added a feedback on this product!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: "true",
+                            closeOnClickOutside: false,
+                        })
+                    }
                 })
             })
 
             $('#feedbackWin').on('submit', function (e){
                 e.preventDefault();
-                swal({
-                    title: "Successfully!",
-                    text: "Successfully added to your feedback",
-                    icon: "success",
-                    button: "OK!",
-                    closeOnClickOutside: false,
+                let proid= $('#winproid').val();
+                $.getJSON('${pageContext.request.contextPath}/Feedback/CheckFeedBack?review_id=${authUser.id}&proid='+proid, function (data) {
+                    if (data === false){
+                        swal({
+                            title: "Successfully!",
+                            text: "Successfully added to your feedback",
+                            icon: "success",
+                            button: "OK!",
+                            closeOnClickOutside: false,
 
-                }).then(function (){
-                    $('#feedbackWin').off('submit').submit();
+                        }).then(function (){
+                            $('#feedbackWin').off('submit').submit();
+                        })
+                    } else {
+                        swal({
+                            title: "Failed!",
+                            text: "You already added a feedback on this product!",
+                            icon: "error",
+                            button: "OK!",
+                            dangerMode: "true",
+                            closeOnClickOutside: false,
+                        })
+                    }
                 })
             })
 
@@ -381,7 +417,7 @@
                                                     <textarea class="form-control" name="soldcomment" id="txtsoldcomment"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><input type="radio" name="soldlike" value="1"> <i class="fa fa-thumbs-up text-primary fa-2x"></i></label>
+                                                    <label><input type="radio" name="soldlike" checked value="1"> <i class="fa fa-thumbs-up text-primary fa-2x"></i></label>
                                                     <label><input type="radio" name="soldlike" value="0"> <i class="fa fa-thumbs-down text-danger fa-2x"></i></label>
                                                 </div>
                                             </div>
@@ -540,7 +576,7 @@
                                                     <textarea class="form-control" name="wincomment" id="txtwincomment"></textarea>
                                                 </div>
                                                 <div class="form-group ">
-                                                         <label><input type="radio" name="winlike" value="1" > <i class="fa fa-thumbs-up text-primary fa-2x"></i> </label>
+                                                         <label><input type="radio" name="winlike" checked value="1" > <i class="fa fa-thumbs-up text-primary fa-2x"></i> </label>
                                                         <label><input type="radio" name="winlike" value="0" > <i class="fa fa-thumbs-down text-danger fa-2x"></i></label>
 
                                                 </div>

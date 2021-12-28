@@ -50,8 +50,8 @@
                     <b class="text-secondary"><label id="txtrate" class="col-form-label"></label></b>
                 </div>
             </div>
-            <div  class="tableFixHistory" style="cursor: pointer ; height: 50%" id="tableFixHistory2">
-                <table class="table  table-hover " style="width: 75%; height: 5px; margin: auto">
+            <div  class="tableFixHistory w-75 h-50 mx-auto" style="cursor: pointer" id="tableFixHistory2">
+                <table class="table  table-hover">
                     <thead>
                     <tr>
                         <th scope="col" style="background-color: black; color: white">From</th>

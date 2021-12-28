@@ -33,17 +33,19 @@ public class FeedbackServlet extends HttpServlet {
                 break;
             case "/CancelTrans":
                 uid = Integer.parseInt(request.getParameter("uid"),10);
-                String uname = request.getParameter("uname");
-                int review_id = Integer.parseInt(request.getParameter("review_id"),10);
-                String review_name = request.getParameter("review_name");
-                int proid = Integer.parseInt(request.getParameter("proid"),10);
-                String proname = request.getParameter("proname");
-                Feedback fb= new Feedback(uid,review_id,proid,0,1,uname,review_name,"Winner does not pay!",proname);
-                boolean checkAddfb = FeedbackModel.add(fb);
-                boolean checkCancelTrans = ProductModel.cancelTrans(proid);
                 boolean check = false;
-                if (checkAddfb && checkCancelTrans && uid !=0) {
-                    check = true;
+                if (uid != 0) {
+                    String uname = request.getParameter("uname");
+                    int review_id = Integer.parseInt(request.getParameter("review_id"), 10);
+                    String review_name = request.getParameter("review_name");
+                    int proid = Integer.parseInt(request.getParameter("proid"), 10);
+                    String proname = request.getParameter("proname");
+                    Feedback fb = new Feedback(uid, review_id, proid, 0, 1, uname, review_name, "Winner does not pay!", proname);
+                    boolean checkAddfb = FeedbackModel.add(fb);
+                    boolean checkCancelTrans = ProductModel.cancelTrans(proid);
+                    if (checkAddfb && checkCancelTrans ) {
+                        check = true;
+                    }
                 }
                 PrintWriter outC = response.getWriter();
                 response.setContentType("application/json");
@@ -65,6 +67,16 @@ public class FeedbackServlet extends HttpServlet {
                 List<Feedback> viewfb = FeedbackModel.findAll();
                 request.setAttribute("Feedback", viewfb);
                 ServletUtills.forward("/views/vwFeedback/ViewFeedback.jsp", request, response);
+                break;
+            case "/CheckFeedBack":
+                int review_id = Integer.parseInt(request.getParameter("review_id"),10);
+                int proid = Integer.parseInt(request.getParameter("proid"),10);
+                boolean checkF = FeedbackModel.checkByReviewIDandProID(review_id,proid);
+                PrintWriter outF = response.getWriter();
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                outF.print(checkF);
+                outF.flush();
                 break;
 
             default:
