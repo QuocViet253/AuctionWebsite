@@ -66,11 +66,11 @@
             <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
             <section class="on-sale">
                 <div class="container-fluid">
-                    <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;">
-                        <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Expired</h2>
-                    </div>
                     <div class="row">
-                            <c:forEach items="${products1}" var="p1">
+                        <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
+                            <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Expired</h2>
+                        </div>
+                        <c:forEach items="${products1}" var="p1">
                                 <div class="col-md-3 mt-3" data-aos="zoom-in" data-aos-duration="1000" >
                                     <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}&catid=${p1.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p1.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
@@ -110,7 +110,17 @@
                                                     <c:otherwise>
                                                         <span class="text-danger">
                                                             <c:set var="nameParts" value="${fn:split(p1.name, ' ')}"/>
-                                                            *****${nameParts[0].substring(1)}
+                                                            <c:choose>
+                                                                <c:when test="${nameParts[0].length() <=3}">
+                                                                    *****${nameParts[0].substring(1)}***
+                                                                </c:when>
+                                                                <c:when test="${nameParts[0].length() >5}">
+                                                                    ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                         </span></h5>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -118,10 +128,11 @@
                                     </div>
                                 </c:forEach>
                     </div>
-                    <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;">
-                        <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Price</h2>
-                    </div>
+
                     <div class="row">
+                        <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
+                            <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Price</h2>
+                        </div>
                         <c:forEach items="${products2}" var="p2">
                             <div class="col-md-3 mt-3" data-aos="fade-up" data-aos-duration="1000" >
                                 <div class="product-top mt-3 text-center">
@@ -162,7 +173,17 @@
                                         <c:otherwise>
                                         <span class="text-danger">
                                             <c:set var="nameParts" value="${fn:split(p2.name, ' ')}"/>
-                                                *****${nameParts[0].substring(1)}
+                                            <c:choose>
+                                                <c:when test="${nameParts[0].length() <=3}">
+                                                    *****${nameParts[0].substring(1)}***
+                                                </c:when>
+                                                <c:when test="${nameParts[0].length() >5}">
+                                                    ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                                </c:otherwise>
+                                            </c:choose>
                                         </span></h5>
                                     </c:otherwise>
                                     </c:choose>
@@ -171,11 +192,12 @@
                             </div>
                         </c:forEach>
                     </div>
-                    <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;">
-                        <a name="hot"></a>
-                        <h2 style="cursor: pointer;font-family: 'Bauhaus 93'">Top Bidding</h2>
-                    </div>
+
                     <div class="row">
+                        <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
+                            <a name="hot"></a>
+                            <h2 style="cursor: pointer;font-family: 'Bauhaus 93'">Top Bidding</h2>
+                        </div>
                         <c:forEach items="${products3}" var="p3">
                             <div class="col-md-3 mt-3" data-aos="fade-left" data-aos-duration="1500" >
                                 <div class="product-top mt-3 text-center">
@@ -216,7 +238,17 @@
                                         <c:otherwise>
                                         <span class="text-danger">
                                             <c:set var="nameParts" value="${fn:split(p3.name, ' ')}"/>
-                                                *****${nameParts[0].substring(1)}
+                                                <c:choose>
+                                                    <c:when test="${nameParts[0].length() <=3}">
+                                                        *****${nameParts[0].substring(1)}***
+                                                    </c:when>
+                                                    <c:when test="${nameParts[0].length() >5}">
+                                                        ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                                    </c:otherwise>
+                                                </c:choose>
                                         </span></h5>
                                     </c:otherwise>
                                     </c:choose>

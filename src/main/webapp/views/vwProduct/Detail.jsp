@@ -298,7 +298,17 @@
                                     </c:when>
                                     <c:otherwise>
                                         <c:set var="nameParts" value="${fn:split(product.sell_name, ' ')}"/>
-                                        *****${nameParts[0].substring(1)}
+                                        <c:choose>
+                                            <c:when test="${nameParts[0].length() <=3}">
+                                                *****${nameParts[0].substring(1)}***
+                                            </c:when>
+                                            <c:when test="${nameParts[0].length() >5}">
+                                                ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                            </c:when>
+                                            <c:otherwise>
+                                                ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:otherwise>
                                 </c:choose>
                             </h4>
@@ -321,7 +331,17 @@
                                     </c:when>
                                     <c:otherwise>
                                         <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
-                                        *****${nameParts[0].substring(1)}
+                                        <c:choose>
+                                            <c:when test="${nameParts[0].length() <=3}">
+                                                *****${nameParts[0].substring(1)}***
+                                            </c:when>
+                                            <c:when test="${nameParts[0].length() >5}">
+                                                ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                            </c:when>
+                                            <c:otherwise>
+                                                ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:otherwise>
                                 </c:choose>
                             </h4>
@@ -433,7 +453,17 @@
                                                         </c:when>
                                                         <c:otherwise>
                                                             <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
-                                                            *****${nameParts[0].substring(1)}
+                                                            <c:choose>
+                                                                <c:when test="${nameParts[0].length() <=3}">
+                                                                    *****${nameParts[0].substring(1)}***
+                                                                </c:when>
+                                                                <c:when test="${nameParts[0].length() >5}">
+                                                                    ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>

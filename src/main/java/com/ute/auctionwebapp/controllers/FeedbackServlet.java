@@ -102,7 +102,7 @@ public class FeedbackServlet extends HttpServlet {
                     if(soldlike == 0) solddislike = 1;
                 Feedback fb= new Feedback(uid,review_id,proid,soldlike,solddislike,uname,review_name,soldcomment,proname);
                 FeedbackModel.add(fb);
-                ServletUtills.redirect("/Account/YourProduct?uid="+review_id,request,response);
+                ServletUtills.redirect("/Account/YourProduct?uid="+review_id+"#sold",request,response);
                 break;
 
             case "/AddWinFeedback":
@@ -118,7 +118,7 @@ public class FeedbackServlet extends HttpServlet {
                 if(winlike == 0) windislike = 1;
                 Feedback wfb= new Feedback(winuid,winreview_id,winproid,winlike,windislike,winuname,winreview_name,wincomment,winproname);
                 FeedbackModel.add(wfb);
-                ServletUtills.redirect("/Account/YourProduct?uid="+winreview_id,request,response);
+                ServletUtills.redirect("/Account/YourProduct?uid="+winreview_id+"#winning",request,response);
                 break;
 
             default:

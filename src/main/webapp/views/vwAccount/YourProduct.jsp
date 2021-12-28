@@ -9,13 +9,20 @@
 <jsp:useBean id="winningProducts" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:watchlist>
+    <jsp:attribute name="css">
+        <style>
+            .header-pro {
+                background-image: url("https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/noel/Tagline/TGDD/tagline_desktop.png?v=1");
+            }
+        </style>
+    </jsp:attribute>
     <jsp:attribute name="js">
         <script src="https://cdn.tiny.cloud/1/v0ozcj27hfm49t3m4umzfpgom0bhbjjl5xxgin0phrhz3385/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
             // Scroll to top of page
             window.addEventListener("scroll", function () {
                 let scroll = document.querySelector('.scrollTop');
-                scroll.classList.toggle('active',window.scrollY > 300);
+                scroll.classList.toggle('active',window.scrollY > 250);
             });
 
 
@@ -226,16 +233,22 @@
 
     </jsp:attribute>
     <jsp:body>
+        <a name ="top"></a>
         <section class="selling">
-            <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
-                <h2>YOUR PRODUCTS</h2>
+            <div class="title-box d-flex justify-content-between mt-1 h-100 mb-3 w-100 header-pro" style="border-radius: 5px; position: sticky; top: 0px;z-index: 1">
+                <h2 class="font-weight-bold">YOUR PRODUCTS</h2>
+                <div class="btn-group-sm" >
+                <a class="btn btn-outline-light rounded-pill" href="#selling" role="button">Selling List</a>
+                <a class="btn btn-outline-light rounded-pill" href="#sold" role="button">Sold List</a>
+                <a class="btn btn-outline-light rounded-pill" href="#bidding" role="button">Bidding List</a>
+                <a class="btn btn-outline-light rounded-pill" href="#winning" role="button">Won List</a>
+                </div>
             </div>
             <%--Scroll to top--%>
-            <a name ="top" ></a>
             <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
 
             <%--Selling Product--%>
-            <a name="selling"></a>
+            <a name="selling" class="p-4"></a>
             <div class="container-fluid t1">
                 <div class="w-100 mb-1 justify-content-between d-flex border-bottom">
                     <div class="title-pro">
@@ -333,7 +346,7 @@
                 </div>
             </div>
             <%--Sold Product--%>
-            <a name="sold"></a>
+            <a name="sold" class="p-4"></a>
             <div class="container-fluid t2">
                 <div class="w-100 mb-1 border-bottom">
                     <div class="title-pro">
@@ -437,7 +450,7 @@
             </div>
 
             <%--Bidding Product--%>
-            <a name="bidding"></a>
+            <a name="bidding" class="p-4"></a>
             <div class="container-fluid t3">
                 <div class="w-100 mb-1 border-bottom">
                     <div class="title-pro">
@@ -495,7 +508,7 @@
             </div>
 
             <%--Winning Product--%>
-            <a name="winning"></a>
+            <a name="winning" class="p-4"></a>
             <div class="container-fluid t4">
                 <div class="w-100 mb-1 border-bottom">
                     <div class="title-pro">

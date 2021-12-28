@@ -173,7 +173,17 @@
                                                 <c:otherwise>
                                                 <span class="text-danger">
                                                 <c:set var="nameParts" value="${fn:split(p.name, ' ')}"/>
-                                                *****${nameParts[0].substring(1)}
+                                                <c:choose>
+                                                    <c:when test="${nameParts[0].length() <=3}">
+                                                        *****${nameParts[0].substring(1)}***
+                                                    </c:when>
+                                                    <c:when test="${nameParts[0].length() >5}">
+                                                        ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 </span></h5>
                                             </c:otherwise>
                                             </c:choose>
