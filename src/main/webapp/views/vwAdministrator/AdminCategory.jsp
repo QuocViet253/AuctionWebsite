@@ -18,7 +18,7 @@
         </a>
         </div>
         <div class="tableFixHistory" style="cursor: pointer">
-            <p>&nbsp;</p>
+            <b>&nbsp;</b>
             <table class="table table-hover" style="width: 50%; height: 70%; margin-left: auto; margin-right: auto">
                 <thead>
                 <tr>
@@ -50,6 +50,6 @@
                 </c:choose>
                 </tbody>
             </table>
+        </div>
     </jsp:body>
 </t:manager>
-</div>
