@@ -12,7 +12,8 @@
                                                                    alt="No Loading" style=" width:140px ;height: 70px"></a>
             <nav class="navbar navbar-light d-inline">
                 <div class="form-inline">
-                    <input id="search" class="form-control mr-sm-3" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
+                    <input id="search" class="form-control mr-sm-3" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('btnSearch').click()" name="search"  type="search" placeholder="Search" aria-label="Search" style="width: 500px">
                     <button id="btnSearch" class="btn btn-danger text-light my-2 my-sm-0 " type="button" onclick="Found('${pageContext.request.contextPath}')" >
                         <i class="fa fa-search"></i>
                         Search

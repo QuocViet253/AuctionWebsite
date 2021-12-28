@@ -13,6 +13,7 @@
 <jsp:useBean id="product" scope="request" type="com.ute.auctionwebapp.beans.Product"/>
 <jsp:useBean id="products" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="histories" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.History>"/>
+<jsp:useBean id="usersRate" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Feedback>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
 <t:main>
     <jsp:attribute name="js">
@@ -224,33 +225,54 @@
                         <div>
                             <ul class="list-img mt-2">
                                 <li class="img mb-3">
-                                    <img id="one" class="border border-success rounded" onclick="changeImage('one')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="0" id="one" class="border border-success rounded" style="width: 80px;height: 80px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="two" class="border border-success rounded" onclick="changeImage('two')" style="width:80px ;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="1" id="two" class="border border-success rounded"  style="width: 80px;height: 80px; object-fit: contain;" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" alt="">
                                 </li>
                                 <li class="img mb-3">
-                                    <img id="three" class="border border-success rounded" onclick="changeImage('three')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="2" id="three" class="border border-success rounded" style="width: 80px;height: 80px; object-fit: contain;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" alt="">
                                 </li>
                                 <li class="img">
-                                    <img id="four" class="border border-success rounded" onclick="changeImage('four')" style="width:80px ;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
+                                    <img  data-target="#carouselExampleIndicators" data-slide-to="3" id="four" class="border border-success rounded"  style="width: 80px;height: 80px; object-fit: contain;"  src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" alt="">
                                 </li>
                             </ul>
                         </div>
-                        <div id="main_img" style="margin-left: 10px">
-                            <img id="img_main" src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" style="width: 400px;height: 400px; object-fit: contain;" alt="">
+                        <div id="main_img" style="margin-left: 20px" >
+                            <div id="carouselExampleIndicators" class="carousel slide" data-interval="2000" data-ride="carousel" style="width: 400px;height: 400px; object-fit: contain; box-shadow: none">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active bg-secondary"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1" class="bg-secondary"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2" class="bg-secondary"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="3" class="bg-secondary"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/main.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub1.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub2.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="${pageContext.request.contextPath}/public/imgs/products/${product.proid}/sub3.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h4 style="cursor:pointer;" class="text-primary text-center mt-3">
-                        Starting price:$
-                        <fmt:formatNumber value="${product.price_start}" type="number" />
+                    <h4 style="cursor:pointer;" class="text-center mt-3"><b>Current price:</b>
+                        <span class="text-danger font-weight-bold" style="font-size: 43px">$<fmt:formatNumber value="${product.price_current}" type="number" /></span>
                     </h4>
-                    <h4 style="cursor:pointer;" class="text-primary text-center mt-3">Current price:$
-                        <fmt:formatNumber value="${product.price_current}" type="number" />
+                    <h4 style="cursor:pointer;" class="text-center mt-3 mr-5">
+                        <b>Starting price:</b>
+                        <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${product.price_start}" type="number" /></span>
                     </h4>
                     <c:if test="${product.price_now!=0}">
-                        <h4 style="cursor:pointer;" class="text-danger text-center mt-3">Buy Now Price:$
-                            <fmt:formatNumber value="${product.price_now}" type="number" />
+                        <h4 style="cursor:pointer;" class="text-center mt-3 mr-5"><b>Buy now price:</b>
+                            <span class="text-primary" style="font-size: larger">$<fmt:formatNumber value="${product.price_now}" type="number" /></span>
                         </h4>
                     </c:if>
 
@@ -260,10 +282,68 @@
                     <input id="price_cur" name="price_cur" type="hidden" value="${product.price_current}">
                     <div class="border border-info rounded" >
                         <div class="content mt-3 " style="margin-left: 50px">
-                            <h4 class="mr-2"><span class="text-info"> <b>Seller:</b></span> ${product.sell_name}</h4>
+                            <h4 class="mr-2"><span class="text-info"> <b>Seller:</b></span>
+                                <c:choose>
+                                    <c:when test="${auth}">
+                                        ${product.sell_name}
+                                        <c:set var="rate" value="0"/>
+                                        <c:forEach items="${usersRate}" var="r">
+                                            <c:if test="${product.sell_id == r.uid}">
+                                                <c:set var="rate" value="${r.rate}"/>
+                                            </c:if>
+                                        </c:forEach>
+                                        (<a title="Click to view user feedback" href="${pageContext.request.contextPath}/Feedback/ViewComment?uid=${product.sell_id}">
+                                                ${rate}%
+                                        </a><i class="fa fa-thumbs-o-up text-primary" aria-hidden="true"></i> )
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="nameParts" value="${fn:split(product.sell_name, ' ')}"/>
+                                        <c:choose>
+                                            <c:when test="${nameParts[0].length() <=3}">
+                                                *****${nameParts[0].substring(1)}***
+                                            </c:when>
+                                            <c:when test="${nameParts[0].length() >5}">
+                                                ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                            </c:when>
+                                            <c:otherwise>
+                                                ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
+                            </h4>
                             <h4 class="mr-2"><span class="text-info"><b>Highest Bidder:</b></span>
-                                <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
-                                *****${nameParts[0].substring(3)}
+                                <c:choose>
+                                    <c:when test="${empty product.bid_name}">
+                                        None.
+                                    </c:when>
+                                    <c:when test="${authUser.id == product.sell_id}">
+                                        ${product.bid_name}
+                                        <c:set var="rate" value="0"/>
+                                        <c:forEach items="${usersRate}" var="r">
+                                            <c:if test="${product.bid_id == r.uid}">
+                                                <c:set var="rate" value="${r.rate}"/>
+                                            </c:if>
+                                        </c:forEach>
+                                        (<a title="Click to view user feedback" href="${pageContext.request.contextPath}/Feedback/ViewComment?uid=${product.bid_id}">
+                                        ${rate}%
+                                        </a><i class="fa fa-thumbs-o-up text-primary" aria-hidden="true"></i> )
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="nameParts" value="${fn:split(product.bid_name, ' ')}"/>
+                                        <c:choose>
+                                            <c:when test="${nameParts[0].length() <=3}">
+                                                *****${nameParts[0].substring(1)}***
+                                            </c:when>
+                                            <c:when test="${nameParts[0].length() >5}">
+                                                ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                            </c:when>
+                                            <c:otherwise>
+                                                ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
                             </h4>
                             <h4 class="mr-2"><span class="text-info"><b>Date Start:</b> </span><fmt:parseDate value="${product.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
                                 <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" /></h4>
@@ -289,7 +369,7 @@
                         <c:set var="hint" value="${product.price_current+product.price_step}"></c:set>
                     </c:if>
                     <div id="hint" class="ml-5 mb-2 text-info" >
-                        Recommended price: $ <fmt:formatNumber value="${hint}" type="number" /> </div>
+                        Recommended price: $<fmt:formatNumber value="${hint}" type="number" /> </div>
                     <form action="" method="post" class="mb-3">
                         <div class="input-group flex-nowrap mb-3">
                             <div class="input-group-prepend">
@@ -336,72 +416,105 @@
                             </button>
                         </div>
                     </form>
-                    <h4 class="mt-2">
-                        Auction History</h4>
-                    <div class="tableFixHead" style="cursor: pointer">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th scope="col">Time</th>
-                                <th scope="col">Bidder</th>
-                                <th scope="col">Price</th>
-                                <c:if test="${auth && authUser.id==product.sell_id}">
-                                    <th scope="col">Reject</th>
-                                </c:if>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:choose>
-                                <c:when test="${histories.size()==0}">
-                                    <div class="card-body">
-                                        <p class="card-text">No data</p>
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${histories}" var="h">
-                                        <tr>
-                                            <td>
-                                                <fmt:parseDate value="${h.buy_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
-                                                <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
-                                            </td>
-                                            <td>
-                                                <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
-                                                *****${nameParts[0].substring(1)}
-                                            </td>
-                                            <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
-                                            <c:if test="${auth && authUser.id==product.sell_id}">
+                    <c:if test="${auth}">
+                        <h4 class="mt-2">
+                            Auction History</h4>
+                        <div class="tableFixHead" style="cursor: pointer">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Bidder</th>
+                                    <th scope="col">Price</th>
+                                    <c:if test="${authUser.id==product.sell_id}">
+                                        <th scope="col">Bidder rate</th>
+                                        <th scope="col">Reject</th>
+                                    </c:if>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:choose>
+                                    <c:when test="${histories.size()==0}">
+                                        <div class="card-body">
+                                            <p class="card-text">No data</p>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach items="${histories}" var="h">
+                                            <tr>
                                                 <td>
-                                                    <button type="button" data-toggle="modal" data-target="#modalReject" data-proid="${h.proid}" data-bidid="${h.bid_id}" class="btn btn-outline-danger btn-sm btn-block w-50" title="Reject Bidder">
-                                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                                    </button>
+                                                    <fmt:parseDate value="${h.buy_day}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDateTime" type="both" />
+                                                    <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${ parsedDateTime }" />
                                                 </td>
-                                            </c:if>
-                                        </tr>
-                                    </c:forEach>
-                                    <%--Modal Reject--%>
-                                    <div class="modal fade" id="modalReject" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="rejectLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="rejectLabel">Reject Confirmation</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                     Are you sure to reject bidder to bid on this product?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                        <i class="fa fa-times" aria-hidden="true"></i> Close</button>
-                                                    <a type="button" id="btnReject" class="btn btn-outline-danger">
-                                                        <i class="fa fa-check" aria-hidden="true"></i> Confirm Reject</a>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${authUser.id == product.sell_id}">
+                                                            ${h.name}
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:set var="nameParts" value="${fn:split(h.name, ' ')}"/>
+                                                            <c:choose>
+                                                                <c:when test="${nameParts[0].length() <=3}">
+                                                                    *****${nameParts[0].substring(1)}***
+                                                                </c:when>
+                                                                <c:when test="${nameParts[0].length() >5}">
+                                                                    ***${nameParts[0].substring(0,1)}*${nameParts[0].substring(3,4)}x${nameParts[0].substring(5)}*
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    ***${nameParts[0].substring(0,2)}*${nameParts[0].substring(3,4)}***
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                <td>$ <fmt:formatNumber value="${h.price}" type="number" /></td>
+                                                <c:if test="${authUser.id == product.sell_id}">
+                                                    <td>
+                                                        <c:set var="rate" value="0"/>
+                                                        <c:forEach items="${usersRate}" var="r">
+                                                            <c:if test="${h.bid_id == r.uid}">
+                                                                <c:set var="rate" value="${r.rate}"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <a title="Click to view user feedback" class="ml-3" href="${pageContext.request.contextPath}/Feedback/ViewComment?uid=${h.bid_id}">
+                                                            ${rate}%
+                                                    </a><i class="fa fa-thumbs-o-up text-primary" aria-hidden="true"></i>
+                                                    </td>
+
+                                                    <td>
+                                                        <button type="button" data-toggle="modal" data-target="#modalReject" data-proid="${h.proid}" data-bidid="${h.bid_id}" class="btn btn-outline-danger btn-sm btn-block w-50" title="Reject Bidder">
+                                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                                        </button>
+                                                    </td>
+                                                </c:if>
+                                            </tr>
+                                        </c:forEach>
+                                        <%--Modal Reject--%>
+                                        <div class="modal fade" id="modalReject" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="rejectLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="rejectLabel">Reject Confirmation</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure to reject bidder to bid on this product?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                            <i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                                        <a type="button" id="btnReject" class="btn btn-outline-danger">
+                                                            <i class="fa fa-check" aria-hidden="true"></i> Confirm Reject</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </c:otherwise>
+                                </c:choose>
+                                </tbody>
+                            </table>
+                        </div>
+                    </c:if>
+
                 </div>
             </div>
             <hr>

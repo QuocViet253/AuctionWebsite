@@ -6,7 +6,9 @@ import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
 import com.ute.auctionwebapp.beans.User;
 import com.ute.auctionwebapp.models.*;
+import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
+import com.ute.auctionwebapp.utills.VerifyUtills;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -221,11 +223,30 @@ public class AdminServlet extends HttpServlet {
             case "/User/AddUser":
                 addUser(request,response);
                 break;
+            case "/User/ResetPassword":
+                forgot(request,response);
+                break;
             default:
                 ServletUtills.forward("/views/404.jsp", request, response);
                 break;
         }
 
+    }
+    private void forgot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        User user = UserModel.findByUsername(email);
+        if (user != null && !user.isGg_acc()) {
+            String rawPassword = VerifyUtills.getPasswordRanDom(8);
+            String bcryptHashString = BCrypt.withDefaults().hashToString(12, rawPassword.toCharArray());
+            UserModel.resetPassword(email, bcryptHashString);
+            MailUtills.sendResetPassword(email, rawPassword);
+            request.setAttribute("hasSuccess", true);
+            request.setAttribute("Message", "Reset Password Successfully !");
+        }
+        int id  = Integer.parseInt(request.getParameter("uid"),10);
+        User user1 = UserModel.findById(id);
+        request.setAttribute("users",user1);
+        ServletUtills.forward("/views/vwAdministrator/AdminEditUser.jsp", request, response);
     }
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("uid"));

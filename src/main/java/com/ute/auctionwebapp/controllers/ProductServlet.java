@@ -1,12 +1,10 @@
 package com.ute.auctionwebapp.controllers;
 
 import com.ute.auctionwebapp.beans.Category;
+import com.ute.auctionwebapp.beans.Feedback;
 import com.ute.auctionwebapp.beans.History;
 import com.ute.auctionwebapp.beans.Product;
-import com.ute.auctionwebapp.models.CategoryModel;
-import com.ute.auctionwebapp.models.HistoryModel;
-import com.ute.auctionwebapp.models.ProductModel;
-import com.ute.auctionwebapp.models.WatchListModel;
+import com.ute.auctionwebapp.models.*;
 import com.ute.auctionwebapp.utills.MailUtills;
 import com.ute.auctionwebapp.utills.ServletUtills;
 
@@ -87,6 +85,8 @@ public class ProductServlet extends HttpServlet {
                     request.setAttribute("product",product);
                     List<Product> list4 = ProductModel.findNear(catid,proid);
                     request.setAttribute("products",list4);
+                    List<Feedback> feedbackList = FeedbackModel.getListUserRate();
+                    request.setAttribute("usersRate",feedbackList);
 
                     List<History> list5 =HistoryModel.findByProduct(proid);
                     request.setAttribute("histories",list5);
@@ -122,31 +122,36 @@ public class ProductServlet extends HttpServlet {
 
                     out.print(update);
                     out.flush();
-                    MailUtills.sendNotify(email,new_price,proname);
-                    MailUtills.sendNotify(sell_mail,new_price,proname);
+//                    MailUtills.sendNotify(email,new_price,proname);
+//                    MailUtills.sendNotify(sell_mail,new_price,proname);
                     //Add history
                     LocalDateTime buy_date = LocalDateTime.now();
                     HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(product1.getPrice_start()));
                 } else {
                     //Trường hợp người đấu giá sau có giá thấp hơn giá tối đa của người trước đó
                     //Cập nhập giá hiện tại bằng với giá của người mới nhập vào
-                    if (max >= new_price) {
-                        boolean update = ProductModel.updatePriceCur(proid, (new_price),renew);
+                    if (max >= new_price ) {
+                        boolean update;
                         PrintWriter out = response.getWriter();
                         out = response.getWriter();
                         response.setContentType("application/json");
                         response.setCharacterEncoding("utf-8");
-
+                        if(new_price < product1.getPrice_current())
+                        {
+                            update=false;
+                        }
+                        else{
+                            update=ProductModel.updatePriceCur(proid, (new_price),renew);
+                            //                        MailUtills.sendNotify(email, new_price, proname);
+//                        MailUtills.sendNotify(sell_mail,new_price,proname);
+//                        MailUtills.sendNotify(bid_mail,new_price,proname);
+                            LocalDateTime buy_date = LocalDateTime.now();
+                            HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
+                            HistoryModel.addHistory(proid,proname,sell_id,product1.getBid_id(),buy_date,new_price);
+                        }
                         out.print(update);
                         out.flush();
 
-                        MailUtills.sendNotify(email, new_price, proname);
-                        MailUtills.sendNotify(sell_mail,new_price,proname);
-                        MailUtills.sendNotify(bid_mail,new_price,proname);
-                        //Add history
-                        LocalDateTime buy_date = LocalDateTime.now();
-                        HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
-                        HistoryModel.addHistory(proid,proname,sell_id,product1.getBid_id(),buy_date,new_price);
                     }
                     //Trường hợp người đấu giá sau có giá cao hơn giá tối đa của người trước đó
                     //Cập nhập giá hiện tại bằng với giá tối đa của người trước đó cộng thêm bước giá
@@ -160,9 +165,9 @@ public class ProductServlet extends HttpServlet {
 
                         out.print(update);
                         out.flush();
-                        MailUtills.sendNotify(email, new_price, proname);
-                        MailUtills.sendNotify(sell_mail,new_price,proname);
-                        MailUtills.sendNotify(bid_mail,new_price,proname);
+//                        MailUtills.sendNotify(email, new_price, proname);
+//                        MailUtills.sendNotify(sell_mail,new_price,proname);
+//                        MailUtills.sendNotify(bid_mail,new_price,proname);
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
                         HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(max+price_step));
@@ -196,6 +201,7 @@ public class ProductServlet extends HttpServlet {
             case "/Add":
                 List<Category> listC = CategoryModel.findChild();
                 request.setAttribute("catChild",listC);
+                request.setAttribute("success",false);
                 ServletUtills.forward("/views/vwProduct/Add.jsp", request, response);
                 break;
             default:
@@ -262,11 +268,14 @@ public class ProductServlet extends HttpServlet {
                     destination = targetDir + "/sub"+i+".jpg";
                 }
                 i ++;
-
                 part.write(destination);
-
             }
         }
-        ServletUtills.redirect("/Product/Add", request, response);
+        if (lastid != 0) {
+            request.setAttribute("success",true);
+        }
+        List<Category> listC = CategoryModel.findChild();
+        request.setAttribute("catChild",listC);
+        ServletUtills.forward("/views/vwProduct/Add.jsp", request, response);
     }
 }

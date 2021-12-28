@@ -25,6 +25,7 @@
         <script src="${pageContext.request.contextPath}/public/js/validator.js"></script>
 
         <script>
+            //validate when add prodct
             $('#frmAddProduct').on('submit', function (e) {
                 e.preventDefault();
                 tinymce.triggerSave();
@@ -95,6 +96,19 @@
             });
 
             $('#txtProName').focus();
+
+            //show alert when add product
+            if (${success}) {
+                swal({
+                    title: "Successfully!",
+                    text: "Successfully added product!",
+                    icon: "success",
+                    button: "OK!",
+                    closeOnClickOutside: false,
+                });
+            } else {
+
+            }
         </script>
     </jsp:attribute>
     <jsp:body>
