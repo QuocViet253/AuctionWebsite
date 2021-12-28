@@ -29,7 +29,7 @@
         <div class="row h-100 justify-content-center align-items-center mt-5">
             <form class="h-100 mx-auto shadow rounded-lg bg-white " action="" method="post" id="formChangePwd">
                 <!-- Logo -->
-                <div class="text-center text-primary mb-3" style="font-family: 'Bauhaus 93'">
+                <div class="text-center text-primary mb-3" style="font-family: 'Russo One',sans-serif">
                     <h3>Change Password</h3>
                 </div>
                     <%--Alert--%>

@@ -1,9 +1,14 @@
+
 * {
 margin: 0;
 padding: 0;
 }
 html {
     scroll-behavior: smooth;
+
+}
+h2,h3{
+    font-family: 'Russo One', sans-serif;
 }
 /*Dropdown*/
 .dropdown:hover > .dropdown-menu {
@@ -148,6 +153,8 @@ th     { background:#eee; }
     background-size: cover;
     position: relative;
 }*/
+
+
 
 
 

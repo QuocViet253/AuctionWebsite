@@ -8,6 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="now" class="java.util.Date" />
+
 <t:main>
     <jsp:attribute name="js">
         <script>
@@ -68,7 +69,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="title-box bg-danger mt-1 w-100 justify-content-center" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
-                            <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Expired</h2>
+                            <h2 style="cursor: pointer; font-family: 'Russo One',sans-serif">Top Expired</h2>
                         </div>
                         <c:forEach items="${products1}" var="p1">
                                 <div class="col-md-3 mt-3" data-aos="zoom-in" data-aos-duration="1000" >
@@ -131,7 +132,7 @@
 
                     <div class="row">
                         <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
-                            <h2 style="cursor: pointer; font-family: 'Bauhaus 93'">Top Price</h2>
+                            <h2 style="cursor: pointer; font-family: 'Russo One',sans-serif">Top Price</h2>
                         </div>
                         <c:forEach items="${products2}" var="p2">
                             <div class="col-md-3 mt-3" data-aos="fade-up" data-aos-duration="1000" >
@@ -196,7 +197,7 @@
                     <div class="row">
                         <div class="title-box bg-danger mt-3 w-100 justify-content-center" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
                             <a name="hot"></a>
-                            <h2 style="cursor: pointer;font-family: 'Bauhaus 93'">Top Bidding</h2>
+                            <h2 style="cursor: pointer;font-family: 'Russo One',sans-serif">Top Bidding</h2>
                         </div>
                         <c:forEach items="${products3}" var="p3">
                             <div class="col-md-3 mt-3" data-aos="fade-left" data-aos-duration="1500" >

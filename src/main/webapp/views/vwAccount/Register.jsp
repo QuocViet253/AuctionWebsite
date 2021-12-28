@@ -162,7 +162,7 @@
         <form class="mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formRegister">
             <!-- Logo -->
             <div class="text-center mb-3">
-                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">Register</h3>
+                <h3 class="text-primary" style="font-family: 'Russo One',sans-serif">Register</h3>
             </div>
 
             <!-- Họ và tên va dob -->

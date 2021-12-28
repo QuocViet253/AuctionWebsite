@@ -69,7 +69,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <h3 class="text-center mb-3 mt-3 bg-danger text-light" style="font-family: 'Bauhaus 93'">My WatchList</h3>
+        <h3 class="text-center mb-3 mt-3 bg-danger text-light" style="font-family: 'Russo One',sans-serif">My WatchList</h3>
         <%--<div class="row">--%>
             <section class="on-sale">
                 <div class="container-fluid t1">

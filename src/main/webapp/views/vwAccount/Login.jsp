@@ -2,6 +2,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <t:login_re>
     <jsp:attribute name="js">
         <script>
@@ -21,7 +22,7 @@
         <form class=" mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formLogin">
             <!-- Logo -->
             <div class="text-center mb-3">
-                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">Login</h3>
+                <h3 class="text-primary" style="font-family: 'Russo One',sans-serif">Login</h3>
                 <i class="fa fa-user-circle fa-3x mx-auto" aria-hidden="true"></i>
             </div>
 
