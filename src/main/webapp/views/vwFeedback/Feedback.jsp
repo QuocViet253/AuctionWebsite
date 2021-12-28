@@ -7,7 +7,6 @@
 <jsp:useBean id="Feedback" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Feedback>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User"/>
 
-
 <t:admin>
      <jsp:attribute name="js">
         <script>

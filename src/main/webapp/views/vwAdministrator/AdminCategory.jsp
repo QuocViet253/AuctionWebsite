@@ -17,7 +17,7 @@
             Add Category
         </a>
         </div>
-        <div class="tableFixHistory w-50   mx-auto mt-2" style="cursor: pointer">
+        <div class="tableFixHistory w-50 mx-auto mt-2" style="cursor: pointer">
             <table class="table table-hover mx-auto">
                 <thead>
                 <tr>

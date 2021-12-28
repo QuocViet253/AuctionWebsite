@@ -20,7 +20,7 @@
         <div class="title-box bg-warning mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px; font-family: 'Bauhaus 93'">
             <h2>History</h2>
         </div>
-        <div class="tableFixHistory" style="cursor: pointer">
+        <div class="tableFixHistory w-75 mx-auto" style="cursor: pointer">
             <table class="table table-hover">
                 <thead>
                 <tr>
