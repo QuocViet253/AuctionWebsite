@@ -72,7 +72,7 @@
                             <c:forEach items="${Feedback}" var="f">
                                 <c:if test="${f.uid == users.id}">
                                     <tr>
-                                        <th scope="col">${f.uname}</th>
+                                        <th scope="col">${f.review_name}</th>
                                         <th>${f.proname}</th>
                                         <th >${f.des}</th>
                                         <c:if test="${f.like ==1}">
