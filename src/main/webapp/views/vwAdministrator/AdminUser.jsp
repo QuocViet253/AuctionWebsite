@@ -52,7 +52,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+        <div class="title-box bg-danger mt-1 w-100 justify-content-center mb-3" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
             <h2 style="font-family: 'Bauhaus 93'">Bidder Manager</h2>
         </div>
         <div style="text-align: center; margin: auto; display: flex; width: 25%; justify-content: center">
@@ -166,7 +166,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="title-box bg-danger mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+        <div class="title-box bg-danger mt-1 w-100 justify-content-center mb-3" style="border-radius: 5px;background-image: url('https://www.thebutlerspantry.ie/wp-content/uploads/2020/10/trim-header-christmas.png');background-size: cover">
             <h2 style="font-family: 'Bauhaus 93'">Seller Manager</h2>
         </div>
         <div class="tableFixHistory" style="cursor: pointer; height: 50%">

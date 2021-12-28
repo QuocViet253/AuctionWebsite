@@ -67,7 +67,7 @@
         </script>
     </jsp:attribute>
     <jsp:body>
-        <div class="title-box bg-warning mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+        <div class="title-box bg-warning mt-1 w-100 justify-content-center mb-3" style="border-radius: 5px;background-image: url('https://images.squarespace-cdn.com/content/v1/5be4abdf0dbda37a57d6b5cd/1542130803615-0392V5SC5CWYPEEA1FTH/Header-bgr-V1.jpg?format=1500w'); background-size: cover">
             <h2 style="font-family: 'Bauhaus 93'">Product Manager</h2>
         </div>
         <div class="right col-sm-10 mt-1 mx-auto" >

@@ -8,7 +8,7 @@
         <script></script>
     </jsp:attribute>
     <jsp:body>
-        <div class="title-box bg-info mt-1 mb-3 w-100 justify-content-center" style="border-radius: 5px;">
+        <div class="title-box bg-warning mt-1 w-100 justify-content-center mb-3" style="border-radius: 5px;background-image: url('https://t3.ftcdn.net/jpg/03/05/08/54/360_F_305085456_qVPV5YYXv9kQoIndzZebtyR4ITmuX9dE.jpg'); background-size: contain">
             <h2 style="font-family: 'Bauhaus 93'">Category Manager</h2>
         </div>
         <div style="text-align: center; margin: auto; display: flex; width: 25%; justify-content: center">
