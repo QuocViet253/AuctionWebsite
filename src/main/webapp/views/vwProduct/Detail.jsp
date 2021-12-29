@@ -276,7 +276,7 @@
             <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
             <div class="card mt-2">
                 <div class="card-header" style="background-image: linear-gradient(#ea8215, #eca45d)">
-                    <h4 style="cursor:pointer; font-family: 'Arial';font-weight: bold" class="text-center">${product.proname}</h4>
+                    <h4 style="cursor:pointer; font-family: 'Arial';font-weight: bold; color: white" class="text-center">${product.proname}</h4>
                 </div>
                 <div class="card-body">
                     <div class="all" style="margin-left: 150px">
