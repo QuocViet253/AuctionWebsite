@@ -89,7 +89,7 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">

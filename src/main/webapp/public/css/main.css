@@ -7,9 +7,7 @@ html {
     scroll-behavior: smooth;
 
 }
-h2,h3{
-    font-family: 'Russo One', sans-serif;
-}
+
 /*Dropdown*/
 .dropdown:hover > .dropdown-menu {
     display: block;
@@ -21,6 +19,7 @@ h2,h3{
     /*Without this, clicking will make it sticky*/
     pointer-events: none;
 }
+
 .dropdown-submenu{
     position: relative;
 }

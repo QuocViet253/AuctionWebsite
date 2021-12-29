@@ -117,7 +117,7 @@
                                             </c:if>
                                         </div>
                                         <div class="product-bottom text-center">
-                                            <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                            <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain; font-family: Arial">${p.proname}</h3>
                                             <h5><b>Price Current:</b>
                                                 <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p.price_current}" type="number" /></span>
                                             </h5>

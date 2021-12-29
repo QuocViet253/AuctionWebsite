@@ -35,7 +35,7 @@
         <form class="mx-auto shadow rounded-lg bg-white mt-5 " action="" method="post" id="formUpdate" >
             <!-- Logo -->
             <div class="text-center mb-3">
-                <h3 class="text-primary" style="font-family: 'Bauhaus 93'">EDIT USER</h3>
+                <h3 class="text-primary" style="font-family: 'Russo One',sans-serif">Edit User</h3>
                 <input type="hidden" name="uid" value="${users.id}">
             </div>
 

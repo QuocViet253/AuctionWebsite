@@ -8,13 +8,27 @@
 <jsp:useBean id="biddingProducts" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="winningProducts" scope="request" type="java.util.List<com.ute.auctionwebapp.beans.Product>"/>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
+
 <t:watchlist>
     <jsp:attribute name="css">
         <style>
             .header-pro {
                 background-image: url("https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/noel/Tagline/TGDD/tagline_desktop.png?v=1");
             }
+
         </style>
+        <style>
+            /* customizable snowflake styling */
+            .snowflake {
+                color: #fff;
+                font-size: 1em;
+                font-family: Arial, sans-serif;
+                text-shadow: 0 0 5px #000;
+            }
+
+            @-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
+        </style>
+
     </jsp:attribute>
     <jsp:attribute name="js">
         <script src="https://cdn.tiny.cloud/1/v0ozcj27hfm49t3m4umzfpgom0bhbjjl5xxgin0phrhz3385/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -232,8 +246,47 @@
         </script>
 
     </jsp:attribute>
+
     <jsp:body>
         <a name ="top"></a>
+        <div class="snowflakes" aria-hidden="true">
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+            <div class="snowflake">
+                ❅
+            </div>
+            <div class="snowflake">
+                ❆
+            </div>
+        </div>
         <section class="selling">
             <div class="title-box d-flex justify-content-between mt-1 h-100 mb-3 w-100 header-pro" style="border-radius: 5px; position: sticky; top: 0px;z-index: 1">
                 <h2 class="font-weight-bold">YOUR PRODUCTS</h2>
@@ -249,7 +302,7 @@
 
             <%--Selling Product--%>
             <a name="selling" class="p-4"></a>
-            <div class="container-fluid t1">
+            <div class="container-fluid t1" >
                 <div class="w-100 mb-1 justify-content-between d-flex border-bottom">
                     <div class="title-pro">
                         <h2>Selling Products</h2>
@@ -285,7 +338,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain; font-family: Arial">${p.proname}</h3>
                                         <h5><b>Price Current:</b>
                                             <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p.price_current}" type="number" /></span>
                                         </h5>
@@ -309,7 +362,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addDesLabel">Add Description</h5>
+                                            <h5 class="modal-title" id="addDesLabel" style="font-family: 'Russo One'">Add Description</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -381,7 +434,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p2.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain; font-family: Arial">${p2.proname}</h3>
                                         <h5><b>Price Current:</b>
                                             <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p2.price_current}" type="number" /></span>
                                         </h5>
@@ -405,7 +458,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addCommentSoldLabel" style="font-weight: bold">Feedback</h5>
+                                            <h5 class="modal-title" id="addCommentSoldLabel" style="font-weight: bold; font-family: 'Russo One'">Feedback</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -482,7 +535,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p3.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain; font-family: Arial">${p3.proname}</h3>
                                         <h5><b>Price Current:</b>
                                             <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p3.price_current}" type="number" /></span>
                                         </h5>
@@ -540,7 +593,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom text-center">
-                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain">${p4.proname}</h3>
+                                        <h3 class="mx-auto mt-4" style="width: 250px;height: 75px; object-fit: contain; font-family: Arial">${p4.proname}</h3>
                                         <h5><b>Price Current:</b>
                                             <span class="text-danger font-weight-bold" style="font-size: 30px">$<fmt:formatNumber value="${p4.price_current}" type="number" /></span>
                                         </h5>
@@ -564,7 +617,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addCommentWinLabel" style="font-weight: bold">Feedback</h5>
+                                            <h5 class="modal-title" id="addCommentWinLabel" style="font-weight: bold; font-family: 'Russo One'">Feedback</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>

@@ -27,6 +27,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="preloader"></div>
     <script src="${pageContext.request.contextPath}/public/js/img.js"></script>
