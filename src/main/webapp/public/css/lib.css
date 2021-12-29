@@ -394,9 +394,8 @@ body
 /*highest bidder in product*/
 .product-top .top-bid {
     position: absolute;
-    z-index: 1000;
+    z-index: 50;
     top: 110px;
-    right: 0px;
     width: 300px;
     height: 300px;
     display: flex;
