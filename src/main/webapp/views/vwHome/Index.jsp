@@ -130,7 +130,7 @@
                             <h2 style="cursor: pointer; font-family: 'Russo One'">Top Expired</h2>
                         </div>
                         <c:forEach items="${products1}" var="p1">
-                                <div class="col-md-3 mt-3" data-aos="zoom-in" data-aos-duration="1000" >
+                                <div class="col-md-3 mt-3" data-aos="zoom-in-up" data-aos-duration="1000" >
                                     <div class="product-top mt-3 text-center">
                                         <a href="${pageContext.request.contextPath}/Product/Detail?id=${p1.proid}&catid=${p1.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p1.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                         <div class="overlay-right">
@@ -258,7 +258,7 @@
                             <h2 style="cursor: pointer;font-family: 'Russo One'">Top Bidding</h2>
                         </div>
                         <c:forEach items="${products3}" var="p3">
-                            <div class="col-md-3 mt-3" data-aos="fade-left" data-aos-duration="1500" >
+                            <div class="col-md-3 mt-3" data-aos="flip-right" data-aos-duration="1500" >
                                 <div class="product-top mt-3 text-center">
                                     <a href="${pageContext.request.contextPath}/Product/Detail?id=${p3.proid}&catid=${p3.catid}"><img src="${pageContext.request.contextPath}/public/imgs/products/${p3.proid}/main.jpg" style="width: 232px;height: 232px; object-fit: contain;"></a>
                                     <div class="overlay-right">

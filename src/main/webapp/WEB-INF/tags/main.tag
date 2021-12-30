@@ -32,7 +32,7 @@
     <div id="preloader"></div>
     <script src="${pageContext.request.contextPath}/public/js/img.js"></script>
     <jsp:include page="../../views/partials/Nav.jsp"/>
-    <div class="row">
+    <div class="row mr-0">
         <jsp:include page="../../views/partials/Left.jsp"/>
         <jsp:doBody/>
     </div>
