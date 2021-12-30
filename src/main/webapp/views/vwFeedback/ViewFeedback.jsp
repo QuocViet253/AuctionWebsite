@@ -105,7 +105,7 @@
                 </div>
 
             </div>
-            <div  class="tableFixHistory w-75 h-50 mx-auto" style="cursor: pointer" id="tableFixHistory2">
+            <div  class="tableFixHistory w-75 h-50 mx-auto" style="cursor: pointer; background-color: white" id="tableFixHistory2">
                 <table class="table  table-hover">
                     <thead>
                     <tr>
