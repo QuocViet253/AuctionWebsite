@@ -3,6 +3,7 @@
 <%@attribute name="css" fragment="true" required="false" %>
 <%@attribute name="js" fragment="true" required="false" %>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User" />
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -25,6 +26,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/lib.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/img.css">
     <script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <style>
         body {
             height: 100vh;

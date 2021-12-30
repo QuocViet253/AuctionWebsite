@@ -8,8 +8,8 @@
 <t:manager>
     <jsp:body>
         <form action="" method="post">
-            <div class="card">
-                <h4 class="card-header">
+            <div class="card w-50 mx-auto mt-3">
+                <h4 class="card-header text-light" style="font-family: 'Russo One',sans-serif ; background-image: url('https://t3.ftcdn.net/jpg/03/05/08/54/360_F_305085456_qVPV5YYXv9kQoIndzZebtyR4ITmuX9dE.jpg');background-size: cover">
                     Category
                 </h4>
                 <div class="card-body">
@@ -39,7 +39,7 @@
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         Delete
                     </button>
-                    <button type="submit" class="btn btn-info" formaction="${pageContext.request.contextPath}/Admin/Update">
+                    <button type="submit" class="btn" formaction="${pageContext.request.contextPath}/Admin/Update" style="background-color: darkblue; color: white">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Save
                     </button>

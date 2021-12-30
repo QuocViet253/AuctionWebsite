@@ -2,6 +2,7 @@
 <%@attribute name="js" fragment="true" required="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User"/>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -12,6 +13,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/lib.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/img.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <style>
         #preloader {
             background: #fff url('${pageContext.request.contextPath}/public/imgs/loader.gif') no-repeat center center;

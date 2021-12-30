@@ -41,7 +41,7 @@
                                     <c:otherwise>${"(Seller)"}</c:otherwise>
                                 </c:choose>
                             </a>
-                            <ul class="dropdown-menu mt-0 dropdown-menu-right" style="z-index: 10" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu mt-0 dropdown-menu-right" style="z-index: 5000" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${authUser.role == 1}"><li><a class="dropdown-item" href="${pageContext.request.contextPath}/Account/BidderProfile">
                                         <i class="fa fa-user" aria-hidden="true"></i> Profile
@@ -89,7 +89,7 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-1 ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">

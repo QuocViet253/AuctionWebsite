@@ -1,10 +1,13 @@
+
 * {
 margin: 0;
 padding: 0;
 }
 html {
     scroll-behavior: smooth;
+
 }
+
 /*Dropdown*/
 .dropdown:hover > .dropdown-menu {
     display: block;
@@ -16,6 +19,7 @@ html {
     /*Without this, clicking will make it sticky*/
     pointer-events: none;
 }
+
 .dropdown-submenu{
     position: relative;
 }
@@ -148,6 +152,8 @@ th     { background:#eee; }
     background-size: cover;
     position: relative;
 }*/
+
+
 
 
 

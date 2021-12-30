@@ -203,6 +203,7 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
+        request.setCharacterEncoding("UTF-8");
         switch (path) {
             case "/Category/AddCategory":
                 addCategory(request,response);
