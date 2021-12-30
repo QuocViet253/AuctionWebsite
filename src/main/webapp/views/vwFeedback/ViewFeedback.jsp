@@ -78,7 +78,7 @@
             </div>
             <div class="text-center">
                 <div text-center>
-                    <b class="text-secondary "style="text-align: center; font-size: larger">Feedback about: ${users.name}</b>
+                    <b class="text-secondary "style="text-align: center; font-size: larger">Feedback about: <span class="text-danger">${users.name}</span></b>
                 </div>
 
                 <div class=" text-center">

@@ -117,7 +117,7 @@
                 <li class="nav-item mr-5 ml-5">
                     <button type="button" onclick="upgrare('${pageContext.request.contextPath}/Admin/Upgrage?uid=${authUser.id}')" class="heart btn btn-light ">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        Upgrage Selle
+                        Upgrage Seller
                     </button>
                   <%-- <a class="nav-link text-secondary " href="add('${pageContext.request.contextPath}/Admin/Upgrare?uid=${authUser.id}">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>

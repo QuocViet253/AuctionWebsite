@@ -147,7 +147,7 @@
                     <div class="row mt-2">
                         <c:choose>
                             <c:when test="${products.size()==0}">
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 300px">
                                     <p class="card-text">No data</p>
                                 </div>
                             </c:when>

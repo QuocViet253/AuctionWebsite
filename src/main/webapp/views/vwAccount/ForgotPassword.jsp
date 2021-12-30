@@ -205,7 +205,7 @@
             <div class="form-group justify-content-center d-flex">
                 <div class="justify-content-center d-flex">
                     <input type="text" placeholder="Email" name="email" class="form-control mr-1 " style="width: 240px" id="forgotName">
-                    <button type="button" name="button" class="btn btn-info p-0" style="width: 80px" id="btnOTP">Send OTP</button>
+                    <button type="button" name="button" class="btn btn-primary p-0" style="width: 80px" id="btnOTP">Send OTP</button>
                 </div>
             <span class="form-message" style="margin-right: 215px;"></span>
             </div>
@@ -218,13 +218,13 @@
 
             <!-- Button send forgot password request -->
             <div class="text-center">
-                <button id="btnForgot" type="submit" class="btn btn-info w-75" name="button" value="btnForgot">Send password reset email</button>
+                <button id="btnForgot" type="submit" class="btn btn-primary w-75" name="button" value="btnForgot">Send password reset email</button>
             </div>
 
             <hr class="w-75 mx-auto bg-info">
             <!-- Back to login page -->
             <div class="text-center">
-                <a class="btn btn-outline-info" href="${pageContext.request.contextPath}/Account/Login" role="button">
+                <a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/Account/Login" role="button">
                     <i class="fa fa-arrow-left mr-3" aria-hidden="true"></i>
                     Back to login page
                 </a>

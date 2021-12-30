@@ -494,9 +494,13 @@
                                 <tbody>
                                 <c:choose>
                                     <c:when test="${histories.size()==0}">
-                                        <div class="card-body">
-                                            <p class="card-text">No data</p>
-                                        </div>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    No data
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach items="${histories}" var="h">

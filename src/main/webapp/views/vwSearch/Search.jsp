@@ -144,9 +144,11 @@
 
         <div class="right col-sm-10 mt-1" style="background-color: white">
             <div class="d-flex justify-content-between align-items-center ">
-                <div>
-                    <h5 class="mt-4 ml-2">Result for search: <span class="text-primary" id="resSearch"></span> </h5>
+                <div class="d-flex justify-content-around align-items-center">
+                    <h5 class="mt-4 ml-2 font-weight-bold">Result for search: <span class="text-primary" id="resSearch"></span> </h5>
+                    <h5 class="mt-4 ml-1">(${products.size()} products)</h5>
                 </div>
+
                 <div class="dropdown mt-1 " style="width: 91px">
                     <a class="btn btn-outline-secondary font-weight-bold dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-filter" aria-hidden="true"></i>
