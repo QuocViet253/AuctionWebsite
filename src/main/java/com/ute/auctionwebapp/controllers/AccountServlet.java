@@ -311,9 +311,6 @@ public class AccountServlet extends HttpServlet {
             String googleEmail = googleUser.getEmail();
             String googleName = googleUser.getName();
             String googleID = googleUser.getId();
-            System.out.println(googleEmail);
-            System.out.println(googleID);
-            System.out.println(googleName);
 
             User user = UserModel.findByUsername(googleEmail);
             if (user == null && googleUser.isVerified_email()) {
