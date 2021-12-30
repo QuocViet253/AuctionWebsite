@@ -122,8 +122,8 @@ public class ProductServlet extends HttpServlet {
 
                     out.print(update);
                     out.flush();
-//                    MailUtills.sendNotify(email,new_price,proname);
-//                    MailUtills.sendNotify(sell_mail,new_price,proname);
+                    MailUtills.sendNotify(email,new_price,proname);
+                    MailUtills.sendNotify(sell_mail,new_price,proname);
                     //Add history
                     LocalDateTime buy_date = LocalDateTime.now();
                     HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(product1.getPrice_start()));
@@ -142,9 +142,9 @@ public class ProductServlet extends HttpServlet {
                         }
                         else{
                             update=ProductModel.updatePriceCur(proid, (new_price),renew);
-                            //                        MailUtills.sendNotify(email, new_price, proname);
-//                        MailUtills.sendNotify(sell_mail,new_price,proname);
-//                        MailUtills.sendNotify(bid_mail,new_price,proname);
+                            MailUtills.sendNotify(email, new_price, proname);
+                        MailUtills.sendNotify(sell_mail,new_price,proname);
+                        MailUtills.sendNotify(bid_mail,new_price,proname);
                             LocalDateTime buy_date = LocalDateTime.now();
                             HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,new_price);
                             HistoryModel.addHistory(proid,proname,sell_id,product1.getBid_id(),buy_date,new_price);
@@ -165,9 +165,9 @@ public class ProductServlet extends HttpServlet {
 
                         out.print(update);
                         out.flush();
-//                        MailUtills.sendNotify(email, new_price, proname);
-//                        MailUtills.sendNotify(sell_mail,new_price,proname);
-//                        MailUtills.sendNotify(bid_mail,new_price,proname);
+                        MailUtills.sendNotify(email, new_price, proname);
+                        MailUtills.sendNotify(sell_mail,new_price,proname);
+                        MailUtills.sendNotify(bid_mail,new_price,proname);
                         //Add history
                         LocalDateTime buy_date = LocalDateTime.now();
                         HistoryModel.addHistory(proid,proname,sell_id,uid,buy_date,(max+price_step));
@@ -255,7 +255,7 @@ public class ProductServlet extends HttpServlet {
         int i = 0;
         for (Part part : request.getParts()) {
             if (part.getName().equals("pics[]")) {
-                String targetDir = this.getServletContext().getRealPath("public/imgs/products/"+lastid);
+                String targetDir = this.getServletContext().getRealPath("/public/imgs/products/"+lastid);
                 File dir = new File(targetDir);
                 if (!dir.exists()) {
                     dir.mkdir();

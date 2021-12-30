@@ -199,7 +199,7 @@
                                                 <fmt:formatDate type="time" value="${start}"/>
                                             </div>
                                             <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
-                                            <c:if test="${date <1}">
+                                            <c:if test="${(now.time - start.time) / (1000*60*60*24) <1}">
                                                 <c:if test="${(((now.time - start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
                                                     <span class="new-title"></span>
                                                 </c:if>
