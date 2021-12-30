@@ -1,5 +1,6 @@
 <%@ tag pageEncoding="utf-8" %>
 <%@attribute name="js" fragment="true" required="false" %>
+<%@attribute name="css" fragment="true" required="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="authUser" scope="session" type="com.ute.auctionwebapp.beans.User"/>
 
@@ -26,6 +27,7 @@
             z-index: 100;
         }
     </style>
+    <jsp:invoke fragment="css"/>
 </head>
 <body>
 <c:if test="${authUser.role==0}">

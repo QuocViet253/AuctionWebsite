@@ -1,5 +1,6 @@
 <%@ tag pageEncoding="utf-8" %>
 <%@attribute name="js" fragment="true" required="false" %>
+<%@attribute name="css" fragment="true" required="false" %>
 
 <html>
 <head>
@@ -24,6 +25,7 @@
             z-index: 100;
         }
     </style>
+    <jsp:invoke fragment="css"/>
 </head>
 <body>
 <jsp:include page="../../views/partials/Nav.jsp"/>
