@@ -26,7 +26,7 @@
                     Back</a>
                     <a class="btn btn-success" href="#" role="button">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                        Contact Support</a>
+                        Contact Supports</a>
                 </div>
             </div>
         </div>
