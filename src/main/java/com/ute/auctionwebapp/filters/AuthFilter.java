@@ -39,6 +39,13 @@ public class AuthFilter implements Filter {
                 return;
             }
         }
+        if (request.getRequestURI().equals("/WatchList")  || request.getRequestURI().equals("/Account/YourProduct") || request.getRequestURI().equals("/History")) {
+            int uid =Integer.parseInt(request.getParameter("uid"),10);
+            if (authUser.getId() != uid) {
+                ServletUtills.redirect(request.getRequestURI()+"?uid="+authUser.getId(), request, (HttpServletResponse) res);
+                return;
+            }
+        }
 
         if (request.getRequestURI().equals("/auctionWebApp/Product/Add")) {
             if (authUser.getRole() == 1) {
@@ -46,8 +53,26 @@ public class AuthFilter implements Filter {
                 return;
             }
         }
+        if (request.getRequestURI().equals("/Product/Add")) {
+            if (authUser.getRole() == 1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
 
         if (request.getRequestURI().equals("/auctionWebApp/Account/Profile"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Account/BidderProfile", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Account/SellerProfile", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+        if (request.getRequestURI().equals("/Account/Profile"))
         {
             if(authUser.getRole()==1) {
                 ServletUtills.redirect("/Account/BidderProfile", request, (HttpServletResponse) res);
@@ -72,6 +97,18 @@ public class AuthFilter implements Filter {
                 return;
             }
         }
+        if (request.getRequestURI().equals("/Account/BidderProfile"))
+        {
+            if(authUser.getRole()==0) {
+                ServletUtills.redirect("/Account/Profile", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Account/SellerProfile", request, (HttpServletResponse) res);
+                return;
+            }
+        }
 
         if (request.getRequestURI().equals("/auctionWebApp/Account/SellerProfile"))
         {
@@ -85,8 +122,32 @@ public class AuthFilter implements Filter {
                 return;
             }
         }
+        if (request.getRequestURI().equals("/Account/SellerProfile"))
+        {
+            if(authUser.getRole()==0) {
+                ServletUtills.redirect("/Account/Profile", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==1)
+            {
+                ServletUtills.redirect("/Account/BidderProfile", request, (HttpServletResponse) res);
+                return;
+            }
+        }
 
         if (request.getRequestURI().equals("/auctionWebApp/Admin/EditUser"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+        if (request.getRequestURI().equals("/Admin/EditUser"))
         {
             if(authUser.getRole()==1) {
                 ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
@@ -112,6 +173,18 @@ public class AuthFilter implements Filter {
             }
         }
 
+        if (request.getRequestURI().equals("/Admin/User"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
         if (request.getRequestURI().equals("/auctionWebApp/Admin/Product"))
         {
             if(authUser.getRole()==1) {
@@ -124,8 +197,31 @@ public class AuthFilter implements Filter {
                 return;
             }
         }
-
+        if (request.getRequestURI().equals("/Admin/Product"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
         if (request.getRequestURI().equals("/auctionWebApp/Admin/Category"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+        if (request.getRequestURI().equals("/Admin/Category"))
         {
             if(authUser.getRole()==1) {
                 ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
@@ -139,6 +235,18 @@ public class AuthFilter implements Filter {
         }
 
         if (request.getRequestURI().equals("/auctionWebApp/Admin"))
+        {
+            if(authUser.getRole()==1) {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+            else if (authUser.getRole()==2)
+            {
+                ServletUtills.redirect("/Home", request, (HttpServletResponse) res);
+                return;
+            }
+        }
+        if (request.getRequestURI().equals("/Admin"))
         {
             if(authUser.getRole()==1) {
                 ServletUtills.redirect("/Home", request, (HttpServletResponse) res);

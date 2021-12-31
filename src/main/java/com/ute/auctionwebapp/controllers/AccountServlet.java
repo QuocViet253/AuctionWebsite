@@ -217,14 +217,23 @@ public class AccountServlet extends HttpServlet {
                 session.setAttribute("authUser", user);
 
                 String url = (String) (session.getAttribute("retUrl"));
-                if (url == null )
+                if (url == null)
                     url = "/Home";
 
                 if(url.equals("/auctionWebApp/Admin/EditUser"))
                     ServletUtills.redirect("/Home",request,response);
-                if (url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList") || url.equals("/auctionWebApp/History"))
+                if(url.equals("/Admin/EditUser"))
+                    ServletUtills.redirect("/Home",request,response);
+                if (url.equals("/auctionWebApp/Account/YourProduct") || url.equals("/auctionWebApp/WatchList") || url.equals("/auctionWebApp/History")) {
                     url = url + "?uid=" + user.getId();
-                ServletUtills.redirect(url, request, response);
+                    ServletUtills.redirect(url, request, response);
+                }
+                if (url.equals("/Account/YourProduct") || url.equals("/WatchList") || url.equals("/History")) {
+                    url = url + "?uid=" + user.getId();
+                    ServletUtills.redirect(url, request, response);
+
+                }
+                ServletUtills.redirect("/Home",request,response);
            /*     ServletUtills.redirect("/Home",request,response);*/
             } else {
                 request.setAttribute("hasError", true);
@@ -269,7 +278,11 @@ public class AccountServlet extends HttpServlet {
         session.setAttribute("authUser", new User());
 
         String url = request.getHeader("referer");
-            url = "/Home";
+        String link = request.getRequestURI();
+            if(url==null)
+            {
+                url = "/Home";
+            }
         ServletUtills.redirect(url, request, response);
     }
 
