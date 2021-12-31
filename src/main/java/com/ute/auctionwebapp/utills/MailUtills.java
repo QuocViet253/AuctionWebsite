@@ -11,8 +11,9 @@ public class MailUtills {
     private static int randomOTP;
     public static void send(String to, String sub,
                             String msg) {
-        final String user = "auctionwebapp6@gmail.com";
-        final String pass = "auction1.";
+        //Thêm email hệ thống ở đây
+        final String user = "";
+        final String pass = "";
         //create an instance of Properties Class
         Properties props = new Properties();
 
