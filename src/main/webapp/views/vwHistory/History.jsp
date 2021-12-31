@@ -79,7 +79,7 @@
         <div class="title-box bg-warning mt-3 w-75 mx-auto justify-content-center " style="border-radius: 5px;background-image: url('https://images.squarespace-cdn.com/content/v1/5be4abdf0dbda37a57d6b5cd/1542130803615-0392V5SC5CWYPEEA1FTH/Header-bgr-V1.jpg?format=1500w'); background-size: cover">
             <h2 style="font-family: Russo One,serif" ;>History</h2>
         </div>
-        <div class="tableFixHistory w-75 mx-auto" style="cursor: pointer; background-color: white">
+        <div class="tableFixHistory w-75 mx-auto mt-2" style="cursor: pointer; background-color: white">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -91,7 +91,6 @@
                 <tbody>
                 <c:choose>
                     <c:when test="${histories.size()==0}">
-
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${histories}" var="h">

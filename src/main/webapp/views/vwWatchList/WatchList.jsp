@@ -130,7 +130,7 @@
                     <div class="row mt-2 ml-1">
                         <c:choose>
                             <c:when test="${watchlists.size()==0}">
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 275px">
                                     <p class="card-text">No data</p>
                                 </div>
                             </c:when>

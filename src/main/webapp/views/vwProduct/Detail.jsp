@@ -276,7 +276,7 @@
             <a name ="top" ></a>
             <a href="#top"><i class="fa fa-arrow-up fa-2x scrollTop" aria-hidden="true"></i></a>
             <div class="card mt-2">
-                <div class="card-header" style="background-image: linear-gradient(#ea8215, #eca45d)">
+                <div class="card-header" style="background-image: url('https://t3.ftcdn.net/jpg/03/05/08/54/360_F_305085456_qVPV5YYXv9kQoIndzZebtyR4ITmuX9dE.jpg');background-size: cover">
                     <h4 style="cursor:pointer; font-family: 'Arial';font-weight: bold; color: white" class="text-center">${product.proname}</h4>
                 </div>
                 <div class="card-body">
@@ -494,9 +494,13 @@
                                 <tbody>
                                 <c:choose>
                                     <c:when test="${histories.size()==0}">
-                                        <div class="card-body">
-                                            <p class="card-text">No data</p>
-                                        </div>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    No data
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach items="${histories}" var="h">

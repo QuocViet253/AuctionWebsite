@@ -1,6 +1,6 @@
 <a name="contact"></a>
-<section class="footer " style="background-color: #DCDCDC; color: black">
-    <div class="container tex-center">
+<section class="footer" style="background-color: #DCDCDC; color: black;">
+    <div class="container-fluid" style="background-color: #DCDCDC; color: black;">
         <div class="row">
             <div class="col-md-4">
                 <h1>Company</h1>

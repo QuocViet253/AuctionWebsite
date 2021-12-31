@@ -42,7 +42,7 @@
     <div id="preloader"></div>
     <script src="${pageContext.request.contextPath}/public/js/img.js"></script>
     <jsp:include page="../../views/partials/NavSellerProfile.jsp"/>
-    <div class="row">
+    <div class="row mr-0">
         <jsp:doBody/>
     </div>
     <jsp:include page="../../views/partials/Footer.jsp"/>

@@ -144,9 +144,11 @@
 
         <div class="right col-sm-10 mt-1" style="background-color: white">
             <div class="d-flex justify-content-between align-items-center ">
-                <div>
-                    <h5 class="mt-4 ml-2">Result for search: <span class="text-primary" id="resSearch"></span> </h5>
+                <div class="d-flex justify-content-around align-items-center">
+                    <h5 class="mt-4 ml-2 font-weight-bold">Result for search: <span class="text-primary" id="resSearch"></span> </h5>
+                    <h5 class="mt-4 ml-1">(${products.size()} products)</h5>
                 </div>
+
                 <div class="dropdown mt-1 " style="width: 91px">
                     <a class="btn btn-outline-secondary font-weight-bold dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-filter" aria-hidden="true"></i>
@@ -177,7 +179,7 @@
                     <div class="row">
                         <c:choose>
                             <c:when test="${products.size()==0}">
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 300px">
                                     <p class="card-text">No data</p>
                                 </div>
                             </c:when>
@@ -196,11 +198,9 @@
                                             </div>
                                             <div class="d-none">
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="start" type="both" />
-                                                <fmt:formatDate type="time" value="${start}"/>
                                             </div>
-                                            <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
-                                            <c:if test="${(now.time - start.time) / (1000*60*60*24) <1}">
-                                                <c:if test="${(((now.time - start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
+                                            <c:if test="${((now.time - start.time) / (1000*60*60*24)) <1}">
+                                                <c:if test="${(((now.time - start.time) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) <0.5}">
                                                     <span class="new-title"></span>
                                                 </c:if>
                                             </c:if>

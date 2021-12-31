@@ -147,7 +147,7 @@
                     <div class="row mt-2">
                         <c:choose>
                             <c:when test="${products.size()==0}">
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 300px">
                                     <p class="card-text">No data</p>
                                 </div>
                             </c:when>
@@ -166,11 +166,9 @@
                                             </div>
                                             <div class="d-none">
                                                 <fmt:parseDate value="${p.start_day }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="start" type="both" />
-                                                <fmt:formatDate type="time" value="${start}"/>
                                             </div>
-                                            <fmt:parseNumber type="number" pattern="##" var="date" value="${((now.time - start.time) / (1000*60*60*24)) }" integerOnly="true" />
-                                            <c:if test="${(now.time - start.time) / (1000*60*60*24) <1}">
-                                                <c:if test="${(((now.time - start.time) % (1000 * 60 * 60))/ (1000 * 60)) <30}">
+                                            <c:if test="${((now.time - start.time) / (1000*60*60*24)) <1}">
+                                                <c:if test="${(((now.time - start.time) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) <0.5}">
                                                     <span class="new-title"></span>
                                                 </c:if>
                                             </c:if>
